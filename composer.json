@@ -35,7 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Qase\\API\\": "src/"
+            "Qase\\Client\\": "src/"
         }
     },
     "autoload-dev": {

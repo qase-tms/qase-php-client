@@ -3,6 +3,9 @@
 namespace Qase\Client\Test\Api;
 
 use PHPUnit\Framework\TestCase;
+use Qase\Client\Api\RunsApi;
+use Qase\Client\Configuration;
+use Qase\Client\Model\RunCreate;
 
 /**
  * RunsApiTest Class Doc Comment
@@ -20,6 +23,11 @@ class RunsApiTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
+        foreach (['QASE_PROJECT_CODE', 'QASE_API_BASE_URL', 'QASE_API_TOKEN',] as $parameter) {
+            if (!(getenv($parameter))) {
+                throw new \RuntimeException($parameter . ' environment variable must be set');
+            }
+        }
     }
 
     /**
@@ -63,8 +71,21 @@ class RunsApiTest extends TestCase
      */
     public function testCreateRun()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $client = new \GuzzleHttp\Client([]);
+
+        $config = Configuration::getDefaultConfiguration()
+            ->setHost(getenv('QASE_API_BASE_URL'))
+            ->setApiKey('Token', getenv('QASE_API_TOKEN'));
+
+        $runApi = new RunsApi($client, $config);
+
+        $run = $runApi->createRun(getenv('QASE_PROJECT_CODE'), new RunCreate([
+            'title' => sprintf('PHPUnit [%F]', microtime(true)),
+            'is_autotest' => true,
+        ]));
+
+        self::assertIsInt($run->getResult()->getId());
+        self::assertGreaterThan(0, $run->getResult()->getId());
     }
 
     /**

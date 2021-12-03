@@ -24,13 +24,6 @@ class SearchResponseAllOfResultTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,18 +38,25 @@ class SearchResponseAllOfResultTest extends TestCase
     }
 
     /**
-     * Test attribute "entities"
+     * Clean up after running all test cases
      */
-    public function testPropertyEntities()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test "SearchResponseAllOfResult"
      */
     public function testSearchResponseAllOfResult()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "entities"
+     */
+    public function testPropertyEntities()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

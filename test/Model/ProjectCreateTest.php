@@ -24,13 +24,6 @@ class ProjectCreateTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,6 +38,13 @@ class ProjectCreateTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "ProjectCreate"
      */
     public function testProjectCreate()
@@ -54,9 +54,9 @@ class ProjectCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "access"
+     * Test attribute "title"
      */
-    public function testPropertyAccess()
+    public function testPropertyTitle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -81,18 +81,18 @@ class ProjectCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "group"
+     * Test attribute "access"
      */
-    public function testPropertyGroup()
+    public function testPropertyAccess()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "group"
      */
-    public function testPropertyTitle()
+    public function testPropertyGroup()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

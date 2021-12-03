@@ -69,11 +69,13 @@ class SearchApi
     }
 
     /**
-     * @return Configuration
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
      */
-    public function getConfig()
+    public function setHostIndex($hostIndex): void
     {
-        return $this->config;
+        $this->hostIndex = $hostIndex;
     }
 
     /**
@@ -87,13 +89,11 @@ class SearchApi
     }
 
     /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
+     * @return Configuration
      */
-    public function setHostIndex($hostIndex): void
+    public function getConfig()
     {
-        $this->hostIndex = $hostIndex;
+        return $this->config;
     }
 
     /**
@@ -208,6 +208,78 @@ class SearchApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation searchAsync
+     *
+     * Search entities by Qase Query Language (QQL).
+     *
+     * @param string $query Expression in Qase Query Language. (required)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function searchAsync($query, $limit = 10, $offset = 0)
+    {
+        return $this->searchAsyncWithHttpInfo($query, $limit, $offset)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation searchAsyncWithHttpInfo
+     *
+     * Search entities by Qase Query Language (QQL).
+     *
+     * @param string $query Expression in Qase Query Language. (required)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function searchAsyncWithHttpInfo($query, $limit = 10, $offset = 0)
+    {
+        $returnType = '\Qase\Client\Model\SearchResponse';
+        $request = $this->searchRequest($query, $limit, $offset);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -368,77 +440,5 @@ class SearchApi
         }
 
         return $options;
-    }
-
-    /**
-     * Operation searchAsync
-     *
-     * Search entities by Qase Query Language (QQL).
-     *
-     * @param string $query Expression in Qase Query Language. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function searchAsync($query, $limit = 10, $offset = 0)
-    {
-        return $this->searchAsyncWithHttpInfo($query, $limit, $offset)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation searchAsyncWithHttpInfo
-     *
-     * Search entities by Qase Query Language (QQL).
-     *
-     * @param string $query Expression in Qase Query Language. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function searchAsyncWithHttpInfo($query, $limit = 10, $offset = 0)
-    {
-        $returnType = '\Qase\Client\Model\SearchResponse';
-        $request = $this->searchRequest($query, $limit, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
     }
 }

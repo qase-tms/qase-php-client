@@ -24,13 +24,6 @@ class AttachmentListResponseAllOfResultTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,9 +38,34 @@ class AttachmentListResponseAllOfResultTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "AttachmentListResponseAllOfResult"
      */
     public function testAttachmentListResponseAllOfResult()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "total"
+     */
+    public function testPropertyTotal()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "filtered"
+     */
+    public function testPropertyFiltered()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -66,24 +84,6 @@ class AttachmentListResponseAllOfResultTest extends TestCase
      * Test attribute "entities"
      */
     public function testPropertyEntities()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "filtered"
-     */
-    public function testPropertyFiltered()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "total"
-     */
-    public function testPropertyTotal()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

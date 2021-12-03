@@ -24,13 +24,6 @@ class RunStatsTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,63 +38,16 @@ class RunStatsTest extends TestCase
     }
 
     /**
-     * Test attribute "blocked"
+     * Clean up after running all test cases
      */
-    public function testPropertyBlocked()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "failed"
+     * Test "RunStats"
      */
-    public function testPropertyFailed()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "inProgress"
-     */
-    public function testPropertyInProgress()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "invalid"
-     */
-    public function testPropertyInvalid()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "passed"
-     */
-    public function testPropertyPassed()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "retest"
-     */
-    public function testPropertyRetest()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "skipped"
-     */
-    public function testPropertySkipped()
+    public function testRunStats()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -126,9 +72,63 @@ class RunStatsTest extends TestCase
     }
 
     /**
-     * Test "RunStats"
+     * Test attribute "passed"
      */
-    public function testRunStats()
+    public function testPropertyPassed()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "failed"
+     */
+    public function testPropertyFailed()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "blocked"
+     */
+    public function testPropertyBlocked()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "skipped"
+     */
+    public function testPropertySkipped()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "retest"
+     */
+    public function testPropertyRetest()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "inProgress"
+     */
+    public function testPropertyInProgress()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "invalid"
+     */
+    public function testPropertyInvalid()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

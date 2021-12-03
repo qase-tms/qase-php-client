@@ -271,7 +271,7 @@ Name | Type | Description  | Notes
 ## `getRuns()`
 
 ```php
-getRuns($code, $limit, $offset, $include, $filters): \Qase\Client\Model\RunListResponse
+getRuns($code, $filters, $limit, $offset, $include): \Qase\Client\Model\RunListResponse
 ```
 
 Get all runs.
@@ -298,13 +298,13 @@ $apiInstance = new Qase\Client\Api\RunsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
+$filters = array('key' => new \Qase\Client\Model\Filters5()); // Filters5
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 $include = array('include_example'); // string[] | Add this param to include a list of test cases into response. Possible value: cases
-$filters = array('key' => new \Qase\Client\Model\Filters5()); // Filters5
 
 try {
-    $result = $apiInstance->getRuns($code, $limit, $offset, $include, $filters);
+    $result = $apiInstance->getRuns($code, $filters, $limit, $offset, $include);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RunsApi->getRuns: ', $e->getMessage(), PHP_EOL;
@@ -316,10 +316,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
+ **filters** | [**Filters5**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
  **include** | [**string[]**](../Model/string.md)| Add this param to include a list of test cases into response. Possible value: cases | [optional]
- **filters** | [**Filters5**](../Model/.md)|  | [optional]
 
 ### Return type
 

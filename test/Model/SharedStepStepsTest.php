@@ -24,13 +24,6 @@ class SharedStepStepsTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,18 +38,16 @@ class SharedStepStepsTest extends TestCase
     }
 
     /**
-     * Test attribute "action"
+     * Clean up after running all test cases
      */
-    public function testPropertyAction()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "attachments"
+     * Test "SharedStepSteps"
      */
-    public function testPropertyAttachments()
+    public function testSharedStepSteps()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,15 +63,6 @@ class SharedStepStepsTest extends TestCase
     }
 
     /**
-     * Test attribute "expectedResult"
-     */
-    public function testPropertyExpectedResult()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "hash"
      */
     public function testPropertyHash()
@@ -90,9 +72,27 @@ class SharedStepStepsTest extends TestCase
     }
 
     /**
-     * Test "SharedStepSteps"
+     * Test attribute "action"
      */
-    public function testSharedStepSteps()
+    public function testPropertyAction()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "expectedResult"
+     */
+    public function testPropertyExpectedResult()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "attachments"
+     */
+    public function testPropertyAttachments()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

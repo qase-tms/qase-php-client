@@ -21,34 +21,27 @@ use Qase\Client\ObjectSerializer;
 class ProjectCreate implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
-    const ACCESS_ALL = 'all';
-    const ACCESS_GROUP = 'group';
-    const ACCESS_NONE = 'none';
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'ProjectCreate';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'title' => 'title',
-        'code' => 'code',
-        'description' => 'description',
-        'access' => 'access',
-        'group' => 'group'
+    protected static $openAPITypes = [
+        'title' => 'string',
+        'code' => 'string',
+        'description' => 'string',
+        'access' => 'string',
+        'group' => 'string'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'title' => 'getTitle',
-        'code' => 'getCode',
-        'description' => 'getDescription',
-        'access' => 'getAccess',
-        'group' => 'getGroup'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -63,24 +56,41 @@ class ProjectCreate implements ModelInterface, ArrayAccess, JsonSerializable
         'access' => null,
         'group' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'ProjectCreate';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'title' => 'string',
-        'code' => 'string',
-        'description' => 'string',
-        'access' => 'string',
-        'group' => 'string'
+    protected static $attributeMap = [
+        'title' => 'title',
+        'code' => 'code',
+        'description' => 'description',
+        'access' => 'access',
+        'group' => 'group'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -93,6 +103,79 @@ class ProjectCreate implements ModelInterface, ArrayAccess, JsonSerializable
         'access' => 'setAccess',
         'group' => 'setGroup'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'title' => 'getTitle',
+        'code' => 'getCode',
+        'description' => 'getDescription',
+        'access' => 'getAccess',
+        'group' => 'getGroup'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+    const ACCESS_ALL = 'all';
+    const ACCESS_GROUP = 'group';
+    const ACCESS_NONE = 'none';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAccessAllowableValues()
+    {
+        return [
+            self::ACCESS_ALL,
+            self::ACCESS_GROUP,
+            self::ACCESS_NONE,
+        ];
+    }
+
     /**
      * Associative array for storing property values
      *
@@ -116,77 +199,70 @@ class ProjectCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        if ($this->container['title'] === null) {
+            $invalidProperties[] = "'title' can't be null";
+        }
+        if ($this->container['code'] === null) {
+            $invalidProperties[] = "'code' can't be null";
+        }
+        if (!preg_match("/^[a-zA-Z]{2,10}$/", $this->container['code'])) {
+            $invalidProperties[] = "invalid value for 'code', must be conform to the pattern /^[a-zA-Z]{2,10}$/.";
+        }
+
+        $allowedValues = $this->getAccessAllowableValues();
+        if (!is_null($this->container['access']) && !in_array($this->container['access'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'access', must be one of '%s'",
+                $this->container['access'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
+     * Gets title
      *
      * @return string
      */
-    public function __toString()
+    public function getTitle()
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
+        return $this->container['title'];
     }
 
     /**
-     * Gets access
+     * Sets title
      *
-     * @return string|null
+     * @param string $title Project title.
+     *
+     * @return self
      */
-    public function getAccess()
+    public function setTitle($title)
     {
-        return $this->container['access'];
+        $this->container['title'] = $title;
+
+        return $this;
     }
 
     /**
@@ -200,6 +276,25 @@ class ProjectCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets code
+     *
+     * @param string $code Project code. Unique for team. Digits and special characters are not allowed.
+     *
+     * @return self
+     */
+    public function setCode($code)
+    {
+
+        if ((!preg_match("/^[a-zA-Z]{2,10}$/", $code))) {
+            throw new InvalidArgumentException("invalid value for $code when calling ProjectCreate., must conform to the pattern /^[a-zA-Z]{2,10}$/.");
+        }
+
+        $this->container['code'] = $code;
+
+        return $this;
+    }
+
+    /**
      * Gets description
      *
      * @return string|null
@@ -207,6 +302,54 @@ class ProjectCreate implements ModelInterface, ArrayAccess, JsonSerializable
     public function getDescription()
     {
         return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Project description.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets access
+     *
+     * @return string|null
+     */
+    public function getAccess()
+    {
+        return $this->container['access'];
+    }
+
+    /**
+     * Sets access
+     *
+     * @param string|null $access access
+     *
+     * @return self
+     */
+    public function setAccess($access)
+    {
+        $allowedValues = $this->getAccessAllowableValues();
+        if (!is_null($access) && !in_array($access, $allowedValues, true)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'access', must be one of '%s'",
+                    $access,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['access'] = $access;
+
+        return $this;
     }
 
     /**
@@ -220,35 +363,17 @@ class ProjectCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * The original name of the model.
+     * Sets group
      *
-     * @return string
+     * @param string|null $group Team group hash. Required if access param is set to group.
+     *
+     * @return self
      */
-    public function getModelName()
+    public function setGroup($group)
     {
-        return self::$openAPIModelName;
-    }
+        $this->container['group'] = $group;
 
-    /**
-     * Gets title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->container['title'];
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
-     */
-    public function jsonSerialize()
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        return $this;
     }
 
     /**
@@ -305,88 +430,28 @@ class ProjectCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets access
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string|null $access access
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setAccess($access)
+    public function jsonSerialize()
     {
-        $allowedValues = $this->getAccessAllowableValues();
-        if (!is_null($access) && !in_array($access, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'access', must be one of '%s'",
-                    $access,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['access'] = $access;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets code
+     * Gets the string presentation of the object
      *
-     * @param string $code Project code. Unique for team. Digits and special characters are not allowed.
-     *
-     * @return self
+     * @return string
      */
-    public function setCode($code)
+    public function __toString()
     {
-
-        if ((!preg_match("/^[a-zA-Z]{2,10}$/", $code))) {
-            throw new InvalidArgumentException("invalid value for $code when calling ProjectCreate., must conform to the pattern /^[a-zA-Z]{2,10}$/.");
-        }
-
-        $this->container['code'] = $code;
-
-        return $this;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Project description.
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Sets group
-     *
-     * @param string|null $group Team group hash. Required if access param is set to group.
-     *
-     * @return self
-     */
-    public function setGroup($group)
-    {
-        $this->container['group'] = $group;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string $title Project title.
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -397,62 +462,6 @@ class ProjectCreate implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        if ($this->container['title'] === null) {
-            $invalidProperties[] = "'title' can't be null";
-        }
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
-        }
-        if (!preg_match("/^[a-zA-Z]{2,10}$/", $this->container['code'])) {
-            $invalidProperties[] = "invalid value for 'code', must be conform to the pattern /^[a-zA-Z]{2,10}$/.";
-        }
-
-        $allowedValues = $this->getAccessAllowableValues();
-        if (!is_null($this->container['access']) && !in_array($this->container['access'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'access', must be one of '%s'",
-                $this->container['access'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAccessAllowableValues()
-    {
-        return [
-            self::ACCESS_ALL,
-            self::ACCESS_GROUP,
-            self::ACCESS_NONE,
-        ];
     }
 }
 

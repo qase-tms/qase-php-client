@@ -75,6 +75,34 @@ class RunsApi
     }
 
     /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex): void
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * Operation completeRun
      *
      * Complete a specific run.
@@ -184,6 +212,76 @@ class RunsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation completeRunAsync
+     *
+     * Complete a specific run.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function completeRunAsync($code, $id)
+    {
+        return $this->completeRunAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation completeRunAsyncWithHttpInfo
+     *
+     * Complete a specific run.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function completeRunAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\Response';
+        $request = $this->completeRunRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -306,95 +404,6 @@ class RunsApi
     }
 
     /**
-     * Create http client option
-     *
-     * @return array of http client options
-     * @throws RuntimeException on file opening failure
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        return $options;
-    }
-
-    /**
-     * Operation completeRunAsync
-     *
-     * Complete a specific run.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function completeRunAsync($code, $id)
-    {
-        return $this->completeRunAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation completeRunAsyncWithHttpInfo
-     *
-     * Complete a specific run.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function completeRunAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\Response';
-        $request = $this->completeRunRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation createRun
      *
      * Create a new run.
@@ -504,6 +513,76 @@ class RunsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation createRunAsync
+     *
+     * Create a new run.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param RunCreate $runCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createRunAsync($code, $runCreate)
+    {
+        return $this->createRunAsyncWithHttpInfo($code, $runCreate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createRunAsyncWithHttpInfo
+     *
+     * Create a new run.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param RunCreate $runCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createRunAsyncWithHttpInfo($code, $runCreate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->createRunRequest($code, $runCreate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -624,76 +703,6 @@ class RunsApi
     }
 
     /**
-     * Operation createRunAsync
-     *
-     * Create a new run.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param RunCreate $runCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createRunAsync($code, $runCreate)
-    {
-        return $this->createRunAsyncWithHttpInfo($code, $runCreate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createRunAsyncWithHttpInfo
-     *
-     * Create a new run.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param RunCreate $runCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createRunAsyncWithHttpInfo($code, $runCreate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->createRunRequest($code, $runCreate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation deleteRun
      *
      * Delete run.
@@ -803,6 +812,76 @@ class RunsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation deleteRunAsync
+     *
+     * Delete run.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteRunAsync($code, $id)
+    {
+        return $this->deleteRunAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteRunAsyncWithHttpInfo
+     *
+     * Delete run.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteRunAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->deleteRunRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -925,104 +1004,6 @@ class RunsApi
     }
 
     /**
-     * Operation deleteRunAsync
-     *
-     * Delete run.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteRunAsync($code, $id)
-    {
-        return $this->deleteRunAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteRunAsyncWithHttpInfo
-     *
-     * Delete run.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteRunAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->deleteRunRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
-     * Get the host index
-     *
-     * @return int Host index
-     */
-    public function getHostIndex()
-    {
-        return $this->hostIndex;
-    }
-
-    /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
-    }
-
-    /**
      * Operation getRun
      *
      * Get a specific run.
@@ -1132,6 +1113,76 @@ class RunsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation getRunAsync
+     *
+     * Get a specific run.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getRunAsync($code, $id)
+    {
+        return $this->getRunAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getRunAsyncWithHttpInfo
+     *
+     * Get a specific run.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getRunAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\RunResponse';
+        $request = $this->getRunRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1254,93 +1305,23 @@ class RunsApi
     }
 
     /**
-     * Operation getRunAsync
-     *
-     * Get a specific run.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getRunAsync($code, $id)
-    {
-        return $this->getRunAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getRunAsyncWithHttpInfo
-     *
-     * Get a specific run.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getRunAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\RunResponse';
-        $request = $this->getRunRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation getRuns
      *
      * Get all runs.
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters5 $filters filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
      * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
-     * @param Filters5 $filters filters (optional)
      *
      * @return RunListResponse
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getRuns($code, $limit = 10, $offset = 0, $include = null, $filters = null)
+    public function getRuns($code, $filters = null, $limit = 10, $offset = 0, $include = null)
     {
-        list($response) = $this->getRunsWithHttpInfo($code, $limit, $offset, $include, $filters);
+        list($response) = $this->getRunsWithHttpInfo($code, $filters, $limit, $offset, $include);
         return $response;
     }
 
@@ -1350,18 +1331,18 @@ class RunsApi
      * Get all runs.
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters5 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
      * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
-     * @param Filters5 $filters (optional)
      *
      * @return array of \Qase\Client\Model\RunListResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getRunsWithHttpInfo($code, $limit = 10, $offset = 0, $include = null, $filters = null)
+    public function getRunsWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0, $include = null)
     {
-        $request = $this->getRunsRequest($code, $limit, $offset, $include, $filters);
+        $request = $this->getRunsRequest($code, $filters, $limit, $offset, $include);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1442,18 +1423,94 @@ class RunsApi
     }
 
     /**
-     * Create request for operation 'getRuns'
+     * Operation getRunsAsync
+     *
+     * Get all runs.
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters5 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
      * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getRunsAsync($code, $filters = null, $limit = 10, $offset = 0, $include = null)
+    {
+        return $this->getRunsAsyncWithHttpInfo($code, $filters, $limit, $offset, $include)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getRunsAsyncWithHttpInfo
+     *
+     * Get all runs.
+     *
+     * @param string $code Code of project, where to search entities. (required)
      * @param Filters5 $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getRunsAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0, $include = null)
+    {
+        $returnType = '\Qase\Client\Model\RunListResponse';
+        $request = $this->getRunsRequest($code, $filters, $limit, $offset, $include);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getRuns'
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param Filters5 $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
      *
      * @return Request
      * @throws InvalidArgumentException
      */
-    public function getRunsRequest($code, $limit = 10, $offset = 0, $include = null, $filters = null)
+    public function getRunsRequest($code, $filters = null, $limit = 10, $offset = 0, $include = null)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1491,6 +1548,13 @@ class RunsApi
         $multipart = false;
 
         // query params
+        if (is_array($filters)) {
+            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
+        }
+        if ($filters !== null) {
+            $queryParams['filters'] = $filters;
+        }
+        // query params
         if ($limit !== null) {
             if ('form' === 'form' && is_array($limit)) {
                 foreach ($limit as $key => $value) {
@@ -1519,13 +1583,6 @@ class RunsApi
             } else {
                 $queryParams['include'] = $include;
             }
-        }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
-        }
-        if ($filters !== null) {
-            $queryParams['filters'] = $filters;
         }
 
 
@@ -1599,82 +1656,6 @@ class RunsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Operation getRunsAsync
-     *
-     * Get all runs.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
-     * @param Filters5 $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getRunsAsync($code, $limit = 10, $offset = 0, $include = null, $filters = null)
-    {
-        return $this->getRunsAsyncWithHttpInfo($code, $limit, $offset, $include, $filters)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getRunsAsyncWithHttpInfo
-     *
-     * Get all runs.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
-     * @param Filters5 $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getRunsAsyncWithHttpInfo($code, $limit = 10, $offset = 0, $include = null, $filters = null)
-    {
-        $returnType = '\Qase\Client\Model\RunListResponse';
-        $request = $this->getRunsRequest($code, $limit, $offset, $include, $filters);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
     }
 
     /**
@@ -1789,6 +1770,78 @@ class RunsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation updateRunPublicityAsync
+     *
+     * Update publicity of a specific run.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param RunPublic $runPublic (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateRunPublicityAsync($code, $id, $runPublic)
+    {
+        return $this->updateRunPublicityAsyncWithHttpInfo($code, $id, $runPublic)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateRunPublicityAsyncWithHttpInfo
+     *
+     * Update publicity of a specific run.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param RunPublic $runPublic (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateRunPublicityAsyncWithHttpInfo($code, $id, $runPublic)
+    {
+        $returnType = '\Qase\Client\Model\RunPublicResponse';
+        $request = $this->updateRunPublicityRequest($code, $id, $runPublic);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1924,74 +1977,21 @@ class RunsApi
     }
 
     /**
-     * Operation updateRunPublicityAsync
+     * Create http client option
      *
-     * Update publicity of a specific run.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param RunPublic $runPublic (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
+     * @return array of http client options
+     * @throws RuntimeException on file opening failure
      */
-    public function updateRunPublicityAsync($code, $id, $runPublic)
+    protected function createHttpClientOption()
     {
-        return $this->updateRunPublicityAsyncWithHttpInfo($code, $id, $runPublic)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
+        $options = [];
+        if ($this->config->getDebug()) {
+            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
+            if (!$options[RequestOptions::DEBUG]) {
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+            }
+        }
 
-    /**
-     * Operation updateRunPublicityAsyncWithHttpInfo
-     *
-     * Update publicity of a specific run.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param RunPublic $runPublic (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function updateRunPublicityAsyncWithHttpInfo($code, $id, $runPublic)
-    {
-        $returnType = '\Qase\Client\Model\RunPublicResponse';
-        $request = $this->updateRunPublicityRequest($code, $id, $runPublic);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
+        return $options;
     }
 }

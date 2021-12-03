@@ -73,6 +73,34 @@ class SuitesApi
     }
 
     /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex): void
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * Operation createSuite
      *
      * Create a new test suite.
@@ -182,6 +210,76 @@ class SuitesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation createSuiteAsync
+     *
+     * Create a new test suite.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param SuiteCreate $suiteCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createSuiteAsync($code, $suiteCreate)
+    {
+        return $this->createSuiteAsyncWithHttpInfo($code, $suiteCreate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createSuiteAsyncWithHttpInfo
+     *
+     * Create a new test suite.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param SuiteCreate $suiteCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createSuiteAsyncWithHttpInfo($code, $suiteCreate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->createSuiteRequest($code, $suiteCreate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -302,95 +400,6 @@ class SuitesApi
     }
 
     /**
-     * Create http client option
-     *
-     * @return array of http client options
-     * @throws RuntimeException on file opening failure
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        return $options;
-    }
-
-    /**
-     * Operation createSuiteAsync
-     *
-     * Create a new test suite.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param SuiteCreate $suiteCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createSuiteAsync($code, $suiteCreate)
-    {
-        return $this->createSuiteAsyncWithHttpInfo($code, $suiteCreate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createSuiteAsyncWithHttpInfo
-     *
-     * Create a new test suite.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param SuiteCreate $suiteCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createSuiteAsyncWithHttpInfo($code, $suiteCreate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->createSuiteRequest($code, $suiteCreate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation deleteSuite
      *
      * Delete test suite.
@@ -502,6 +511,78 @@ class SuitesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation deleteSuiteAsync
+     *
+     * Delete test suite.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param SuiteDelete $suiteDelete (optional)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteSuiteAsync($code, $id, $suiteDelete = null)
+    {
+        return $this->deleteSuiteAsyncWithHttpInfo($code, $id, $suiteDelete)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteSuiteAsyncWithHttpInfo
+     *
+     * Delete test suite.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param SuiteDelete $suiteDelete (optional)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteSuiteAsyncWithHttpInfo($code, $id, $suiteDelete = null)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->deleteSuiteRequest($code, $id, $suiteDelete);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -631,106 +712,6 @@ class SuitesApi
     }
 
     /**
-     * Operation deleteSuiteAsync
-     *
-     * Delete test suite.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param SuiteDelete $suiteDelete (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteSuiteAsync($code, $id, $suiteDelete = null)
-    {
-        return $this->deleteSuiteAsyncWithHttpInfo($code, $id, $suiteDelete)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteSuiteAsyncWithHttpInfo
-     *
-     * Delete test suite.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param SuiteDelete $suiteDelete (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteSuiteAsyncWithHttpInfo($code, $id, $suiteDelete = null)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->deleteSuiteRequest($code, $id, $suiteDelete);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
-     * Get the host index
-     *
-     * @return int Host index
-     */
-    public function getHostIndex()
-    {
-        return $this->hostIndex;
-    }
-
-    /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
-    }
-
-    /**
      * Operation getSuite
      *
      * Get a specific test suite.
@@ -840,6 +821,76 @@ class SuitesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation getSuiteAsync
+     *
+     * Get a specific test suite.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getSuiteAsync($code, $id)
+    {
+        return $this->getSuiteAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getSuiteAsyncWithHttpInfo
+     *
+     * Get a specific test suite.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getSuiteAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\SuiteResponse';
+        $request = $this->getSuiteRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -962,92 +1013,22 @@ class SuitesApi
     }
 
     /**
-     * Operation getSuiteAsync
-     *
-     * Get a specific test suite.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getSuiteAsync($code, $id)
-    {
-        return $this->getSuiteAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getSuiteAsyncWithHttpInfo
-     *
-     * Get a specific test suite.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getSuiteAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\SuiteResponse';
-        $request = $this->getSuiteRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation getSuites
      *
      * Get all test suites.
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters7 $filters filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters7 $filters filters (optional)
      *
      * @return SuiteListResponse
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getSuites($code, $limit = 10, $offset = 0, $filters = null)
+    public function getSuites($code, $filters = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getSuitesWithHttpInfo($code, $limit, $offset, $filters);
+        list($response) = $this->getSuitesWithHttpInfo($code, $filters, $limit, $offset);
         return $response;
     }
 
@@ -1057,17 +1038,17 @@ class SuitesApi
      * Get all test suites.
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters7 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters7 $filters (optional)
      *
      * @return array of \Qase\Client\Model\SuiteListResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getSuitesWithHttpInfo($code, $limit = 10, $offset = 0, $filters = null)
+    public function getSuitesWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getSuitesRequest($code, $limit, $offset, $filters);
+        $request = $this->getSuitesRequest($code, $filters, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1148,17 +1129,91 @@ class SuitesApi
     }
 
     /**
+     * Operation getSuitesAsync
+     *
+     * Get all test suites.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param Filters7 $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getSuitesAsync($code, $filters = null, $limit = 10, $offset = 0)
+    {
+        return $this->getSuitesAsyncWithHttpInfo($code, $filters, $limit, $offset)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getSuitesAsyncWithHttpInfo
+     *
+     * Get all test suites.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param Filters7 $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getSuitesAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    {
+        $returnType = '\Qase\Client\Model\SuiteListResponse';
+        $request = $this->getSuitesRequest($code, $filters, $limit, $offset);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'getSuites'
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters7 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters7 $filters (optional)
      *
      * @return Request
      * @throws InvalidArgumentException
      */
-    public function getSuitesRequest($code, $limit = 10, $offset = 0, $filters = null)
+    public function getSuitesRequest($code, $filters = null, $limit = 10, $offset = 0)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1196,6 +1251,13 @@ class SuitesApi
         $multipart = false;
 
         // query params
+        if (is_array($filters)) {
+            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
+        }
+        if ($filters !== null) {
+            $queryParams['filters'] = $filters;
+        }
+        // query params
         if ($limit !== null) {
             if ('form' === 'form' && is_array($limit)) {
                 foreach ($limit as $key => $value) {
@@ -1214,13 +1276,6 @@ class SuitesApi
             } else {
                 $queryParams['offset'] = $offset;
             }
-        }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
-        }
-        if ($filters !== null) {
-            $queryParams['filters'] = $filters;
         }
 
 
@@ -1294,80 +1349,6 @@ class SuitesApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Operation getSuitesAsync
-     *
-     * Get all test suites.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters7 $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getSuitesAsync($code, $limit = 10, $offset = 0, $filters = null)
-    {
-        return $this->getSuitesAsyncWithHttpInfo($code, $limit, $offset, $filters)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getSuitesAsyncWithHttpInfo
-     *
-     * Get all test suites.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters7 $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getSuitesAsyncWithHttpInfo($code, $limit = 10, $offset = 0, $filters = null)
-    {
-        $returnType = '\Qase\Client\Model\SuiteListResponse';
-        $request = $this->getSuitesRequest($code, $limit, $offset, $filters);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
     }
 
     /**
@@ -1482,6 +1463,78 @@ class SuitesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation updateSuiteAsync
+     *
+     * Update test suite.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param SuiteCreate $suiteCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateSuiteAsync($code, $id, $suiteCreate)
+    {
+        return $this->updateSuiteAsyncWithHttpInfo($code, $id, $suiteCreate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateSuiteAsyncWithHttpInfo
+     *
+     * Update test suite.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param SuiteCreate $suiteCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateSuiteAsyncWithHttpInfo($code, $id, $suiteCreate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->updateSuiteRequest($code, $id, $suiteCreate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1617,74 +1670,21 @@ class SuitesApi
     }
 
     /**
-     * Operation updateSuiteAsync
+     * Create http client option
      *
-     * Update test suite.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param SuiteCreate $suiteCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
+     * @return array of http client options
+     * @throws RuntimeException on file opening failure
      */
-    public function updateSuiteAsync($code, $id, $suiteCreate)
+    protected function createHttpClientOption()
     {
-        return $this->updateSuiteAsyncWithHttpInfo($code, $id, $suiteCreate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
+        $options = [];
+        if ($this->config->getDebug()) {
+            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
+            if (!$options[RequestOptions::DEBUG]) {
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+            }
+        }
 
-    /**
-     * Operation updateSuiteAsyncWithHttpInfo
-     *
-     * Update test suite.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param SuiteCreate $suiteCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function updateSuiteAsyncWithHttpInfo($code, $id, $suiteCreate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->updateSuiteRequest($code, $id, $suiteCreate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
+        return $options;
     }
 }

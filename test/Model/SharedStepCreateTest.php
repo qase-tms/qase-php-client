@@ -24,13 +24,6 @@ class SharedStepCreateTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,45 +38,16 @@ class SharedStepCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "action"
+     * Clean up after running all test cases
      */
-    public function testPropertyAction()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "attachments"
+     * Test "SharedStepCreate"
      */
-    public function testPropertyAttachments()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "data"
-     */
-    public function testPropertyData()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "expectedResult"
-     */
-    public function testPropertyExpectedResult()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "steps"
-     */
-    public function testPropertySteps()
+    public function testSharedStepCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -99,9 +63,45 @@ class SharedStepCreateTest extends TestCase
     }
 
     /**
-     * Test "SharedStepCreate"
+     * Test attribute "action"
      */
-    public function testSharedStepCreate()
+    public function testPropertyAction()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "expectedResult"
+     */
+    public function testPropertyExpectedResult()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "data"
+     */
+    public function testPropertyData()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "attachments"
+     */
+    public function testPropertyAttachments()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "steps"
+     */
+    public function testPropertySteps()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -11,25 +11,11 @@ namespace Qase\Client\Model;
 interface ModelInterface
 {
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * The original name of the model.
      *
-     * @return array
+     * @return string
      */
-    public static function attributeMap();
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters();
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats();
+    public function getModelName();
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -39,6 +25,20 @@ interface ModelInterface
     public static function openAPITypes();
 
     /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats();
+
+    /**
+     * Array of attributes where the key is the local name, and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap();
+
+    /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
      * @return array
@@ -46,11 +46,11 @@ interface ModelInterface
     public static function setters();
 
     /**
-     * The original name of the model.
+     * Array of attributes to getter functions (for serialization of requests)
      *
-     * @return string
+     * @return array
      */
-    public function getModelName();
+    public static function getters();
 
     /**
      * Show all the invalid properties with reasons.

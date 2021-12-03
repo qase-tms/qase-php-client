@@ -24,13 +24,6 @@ class RequirementTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,18 +38,16 @@ class RequirementTest extends TestCase
     }
 
     /**
-     * Test attribute "created"
+     * Clean up after running all test cases
      */
-    public function testPropertyCreated()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "description"
+     * Test "Requirement"
      */
-    public function testPropertyDescription()
+    public function testRequirement()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,15 +63,6 @@ class RequirementTest extends TestCase
     }
 
     /**
-     * Test attribute "memberId"
-     */
-    public function testPropertyMemberId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "parentId"
      */
     public function testPropertyParentId()
@@ -90,9 +72,9 @@ class RequirementTest extends TestCase
     }
 
     /**
-     * Test attribute "status"
+     * Test attribute "memberId"
      */
-    public function testPropertyStatus()
+    public function testPropertyMemberId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -108,6 +90,24 @@ class RequirementTest extends TestCase
     }
 
     /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "status"
+     */
+    public function testPropertyStatus()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "type"
      */
     public function testPropertyType()
@@ -117,18 +117,18 @@ class RequirementTest extends TestCase
     }
 
     /**
-     * Test attribute "updated"
+     * Test attribute "created"
      */
-    public function testPropertyUpdated()
+    public function testPropertyCreated()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test "Requirement"
+     * Test attribute "updated"
      */
-    public function testRequirement()
+    public function testPropertyUpdated()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

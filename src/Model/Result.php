@@ -21,43 +21,33 @@ use Qase\Client\ObjectSerializer;
 class Result implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'Result';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'hash' => 'hash',
-        'comment' => 'comment',
-        'stacktrace' => 'stacktrace',
-        'runId' => 'run_id',
-        'caseId' => 'case_id',
-        'steps' => 'steps',
-        'status' => 'status',
-        'isApiResult' => 'is_api_result',
-        'timeSpentMs' => 'time_spent_ms',
-        'endTime' => 'end_time',
-        'attachments' => 'attachments'
+    protected static $openAPITypes = [
+        'hash' => 'string',
+        'comment' => 'string',
+        'stacktrace' => 'string',
+        'runId' => 'int',
+        'caseId' => 'int',
+        'steps' => '\Qase\Client\Model\ResultSteps[]',
+        'status' => 'string',
+        'isApiResult' => 'bool',
+        'timeSpentMs' => 'int',
+        'endTime' => '\DateTime',
+        'attachments' => '\Qase\Client\Model\Attachment[]'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'hash' => 'getHash',
-        'comment' => 'getComment',
-        'stacktrace' => 'getStacktrace',
-        'runId' => 'getRunId',
-        'caseId' => 'getCaseId',
-        'steps' => 'getSteps',
-        'status' => 'getStatus',
-        'isApiResult' => 'getIsApiResult',
-        'timeSpentMs' => 'getTimeSpentMs',
-        'endTime' => 'getEndTime',
-        'attachments' => 'getAttachments'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -78,30 +68,47 @@ class Result implements ModelInterface, ArrayAccess, JsonSerializable
         'endTime' => 'date-time',
         'attachments' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'Result';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'hash' => 'string',
-        'comment' => 'string',
-        'stacktrace' => 'string',
-        'runId' => 'int',
-        'caseId' => 'int',
-        'steps' => '\Qase\Client\Model\ResultSteps[]',
-        'status' => 'string',
-        'isApiResult' => 'bool',
-        'timeSpentMs' => 'int',
-        'endTime' => '\DateTime',
-        'attachments' => '\Qase\Client\Model\Attachment[]'
+    protected static $attributeMap = [
+        'hash' => 'hash',
+        'comment' => 'comment',
+        'stacktrace' => 'stacktrace',
+        'runId' => 'run_id',
+        'caseId' => 'case_id',
+        'steps' => 'steps',
+        'status' => 'status',
+        'isApiResult' => 'is_api_result',
+        'timeSpentMs' => 'time_spent_ms',
+        'endTime' => 'end_time',
+        'attachments' => 'attachments'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -120,6 +127,68 @@ class Result implements ModelInterface, ArrayAccess, JsonSerializable
         'endTime' => 'setEndTime',
         'attachments' => 'setAttachments'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'hash' => 'getHash',
+        'comment' => 'getComment',
+        'stacktrace' => 'getStacktrace',
+        'runId' => 'getRunId',
+        'caseId' => 'getCaseId',
+        'steps' => 'getSteps',
+        'status' => 'getStatus',
+        'isApiResult' => 'getIsApiResult',
+        'timeSpentMs' => 'getTimeSpentMs',
+        'endTime' => 'getEndTime',
+        'attachments' => 'getAttachments'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -149,87 +218,51 @@ class Result implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets hash
+     *
+     * @return string|null
+     */
+    public function getHash()
+    {
+        return $this->container['hash'];
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Sets hash
      *
-     * @return array
+     * @param string|null $hash hash
+     *
+     * @return self
      */
-    public static function openAPIFormats()
+    public function setHash($hash)
     {
-        return self::$openAPIFormats;
-    }
+        $this->container['hash'] = $hash;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets attachments
-     *
-     * @return Attachment[]|null
-     */
-    public function getAttachments()
-    {
-        return $this->container['attachments'];
-    }
-
-    /**
-     * Gets caseId
-     *
-     * @return int|null
-     */
-    public function getCaseId()
-    {
-        return $this->container['caseId'];
+        return $this;
     }
 
     /**
@@ -243,53 +276,17 @@ class Result implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets endTime
+     * Sets comment
      *
-     * @return DateTime|null
+     * @param string|null $comment comment
+     *
+     * @return self
      */
-    public function getEndTime()
+    public function setComment($comment)
     {
-        return $this->container['endTime'];
-    }
+        $this->container['comment'] = $comment;
 
-    /**
-     * Gets hash
-     *
-     * @return string|null
-     */
-    public function getHash()
-    {
-        return $this->container['hash'];
-    }
-
-    /**
-     * Gets isApiResult
-     *
-     * @return bool|null
-     */
-    public function getIsApiResult()
-    {
-        return $this->container['isApiResult'];
-    }
-
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
-    }
-
-    /**
-     * Gets runId
-     *
-     * @return int|null
-     */
-    public function getRunId()
-    {
-        return $this->container['runId'];
+        return $this;
     }
 
     /**
@@ -303,13 +300,65 @@ class Result implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets status
+     * Sets stacktrace
      *
-     * @return string|null
+     * @param string|null $stacktrace stacktrace
+     *
+     * @return self
      */
-    public function getStatus()
+    public function setStacktrace($stacktrace)
     {
-        return $this->container['status'];
+        $this->container['stacktrace'] = $stacktrace;
+
+        return $this;
+    }
+
+    /**
+     * Gets runId
+     *
+     * @return int|null
+     */
+    public function getRunId()
+    {
+        return $this->container['runId'];
+    }
+
+    /**
+     * Sets runId
+     *
+     * @param int|null $runId runId
+     *
+     * @return self
+     */
+    public function setRunId($runId)
+    {
+        $this->container['runId'] = $runId;
+
+        return $this;
+    }
+
+    /**
+     * Gets caseId
+     *
+     * @return int|null
+     */
+    public function getCaseId()
+    {
+        return $this->container['caseId'];
+    }
+
+    /**
+     * Sets caseId
+     *
+     * @param int|null $caseId caseId
+     *
+     * @return self
+     */
+    public function setCaseId($caseId)
+    {
+        $this->container['caseId'] = $caseId;
+
+        return $this;
     }
 
     /**
@@ -323,6 +372,68 @@ class Result implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets steps
+     *
+     * @param ResultSteps[]|null $steps steps
+     *
+     * @return self
+     */
+    public function setSteps($steps)
+    {
+        $this->container['steps'] = $steps;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string|null $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets isApiResult
+     *
+     * @return bool|null
+     */
+    public function getIsApiResult()
+    {
+        return $this->container['isApiResult'];
+    }
+
+    /**
+     * Sets isApiResult
+     *
+     * @param bool|null $isApiResult isApiResult
+     *
+     * @return self
+     */
+    public function setIsApiResult($isApiResult)
+    {
+        $this->container['isApiResult'] = $isApiResult;
+
+        return $this;
+    }
+
+    /**
      * Gets timeSpentMs
      *
      * @return int|null
@@ -333,15 +444,65 @@ class Result implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets timeSpentMs
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param int|null $timeSpentMs timeSpentMs
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setTimeSpentMs($timeSpentMs)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $this->container['timeSpentMs'] = $timeSpentMs;
+
+        return $this;
+    }
+
+    /**
+     * Gets endTime
+     *
+     * @return DateTime|null
+     */
+    public function getEndTime()
+    {
+        return $this->container['endTime'];
+    }
+
+    /**
+     * Sets endTime
+     *
+     * @param DateTime|null $endTime endTime
+     *
+     * @return self
+     */
+    public function setEndTime($endTime)
+    {
+        $this->container['endTime'] = $endTime;
+
+        return $this;
+    }
+
+    /**
+     * Gets attachments
+     *
+     * @return Attachment[]|null
+     */
+    public function getAttachments()
+    {
+        return $this->container['attachments'];
+    }
+
+    /**
+     * Sets attachments
+     *
+     * @param Attachment[]|null $attachments attachments
+     *
+     * @return self
+     */
+    public function setAttachments($attachments)
+    {
+        $this->container['attachments'] = $attachments;
+
+        return $this;
     }
 
     /**
@@ -398,157 +559,28 @@ class Result implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets attachments
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param Attachment[]|null $attachments attachments
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setAttachments($attachments)
+    public function jsonSerialize()
     {
-        $this->container['attachments'] = $attachments;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets caseId
+     * Gets the string presentation of the object
      *
-     * @param int|null $caseId caseId
-     *
-     * @return self
+     * @return string
      */
-    public function setCaseId($caseId)
+    public function __toString()
     {
-        $this->container['caseId'] = $caseId;
-
-        return $this;
-    }
-
-    /**
-     * Sets comment
-     *
-     * @param string|null $comment comment
-     *
-     * @return self
-     */
-    public function setComment($comment)
-    {
-        $this->container['comment'] = $comment;
-
-        return $this;
-    }
-
-    /**
-     * Sets endTime
-     *
-     * @param DateTime|null $endTime endTime
-     *
-     * @return self
-     */
-    public function setEndTime($endTime)
-    {
-        $this->container['endTime'] = $endTime;
-
-        return $this;
-    }
-
-    /**
-     * Sets hash
-     *
-     * @param string|null $hash hash
-     *
-     * @return self
-     */
-    public function setHash($hash)
-    {
-        $this->container['hash'] = $hash;
-
-        return $this;
-    }
-
-    /**
-     * Sets isApiResult
-     *
-     * @param bool|null $isApiResult isApiResult
-     *
-     * @return self
-     */
-    public function setIsApiResult($isApiResult)
-    {
-        $this->container['isApiResult'] = $isApiResult;
-
-        return $this;
-    }
-
-    /**
-     * Sets runId
-     *
-     * @param int|null $runId runId
-     *
-     * @return self
-     */
-    public function setRunId($runId)
-    {
-        $this->container['runId'] = $runId;
-
-        return $this;
-    }
-
-    /**
-     * Sets stacktrace
-     *
-     * @param string|null $stacktrace stacktrace
-     *
-     * @return self
-     */
-    public function setStacktrace($stacktrace)
-    {
-        $this->container['stacktrace'] = $stacktrace;
-
-        return $this;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status status
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Sets steps
-     *
-     * @param ResultSteps[]|null $steps steps
-     *
-     * @return self
-     */
-    public function setSteps($steps)
-    {
-        $this->container['steps'] = $steps;
-
-        return $this;
-    }
-
-    /**
-     * Sets timeSpentMs
-     *
-     * @param int|null $timeSpentMs timeSpentMs
-     *
-     * @return self
-     */
-    public function setTimeSpentMs($timeSpentMs)
-    {
-        $this->container['timeSpentMs'] = $timeSpentMs;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -559,29 +591,6 @@ class Result implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

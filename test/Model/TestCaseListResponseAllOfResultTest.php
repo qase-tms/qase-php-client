@@ -24,13 +24,6 @@ class TestCaseListResponseAllOfResultTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,27 +38,16 @@ class TestCaseListResponseAllOfResultTest extends TestCase
     }
 
     /**
-     * Test attribute "count"
+     * Clean up after running all test cases
      */
-    public function testPropertyCount()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "entities"
+     * Test "TestCaseListResponseAllOfResult"
      */
-    public function testPropertyEntities()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "filtered"
-     */
-    public function testPropertyFiltered()
+    public function testTestCaseListResponseAllOfResult()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -81,9 +63,27 @@ class TestCaseListResponseAllOfResultTest extends TestCase
     }
 
     /**
-     * Test "TestCaseListResponseAllOfResult"
+     * Test attribute "filtered"
      */
-    public function testTestCaseListResponseAllOfResult()
+    public function testPropertyFiltered()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "count"
+     */
+    public function testPropertyCount()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "entities"
+     */
+    public function testPropertyEntities()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

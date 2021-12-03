@@ -24,13 +24,6 @@ class SuiteTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,27 +38,16 @@ class SuiteTest extends TestCase
     }
 
     /**
-     * Test attribute "casesCount"
+     * Clean up after running all test cases
      */
-    public function testPropertyCasesCount()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created"
+     * Test "Suite"
      */
-    public function testPropertyCreated()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "description"
-     */
-    public function testPropertyDescription()
+    public function testSuite()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -81,18 +63,18 @@ class SuiteTest extends TestCase
     }
 
     /**
-     * Test attribute "parentId"
+     * Test attribute "title"
      */
-    public function testPropertyParentId()
+    public function testPropertyTitle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "position"
+     * Test attribute "description"
      */
-    public function testPropertyPosition()
+    public function testPropertyDescription()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -108,9 +90,36 @@ class SuiteTest extends TestCase
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "position"
      */
-    public function testPropertyTitle()
+    public function testPropertyPosition()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "casesCount"
+     */
+    public function testPropertyCasesCount()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "parentId"
+     */
+    public function testPropertyParentId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "created"
+     */
+    public function testPropertyCreated()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -120,15 +129,6 @@ class SuiteTest extends TestCase
      * Test attribute "updated"
      */
     public function testPropertyUpdated()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test "Suite"
-     */
-    public function testSuite()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

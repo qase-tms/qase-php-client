@@ -24,13 +24,6 @@ class ProjectCountsTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -41,6 +34,13 @@ class ProjectCountsTest extends TestCase
      * Clean up after running each test case
      */
     public function tearDown(): void
+    {
+    }
+
+    /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
     {
     }
 
@@ -63,9 +63,9 @@ class ProjectCountsTest extends TestCase
     }
 
     /**
-     * Test attribute "defects"
+     * Test attribute "suites"
      */
-    public function testPropertyDefects()
+    public function testPropertySuites()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -90,9 +90,9 @@ class ProjectCountsTest extends TestCase
     }
 
     /**
-     * Test attribute "suites"
+     * Test attribute "defects"
      */
-    public function testPropertySuites()
+    public function testPropertyDefects()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

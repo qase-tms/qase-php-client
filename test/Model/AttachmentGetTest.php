@@ -24,13 +24,6 @@ class AttachmentGetTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,6 +38,13 @@ class AttachmentGetTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "AttachmentGet"
      */
     public function testAttachmentGet()
@@ -54,9 +54,9 @@ class AttachmentGetTest extends TestCase
     }
 
     /**
-     * Test attribute "extension"
+     * Test attribute "hash"
      */
-    public function testPropertyExtension()
+    public function testPropertyHash()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -66,24 +66,6 @@ class AttachmentGetTest extends TestCase
      * Test attribute "file"
      */
     public function testPropertyFile()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "fullPath"
-     */
-    public function testPropertyFullPath()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "hash"
-     */
-    public function testPropertyHash()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -102,6 +84,24 @@ class AttachmentGetTest extends TestCase
      * Test attribute "size"
      */
     public function testPropertySize()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "extension"
+     */
+    public function testPropertyExtension()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "fullPath"
+     */
+    public function testPropertyFullPath()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

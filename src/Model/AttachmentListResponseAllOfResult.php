@@ -20,29 +20,26 @@ use Qase\Client\ObjectSerializer;
 class AttachmentListResponseAllOfResult implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'AttachmentListResponse_allOf_result';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'total' => 'total',
-        'filtered' => 'filtered',
-        'count' => 'count',
-        'entities' => 'entities'
+    protected static $openAPITypes = [
+        'total' => 'int',
+        'filtered' => 'int',
+        'count' => 'int',
+        'entities' => '\Qase\Client\Model\AttachmentGet[]'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'total' => 'getTotal',
-        'filtered' => 'getFiltered',
-        'count' => 'getCount',
-        'entities' => 'getEntities'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -56,23 +53,40 @@ class AttachmentListResponseAllOfResult implements ModelInterface, ArrayAccess, 
         'count' => null,
         'entities' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'AttachmentListResponse_allOf_result';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'total' => 'int',
-        'filtered' => 'int',
-        'count' => 'int',
-        'entities' => '\Qase\Client\Model\AttachmentGet[]'
+    protected static $attributeMap = [
+        'total' => 'total',
+        'filtered' => 'filtered',
+        'count' => 'count',
+        'entities' => 'entities'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -84,6 +98,61 @@ class AttachmentListResponseAllOfResult implements ModelInterface, ArrayAccess, 
         'count' => 'setCount',
         'entities' => 'setEntities'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'total' => 'getTotal',
+        'filtered' => 'getFiltered',
+        'count' => 'getCount',
+        'entities' => 'getEntities'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -106,87 +175,51 @@ class AttachmentListResponseAllOfResult implements ModelInterface, ArrayAccess, 
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets count
+     * Gets total
      *
      * @return int|null
      */
-    public function getCount()
+    public function getTotal()
     {
-        return $this->container['count'];
+        return $this->container['total'];
     }
 
     /**
-     * Gets entities
+     * Sets total
      *
-     * @return AttachmentGet[]|null
+     * @param int|null $total total
+     *
+     * @return self
      */
-    public function getEntities()
+    public function setTotal($total)
     {
-        return $this->container['entities'];
+        $this->container['total'] = $total;
+
+        return $this;
     }
 
     /**
@@ -200,35 +233,65 @@ class AttachmentListResponseAllOfResult implements ModelInterface, ArrayAccess, 
     }
 
     /**
-     * The original name of the model.
+     * Sets filtered
      *
-     * @return string
+     * @param int|null $filtered filtered
+     *
+     * @return self
      */
-    public function getModelName()
+    public function setFiltered($filtered)
     {
-        return self::$openAPIModelName;
+        $this->container['filtered'] = $filtered;
+
+        return $this;
     }
 
     /**
-     * Gets total
+     * Gets count
      *
      * @return int|null
      */
-    public function getTotal()
+    public function getCount()
     {
-        return $this->container['total'];
+        return $this->container['count'];
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets count
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param int|null $count count
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setCount($count)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $this->container['count'] = $count;
+
+        return $this;
+    }
+
+    /**
+     * Gets entities
+     *
+     * @return AttachmentGet[]|null
+     */
+    public function getEntities()
+    {
+        return $this->container['entities'];
+    }
+
+    /**
+     * Sets entities
+     *
+     * @param AttachmentGet[]|null $entities entities
+     *
+     * @return self
+     */
+    public function setEntities($entities)
+    {
+        $this->container['entities'] = $entities;
+
+        return $this;
     }
 
     /**
@@ -285,59 +348,28 @@ class AttachmentListResponseAllOfResult implements ModelInterface, ArrayAccess, 
     }
 
     /**
-     * Sets count
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param int|null $count count
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setCount($count)
+    public function jsonSerialize()
     {
-        $this->container['count'] = $count;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets entities
+     * Gets the string presentation of the object
      *
-     * @param AttachmentGet[]|null $entities entities
-     *
-     * @return self
+     * @return string
      */
-    public function setEntities($entities)
+    public function __toString()
     {
-        $this->container['entities'] = $entities;
-
-        return $this;
-    }
-
-    /**
-     * Sets filtered
-     *
-     * @param int|null $filtered filtered
-     *
-     * @return self
-     */
-    public function setFiltered($filtered)
-    {
-        $this->container['filtered'] = $filtered;
-
-        return $this;
-    }
-
-    /**
-     * Sets total
-     *
-     * @param int|null $total total
-     *
-     * @return self
-     */
-    public function setTotal($total)
-    {
-        $this->container['total'] = $total;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -348,29 +380,6 @@ class AttachmentListResponseAllOfResult implements ModelInterface, ArrayAccess, 
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

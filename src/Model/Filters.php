@@ -20,39 +20,31 @@ use Qase\Client\ObjectSerializer;
 class Filters implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'filters';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'search' => 'search',
-        'milestoneId' => 'milestone_id',
-        'suiteId' => 'suite_id',
-        'severity' => 'severity',
-        'priority' => 'priority',
-        'type' => 'type',
-        'behavior' => 'behavior',
-        'automation' => 'automation',
-        'status' => 'status'
+    protected static $openAPITypes = [
+        'search' => 'string',
+        'milestoneId' => 'int',
+        'suiteId' => 'int',
+        'severity' => 'string',
+        'priority' => 'string',
+        'type' => 'string',
+        'behavior' => 'string',
+        'automation' => 'string',
+        'status' => 'string'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'search' => 'getSearch',
-        'milestoneId' => 'getMilestoneId',
-        'suiteId' => 'getSuiteId',
-        'severity' => 'getSeverity',
-        'priority' => 'getPriority',
-        'type' => 'getType',
-        'behavior' => 'getBehavior',
-        'automation' => 'getAutomation',
-        'status' => 'getStatus'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -71,28 +63,45 @@ class Filters implements ModelInterface, ArrayAccess, JsonSerializable
         'automation' => null,
         'status' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'filters';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'search' => 'string',
-        'milestoneId' => 'int',
-        'suiteId' => 'int',
-        'severity' => 'string',
-        'priority' => 'string',
-        'type' => 'string',
-        'behavior' => 'string',
-        'automation' => 'string',
-        'status' => 'string'
+    protected static $attributeMap = [
+        'search' => 'search',
+        'milestoneId' => 'milestone_id',
+        'suiteId' => 'suite_id',
+        'severity' => 'severity',
+        'priority' => 'priority',
+        'type' => 'type',
+        'behavior' => 'behavior',
+        'automation' => 'automation',
+        'status' => 'status'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -109,6 +118,66 @@ class Filters implements ModelInterface, ArrayAccess, JsonSerializable
         'automation' => 'setAutomation',
         'status' => 'setStatus'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'search' => 'getSearch',
+        'milestoneId' => 'getMilestoneId',
+        'suiteId' => 'getSuiteId',
+        'severity' => 'getSeverity',
+        'priority' => 'getPriority',
+        'type' => 'getType',
+        'behavior' => 'getBehavior',
+        'automation' => 'getAutomation',
+        'status' => 'getStatus'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -136,87 +205,51 @@ class Filters implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets automation
+     * Gets search
      *
      * @return string|null
      */
-    public function getAutomation()
+    public function getSearch()
     {
-        return $this->container['automation'];
+        return $this->container['search'];
     }
 
     /**
-     * Gets behavior
+     * Sets search
      *
-     * @return string|null
+     * @param string|null $search Provide a string that will be used to search by name.
+     *
+     * @return self
      */
-    public function getBehavior()
+    public function setSearch($search)
     {
-        return $this->container['behavior'];
+        $this->container['search'] = $search;
+
+        return $this;
     }
 
     /**
@@ -230,53 +263,17 @@ class Filters implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * The original name of the model.
+     * Sets milestoneId
      *
-     * @return string
+     * @param int|null $milestoneId ID of milestone.
+     *
+     * @return self
      */
-    public function getModelName()
+    public function setMilestoneId($milestoneId)
     {
-        return self::$openAPIModelName;
-    }
+        $this->container['milestoneId'] = $milestoneId;
 
-    /**
-     * Gets priority
-     *
-     * @return string|null
-     */
-    public function getPriority()
-    {
-        return $this->container['priority'];
-    }
-
-    /**
-     * Gets search
-     *
-     * @return string|null
-     */
-    public function getSearch()
-    {
-        return $this->container['search'];
-    }
-
-    /**
-     * Gets severity
-     *
-     * @return string|null
-     */
-    public function getSeverity()
-    {
-        return $this->container['severity'];
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
+        return $this;
     }
 
     /**
@@ -290,6 +287,68 @@ class Filters implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets suiteId
+     *
+     * @param int|null $suiteId ID of test suite.
+     *
+     * @return self
+     */
+    public function setSuiteId($suiteId)
+    {
+        $this->container['suiteId'] = $suiteId;
+
+        return $this;
+    }
+
+    /**
+     * Gets severity
+     *
+     * @return string|null
+     */
+    public function getSeverity()
+    {
+        return $this->container['severity'];
+    }
+
+    /**
+     * Sets severity
+     *
+     * @param string|null $severity A list of severity values separated by comma. Possible values: undefined, blocker, critical, major, normal, minor, trivial
+     *
+     * @return self
+     */
+    public function setSeverity($severity)
+    {
+        $this->container['severity'] = $severity;
+
+        return $this;
+    }
+
+    /**
+     * Gets priority
+     *
+     * @return string|null
+     */
+    public function getPriority()
+    {
+        return $this->container['priority'];
+    }
+
+    /**
+     * Sets priority
+     *
+     * @param string|null $priority A list of priority values separated by comma. Possible values: undefined, high, medium, low
+     *
+     * @return self
+     */
+    public function setPriority($priority)
+    {
+        $this->container['priority'] = $priority;
+
+        return $this;
+    }
+
+    /**
      * Gets type
      *
      * @return string|null
@@ -300,15 +359,89 @@ class Filters implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets type
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param string|null $type A list of type values separated by comma. Possible values: other, functional smoke, regression, security, usability, performance, acceptance
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setType($type)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets behavior
+     *
+     * @return string|null
+     */
+    public function getBehavior()
+    {
+        return $this->container['behavior'];
+    }
+
+    /**
+     * Sets behavior
+     *
+     * @param string|null $behavior A list of behavior values separated by comma. Possible values: undefined, positive negative, destructive
+     *
+     * @return self
+     */
+    public function setBehavior($behavior)
+    {
+        $this->container['behavior'] = $behavior;
+
+        return $this;
+    }
+
+    /**
+     * Gets automation
+     *
+     * @return string|null
+     */
+    public function getAutomation()
+    {
+        return $this->container['automation'];
+    }
+
+    /**
+     * Sets automation
+     *
+     * @param string|null $automation A list of values separated by comma. Possible values: is-not-automated, automated to-be-automated
+     *
+     * @return self
+     */
+    public function setAutomation($automation)
+    {
+        $this->container['automation'] = $automation;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string|null $status A list of values separated by comma. Possible values: actual, draft deprecated
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
     }
 
     /**
@@ -365,129 +498,28 @@ class Filters implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets automation
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string|null $automation A list of values separated by comma. Possible values: is-not-automated, automated to-be-automated
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setAutomation($automation)
+    public function jsonSerialize()
     {
-        $this->container['automation'] = $automation;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets behavior
+     * Gets the string presentation of the object
      *
-     * @param string|null $behavior A list of behavior values separated by comma. Possible values: undefined, positive negative, destructive
-     *
-     * @return self
+     * @return string
      */
-    public function setBehavior($behavior)
+    public function __toString()
     {
-        $this->container['behavior'] = $behavior;
-
-        return $this;
-    }
-
-    /**
-     * Sets milestoneId
-     *
-     * @param int|null $milestoneId ID of milestone.
-     *
-     * @return self
-     */
-    public function setMilestoneId($milestoneId)
-    {
-        $this->container['milestoneId'] = $milestoneId;
-
-        return $this;
-    }
-
-    /**
-     * Sets priority
-     *
-     * @param string|null $priority A list of priority values separated by comma. Possible values: undefined, high, medium, low
-     *
-     * @return self
-     */
-    public function setPriority($priority)
-    {
-        $this->container['priority'] = $priority;
-
-        return $this;
-    }
-
-    /**
-     * Sets search
-     *
-     * @param string|null $search Provide a string that will be used to search by name.
-     *
-     * @return self
-     */
-    public function setSearch($search)
-    {
-        $this->container['search'] = $search;
-
-        return $this;
-    }
-
-    /**
-     * Sets severity
-     *
-     * @param string|null $severity A list of severity values separated by comma. Possible values: undefined, blocker, critical, major, normal, minor, trivial
-     *
-     * @return self
-     */
-    public function setSeverity($severity)
-    {
-        $this->container['severity'] = $severity;
-
-        return $this;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status A list of values separated by comma. Possible values: actual, draft deprecated
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Sets suiteId
-     *
-     * @param int|null $suiteId ID of test suite.
-     *
-     * @return self
-     */
-    public function setSuiteId($suiteId)
-    {
-        $this->container['suiteId'] = $suiteId;
-
-        return $this;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type A list of type values separated by comma. Possible values: other, functional smoke, regression, security, usability, performance, acceptance
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -498,29 +530,6 @@ class Filters implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

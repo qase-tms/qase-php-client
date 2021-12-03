@@ -74,6 +74,34 @@ class CustomFieldsApi
     }
 
     /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex): void
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * Operation createCustomField
      *
      * Create new Custom Field.
@@ -184,6 +212,74 @@ class CustomFieldsApi
     }
 
     /**
+     * Operation createCustomFieldAsync
+     *
+     * Create new Custom Field.
+     *
+     * @param CustomFieldCreate $customFieldCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createCustomFieldAsync($customFieldCreate)
+    {
+        return $this->createCustomFieldAsyncWithHttpInfo($customFieldCreate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createCustomFieldAsyncWithHttpInfo
+     *
+     * Create new Custom Field.
+     *
+     * @param CustomFieldCreate $customFieldCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createCustomFieldAsyncWithHttpInfo($customFieldCreate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->createCustomFieldRequest($customFieldCreate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'createCustomField'
      *
      * @param CustomFieldCreate $customFieldCreate (required)
@@ -274,93 +370,6 @@ class CustomFieldsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Create http client option
-     *
-     * @return array of http client options
-     * @throws RuntimeException on file opening failure
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        return $options;
-    }
-
-    /**
-     * Operation createCustomFieldAsync
-     *
-     * Create new Custom Field.
-     *
-     * @param CustomFieldCreate $customFieldCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createCustomFieldAsync($customFieldCreate)
-    {
-        return $this->createCustomFieldAsyncWithHttpInfo($customFieldCreate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createCustomFieldAsyncWithHttpInfo
-     *
-     * Create new Custom Field.
-     *
-     * @param CustomFieldCreate $customFieldCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createCustomFieldAsyncWithHttpInfo($customFieldCreate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->createCustomFieldRequest($customFieldCreate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
     }
 
     /**
@@ -474,6 +483,74 @@ class CustomFieldsApi
     }
 
     /**
+     * Operation deleteCustomFieldAsync
+     *
+     * Delete Custom Field by id.
+     *
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteCustomFieldAsync($id)
+    {
+        return $this->deleteCustomFieldAsyncWithHttpInfo($id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteCustomFieldAsyncWithHttpInfo
+     *
+     * Delete Custom Field by id.
+     *
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteCustomFieldAsyncWithHttpInfo($id)
+    {
+        $returnType = '\Qase\Client\Model\Response';
+        $request = $this->deleteCustomFieldRequest($id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'deleteCustomField'
      *
      * @param int $id Identifier. (required)
@@ -568,82 +645,6 @@ class CustomFieldsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Operation deleteCustomFieldAsync
-     *
-     * Delete Custom Field by id.
-     *
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteCustomFieldAsync($id)
-    {
-        return $this->deleteCustomFieldAsyncWithHttpInfo($id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteCustomFieldAsyncWithHttpInfo
-     *
-     * Delete Custom Field by id.
-     *
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteCustomFieldAsyncWithHttpInfo($id)
-    {
-        $returnType = '\Qase\Client\Model\Response';
-        $request = $this->deleteCustomFieldRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfig()
-    {
-        return $this->config;
     }
 
     /**
@@ -757,6 +758,74 @@ class CustomFieldsApi
     }
 
     /**
+     * Operation getCustomFieldAsync
+     *
+     * Get Custom Field by id.
+     *
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getCustomFieldAsync($id)
+    {
+        return $this->getCustomFieldAsyncWithHttpInfo($id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getCustomFieldAsyncWithHttpInfo
+     *
+     * Get Custom Field by id.
+     *
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getCustomFieldAsyncWithHttpInfo($id)
+    {
+        $returnType = '\Qase\Client\Model\CustomFieldResponse';
+        $request = $this->getCustomFieldRequest($id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'getCustomField'
      *
      * @param int $id Identifier. (required)
@@ -854,89 +923,21 @@ class CustomFieldsApi
     }
 
     /**
-     * Operation getCustomFieldAsync
-     *
-     * Get Custom Field by id.
-     *
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getCustomFieldAsync($id)
-    {
-        return $this->getCustomFieldAsyncWithHttpInfo($id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getCustomFieldAsyncWithHttpInfo
-     *
-     * Get Custom Field by id.
-     *
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getCustomFieldAsyncWithHttpInfo($id)
-    {
-        $returnType = '\Qase\Client\Model\CustomFieldResponse';
-        $request = $this->getCustomFieldRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation getCustomFields
      *
      * Get all Custom Fields.
      *
+     * @param Filters1 $filters filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters1 $filters filters (optional)
      *
      * @return CustomFieldsResponse
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getCustomFields($limit = 10, $offset = 0, $filters = null)
+    public function getCustomFields($filters = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getCustomFieldsWithHttpInfo($limit, $offset, $filters);
+        list($response) = $this->getCustomFieldsWithHttpInfo($filters, $limit, $offset);
         return $response;
     }
 
@@ -945,17 +946,17 @@ class CustomFieldsApi
      *
      * Get all Custom Fields.
      *
+     * @param Filters1 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters1 $filters (optional)
      *
      * @return array of \Qase\Client\Model\CustomFieldsResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getCustomFieldsWithHttpInfo($limit = 10, $offset = 0, $filters = null)
+    public function getCustomFieldsWithHttpInfo($filters = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getCustomFieldsRequest($limit, $offset, $filters);
+        $request = $this->getCustomFieldsRequest($filters, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1036,16 +1037,88 @@ class CustomFieldsApi
     }
 
     /**
-     * Create request for operation 'getCustomFields'
+     * Operation getCustomFieldsAsync
      *
+     * Get all Custom Fields.
+     *
+     * @param Filters1 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getCustomFieldsAsync($filters = null, $limit = 10, $offset = 0)
+    {
+        return $this->getCustomFieldsAsyncWithHttpInfo($filters, $limit, $offset)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getCustomFieldsAsyncWithHttpInfo
+     *
+     * Get all Custom Fields.
+     *
      * @param Filters1 $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getCustomFieldsAsyncWithHttpInfo($filters = null, $limit = 10, $offset = 0)
+    {
+        $returnType = '\Qase\Client\Model\CustomFieldsResponse';
+        $request = $this->getCustomFieldsRequest($filters, $limit, $offset);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getCustomFields'
+     *
+     * @param Filters1 $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @return Request
      * @throws InvalidArgumentException
      */
-    public function getCustomFieldsRequest($limit = 10, $offset = 0, $filters = null)
+    public function getCustomFieldsRequest($filters = null, $limit = 10, $offset = 0)
     {
         if ($limit !== null && $limit > 25) {
             throw new InvalidArgumentException('invalid value for "$limit" when calling CustomFieldsApi.getCustomFields, must be smaller than or equal to 25.');
@@ -1070,6 +1143,13 @@ class CustomFieldsApi
         $multipart = false;
 
         // query params
+        if (is_array($filters)) {
+            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
+        }
+        if ($filters !== null) {
+            $queryParams['filters'] = $filters;
+        }
+        // query params
         if ($limit !== null) {
             if ('form' === 'form' && is_array($limit)) {
                 foreach ($limit as $key => $value) {
@@ -1088,13 +1168,6 @@ class CustomFieldsApi
             } else {
                 $queryParams['offset'] = $offset;
             }
-        }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
-        }
-        if ($filters !== null) {
-            $queryParams['filters'] = $filters;
         }
 
 
@@ -1158,98 +1231,6 @@ class CustomFieldsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Operation getCustomFieldsAsync
-     *
-     * Get all Custom Fields.
-     *
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters1 $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getCustomFieldsAsync($limit = 10, $offset = 0, $filters = null)
-    {
-        return $this->getCustomFieldsAsyncWithHttpInfo($limit, $offset, $filters)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getCustomFieldsAsyncWithHttpInfo
-     *
-     * Get all Custom Fields.
-     *
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters1 $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getCustomFieldsAsyncWithHttpInfo($limit = 10, $offset = 0, $filters = null)
-    {
-        $returnType = '\Qase\Client\Model\CustomFieldsResponse';
-        $request = $this->getCustomFieldsRequest($limit, $offset, $filters);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Get the host index
-     *
-     * @return int Host index
-     */
-    public function getHostIndex()
-    {
-        return $this->hostIndex;
-    }
-
-    /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
     }
 
     /**
@@ -1365,6 +1346,76 @@ class CustomFieldsApi
     }
 
     /**
+     * Operation updateCustomFieldAsync
+     *
+     * Update Custom Field by id.
+     *
+     * @param int $id Identifier. (required)
+     * @param CustomFieldUpdate $customFieldUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateCustomFieldAsync($id, $customFieldUpdate)
+    {
+        return $this->updateCustomFieldAsyncWithHttpInfo($id, $customFieldUpdate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateCustomFieldAsyncWithHttpInfo
+     *
+     * Update Custom Field by id.
+     *
+     * @param int $id Identifier. (required)
+     * @param CustomFieldUpdate $customFieldUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateCustomFieldAsyncWithHttpInfo($id, $customFieldUpdate)
+    {
+        $returnType = '\Qase\Client\Model\Response';
+        $request = $this->updateCustomFieldRequest($id, $customFieldUpdate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'updateCustomField'
      *
      * @param int $id Identifier. (required)
@@ -1475,72 +1526,21 @@ class CustomFieldsApi
     }
 
     /**
-     * Operation updateCustomFieldAsync
+     * Create http client option
      *
-     * Update Custom Field by id.
-     *
-     * @param int $id Identifier. (required)
-     * @param CustomFieldUpdate $customFieldUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
+     * @return array of http client options
+     * @throws RuntimeException on file opening failure
      */
-    public function updateCustomFieldAsync($id, $customFieldUpdate)
+    protected function createHttpClientOption()
     {
-        return $this->updateCustomFieldAsyncWithHttpInfo($id, $customFieldUpdate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
+        $options = [];
+        if ($this->config->getDebug()) {
+            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
+            if (!$options[RequestOptions::DEBUG]) {
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+            }
+        }
 
-    /**
-     * Operation updateCustomFieldAsyncWithHttpInfo
-     *
-     * Update Custom Field by id.
-     *
-     * @param int $id Identifier. (required)
-     * @param CustomFieldUpdate $customFieldUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function updateCustomFieldAsyncWithHttpInfo($id, $customFieldUpdate)
-    {
-        $returnType = '\Qase\Client\Model\Response';
-        $request = $this->updateCustomFieldRequest($id, $customFieldUpdate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
+        return $options;
     }
 }

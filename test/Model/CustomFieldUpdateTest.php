@@ -24,13 +24,6 @@ class CustomFieldUpdateTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,9 +38,61 @@ class CustomFieldUpdateTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "CustomFieldUpdate"
      */
     public function testCustomFieldUpdate()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "title"
+     */
+    public function testPropertyTitle()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "projectsCodes"
+     */
+    public function testPropertyProjectsCodes()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "value"
+     */
+    public function testPropertyValue()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "replaceValues"
+     */
+    public function testPropertyReplaceValues()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "placeholder"
+     */
+    public function testPropertyPlaceholder()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,15 +117,6 @@ class CustomFieldUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "isRequired"
-     */
-    public function testPropertyIsRequired()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "isVisible"
      */
     public function testPropertyIsVisible()
@@ -90,45 +126,9 @@ class CustomFieldUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "placeholder"
+     * Test attribute "isRequired"
      */
-    public function testPropertyPlaceholder()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "projectsCodes"
-     */
-    public function testPropertyProjectsCodes()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "replaceValues"
-     */
-    public function testPropertyReplaceValues()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "title"
-     */
-    public function testPropertyTitle()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "value"
-     */
-    public function testPropertyValue()
+    public function testPropertyIsRequired()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

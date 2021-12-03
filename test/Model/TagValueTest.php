@@ -24,13 +24,6 @@ class TagValueTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,9 +38,16 @@ class TagValueTest extends TestCase
     }
 
     /**
-     * Test attribute "internalId"
+     * Clean up after running all test cases
      */
-    public function testPropertyInternalId()
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
+     * Test "TagValue"
+     */
+    public function testTagValue()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -63,9 +63,9 @@ class TagValueTest extends TestCase
     }
 
     /**
-     * Test "TagValue"
+     * Test attribute "internalId"
      */
-    public function testTagValue()
+    public function testPropertyInternalId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

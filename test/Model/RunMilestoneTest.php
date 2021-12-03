@@ -24,13 +24,6 @@ class RunMilestoneTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,9 +38,16 @@ class RunMilestoneTest extends TestCase
     }
 
     /**
-     * Test attribute "description"
+     * Clean up after running all test cases
      */
-    public function testPropertyDescription()
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
+     * Test "RunMilestone"
+     */
+    public function testRunMilestone()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -63,9 +63,9 @@ class RunMilestoneTest extends TestCase
     }
 
     /**
-     * Test "RunMilestone"
+     * Test attribute "description"
      */
-    public function testRunMilestone()
+    public function testPropertyDescription()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

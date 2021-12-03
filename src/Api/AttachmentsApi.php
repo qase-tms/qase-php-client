@@ -74,6 +74,34 @@ class AttachmentsApi
     }
 
     /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex): void
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * Operation deleteAttachment
      *
      * Remove attachment by Hash.
@@ -184,6 +212,74 @@ class AttachmentsApi
     }
 
     /**
+     * Operation deleteAttachmentAsync
+     *
+     * Remove attachment by Hash.
+     *
+     * @param string $codeOrHash Code or Hash. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteAttachmentAsync($codeOrHash)
+    {
+        return $this->deleteAttachmentAsyncWithHttpInfo($codeOrHash)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteAttachmentAsyncWithHttpInfo
+     *
+     * Remove attachment by Hash.
+     *
+     * @param string $codeOrHash Code or Hash. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteAttachmentAsyncWithHttpInfo($codeOrHash)
+    {
+        $returnType = '\Qase\Client\Model\HashResponse';
+        $request = $this->deleteAttachmentRequest($codeOrHash);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'deleteAttachment'
      *
      * @param string $codeOrHash Code or Hash. (required)
@@ -278,93 +374,6 @@ class AttachmentsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Create http client option
-     *
-     * @return array of http client options
-     * @throws RuntimeException on file opening failure
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        return $options;
-    }
-
-    /**
-     * Operation deleteAttachmentAsync
-     *
-     * Remove attachment by Hash.
-     *
-     * @param string $codeOrHash Code or Hash. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteAttachmentAsync($codeOrHash)
-    {
-        return $this->deleteAttachmentAsyncWithHttpInfo($codeOrHash)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteAttachmentAsyncWithHttpInfo
-     *
-     * Remove attachment by Hash.
-     *
-     * @param string $codeOrHash Code or Hash. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteAttachmentAsyncWithHttpInfo($codeOrHash)
-    {
-        $returnType = '\Qase\Client\Model\HashResponse';
-        $request = $this->deleteAttachmentRequest($codeOrHash);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
     }
 
     /**
@@ -478,6 +487,74 @@ class AttachmentsApi
     }
 
     /**
+     * Operation getAttachmentAsync
+     *
+     * Get attachment by Hash.
+     *
+     * @param string $codeOrHash Code or Hash. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getAttachmentAsync($codeOrHash)
+    {
+        return $this->getAttachmentAsyncWithHttpInfo($codeOrHash)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAttachmentAsyncWithHttpInfo
+     *
+     * Get attachment by Hash.
+     *
+     * @param string $codeOrHash Code or Hash. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getAttachmentAsyncWithHttpInfo($codeOrHash)
+    {
+        $returnType = '\Qase\Client\Model\AttachmentResponse';
+        $request = $this->getAttachmentRequest($codeOrHash);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'getAttachment'
      *
      * @param string $codeOrHash Code or Hash. (required)
@@ -572,74 +649,6 @@ class AttachmentsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Operation getAttachmentAsync
-     *
-     * Get attachment by Hash.
-     *
-     * @param string $codeOrHash Code or Hash. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getAttachmentAsync($codeOrHash)
-    {
-        return $this->getAttachmentAsyncWithHttpInfo($codeOrHash)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getAttachmentAsyncWithHttpInfo
-     *
-     * Get attachment by Hash.
-     *
-     * @param string $codeOrHash Code or Hash. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getAttachmentAsyncWithHttpInfo($codeOrHash)
-    {
-        $returnType = '\Qase\Client\Model\AttachmentResponse';
-        $request = $this->getAttachmentRequest($codeOrHash);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
     }
 
     /**
@@ -752,6 +761,76 @@ class AttachmentsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation getAttachmentsAsync
+     *
+     * Get all attachments.
+     *
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getAttachmentsAsync($limit = 10, $offset = 0)
+    {
+        return $this->getAttachmentsAsyncWithHttpInfo($limit, $offset)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAttachmentsAsyncWithHttpInfo
+     *
+     * Get all attachments.
+     *
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getAttachmentsAsyncWithHttpInfo($limit = 10, $offset = 0)
+    {
+        $returnType = '\Qase\Client\Model\AttachmentListResponse';
+        $request = $this->getAttachmentsRequest($limit, $offset);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -872,104 +951,6 @@ class AttachmentsApi
     }
 
     /**
-     * Operation getAttachmentsAsync
-     *
-     * Get all attachments.
-     *
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getAttachmentsAsync($limit = 10, $offset = 0)
-    {
-        return $this->getAttachmentsAsyncWithHttpInfo($limit, $offset)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getAttachmentsAsyncWithHttpInfo
-     *
-     * Get all attachments.
-     *
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getAttachmentsAsyncWithHttpInfo($limit = 10, $offset = 0)
-    {
-        $returnType = '\Qase\Client\Model\AttachmentListResponse';
-        $request = $this->getAttachmentsRequest($limit, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
-     * Get the host index
-     *
-     * @return int Host index
-     */
-    public function getHostIndex()
-    {
-        return $this->hostIndex;
-    }
-
-    /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
-    }
-
-    /**
      * Operation uploadAttachment
      *
      * Upload attachment.
@@ -1079,6 +1060,76 @@ class AttachmentsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation uploadAttachmentAsync
+     *
+     * Upload attachment.
+     *
+     * @param string $codeOrHash Code or Hash. (required)
+     * @param SplFileObject[] $file (optional)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function uploadAttachmentAsync($codeOrHash, $file = null)
+    {
+        return $this->uploadAttachmentAsyncWithHttpInfo($codeOrHash, $file)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation uploadAttachmentAsyncWithHttpInfo
+     *
+     * Upload attachment.
+     *
+     * @param string $codeOrHash Code or Hash. (required)
+     * @param SplFileObject[] $file (optional)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function uploadAttachmentAsyncWithHttpInfo($codeOrHash, $file = null)
+    {
+        $returnType = '\Qase\Client\Model\AttachmentUploadsResponse';
+        $request = $this->uploadAttachmentRequest($codeOrHash, $file);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1192,72 +1243,21 @@ class AttachmentsApi
     }
 
     /**
-     * Operation uploadAttachmentAsync
+     * Create http client option
      *
-     * Upload attachment.
-     *
-     * @param string $codeOrHash Code or Hash. (required)
-     * @param SplFileObject[] $file (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
+     * @return array of http client options
+     * @throws RuntimeException on file opening failure
      */
-    public function uploadAttachmentAsync($codeOrHash, $file = null)
+    protected function createHttpClientOption()
     {
-        return $this->uploadAttachmentAsyncWithHttpInfo($codeOrHash, $file)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
+        $options = [];
+        if ($this->config->getDebug()) {
+            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
+            if (!$options[RequestOptions::DEBUG]) {
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+            }
+        }
 
-    /**
-     * Operation uploadAttachmentAsyncWithHttpInfo
-     *
-     * Upload attachment.
-     *
-     * @param string $codeOrHash Code or Hash. (required)
-     * @param SplFileObject[] $file (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function uploadAttachmentAsyncWithHttpInfo($codeOrHash, $file = null)
-    {
-        $returnType = '\Qase\Client\Model\AttachmentUploadsResponse';
-        $request = $this->uploadAttachmentRequest($codeOrHash, $file);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
+        return $options;
     }
 }

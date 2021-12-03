@@ -24,13 +24,6 @@ class SuiteCreateTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,27 +38,16 @@ class SuiteCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "description"
+     * Clean up after running all test cases
      */
-    public function testPropertyDescription()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "parentId"
+     * Test "SuiteCreate"
      */
-    public function testPropertyParentId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "preconditions"
-     */
-    public function testPropertyPreconditions()
+    public function testSuiteCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -81,9 +63,27 @@ class SuiteCreateTest extends TestCase
     }
 
     /**
-     * Test "SuiteCreate"
+     * Test attribute "description"
      */
-    public function testSuiteCreate()
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "preconditions"
+     */
+    public function testPropertyPreconditions()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "parentId"
+     */
+    public function testPropertyParentId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -24,13 +24,6 @@ class DefectTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,63 +38,16 @@ class DefectTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "Defect"
      */
     public function testDefect()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "actualResult"
-     */
-    public function testPropertyActualResult()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "attachments"
-     */
-    public function testPropertyAttachments()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "created"
-     */
-    public function testPropertyCreated()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "customFields"
-     */
-    public function testPropertyCustomFields()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "deleted"
-     */
-    public function testPropertyDeleted()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "externalData"
-     */
-    public function testPropertyExternalData()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -117,36 +63,18 @@ class DefectTest extends TestCase
     }
 
     /**
-     * Test attribute "memberId"
+     * Test attribute "title"
      */
-    public function testPropertyMemberId()
+    public function testPropertyTitle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "milestoneId"
+     * Test attribute "actualResult"
      */
-    public function testPropertyMilestoneId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "projectId"
-     */
-    public function testPropertyProjectId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "resolved"
-     */
-    public function testPropertyResolved()
+    public function testPropertyActualResult()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -171,18 +99,36 @@ class DefectTest extends TestCase
     }
 
     /**
-     * Test attribute "tags"
+     * Test attribute "milestoneId"
      */
-    public function testPropertyTags()
+    public function testPropertyMilestoneId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "customFields"
      */
-    public function testPropertyTitle()
+    public function testPropertyCustomFields()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "attachments"
+     */
+    public function testPropertyAttachments()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "created"
+     */
+    public function testPropertyCreated()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -192,6 +138,60 @@ class DefectTest extends TestCase
      * Test attribute "updated"
      */
     public function testPropertyUpdated()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "deleted"
+     */
+    public function testPropertyDeleted()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "resolved"
+     */
+    public function testPropertyResolved()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "projectId"
+     */
+    public function testPropertyProjectId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "memberId"
+     */
+    public function testPropertyMemberId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "externalData"
+     */
+    public function testPropertyExternalData()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tags"
+     */
+    public function testPropertyTags()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

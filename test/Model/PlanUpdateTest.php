@@ -24,13 +24,6 @@ class PlanUpdateTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,6 +38,13 @@ class PlanUpdateTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "PlanUpdate"
      */
     public function testPlanUpdate()
@@ -54,9 +54,9 @@ class PlanUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "cases"
+     * Test attribute "title"
      */
-    public function testPropertyCases()
+    public function testPropertyTitle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,9 +72,9 @@ class PlanUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "cases"
      */
-    public function testPropertyTitle()
+    public function testPropertyCases()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

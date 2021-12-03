@@ -24,13 +24,6 @@ class RunTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,45 +38,16 @@ class RunTest extends TestCase
     }
 
     /**
-     * Test attribute "cases"
+     * Clean up after running all test cases
      */
-    public function testPropertyCases()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "customFields"
+     * Test "Run"
      */
-    public function testPropertyCustomFields()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "description"
-     */
-    public function testPropertyDescription()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "endTime"
-     */
-    public function testPropertyEndTime()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "environment"
-     */
-    public function testPropertyEnvironment()
+    public function testRun()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -99,36 +63,18 @@ class RunTest extends TestCase
     }
 
     /**
-     * Test attribute "milestone"
+     * Test attribute "title"
      */
-    public function testPropertyMilestone()
+    public function testPropertyTitle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "public"
+     * Test attribute "description"
      */
-    public function testPropertyPublic()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "startTime"
-     */
-    public function testPropertyStartTime()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "stats"
-     */
-    public function testPropertyStats()
+    public function testPropertyDescription()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -153,9 +99,36 @@ class RunTest extends TestCase
     }
 
     /**
-     * Test attribute "tags"
+     * Test attribute "startTime"
      */
-    public function testPropertyTags()
+    public function testPropertyStartTime()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "endTime"
+     */
+    public function testPropertyEndTime()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "public"
+     */
+    public function testPropertyPublic()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "stats"
+     */
+    public function testPropertyStats()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -171,18 +144,45 @@ class RunTest extends TestCase
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "environment"
      */
-    public function testPropertyTitle()
+    public function testPropertyEnvironment()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test "Run"
+     * Test attribute "milestone"
      */
-    public function testRun()
+    public function testPropertyMilestone()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "customFields"
+     */
+    public function testPropertyCustomFields()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tags"
+     */
+    public function testPropertyTags()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "cases"
+     */
+    public function testPropertyCases()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

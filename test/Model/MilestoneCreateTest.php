@@ -24,13 +24,6 @@ class MilestoneCreateTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,9 +38,25 @@ class MilestoneCreateTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "MilestoneCreate"
      */
     public function testMilestoneCreate()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "title"
+     */
+    public function testPropertyTitle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -63,15 +72,6 @@ class MilestoneCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "dueDate"
-     */
-    public function testPropertyDueDate()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "status"
      */
     public function testPropertyStatus()
@@ -81,9 +81,9 @@ class MilestoneCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "dueDate"
      */
-    public function testPropertyTitle()
+    public function testPropertyDueDate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

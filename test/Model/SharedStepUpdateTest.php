@@ -24,13 +24,6 @@ class SharedStepUpdateTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,36 +38,16 @@ class SharedStepUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "action"
+     * Clean up after running all test cases
      */
-    public function testPropertyAction()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "data"
+     * Test "SharedStepUpdate"
      */
-    public function testPropertyData()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "expectedResult"
-     */
-    public function testPropertyExpectedResult()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "steps"
-     */
-    public function testPropertySteps()
+    public function testSharedStepUpdate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -90,9 +63,36 @@ class SharedStepUpdateTest extends TestCase
     }
 
     /**
-     * Test "SharedStepUpdate"
+     * Test attribute "action"
      */
-    public function testSharedStepUpdate()
+    public function testPropertyAction()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "expectedResult"
+     */
+    public function testPropertyExpectedResult()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "data"
+     */
+    public function testPropertyData()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "steps"
+     */
+    public function testPropertySteps()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

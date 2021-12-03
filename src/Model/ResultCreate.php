@@ -21,49 +21,33 @@ use Qase\Client\ObjectSerializer;
 class ResultCreate implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
-    const STATUS_IN_PROGRESS = 'in_progress';
-    const STATUS_PASSED = 'passed';
-    const STATUS_FAILED = 'failed';
-    const STATUS_BLOCKED = 'blocked';
-    const STATUS_SKIPPED = 'skipped';
-    const STATUS_INVALID = 'invalid';
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'ResultCreate';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'caseId' => 'case_id',
-        'case' => 'case',
-        'status' => 'status',
-        'time' => 'time',
-        'timeMs' => 'time_ms',
-        'defect' => 'defect',
-        'attachments' => 'attachments',
-        'stacktrace' => 'stacktrace',
-        'comment' => 'comment',
-        'param' => 'param',
-        'steps' => 'steps'
+    protected static $openAPITypes = [
+        'caseId' => 'int',
+        'case' => '\Qase\Client\Model\ResultCreateCase',
+        'status' => 'string',
+        'time' => 'int',
+        'timeMs' => 'int',
+        'defect' => 'bool',
+        'attachments' => 'string[]',
+        'stacktrace' => 'string',
+        'comment' => 'string',
+        'param' => 'string[]',
+        'steps' => '\Qase\Client\Model\ResultCreateSteps[]'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'caseId' => 'getCaseId',
-        'case' => 'getCase',
-        'status' => 'getStatus',
-        'time' => 'getTime',
-        'timeMs' => 'getTimeMs',
-        'defect' => 'getDefect',
-        'attachments' => 'getAttachments',
-        'stacktrace' => 'getStacktrace',
-        'comment' => 'getComment',
-        'param' => 'getParam',
-        'steps' => 'getSteps'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -84,30 +68,47 @@ class ResultCreate implements ModelInterface, ArrayAccess, JsonSerializable
         'param' => null,
         'steps' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'ResultCreate';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'caseId' => 'int',
-        'case' => '\Qase\Client\Model\ResultCreateCase',
-        'status' => 'string',
-        'time' => 'int',
-        'timeMs' => 'int',
-        'defect' => 'bool',
-        'attachments' => 'string[]',
-        'stacktrace' => 'string',
-        'comment' => 'string',
-        'param' => 'string[]',
-        'steps' => '\Qase\Client\Model\ResultCreateSteps[]'
+    protected static $attributeMap = [
+        'caseId' => 'case_id',
+        'case' => 'case',
+        'status' => 'status',
+        'time' => 'time',
+        'timeMs' => 'time_ms',
+        'defect' => 'defect',
+        'attachments' => 'attachments',
+        'stacktrace' => 'stacktrace',
+        'comment' => 'comment',
+        'param' => 'param',
+        'steps' => 'steps'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -126,6 +127,91 @@ class ResultCreate implements ModelInterface, ArrayAccess, JsonSerializable
         'param' => 'setParam',
         'steps' => 'setSteps'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'caseId' => 'getCaseId',
+        'case' => 'getCase',
+        'status' => 'getStatus',
+        'time' => 'getTime',
+        'timeMs' => 'getTimeMs',
+        'defect' => 'getDefect',
+        'attachments' => 'getAttachments',
+        'stacktrace' => 'getStacktrace',
+        'comment' => 'getComment',
+        'param' => 'getParam',
+        'steps' => 'getSteps'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+    const STATUS_IN_PROGRESS = 'in_progress';
+    const STATUS_PASSED = 'passed';
+    const STATUS_FAILED = 'failed';
+    const STATUS_BLOCKED = 'blocked';
+    const STATUS_SKIPPED = 'skipped';
+    const STATUS_INVALID = 'invalid';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_IN_PROGRESS,
+            self::STATUS_PASSED,
+            self::STATUS_FAILED,
+            self::STATUS_BLOCKED,
+            self::STATUS_SKIPPED,
+            self::STATUS_INVALID,
+        ];
+    }
+
     /**
      * Associative array for storing property values
      *
@@ -155,77 +241,76 @@ class ResultCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if (!is_null($this->container['time']) && ($this->container['time'] > 31536000)) {
+            $invalidProperties[] = "invalid value for 'time', must be smaller than or equal to 31536000.";
+        }
+
+        if (!is_null($this->container['time']) && ($this->container['time'] < 0)) {
+            $invalidProperties[] = "invalid value for 'time', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['timeMs']) && ($this->container['timeMs'] > 31536000000)) {
+            $invalidProperties[] = "invalid value for 'timeMs', must be smaller than or equal to 31536000000.";
+        }
+
+        if (!is_null($this->container['timeMs']) && ($this->container['timeMs'] < 0)) {
+            $invalidProperties[] = "invalid value for 'timeMs', must be bigger than or equal to 0.";
+        }
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets caseId
+     *
+     * @return int|null
+     */
+    public function getCaseId()
+    {
+        return $this->container['caseId'];
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Sets caseId
      *
-     * @return array
+     * @param int|null $caseId caseId
+     *
+     * @return self
      */
-    public static function openAPIFormats()
+    public function setCaseId($caseId)
     {
-        return self::$openAPIFormats;
-    }
+        $this->container['caseId'] = $caseId;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets attachments
-     *
-     * @return string[]|null
-     */
-    public function getAttachments()
-    {
-        return $this->container['attachments'];
+        return $this;
     }
 
     /**
@@ -239,63 +324,17 @@ class ResultCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets caseId
+     * Sets case
      *
-     * @return int|null
+     * @param ResultCreateCase|null $case case
+     *
+     * @return self
      */
-    public function getCaseId()
+    public function setCase($case)
     {
-        return $this->container['caseId'];
-    }
+        $this->container['case'] = $case;
 
-    /**
-     * Gets comment
-     *
-     * @return string|null
-     */
-    public function getComment()
-    {
-        return $this->container['comment'];
-    }
-
-    /**
-     * Gets defect
-     *
-     * @return bool|null
-     */
-    public function getDefect()
-    {
-        return $this->container['defect'];
-    }
-
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
-    }
-
-    /**
-     * Gets param
-     *
-     * @return string[]|null
-     */
-    public function getParam()
-    {
-        return $this->container['param'];
-    }
-
-    /**
-     * Gets stacktrace
-     *
-     * @return string|null
-     */
-    public function getStacktrace()
-    {
-        return $this->container['stacktrace'];
+        return $this;
     }
 
     /**
@@ -309,13 +348,27 @@ class ResultCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets steps
+     * Sets status
      *
-     * @return ResultCreateSteps[]|null
+     * @param string|null $status status
+     *
+     * @return self
      */
-    public function getSteps()
+    public function setStatus($status)
     {
-        return $this->container['steps'];
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
     }
 
     /**
@@ -329,6 +382,28 @@ class ResultCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets time
+     *
+     * @param int|null $time time
+     *
+     * @return self
+     */
+    public function setTime($time)
+    {
+
+        if (!is_null($time) && ($time > 31536000)) {
+            throw new InvalidArgumentException('invalid value for $time when calling ResultCreate., must be smaller than or equal to 31536000.');
+        }
+        if (!is_null($time) && ($time < 0)) {
+            throw new InvalidArgumentException('invalid value for $time when calling ResultCreate., must be bigger than or equal to 0.');
+        }
+
+        $this->container['time'] = $time;
+
+        return $this;
+    }
+
+    /**
      * Gets timeMs
      *
      * @return int|null
@@ -339,15 +414,171 @@ class ResultCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets timeMs
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param int|null $timeMs timeMs
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setTimeMs($timeMs)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+
+        if (!is_null($timeMs) && ($timeMs > 31536000000)) {
+            throw new InvalidArgumentException('invalid value for $timeMs when calling ResultCreate., must be smaller than or equal to 31536000000.');
+        }
+        if (!is_null($timeMs) && ($timeMs < 0)) {
+            throw new InvalidArgumentException('invalid value for $timeMs when calling ResultCreate., must be bigger than or equal to 0.');
+        }
+
+        $this->container['timeMs'] = $timeMs;
+
+        return $this;
+    }
+
+    /**
+     * Gets defect
+     *
+     * @return bool|null
+     */
+    public function getDefect()
+    {
+        return $this->container['defect'];
+    }
+
+    /**
+     * Sets defect
+     *
+     * @param bool|null $defect defect
+     *
+     * @return self
+     */
+    public function setDefect($defect)
+    {
+        $this->container['defect'] = $defect;
+
+        return $this;
+    }
+
+    /**
+     * Gets attachments
+     *
+     * @return string[]|null
+     */
+    public function getAttachments()
+    {
+        return $this->container['attachments'];
+    }
+
+    /**
+     * Sets attachments
+     *
+     * @param string[]|null $attachments attachments
+     *
+     * @return self
+     */
+    public function setAttachments($attachments)
+    {
+        $this->container['attachments'] = $attachments;
+
+        return $this;
+    }
+
+    /**
+     * Gets stacktrace
+     *
+     * @return string|null
+     */
+    public function getStacktrace()
+    {
+        return $this->container['stacktrace'];
+    }
+
+    /**
+     * Sets stacktrace
+     *
+     * @param string|null $stacktrace stacktrace
+     *
+     * @return self
+     */
+    public function setStacktrace($stacktrace)
+    {
+        $this->container['stacktrace'] = $stacktrace;
+
+        return $this;
+    }
+
+    /**
+     * Gets comment
+     *
+     * @return string|null
+     */
+    public function getComment()
+    {
+        return $this->container['comment'];
+    }
+
+    /**
+     * Sets comment
+     *
+     * @param string|null $comment comment
+     *
+     * @return self
+     */
+    public function setComment($comment)
+    {
+        $this->container['comment'] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Gets param
+     *
+     * @return string[]|null
+     */
+    public function getParam()
+    {
+        return $this->container['param'];
+    }
+
+    /**
+     * Sets param
+     *
+     * @param string[]|null $param param
+     *
+     * @return self
+     */
+    public function setParam($param)
+    {
+
+
+        $this->container['param'] = $param;
+
+        return $this;
+    }
+
+    /**
+     * Gets steps
+     *
+     * @return ResultCreateSteps[]|null
+     */
+    public function getSteps()
+    {
+        return $this->container['steps'];
+    }
+
+    /**
+     * Sets steps
+     *
+     * @param ResultCreateSteps[]|null $steps steps
+     *
+     * @return self
+     */
+    public function setSteps($steps)
+    {
+        $this->container['steps'] = $steps;
+
+        return $this;
     }
 
     /**
@@ -404,185 +635,28 @@ class ResultCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets attachments
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string[]|null $attachments attachments
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setAttachments($attachments)
+    public function jsonSerialize()
     {
-        $this->container['attachments'] = $attachments;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets case
+     * Gets the string presentation of the object
      *
-     * @param ResultCreateCase|null $case case
-     *
-     * @return self
+     * @return string
      */
-    public function setCase($case)
+    public function __toString()
     {
-        $this->container['case'] = $case;
-
-        return $this;
-    }
-
-    /**
-     * Sets caseId
-     *
-     * @param int|null $caseId caseId
-     *
-     * @return self
-     */
-    public function setCaseId($caseId)
-    {
-        $this->container['caseId'] = $caseId;
-
-        return $this;
-    }
-
-    /**
-     * Sets comment
-     *
-     * @param string|null $comment comment
-     *
-     * @return self
-     */
-    public function setComment($comment)
-    {
-        $this->container['comment'] = $comment;
-
-        return $this;
-    }
-
-    /**
-     * Sets defect
-     *
-     * @param bool|null $defect defect
-     *
-     * @return self
-     */
-    public function setDefect($defect)
-    {
-        $this->container['defect'] = $defect;
-
-        return $this;
-    }
-
-    /**
-     * Sets param
-     *
-     * @param string[]|null $param param
-     *
-     * @return self
-     */
-    public function setParam($param)
-    {
-
-
-        $this->container['param'] = $param;
-
-        return $this;
-    }
-
-    /**
-     * Sets stacktrace
-     *
-     * @param string|null $stacktrace stacktrace
-     *
-     * @return self
-     */
-    public function setStacktrace($stacktrace)
-    {
-        $this->container['stacktrace'] = $stacktrace;
-
-        return $this;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status status
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Sets steps
-     *
-     * @param ResultCreateSteps[]|null $steps steps
-     *
-     * @return self
-     */
-    public function setSteps($steps)
-    {
-        $this->container['steps'] = $steps;
-
-        return $this;
-    }
-
-    /**
-     * Sets time
-     *
-     * @param int|null $time time
-     *
-     * @return self
-     */
-    public function setTime($time)
-    {
-
-        if (!is_null($time) && ($time > 31536000)) {
-            throw new InvalidArgumentException('invalid value for $time when calling ResultCreate., must be smaller than or equal to 31536000.');
-        }
-        if (!is_null($time) && ($time < 0)) {
-            throw new InvalidArgumentException('invalid value for $time when calling ResultCreate., must be bigger than or equal to 0.');
-        }
-
-        $this->container['time'] = $time;
-
-        return $this;
-    }
-
-    /**
-     * Sets timeMs
-     *
-     * @param int|null $timeMs timeMs
-     *
-     * @return self
-     */
-    public function setTimeMs($timeMs)
-    {
-
-        if (!is_null($timeMs) && ($timeMs > 31536000000)) {
-            throw new InvalidArgumentException('invalid value for $timeMs when calling ResultCreate., must be smaller than or equal to 31536000000.');
-        }
-        if (!is_null($timeMs) && ($timeMs < 0)) {
-            throw new InvalidArgumentException('invalid value for $timeMs when calling ResultCreate., must be bigger than or equal to 0.');
-        }
-
-        $this->container['timeMs'] = $timeMs;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -593,71 +667,6 @@ class ResultCreate implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if (!is_null($this->container['time']) && ($this->container['time'] > 31536000)) {
-            $invalidProperties[] = "invalid value for 'time', must be smaller than or equal to 31536000.";
-        }
-
-        if (!is_null($this->container['time']) && ($this->container['time'] < 0)) {
-            $invalidProperties[] = "invalid value for 'time', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['timeMs']) && ($this->container['timeMs'] > 31536000000)) {
-            $invalidProperties[] = "invalid value for 'timeMs', must be smaller than or equal to 31536000000.";
-        }
-
-        if (!is_null($this->container['timeMs']) && ($this->container['timeMs'] < 0)) {
-            $invalidProperties[] = "invalid value for 'timeMs', must be bigger than or equal to 0.";
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_IN_PROGRESS,
-            self::STATUS_PASSED,
-            self::STATUS_FAILED,
-            self::STATUS_BLOCKED,
-            self::STATUS_SKIPPED,
-            self::STATUS_INVALID,
-        ];
     }
 }
 

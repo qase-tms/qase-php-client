@@ -24,13 +24,6 @@ class TestCaseCreateStepsTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,27 +38,25 @@ class TestCaseCreateStepsTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
+     * Test "TestCaseCreateSteps"
+     */
+    public function testTestCaseCreateSteps()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "action"
      */
     public function testPropertyAction()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "attachments"
-     */
-    public function testPropertyAttachments()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "data"
-     */
-    public function testPropertyData()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -81,6 +72,15 @@ class TestCaseCreateStepsTest extends TestCase
     }
 
     /**
+     * Test attribute "data"
+     */
+    public function testPropertyData()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "position"
      */
     public function testPropertyPosition()
@@ -90,9 +90,9 @@ class TestCaseCreateStepsTest extends TestCase
     }
 
     /**
-     * Test "TestCaseCreateSteps"
+     * Test attribute "attachments"
      */
-    public function testTestCaseCreateSteps()
+    public function testPropertyAttachments()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

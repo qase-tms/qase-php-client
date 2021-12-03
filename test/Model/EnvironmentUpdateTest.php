@@ -24,13 +24,6 @@ class EnvironmentUpdateTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,9 +38,25 @@ class EnvironmentUpdateTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "EnvironmentUpdate"
      */
     public function testEnvironmentUpdate()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "title"
+     */
+    public function testPropertyTitle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -63,15 +72,6 @@ class EnvironmentUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "host"
-     */
-    public function testPropertyHost()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "slug"
      */
     public function testPropertySlug()
@@ -81,9 +81,9 @@ class EnvironmentUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "host"
      */
-    public function testPropertyTitle()
+    public function testPropertyHost()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

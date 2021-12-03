@@ -21,29 +21,26 @@ use Qase\Client\ObjectSerializer;
 class EnvironmentUpdate implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'EnvironmentUpdate';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'title' => 'title',
-        'description' => 'description',
-        'slug' => 'slug',
-        'host' => 'host'
+    protected static $openAPITypes = [
+        'title' => 'string',
+        'description' => 'string',
+        'slug' => 'string',
+        'host' => 'string'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'title' => 'getTitle',
-        'description' => 'getDescription',
-        'slug' => 'getSlug',
-        'host' => 'getHost'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -57,23 +54,40 @@ class EnvironmentUpdate implements ModelInterface, ArrayAccess, JsonSerializable
         'slug' => null,
         'host' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'EnvironmentUpdate';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'title' => 'string',
-        'description' => 'string',
-        'slug' => 'string',
-        'host' => 'string'
+    protected static $attributeMap = [
+        'title' => 'title',
+        'description' => 'description',
+        'slug' => 'slug',
+        'host' => 'host'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -85,6 +99,61 @@ class EnvironmentUpdate implements ModelInterface, ArrayAccess, JsonSerializable
         'slug' => 'setSlug',
         'host' => 'setHost'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'title' => 'getTitle',
+        'description' => 'getDescription',
+        'slug' => 'getSlug',
+        'host' => 'getHost'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -107,67 +176,63 @@ class EnvironmentUpdate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 255)) {
+            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['slug']) && (mb_strlen($this->container['slug']) > 255)) {
+            $invalidProperties[] = "invalid value for 'slug', the character length must be smaller than or equal to 255.";
+        }
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets title
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Sets title
      *
-     * @return array
+     * @param string|null $title title
+     *
+     * @return self
      */
-    public static function openAPIFormats()
+    public function setTitle($title)
     {
-        return self::$openAPIFormats;
-    }
+        if (!is_null($title) && (mb_strlen($title) > 255)) {
+            throw new InvalidArgumentException('invalid length for $title when calling EnvironmentUpdate., must be smaller than or equal to 255.');
+        }
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
+        $this->container['title'] = $title;
 
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
+        return $this;
     }
 
     /**
@@ -181,23 +246,17 @@ class EnvironmentUpdate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets host
+     * Sets description
      *
-     * @return string|null
+     * @param string|null $description description
+     *
+     * @return self
      */
-    public function getHost()
+    public function setDescription($description)
     {
-        return $this->container['host'];
-    }
+        $this->container['description'] = $description;
 
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
+        return $this;
     }
 
     /**
@@ -211,25 +270,45 @@ class EnvironmentUpdate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets title
+     * Sets slug
      *
-     * @return string|null
+     * @param string|null $slug slug
+     *
+     * @return self
      */
-    public function getTitle()
+    public function setSlug($slug)
     {
-        return $this->container['title'];
+        if (!is_null($slug) && (mb_strlen($slug) > 255)) {
+            throw new InvalidArgumentException('invalid length for $slug when calling EnvironmentUpdate., must be smaller than or equal to 255.');
+        }
+
+        $this->container['slug'] = $slug;
+
+        return $this;
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Gets host
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @return string|null
      */
-    public function jsonSerialize()
+    public function getHost()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        return $this->container['host'];
+    }
+
+    /**
+     * Sets host
+     *
+     * @param string|null $host host
+     *
+     * @return self
+     */
+    public function setHost($host)
+    {
+        $this->container['host'] = $host;
+
+        return $this;
     }
 
     /**
@@ -286,67 +365,28 @@ class EnvironmentUpdate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets description
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string|null $description description
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setDescription($description)
+    public function jsonSerialize()
     {
-        $this->container['description'] = $description;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets host
+     * Gets the string presentation of the object
      *
-     * @param string|null $host host
-     *
-     * @return self
+     * @return string
      */
-    public function setHost($host)
+    public function __toString()
     {
-        $this->container['host'] = $host;
-
-        return $this;
-    }
-
-    /**
-     * Sets slug
-     *
-     * @param string|null $slug slug
-     *
-     * @return self
-     */
-    public function setSlug($slug)
-    {
-        if (!is_null($slug) && (mb_strlen($slug) > 255)) {
-            throw new InvalidArgumentException('invalid length for $slug when calling EnvironmentUpdate., must be smaller than or equal to 255.');
-        }
-
-        $this->container['slug'] = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        if (!is_null($title) && (mb_strlen($title) > 255)) {
-            throw new InvalidArgumentException('invalid length for $title when calling EnvironmentUpdate., must be smaller than or equal to 255.');
-        }
-
-        $this->container['title'] = $title;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -357,37 +397,6 @@ class EnvironmentUpdate implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 255)) {
-            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 255.";
-        }
-
-        if (!is_null($this->container['slug']) && (mb_strlen($this->container['slug']) > 255)) {
-            $invalidProperties[] = "invalid value for 'slug', the character length must be smaller than or equal to 255.";
-        }
-
-        return $invalidProperties;
     }
 }
 

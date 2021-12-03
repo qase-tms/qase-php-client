@@ -24,13 +24,6 @@ class UserTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,9 +38,16 @@ class UserTest extends TestCase
     }
 
     /**
-     * Test attribute "email"
+     * Clean up after running all test cases
      */
-    public function testPropertyEmail()
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
+     * Test "User"
+     */
+    public function testUser()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,9 +72,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * Test attribute "status"
+     * Test attribute "email"
      */
-    public function testPropertyStatus()
+    public function testPropertyEmail()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -90,9 +90,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * Test "User"
+     * Test attribute "status"
      */
-    public function testUser()
+    public function testPropertyStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -21,6 +21,128 @@ use Qase\Client\ObjectSerializer;
 class Filters1 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
+    /**
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'filters_1';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @var string[]
+     */
+    protected static $openAPITypes = [
+        'entity' => 'string',
+        'type' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @var string[]
+     * @phpstan-var array<string, string|null>
+     * @psalm-var array<string, string|null>
+     */
+    protected static $openAPIFormats = [
+        'entity' => null,
+        'type' => null
+    ];
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @var string[]
+     */
+    protected static $attributeMap = [
+        'entity' => 'entity',
+        'type' => 'type'
+    ];
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @var string[]
+     */
+    protected static $setters = [
+        'entity' => 'setEntity',
+        'type' => 'setType'
+    ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'entity' => 'getEntity',
+        'type' => 'getType'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
     const ENTITY__CASE = 'case';
     const ENTITY_RUN = 'run';
     const ENTITY_DEFECT = 'defect';
@@ -34,60 +156,42 @@ class Filters1 implements ModelInterface, ArrayAccess, JsonSerializable
     const TYPE_URL = 'url';
     const TYPE_USER = 'user';
     const TYPE_DATETIME = 'datetime';
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Gets allowable values of the enum
      *
-     * @var string[]
+     * @return string[]
      */
-    protected static $attributeMap = [
-        'entity' => 'entity',
-        'type' => 'type'
-    ];
+    public function getEntityAllowableValues()
+    {
+        return [
+            self::ENTITY__CASE,
+            self::ENTITY_RUN,
+            self::ENTITY_DEFECT,
+        ];
+    }
+
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Gets allowable values of the enum
      *
-     * @var string[]
+     * @return string[]
      */
-    protected static $getters = [
-        'entity' => 'getEntity',
-        'type' => 'getType'
-    ];
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @var string[]
-     * @phpstan-var array<string, string|null>
-     * @psalm-var array<string, string|null>
-     */
-    protected static $openAPIFormats = [
-        'entity' => null,
-        'type' => null
-    ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'filters_1';
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @var string[]
-     */
-    protected static $openAPITypes = [
-        'entity' => 'string',
-        'type' => 'string'
-    ];
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
-     */
-    protected static $setters = [
-        'entity' => 'setEntity',
-        'type' => 'setType'
-    ];
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_STRING,
+            self::TYPE_TEXT,
+            self::TYPE_NUMBER,
+            self::TYPE_CHECKBOX,
+            self::TYPE_SELECTBOX,
+            self::TYPE_RADIO,
+            self::TYPE_MULTISELECT,
+            self::TYPE_URL,
+            self::TYPE_USER,
+            self::TYPE_DATETIME,
+        ];
+    }
+
     /**
      * Associative array for storing property values
      *
@@ -108,68 +212,46 @@ class Filters1 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        $allowedValues = $this->getEntityAllowableValues();
+        if (!is_null($this->container['entity']) && !in_array($this->container['entity'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'entity', must be one of '%s'",
+                $this->container['entity'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
 
     /**
      * Gets entity
@@ -182,13 +264,27 @@ class Filters1 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * The original name of the model.
+     * Sets entity
      *
-     * @return string
+     * @param string|null $entity entity
+     *
+     * @return self
      */
-    public function getModelName()
+    public function setEntity($entity)
     {
-        return self::$openAPIModelName;
+        $allowedValues = $this->getEntityAllowableValues();
+        if (!is_null($entity) && !in_array($entity, $allowedValues, true)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'entity', must be one of '%s'",
+                    $entity,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['entity'] = $entity;
+
+        return $this;
     }
 
     /**
@@ -202,15 +298,27 @@ class Filters1 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets type
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param string|null $type type
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setType($type)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
+
+        return $this;
     }
 
     /**
@@ -267,51 +375,28 @@ class Filters1 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets entity
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string|null $entity entity
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setEntity($entity)
+    public function jsonSerialize()
     {
-        $allowedValues = $this->getEntityAllowableValues();
-        if (!is_null($entity) && !in_array($entity, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'entity', must be one of '%s'",
-                    $entity,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['entity'] = $entity;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets type
+     * Gets the string presentation of the object
      *
-     * @param string|null $type type
-     *
-     * @return self
+     * @return string
      */
-    public function setType($type)
+    public function __toString()
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -322,82 +407,6 @@ class Filters1 implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getEntityAllowableValues();
-        if (!is_null($this->container['entity']) && !in_array($this->container['entity'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'entity', must be one of '%s'",
-                $this->container['entity'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getEntityAllowableValues()
-    {
-        return [
-            self::ENTITY__CASE,
-            self::ENTITY_RUN,
-            self::ENTITY_DEFECT,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_STRING,
-            self::TYPE_TEXT,
-            self::TYPE_NUMBER,
-            self::TYPE_CHECKBOX,
-            self::TYPE_SELECTBOX,
-            self::TYPE_RADIO,
-            self::TYPE_MULTISELECT,
-            self::TYPE_URL,
-            self::TYPE_USER,
-            self::TYPE_DATETIME,
-        ];
     }
 }
 

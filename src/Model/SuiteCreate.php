@@ -20,29 +20,26 @@ use Qase\Client\ObjectSerializer;
 class SuiteCreate implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'SuiteCreate';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'title' => 'title',
-        'description' => 'description',
-        'preconditions' => 'preconditions',
-        'parentId' => 'parent_id'
+    protected static $openAPITypes = [
+        'title' => 'string',
+        'description' => 'string',
+        'preconditions' => 'string',
+        'parentId' => 'int'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'title' => 'getTitle',
-        'description' => 'getDescription',
-        'preconditions' => 'getPreconditions',
-        'parentId' => 'getParentId'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -56,23 +53,40 @@ class SuiteCreate implements ModelInterface, ArrayAccess, JsonSerializable
         'preconditions' => null,
         'parentId' => 'int64'
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'SuiteCreate';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'title' => 'string',
-        'description' => 'string',
-        'preconditions' => 'string',
-        'parentId' => 'int'
+    protected static $attributeMap = [
+        'title' => 'title',
+        'description' => 'description',
+        'preconditions' => 'preconditions',
+        'parentId' => 'parent_id'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -84,6 +98,61 @@ class SuiteCreate implements ModelInterface, ArrayAccess, JsonSerializable
         'preconditions' => 'setPreconditions',
         'parentId' => 'setParentId'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'title' => 'getTitle',
+        'description' => 'getDescription',
+        'preconditions' => 'getPreconditions',
+        'parentId' => 'getParentId'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -106,67 +175,54 @@ class SuiteCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        if ($this->container['title'] === null) {
+            $invalidProperties[] = "'title' can't be null";
+        }
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
+     * Gets title
      *
      * @return string
      */
-    public function __toString()
+    public function getTitle()
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string $title Test suite title.
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
+
+        return $this;
     }
 
     /**
@@ -180,23 +236,17 @@ class SuiteCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * The original name of the model.
+     * Sets description
      *
-     * @return string
+     * @param string|null $description Test suite description.
+     *
+     * @return self
      */
-    public function getModelName()
+    public function setDescription($description)
     {
-        return self::$openAPIModelName;
-    }
+        $this->container['description'] = $description;
 
-    /**
-     * Gets parentId
-     *
-     * @return int|null
-     */
-    public function getParentId()
-    {
-        return $this->container['parentId'];
+        return $this;
     }
 
     /**
@@ -210,25 +260,41 @@ class SuiteCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets title
+     * Sets preconditions
      *
-     * @return string
+     * @param string|null $preconditions Test suite preconditions
+     *
+     * @return self
      */
-    public function getTitle()
+    public function setPreconditions($preconditions)
     {
-        return $this->container['title'];
+        $this->container['preconditions'] = $preconditions;
+
+        return $this;
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Gets parentId
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @return int|null
      */
-    public function jsonSerialize()
+    public function getParentId()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        return $this->container['parentId'];
+    }
+
+    /**
+     * Sets parentId
+     *
+     * @param int|null $parentId Parent suite ID
+     *
+     * @return self
+     */
+    public function setParentId($parentId)
+    {
+        $this->container['parentId'] = $parentId;
+
+        return $this;
     }
 
     /**
@@ -285,59 +351,28 @@ class SuiteCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets description
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string|null $description Test suite description.
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setDescription($description)
+    public function jsonSerialize()
     {
-        $this->container['description'] = $description;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets parentId
+     * Gets the string presentation of the object
      *
-     * @param int|null $parentId Parent suite ID
-     *
-     * @return self
+     * @return string
      */
-    public function setParentId($parentId)
+    public function __toString()
     {
-        $this->container['parentId'] = $parentId;
-
-        return $this;
-    }
-
-    /**
-     * Sets preconditions
-     *
-     * @param string|null $preconditions Test suite preconditions
-     *
-     * @return self
-     */
-    public function setPreconditions($preconditions)
-    {
-        $this->container['preconditions'] = $preconditions;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string $title Test suite title.
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -348,32 +383,6 @@ class SuiteCreate implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        if ($this->container['title'] === null) {
-            $invalidProperties[] = "'title' can't be null";
-        }
-        return $invalidProperties;
     }
 }
 

@@ -24,13 +24,6 @@ class RunPublicResponseAllOfResultTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,18 +38,25 @@ class RunPublicResponseAllOfResultTest extends TestCase
     }
 
     /**
-     * Test attribute "url"
+     * Clean up after running all test cases
      */
-    public function testPropertyUrl()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test "RunPublicResponseAllOfResult"
      */
     public function testRunPublicResponseAllOfResult()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "url"
+     */
+    public function testPropertyUrl()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

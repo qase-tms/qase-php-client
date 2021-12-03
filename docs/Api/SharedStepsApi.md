@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 ## `getSharedSteps()`
 
 ```php
-getSharedSteps($code, $limit, $offset, $filters): \Qase\Client\Model\SharedStepListResponse
+getSharedSteps($code, $filters, $limit, $offset): \Qase\Client\Model\SharedStepListResponse
 ```
 
 Get all shared steps.
@@ -233,12 +233,12 @@ $apiInstance = new Qase\Client\Api\SharedStepsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
+$filters = array('key' => new \Qase\Client\Model\Filters6()); // Filters6
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
-$filters = array('key' => new \Qase\Client\Model\Filters6()); // Filters6
 
 try {
-    $result = $apiInstance->getSharedSteps($code, $limit, $offset, $filters);
+    $result = $apiInstance->getSharedSteps($code, $filters, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SharedStepsApi->getSharedSteps: ', $e->getMessage(), PHP_EOL;
@@ -250,9 +250,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
+ **filters** | [**Filters6**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
- **filters** | [**Filters6**](../Model/.md)|  | [optional]
 
 ### Return type
 

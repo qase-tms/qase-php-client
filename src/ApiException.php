@@ -53,16 +53,6 @@ class ApiException extends Exception
     }
 
     /**
-     * Gets the HTTP body of the server response either as Json or string
-     *
-     * @return stdClass|string|null HTTP body of the server response either as \stdClass or string
-     */
-    public function getResponseBody()
-    {
-        return $this->responseBody;
-    }
-
-    /**
      * Gets the HTTP response header
      *
      * @return string[]|null HTTP response header
@@ -73,13 +63,13 @@ class ApiException extends Exception
     }
 
     /**
-     * Gets the deserialized response object (during deserialization)
+     * Gets the HTTP body of the server response either as Json or string
      *
-     * @return mixed the deserialized response object
+     * @return stdClass|string|null HTTP body of the server response either as \stdClass or string
      */
-    public function getResponseObject()
+    public function getResponseBody()
     {
-        return $this->responseObject;
+        return $this->responseBody;
     }
 
     /**
@@ -92,5 +82,15 @@ class ApiException extends Exception
     public function setResponseObject($obj)
     {
         $this->responseObject = $obj;
+    }
+
+    /**
+     * Gets the deserialized response object (during deserialization)
+     *
+     * @return mixed the deserialized response object
+     */
+    public function getResponseObject()
+    {
+        return $this->responseObject;
     }
 }

@@ -21,26 +21,23 @@ use Qase\Client\ObjectSerializer;
 class DefectStatus implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
-    const STATUS_IN_PROGRESS = 'in_progress';
-    const STATUS_RESOLVED = 'resolved';
-    const STATUS_INVALID = 'invalid';
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'DefectStatus';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'status' => 'status'
+    protected static $openAPITypes = [
+        'status' => 'string'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'status' => 'getStatus'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -51,20 +48,37 @@ class DefectStatus implements ModelInterface, ArrayAccess, JsonSerializable
     protected static $openAPIFormats = [
         'status' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'DefectStatus';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'status' => 'string'
+    protected static $attributeMap = [
+        'status' => 'status'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -73,6 +87,75 @@ class DefectStatus implements ModelInterface, ArrayAccess, JsonSerializable
     protected static $setters = [
         'status' => 'setStatus'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'status' => 'getStatus'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+    const STATUS_IN_PROGRESS = 'in_progress';
+    const STATUS_RESOLVED = 'resolved';
+    const STATUS_INVALID = 'invalid';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_IN_PROGRESS,
+            self::STATUS_RESOLVED,
+            self::STATUS_INVALID,
+        ];
+    }
+
     /**
      * Associative array for storing property values
      *
@@ -92,78 +175,40 @@ class DefectStatus implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
-    }
 
     /**
      * Gets status
@@ -176,15 +221,27 @@ class DefectStatus implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets status
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param string $status status
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setStatus($status)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
     }
 
     /**
@@ -241,27 +298,28 @@ class DefectStatus implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets status
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string $status status
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setStatus($status)
+    public function jsonSerialize()
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        return ObjectSerializer::sanitizeForSerialization($this);
+    }
 
-        return $this;
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -272,55 +330,6 @@ class DefectStatus implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_IN_PROGRESS,
-            self::STATUS_RESOLVED,
-            self::STATUS_INVALID,
-        ];
     }
 }
 

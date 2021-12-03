@@ -24,13 +24,6 @@ class AttachmentTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,6 +38,13 @@ class AttachmentTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "Attachment"
      */
     public function testAttachment()
@@ -54,9 +54,9 @@ class AttachmentTest extends TestCase
     }
 
     /**
-     * Test attribute "filename"
+     * Test attribute "size"
      */
-    public function testPropertyFilename()
+    public function testPropertySize()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,9 +72,9 @@ class AttachmentTest extends TestCase
     }
 
     /**
-     * Test attribute "size"
+     * Test attribute "filename"
      */
-    public function testPropertySize()
+    public function testPropertyFilename()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

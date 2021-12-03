@@ -74,6 +74,34 @@ class ProjectsApi
     }
 
     /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex): void
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * Operation createProject
      *
      * Create new project.
@@ -184,6 +212,74 @@ class ProjectsApi
     }
 
     /**
+     * Operation createProjectAsync
+     *
+     * Create new project.
+     *
+     * @param ProjectCreate $projectCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createProjectAsync($projectCreate)
+    {
+        return $this->createProjectAsyncWithHttpInfo($projectCreate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createProjectAsyncWithHttpInfo
+     *
+     * Create new project.
+     *
+     * @param ProjectCreate $projectCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createProjectAsyncWithHttpInfo($projectCreate)
+    {
+        $returnType = '\Qase\Client\Model\ProjectCodeResponse';
+        $request = $this->createProjectRequest($projectCreate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'createProject'
      *
      * @param ProjectCreate $projectCreate (required)
@@ -274,93 +370,6 @@ class ProjectsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Create http client option
-     *
-     * @return array of http client options
-     * @throws RuntimeException on file opening failure
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        return $options;
-    }
-
-    /**
-     * Operation createProjectAsync
-     *
-     * Create new project.
-     *
-     * @param ProjectCreate $projectCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createProjectAsync($projectCreate)
-    {
-        return $this->createProjectAsyncWithHttpInfo($projectCreate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createProjectAsyncWithHttpInfo
-     *
-     * Create new project.
-     *
-     * @param ProjectCreate $projectCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createProjectAsyncWithHttpInfo($projectCreate)
-    {
-        $returnType = '\Qase\Client\Model\ProjectCodeResponse';
-        $request = $this->createProjectRequest($projectCreate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
     }
 
     /**
@@ -474,6 +483,74 @@ class ProjectsApi
     }
 
     /**
+     * Operation deleteProjectAsync
+     *
+     * Delete Project by code.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteProjectAsync($code)
+    {
+        return $this->deleteProjectAsyncWithHttpInfo($code)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteProjectAsyncWithHttpInfo
+     *
+     * Delete Project by code.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteProjectAsyncWithHttpInfo($code)
+    {
+        $returnType = '\Qase\Client\Model\Response';
+        $request = $this->deleteProjectRequest($code);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'deleteProject'
      *
      * @param string $code Code of project, where to search entities. (required)
@@ -575,102 +652,6 @@ class ProjectsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Operation deleteProjectAsync
-     *
-     * Delete Project by code.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteProjectAsync($code)
-    {
-        return $this->deleteProjectAsyncWithHttpInfo($code)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteProjectAsyncWithHttpInfo
-     *
-     * Delete Project by code.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteProjectAsyncWithHttpInfo($code)
-    {
-        $returnType = '\Qase\Client\Model\Response';
-        $request = $this->deleteProjectRequest($code);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
-     * Get the host index
-     *
-     * @return int Host index
-     */
-    public function getHostIndex()
-    {
-        return $this->hostIndex;
-    }
-
-    /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
     }
 
     /**
@@ -784,6 +765,74 @@ class ProjectsApi
     }
 
     /**
+     * Operation getProjectAsync
+     *
+     * Get Project by code.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getProjectAsync($code)
+    {
+        return $this->getProjectAsyncWithHttpInfo($code)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getProjectAsyncWithHttpInfo
+     *
+     * Get Project by code.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getProjectAsyncWithHttpInfo($code)
+    {
+        $returnType = '\Qase\Client\Model\ProjectResponse';
+        $request = $this->getProjectRequest($code);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'getProject'
      *
      * @param string $code Code of project, where to search entities. (required)
@@ -885,74 +934,6 @@ class ProjectsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Operation getProjectAsync
-     *
-     * Get Project by code.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getProjectAsync($code)
-    {
-        return $this->getProjectAsyncWithHttpInfo($code)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getProjectAsyncWithHttpInfo
-     *
-     * Get Project by code.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getProjectAsyncWithHttpInfo($code)
-    {
-        $returnType = '\Qase\Client\Model\ProjectResponse';
-        $request = $this->getProjectRequest($code);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
     }
 
     /**
@@ -1065,6 +1046,76 @@ class ProjectsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation getProjectsAsync
+     *
+     * Get All Projects.
+     *
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getProjectsAsync($limit = 10, $offset = 0)
+    {
+        return $this->getProjectsAsyncWithHttpInfo($limit, $offset)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getProjectsAsyncWithHttpInfo
+     *
+     * Get All Projects.
+     *
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getProjectsAsyncWithHttpInfo($limit = 10, $offset = 0)
+    {
+        $returnType = '\Qase\Client\Model\ProjectListResponse';
+        $request = $this->getProjectsRequest($limit, $offset);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1185,76 +1236,6 @@ class ProjectsApi
     }
 
     /**
-     * Operation getProjectsAsync
-     *
-     * Get All Projects.
-     *
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getProjectsAsync($limit = 10, $offset = 0)
-    {
-        return $this->getProjectsAsyncWithHttpInfo($limit, $offset)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getProjectsAsyncWithHttpInfo
-     *
-     * Get All Projects.
-     *
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getProjectsAsyncWithHttpInfo($limit = 10, $offset = 0)
-    {
-        $returnType = '\Qase\Client\Model\ProjectListResponse';
-        $request = $this->getProjectsRequest($limit, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation grantAccessToProject
      *
      * Grant access to project by code.
@@ -1364,6 +1345,76 @@ class ProjectsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation grantAccessToProjectAsync
+     *
+     * Grant access to project by code.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param ProjectAccess $projectAccess (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function grantAccessToProjectAsync($code, $projectAccess)
+    {
+        return $this->grantAccessToProjectAsyncWithHttpInfo($code, $projectAccess)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation grantAccessToProjectAsyncWithHttpInfo
+     *
+     * Grant access to project by code.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param ProjectAccess $projectAccess (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function grantAccessToProjectAsyncWithHttpInfo($code, $projectAccess)
+    {
+        $returnType = '\Qase\Client\Model\Response';
+        $request = $this->grantAccessToProjectRequest($code, $projectAccess);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1484,76 +1535,6 @@ class ProjectsApi
     }
 
     /**
-     * Operation grantAccessToProjectAsync
-     *
-     * Grant access to project by code.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param ProjectAccess $projectAccess (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function grantAccessToProjectAsync($code, $projectAccess)
-    {
-        return $this->grantAccessToProjectAsyncWithHttpInfo($code, $projectAccess)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation grantAccessToProjectAsyncWithHttpInfo
-     *
-     * Grant access to project by code.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param ProjectAccess $projectAccess (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function grantAccessToProjectAsyncWithHttpInfo($code, $projectAccess)
-    {
-        $returnType = '\Qase\Client\Model\Response';
-        $request = $this->grantAccessToProjectRequest($code, $projectAccess);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation revokeAccessToProject
      *
      * Revoke access to project by code.
@@ -1663,6 +1644,76 @@ class ProjectsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation revokeAccessToProjectAsync
+     *
+     * Revoke access to project by code.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param ProjectAccess $projectAccess (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function revokeAccessToProjectAsync($code, $projectAccess)
+    {
+        return $this->revokeAccessToProjectAsyncWithHttpInfo($code, $projectAccess)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation revokeAccessToProjectAsyncWithHttpInfo
+     *
+     * Revoke access to project by code.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param ProjectAccess $projectAccess (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function revokeAccessToProjectAsyncWithHttpInfo($code, $projectAccess)
+    {
+        $returnType = '\Qase\Client\Model\Response';
+        $request = $this->revokeAccessToProjectRequest($code, $projectAccess);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1783,72 +1834,21 @@ class ProjectsApi
     }
 
     /**
-     * Operation revokeAccessToProjectAsync
+     * Create http client option
      *
-     * Revoke access to project by code.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param ProjectAccess $projectAccess (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
+     * @return array of http client options
+     * @throws RuntimeException on file opening failure
      */
-    public function revokeAccessToProjectAsync($code, $projectAccess)
+    protected function createHttpClientOption()
     {
-        return $this->revokeAccessToProjectAsyncWithHttpInfo($code, $projectAccess)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
+        $options = [];
+        if ($this->config->getDebug()) {
+            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
+            if (!$options[RequestOptions::DEBUG]) {
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+            }
+        }
 
-    /**
-     * Operation revokeAccessToProjectAsyncWithHttpInfo
-     *
-     * Revoke access to project by code.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param ProjectAccess $projectAccess (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function revokeAccessToProjectAsyncWithHttpInfo($code, $projectAccess)
-    {
-        $returnType = '\Qase\Client\Model\Response';
-        $request = $this->revokeAccessToProjectRequest($code, $projectAccess);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
+        return $options;
     }
 }

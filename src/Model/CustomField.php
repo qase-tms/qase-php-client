@@ -21,47 +21,35 @@ use Qase\Client\ObjectSerializer;
 class CustomField implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'CustomField';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'id' => 'id',
-        'title' => 'title',
-        'entity' => 'entity',
-        'type' => 'type',
-        'placeholder' => 'placeholder',
-        'defaultValue' => 'default_value',
-        'value' => 'value',
-        'isRequired' => 'is_required',
-        'isVisible' => 'is_visible',
-        'isFilterable' => 'is_filterable',
-        'created' => 'created',
-        'updated' => 'updated',
-        'projectsCodes' => 'projects_codes'
+    protected static $openAPITypes = [
+        'id' => 'int',
+        'title' => 'string',
+        'entity' => 'string',
+        'type' => 'string',
+        'placeholder' => 'string',
+        'defaultValue' => 'string',
+        'value' => 'string',
+        'isRequired' => 'bool',
+        'isVisible' => 'bool',
+        'isFilterable' => 'bool',
+        'created' => '\DateTime',
+        'updated' => '\DateTime',
+        'projectsCodes' => 'string[]'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'id' => 'getId',
-        'title' => 'getTitle',
-        'entity' => 'getEntity',
-        'type' => 'getType',
-        'placeholder' => 'getPlaceholder',
-        'defaultValue' => 'getDefaultValue',
-        'value' => 'getValue',
-        'isRequired' => 'getIsRequired',
-        'isVisible' => 'getIsVisible',
-        'isFilterable' => 'getIsFilterable',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated',
-        'projectsCodes' => 'getProjectsCodes'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -84,32 +72,49 @@ class CustomField implements ModelInterface, ArrayAccess, JsonSerializable
         'updated' => 'date-time',
         'projectsCodes' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'CustomField';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'id' => 'int',
-        'title' => 'string',
-        'entity' => 'string',
-        'type' => 'string',
-        'placeholder' => 'string',
-        'defaultValue' => 'string',
-        'value' => 'string',
-        'isRequired' => 'bool',
-        'isVisible' => 'bool',
-        'isFilterable' => 'bool',
-        'created' => '\DateTime',
-        'updated' => '\DateTime',
-        'projectsCodes' => 'string[]'
+    protected static $attributeMap = [
+        'id' => 'id',
+        'title' => 'title',
+        'entity' => 'entity',
+        'type' => 'type',
+        'placeholder' => 'placeholder',
+        'defaultValue' => 'default_value',
+        'value' => 'value',
+        'isRequired' => 'is_required',
+        'isVisible' => 'is_visible',
+        'isFilterable' => 'is_filterable',
+        'created' => 'created',
+        'updated' => 'updated',
+        'projectsCodes' => 'projects_codes'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -130,6 +135,70 @@ class CustomField implements ModelInterface, ArrayAccess, JsonSerializable
         'updated' => 'setUpdated',
         'projectsCodes' => 'setProjectsCodes'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'id' => 'getId',
+        'title' => 'getTitle',
+        'entity' => 'getEntity',
+        'type' => 'getType',
+        'placeholder' => 'getPlaceholder',
+        'defaultValue' => 'getDefaultValue',
+        'value' => 'getValue',
+        'isRequired' => 'getIsRequired',
+        'isVisible' => 'getIsVisible',
+        'isFilterable' => 'getIsFilterable',
+        'created' => 'getCreated',
+        'updated' => 'getUpdated',
+        'projectsCodes' => 'getProjectsCodes'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -161,98 +230,28 @@ class CustomField implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets created
-     *
-     * @return DateTime|null
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Gets defaultValue
-     *
-     * @return string|null
-     */
-    public function getDefaultValue()
-    {
-        return $this->container['defaultValue'];
-    }
-
-    /**
-     * Gets entity
-     *
-     * @return string|null
-     */
-    public function getEntity()
-    {
-        return $this->container['entity'];
-    }
 
     /**
      * Gets id
@@ -265,63 +264,17 @@ class CustomField implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets isFilterable
+     * Sets id
      *
-     * @return bool|null
+     * @param int|null $id id
+     *
+     * @return self
      */
-    public function getIsFilterable()
+    public function setId($id)
     {
-        return $this->container['isFilterable'];
-    }
+        $this->container['id'] = $id;
 
-    /**
-     * Gets isRequired
-     *
-     * @return bool|null
-     */
-    public function getIsRequired()
-    {
-        return $this->container['isRequired'];
-    }
-
-    /**
-     * Gets isVisible
-     *
-     * @return bool|null
-     */
-    public function getIsVisible()
-    {
-        return $this->container['isVisible'];
-    }
-
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
-    }
-
-    /**
-     * Gets placeholder
-     *
-     * @return string|null
-     */
-    public function getPlaceholder()
-    {
-        return $this->container['placeholder'];
-    }
-
-    /**
-     * Gets projectsCodes
-     *
-     * @return string[]|null
-     */
-    public function getProjectsCodes()
-    {
-        return $this->container['projectsCodes'];
+        return $this;
     }
 
     /**
@@ -335,6 +288,44 @@ class CustomField implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets title
+     *
+     * @param string|null $title title
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets entity
+     *
+     * @return string|null
+     */
+    public function getEntity()
+    {
+        return $this->container['entity'];
+    }
+
+    /**
+     * Sets entity
+     *
+     * @param string|null $entity entity
+     *
+     * @return self
+     */
+    public function setEntity($entity)
+    {
+        $this->container['entity'] = $entity;
+
+        return $this;
+    }
+
+    /**
      * Gets type
      *
      * @return string|null
@@ -345,13 +336,65 @@ class CustomField implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets updated
+     * Sets type
      *
-     * @return DateTime|null
+     * @param string|null $type type
+     *
+     * @return self
      */
-    public function getUpdated()
+    public function setType($type)
     {
-        return $this->container['updated'];
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets placeholder
+     *
+     * @return string|null
+     */
+    public function getPlaceholder()
+    {
+        return $this->container['placeholder'];
+    }
+
+    /**
+     * Sets placeholder
+     *
+     * @param string|null $placeholder placeholder
+     *
+     * @return self
+     */
+    public function setPlaceholder($placeholder)
+    {
+        $this->container['placeholder'] = $placeholder;
+
+        return $this;
+    }
+
+    /**
+     * Gets defaultValue
+     *
+     * @return string|null
+     */
+    public function getDefaultValue()
+    {
+        return $this->container['defaultValue'];
+    }
+
+    /**
+     * Sets defaultValue
+     *
+     * @param string|null $defaultValue defaultValue
+     *
+     * @return self
+     */
+    public function setDefaultValue($defaultValue)
+    {
+        $this->container['defaultValue'] = $defaultValue;
+
+        return $this;
     }
 
     /**
@@ -365,15 +408,161 @@ class CustomField implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets value
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param string|null $value value
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setValue($value)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $this->container['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Gets isRequired
+     *
+     * @return bool|null
+     */
+    public function getIsRequired()
+    {
+        return $this->container['isRequired'];
+    }
+
+    /**
+     * Sets isRequired
+     *
+     * @param bool|null $isRequired isRequired
+     *
+     * @return self
+     */
+    public function setIsRequired($isRequired)
+    {
+        $this->container['isRequired'] = $isRequired;
+
+        return $this;
+    }
+
+    /**
+     * Gets isVisible
+     *
+     * @return bool|null
+     */
+    public function getIsVisible()
+    {
+        return $this->container['isVisible'];
+    }
+
+    /**
+     * Sets isVisible
+     *
+     * @param bool|null $isVisible isVisible
+     *
+     * @return self
+     */
+    public function setIsVisible($isVisible)
+    {
+        $this->container['isVisible'] = $isVisible;
+
+        return $this;
+    }
+
+    /**
+     * Gets isFilterable
+     *
+     * @return bool|null
+     */
+    public function getIsFilterable()
+    {
+        return $this->container['isFilterable'];
+    }
+
+    /**
+     * Sets isFilterable
+     *
+     * @param bool|null $isFilterable isFilterable
+     *
+     * @return self
+     */
+    public function setIsFilterable($isFilterable)
+    {
+        $this->container['isFilterable'] = $isFilterable;
+
+        return $this;
+    }
+
+    /**
+     * Gets created
+     *
+     * @return DateTime|null
+     */
+    public function getCreated()
+    {
+        return $this->container['created'];
+    }
+
+    /**
+     * Sets created
+     *
+     * @param DateTime|null $created created
+     *
+     * @return self
+     */
+    public function setCreated($created)
+    {
+        $this->container['created'] = $created;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated
+     *
+     * @return DateTime|null
+     */
+    public function getUpdated()
+    {
+        return $this->container['updated'];
+    }
+
+    /**
+     * Sets updated
+     *
+     * @param DateTime|null $updated updated
+     *
+     * @return self
+     */
+    public function setUpdated($updated)
+    {
+        $this->container['updated'] = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Gets projectsCodes
+     *
+     * @return string[]|null
+     */
+    public function getProjectsCodes()
+    {
+        return $this->container['projectsCodes'];
+    }
+
+    /**
+     * Sets projectsCodes
+     *
+     * @param string[]|null $projectsCodes projectsCodes
+     *
+     * @return self
+     */
+    public function setProjectsCodes($projectsCodes)
+    {
+        $this->container['projectsCodes'] = $projectsCodes;
+
+        return $this;
     }
 
     /**
@@ -430,185 +619,28 @@ class CustomField implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets created
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param DateTime|null $created created
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setCreated($created)
+    public function jsonSerialize()
     {
-        $this->container['created'] = $created;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets defaultValue
+     * Gets the string presentation of the object
      *
-     * @param string|null $defaultValue defaultValue
-     *
-     * @return self
+     * @return string
      */
-    public function setDefaultValue($defaultValue)
+    public function __toString()
     {
-        $this->container['defaultValue'] = $defaultValue;
-
-        return $this;
-    }
-
-    /**
-     * Sets entity
-     *
-     * @param string|null $entity entity
-     *
-     * @return self
-     */
-    public function setEntity($entity)
-    {
-        $this->container['entity'] = $entity;
-
-        return $this;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Sets isFilterable
-     *
-     * @param bool|null $isFilterable isFilterable
-     *
-     * @return self
-     */
-    public function setIsFilterable($isFilterable)
-    {
-        $this->container['isFilterable'] = $isFilterable;
-
-        return $this;
-    }
-
-    /**
-     * Sets isRequired
-     *
-     * @param bool|null $isRequired isRequired
-     *
-     * @return self
-     */
-    public function setIsRequired($isRequired)
-    {
-        $this->container['isRequired'] = $isRequired;
-
-        return $this;
-    }
-
-    /**
-     * Sets isVisible
-     *
-     * @param bool|null $isVisible isVisible
-     *
-     * @return self
-     */
-    public function setIsVisible($isVisible)
-    {
-        $this->container['isVisible'] = $isVisible;
-
-        return $this;
-    }
-
-    /**
-     * Sets placeholder
-     *
-     * @param string|null $placeholder placeholder
-     *
-     * @return self
-     */
-    public function setPlaceholder($placeholder)
-    {
-        $this->container['placeholder'] = $placeholder;
-
-        return $this;
-    }
-
-    /**
-     * Sets projectsCodes
-     *
-     * @param string[]|null $projectsCodes projectsCodes
-     *
-     * @return self
-     */
-    public function setProjectsCodes($projectsCodes)
-    {
-        $this->container['projectsCodes'] = $projectsCodes;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type type
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param DateTime|null $updated updated
-     *
-     * @return self
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string|null $value value
-     *
-     * @return self
-     */
-    public function setValue($value)
-    {
-        $this->container['value'] = $value;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -619,29 +651,6 @@ class CustomField implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

@@ -21,37 +21,30 @@ use Qase\Client\ObjectSerializer;
 class PlanDetailed implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'PlanDetailed';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'id' => 'id',
-        'title' => 'title',
-        'description' => 'description',
-        'casesCount' => 'cases_count',
-        'created' => 'created',
-        'updated' => 'updated',
-        'averageTime' => 'average_time',
-        'cases' => 'cases'
+    protected static $openAPITypes = [
+        'id' => 'int',
+        'title' => 'string',
+        'description' => 'string',
+        'casesCount' => 'int',
+        'created' => '\DateTime',
+        'updated' => '\DateTime',
+        'averageTime' => 'float',
+        'cases' => '\Qase\Client\Model\PlanDetailedAllOfCases[]'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'id' => 'getId',
-        'title' => 'getTitle',
-        'description' => 'getDescription',
-        'casesCount' => 'getCasesCount',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated',
-        'averageTime' => 'getAverageTime',
-        'cases' => 'getCases'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -69,27 +62,44 @@ class PlanDetailed implements ModelInterface, ArrayAccess, JsonSerializable
         'averageTime' => null,
         'cases' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'PlanDetailed';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'id' => 'int',
-        'title' => 'string',
-        'description' => 'string',
-        'casesCount' => 'int',
-        'created' => '\DateTime',
-        'updated' => '\DateTime',
-        'averageTime' => 'float',
-        'cases' => '\Qase\Client\Model\PlanDetailedAllOfCases[]'
+    protected static $attributeMap = [
+        'id' => 'id',
+        'title' => 'title',
+        'description' => 'description',
+        'casesCount' => 'cases_count',
+        'created' => 'created',
+        'updated' => 'updated',
+        'averageTime' => 'average_time',
+        'cases' => 'cases'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -105,6 +115,65 @@ class PlanDetailed implements ModelInterface, ArrayAccess, JsonSerializable
         'averageTime' => 'setAverageTime',
         'cases' => 'setCases'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'id' => 'getId',
+        'title' => 'getTitle',
+        'description' => 'getDescription',
+        'casesCount' => 'getCasesCount',
+        'created' => 'getCreated',
+        'updated' => 'getUpdated',
+        'averageTime' => 'getAverageTime',
+        'cases' => 'getCases'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -131,118 +200,28 @@ class PlanDetailed implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets averageTime
-     *
-     * @return float|null
-     */
-    public function getAverageTime()
-    {
-        return $this->container['averageTime'];
-    }
-
-    /**
-     * Gets cases
-     *
-     * @return PlanDetailedAllOfCases[]|null
-     */
-    public function getCases()
-    {
-        return $this->container['cases'];
-    }
-
-    /**
-     * Gets casesCount
-     *
-     * @return int|null
-     */
-    public function getCasesCount()
-    {
-        return $this->container['casesCount'];
-    }
-
-    /**
-     * Gets created
-     *
-     * @return DateTime|null
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
 
     /**
      * Gets id
@@ -255,13 +234,17 @@ class PlanDetailed implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * The original name of the model.
+     * Sets id
      *
-     * @return string
+     * @param int|null $id id
+     *
+     * @return self
      */
-    public function getModelName()
+    public function setId($id)
     {
-        return self::$openAPIModelName;
+        $this->container['id'] = $id;
+
+        return $this;
     }
 
     /**
@@ -275,6 +258,92 @@ class PlanDetailed implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets title
+     *
+     * @param string|null $title title
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets casesCount
+     *
+     * @return int|null
+     */
+    public function getCasesCount()
+    {
+        return $this->container['casesCount'];
+    }
+
+    /**
+     * Sets casesCount
+     *
+     * @param int|null $casesCount casesCount
+     *
+     * @return self
+     */
+    public function setCasesCount($casesCount)
+    {
+        $this->container['casesCount'] = $casesCount;
+
+        return $this;
+    }
+
+    /**
+     * Gets created
+     *
+     * @return DateTime|null
+     */
+    public function getCreated()
+    {
+        return $this->container['created'];
+    }
+
+    /**
+     * Sets created
+     *
+     * @param DateTime|null $created created
+     *
+     * @return self
+     */
+    public function setCreated($created)
+    {
+        $this->container['created'] = $created;
+
+        return $this;
+    }
+
+    /**
      * Gets updated
      *
      * @return DateTime|null
@@ -285,15 +354,65 @@ class PlanDetailed implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets updated
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param DateTime|null $updated updated
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setUpdated($updated)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $this->container['updated'] = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Gets averageTime
+     *
+     * @return float|null
+     */
+    public function getAverageTime()
+    {
+        return $this->container['averageTime'];
+    }
+
+    /**
+     * Sets averageTime
+     *
+     * @param float|null $averageTime averageTime
+     *
+     * @return self
+     */
+    public function setAverageTime($averageTime)
+    {
+        $this->container['averageTime'] = $averageTime;
+
+        return $this;
+    }
+
+    /**
+     * Gets cases
+     *
+     * @return PlanDetailedAllOfCases[]|null
+     */
+    public function getCases()
+    {
+        return $this->container['cases'];
+    }
+
+    /**
+     * Sets cases
+     *
+     * @param PlanDetailedAllOfCases[]|null $cases cases
+     *
+     * @return self
+     */
+    public function setCases($cases)
+    {
+        $this->container['cases'] = $cases;
+
+        return $this;
     }
 
     /**
@@ -350,115 +469,28 @@ class PlanDetailed implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets averageTime
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param float|null $averageTime averageTime
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setAverageTime($averageTime)
+    public function jsonSerialize()
     {
-        $this->container['averageTime'] = $averageTime;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets cases
+     * Gets the string presentation of the object
      *
-     * @param PlanDetailedAllOfCases[]|null $cases cases
-     *
-     * @return self
+     * @return string
      */
-    public function setCases($cases)
+    public function __toString()
     {
-        $this->container['cases'] = $cases;
-
-        return $this;
-    }
-
-    /**
-     * Sets casesCount
-     *
-     * @param int|null $casesCount casesCount
-     *
-     * @return self
-     */
-    public function setCasesCount($casesCount)
-    {
-        $this->container['casesCount'] = $casesCount;
-
-        return $this;
-    }
-
-    /**
-     * Sets created
-     *
-     * @param DateTime|null $created created
-     *
-     * @return self
-     */
-    public function setCreated($created)
-    {
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description description
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param DateTime|null $updated updated
-     *
-     * @return self
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -469,29 +501,6 @@ class PlanDetailed implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

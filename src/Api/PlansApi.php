@@ -73,6 +73,34 @@ class PlansApi
     }
 
     /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex): void
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * Operation createPlan
      *
      * Create a new plan.
@@ -182,6 +210,76 @@ class PlansApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation createPlanAsync
+     *
+     * Create a new plan.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param PlanCreate $planCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createPlanAsync($code, $planCreate)
+    {
+        return $this->createPlanAsyncWithHttpInfo($code, $planCreate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createPlanAsyncWithHttpInfo
+     *
+     * Create a new plan.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param PlanCreate $planCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createPlanAsyncWithHttpInfo($code, $planCreate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->createPlanRequest($code, $planCreate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -302,95 +400,6 @@ class PlansApi
     }
 
     /**
-     * Create http client option
-     *
-     * @return array of http client options
-     * @throws RuntimeException on file opening failure
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        return $options;
-    }
-
-    /**
-     * Operation createPlanAsync
-     *
-     * Create a new plan.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param PlanCreate $planCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createPlanAsync($code, $planCreate)
-    {
-        return $this->createPlanAsyncWithHttpInfo($code, $planCreate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createPlanAsyncWithHttpInfo
-     *
-     * Create a new plan.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param PlanCreate $planCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createPlanAsyncWithHttpInfo($code, $planCreate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->createPlanRequest($code, $planCreate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation deletePlan
      *
      * Delete plan.
@@ -500,6 +509,76 @@ class PlansApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation deletePlanAsync
+     *
+     * Delete plan.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deletePlanAsync($code, $id)
+    {
+        return $this->deletePlanAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deletePlanAsyncWithHttpInfo
+     *
+     * Delete plan.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deletePlanAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->deletePlanRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -622,104 +701,6 @@ class PlansApi
     }
 
     /**
-     * Operation deletePlanAsync
-     *
-     * Delete plan.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deletePlanAsync($code, $id)
-    {
-        return $this->deletePlanAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deletePlanAsyncWithHttpInfo
-     *
-     * Delete plan.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deletePlanAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->deletePlanRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
-     * Get the host index
-     *
-     * @return int Host index
-     */
-    public function getHostIndex()
-    {
-        return $this->hostIndex;
-    }
-
-    /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
-    }
-
-    /**
      * Operation getPlan
      *
      * Get a specific plan.
@@ -829,6 +810,76 @@ class PlansApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation getPlanAsync
+     *
+     * Get a specific plan.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getPlanAsync($code, $id)
+    {
+        return $this->getPlanAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPlanAsyncWithHttpInfo
+     *
+     * Get a specific plan.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getPlanAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\PlanResponse';
+        $request = $this->getPlanRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -951,76 +1002,6 @@ class PlansApi
     }
 
     /**
-     * Operation getPlanAsync
-     *
-     * Get a specific plan.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getPlanAsync($code, $id)
-    {
-        return $this->getPlanAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getPlanAsyncWithHttpInfo
-     *
-     * Get a specific plan.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getPlanAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\PlanResponse';
-        $request = $this->getPlanRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation getPlans
      *
      * Get all plans.
@@ -1132,6 +1113,78 @@ class PlansApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation getPlansAsync
+     *
+     * Get all plans.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getPlansAsync($code, $limit = 10, $offset = 0)
+    {
+        return $this->getPlansAsyncWithHttpInfo($code, $limit, $offset)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPlansAsyncWithHttpInfo
+     *
+     * Get all plans.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getPlansAsyncWithHttpInfo($code, $limit = 10, $offset = 0)
+    {
+        $returnType = '\Qase\Client\Model\PlanListResponse';
+        $request = $this->getPlansRequest($code, $limit, $offset);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1276,78 +1329,6 @@ class PlansApi
     }
 
     /**
-     * Operation getPlansAsync
-     *
-     * Get all plans.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getPlansAsync($code, $limit = 10, $offset = 0)
-    {
-        return $this->getPlansAsyncWithHttpInfo($code, $limit, $offset)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getPlansAsyncWithHttpInfo
-     *
-     * Get all plans.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getPlansAsyncWithHttpInfo($code, $limit = 10, $offset = 0)
-    {
-        $returnType = '\Qase\Client\Model\PlanListResponse';
-        $request = $this->getPlansRequest($code, $limit, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation updatePlan
      *
      * Update plan.
@@ -1459,6 +1440,78 @@ class PlansApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation updatePlanAsync
+     *
+     * Update plan.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param PlanUpdate $planUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updatePlanAsync($code, $id, $planUpdate)
+    {
+        return $this->updatePlanAsyncWithHttpInfo($code, $id, $planUpdate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updatePlanAsyncWithHttpInfo
+     *
+     * Update plan.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param PlanUpdate $planUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updatePlanAsyncWithHttpInfo($code, $id, $planUpdate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->updatePlanRequest($code, $id, $planUpdate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1594,74 +1647,21 @@ class PlansApi
     }
 
     /**
-     * Operation updatePlanAsync
+     * Create http client option
      *
-     * Update plan.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param PlanUpdate $planUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
+     * @return array of http client options
+     * @throws RuntimeException on file opening failure
      */
-    public function updatePlanAsync($code, $id, $planUpdate)
+    protected function createHttpClientOption()
     {
-        return $this->updatePlanAsyncWithHttpInfo($code, $id, $planUpdate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
+        $options = [];
+        if ($this->config->getDebug()) {
+            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
+            if (!$options[RequestOptions::DEBUG]) {
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+            }
+        }
 
-    /**
-     * Operation updatePlanAsyncWithHttpInfo
-     *
-     * Update plan.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param PlanUpdate $planUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function updatePlanAsyncWithHttpInfo($code, $id, $planUpdate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->updatePlanRequest($code, $id, $planUpdate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
+        return $options;
     }
 }

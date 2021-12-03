@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 ## `getResults()`
 
 ```php
-getResults($code, $limit, $offset, $filters): \Qase\Client\Model\ResultListResponse
+getResults($code, $filters, $limit, $offset): \Qase\Client\Model\ResultListResponse
 ```
 
 Get all test run results.
@@ -304,12 +304,12 @@ $apiInstance = new Qase\Client\Api\ResultsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
+$filters = array('key' => new \Qase\Client\Model\Filters4()); // Filters4
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
-$filters = array('key' => new \Qase\Client\Model\Filters4()); // Filters4
 
 try {
-    $result = $apiInstance->getResults($code, $limit, $offset, $filters);
+    $result = $apiInstance->getResults($code, $filters, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResultsApi->getResults: ', $e->getMessage(), PHP_EOL;
@@ -321,9 +321,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
+ **filters** | [**Filters4**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
- **filters** | [**Filters4**](../Model/.md)|  | [optional]
 
 ### Return type
 

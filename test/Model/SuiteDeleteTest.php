@@ -24,13 +24,6 @@ class SuiteDeleteTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,18 +38,25 @@ class SuiteDeleteTest extends TestCase
     }
 
     /**
-     * Test attribute "destinationId"
+     * Clean up after running all test cases
      */
-    public function testPropertyDestinationId()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test "SuiteDelete"
      */
     public function testSuiteDelete()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "destinationId"
+     */
+    public function testPropertyDestinationId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

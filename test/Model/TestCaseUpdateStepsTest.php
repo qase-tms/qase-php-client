@@ -24,13 +24,6 @@ class TestCaseUpdateStepsTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,18 +38,25 @@ class TestCaseUpdateStepsTest extends TestCase
     }
 
     /**
-     * Test attribute "action"
+     * Clean up after running all test cases
      */
-    public function testPropertyAction()
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
+     * Test "TestCaseUpdateSteps"
+     */
+    public function testTestCaseUpdateSteps()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "data"
+     * Test attribute "action"
      */
-    public function testPropertyData()
+    public function testPropertyAction()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,18 +72,18 @@ class TestCaseUpdateStepsTest extends TestCase
     }
 
     /**
-     * Test attribute "position"
+     * Test attribute "data"
      */
-    public function testPropertyPosition()
+    public function testPropertyData()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test "TestCaseUpdateSteps"
+     * Test attribute "position"
      */
-    public function testTestCaseUpdateSteps()
+    public function testPropertyPosition()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

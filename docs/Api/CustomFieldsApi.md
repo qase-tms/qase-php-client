@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 ## `getCustomFields()`
 
 ```php
-getCustomFields($limit, $offset, $filters): \Qase\Client\Model\CustomFieldsResponse
+getCustomFields($filters, $limit, $offset): \Qase\Client\Model\CustomFieldsResponse
 ```
 
 Get all Custom Fields.
@@ -226,12 +226,12 @@ $apiInstance = new Qase\Client\Api\CustomFieldsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$filters = array('key' => new \Qase\Client\Model\Filters1()); // Filters1
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
-$filters = array('key' => new \Qase\Client\Model\Filters1()); // Filters1
 
 try {
-    $result = $apiInstance->getCustomFields($limit, $offset, $filters);
+    $result = $apiInstance->getCustomFields($filters, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CustomFieldsApi->getCustomFields: ', $e->getMessage(), PHP_EOL;
@@ -242,9 +242,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **filters** | [**Filters1**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
- **filters** | [**Filters1**](../Model/.md)|  | [optional]
 
 ### Return type
 

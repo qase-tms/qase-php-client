@@ -24,13 +24,6 @@ class RunCreateTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,9 +38,25 @@ class RunCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "cases"
+     * Clean up after running all test cases
      */
-    public function testPropertyCases()
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
+     * Test "RunCreate"
+     */
+    public function testRunCreate()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "title"
+     */
+    public function testPropertyTitle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -63,15 +72,6 @@ class RunCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "environmentId"
-     */
-    public function testPropertyEnvironmentId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "includeAllCases"
      */
     public function testPropertyIncludeAllCases()
@@ -81,9 +81,27 @@ class RunCreateTest extends TestCase
     }
 
     /**
+     * Test attribute "cases"
+     */
+    public function testPropertyCases()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "isAutotest"
      */
     public function testPropertyIsAutotest()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "environmentId"
+     */
+    public function testPropertyEnvironmentId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -111,24 +129,6 @@ class RunCreateTest extends TestCase
      * Test attribute "tags"
      */
     public function testPropertyTags()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "title"
-     */
-    public function testPropertyTitle()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test "RunCreate"
-     */
-    public function testRunCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

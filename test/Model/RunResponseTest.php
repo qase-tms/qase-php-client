@@ -24,13 +24,6 @@ class RunResponseTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,9 +38,16 @@ class RunResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "result"
+     * Clean up after running all test cases
      */
-    public function testPropertyResult()
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
+     * Test "RunResponse"
+     */
+    public function testRunResponse()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -63,9 +63,9 @@ class RunResponseTest extends TestCase
     }
 
     /**
-     * Test "RunResponse"
+     * Test attribute "result"
      */
-    public function testRunResponse()
+    public function testPropertyResult()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

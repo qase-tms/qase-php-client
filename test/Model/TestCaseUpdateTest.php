@@ -24,13 +24,6 @@ class TestCaseUpdateTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,27 +38,16 @@ class TestCaseUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "automation"
+     * Clean up after running all test cases
      */
-    public function testPropertyAutomation()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "behavior"
+     * Test "TestCaseUpdate"
      */
-    public function testPropertyBehavior()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "customField"
-     */
-    public function testPropertyCustomField()
+    public function testTestCaseUpdate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -81,27 +63,9 @@ class TestCaseUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "isFlaky"
+     * Test attribute "preconditions"
      */
-    public function testPropertyIsFlaky()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "layer"
-     */
-    public function testPropertyLayer()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "milestoneId"
-     */
-    public function testPropertyMilestoneId()
+    public function testPropertyPreconditions()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -117,9 +81,18 @@ class TestCaseUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "preconditions"
+     * Test attribute "title"
      */
-    public function testPropertyPreconditions()
+    public function testPropertyTitle()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "severity"
+     */
+    public function testPropertySeverity()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -135,9 +108,63 @@ class TestCaseUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "severity"
+     * Test attribute "behavior"
      */
-    public function testPropertySeverity()
+    public function testPropertyBehavior()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "type"
+     */
+    public function testPropertyType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "layer"
+     */
+    public function testPropertyLayer()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "isFlaky"
+     */
+    public function testPropertyIsFlaky()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "suiteId"
+     */
+    public function testPropertySuiteId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "milestoneId"
+     */
+    public function testPropertyMilestoneId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "automation"
+     */
+    public function testPropertyAutomation()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -162,36 +189,9 @@ class TestCaseUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "suiteId"
+     * Test attribute "customField"
      */
-    public function testPropertySuiteId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "title"
-     */
-    public function testPropertyTitle()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "type"
-     */
-    public function testPropertyType()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test "TestCaseUpdate"
-     */
-    public function testTestCaseUpdate()
+    public function testPropertyCustomField()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

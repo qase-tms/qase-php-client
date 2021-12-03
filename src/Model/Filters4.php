@@ -20,35 +20,29 @@ use Qase\Client\ObjectSerializer;
 class Filters4 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'filters_4';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'status' => 'status',
-        'run' => 'run',
-        'caseId' => 'case_id',
-        'member' => 'member',
-        'api' => 'api',
-        'fromEndTime' => 'from_end_time',
-        'toEndTime' => 'to_end_time'
+    protected static $openAPITypes = [
+        'status' => 'string',
+        'run' => 'string',
+        'caseId' => 'string',
+        'member' => 'string',
+        'api' => 'bool',
+        'fromEndTime' => 'string',
+        'toEndTime' => 'string'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'status' => 'getStatus',
-        'run' => 'getRun',
-        'caseId' => 'getCaseId',
-        'member' => 'getMember',
-        'api' => 'getApi',
-        'fromEndTime' => 'getFromEndTime',
-        'toEndTime' => 'getToEndTime'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -65,26 +59,43 @@ class Filters4 implements ModelInterface, ArrayAccess, JsonSerializable
         'fromEndTime' => null,
         'toEndTime' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'filters_4';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'status' => 'string',
-        'run' => 'string',
-        'caseId' => 'string',
-        'member' => 'string',
-        'api' => 'bool',
-        'fromEndTime' => 'string',
-        'toEndTime' => 'string'
+    protected static $attributeMap = [
+        'status' => 'status',
+        'run' => 'run',
+        'caseId' => 'case_id',
+        'member' => 'member',
+        'api' => 'api',
+        'fromEndTime' => 'from_end_time',
+        'toEndTime' => 'to_end_time'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -99,6 +110,64 @@ class Filters4 implements ModelInterface, ArrayAccess, JsonSerializable
         'fromEndTime' => 'setFromEndTime',
         'toEndTime' => 'setToEndTime'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'status' => 'getStatus',
+        'run' => 'getRun',
+        'caseId' => 'getCaseId',
+        'member' => 'getMember',
+        'api' => 'getApi',
+        'fromEndTime' => 'getFromEndTime',
+        'toEndTime' => 'getToEndTime'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -124,117 +193,51 @@ class Filters4 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets api
-     *
-     * @return bool|null
-     */
-    public function getApi()
-    {
-        return $this->container['api'];
-    }
-
-    /**
-     * Gets caseId
+     * Gets status
      *
      * @return string|null
      */
-    public function getCaseId()
+    public function getStatus()
     {
-        return $this->container['caseId'];
+        return $this->container['status'];
     }
 
     /**
-     * Gets fromEndTime
+     * Sets status
      *
-     * @return string|null
+     * @param string|null $status A single test run result status. Possible values: in_progress, passed, failed, blocked, skipped, invalid.
+     *
+     * @return self
      */
-    public function getFromEndTime()
+    public function setStatus($status)
     {
-        return $this->container['fromEndTime'];
-    }
+        $this->container['status'] = $status;
 
-    /**
-     * Gets member
-     *
-     * @return string|null
-     */
-    public function getMember()
-    {
-        return $this->container['member'];
-    }
-
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
+        return $this;
     }
 
     /**
@@ -248,13 +251,113 @@ class Filters4 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets status
+     * Sets run
+     *
+     * @param string|null $run A list of run IDs separated by comma.
+     *
+     * @return self
+     */
+    public function setRun($run)
+    {
+        $this->container['run'] = $run;
+
+        return $this;
+    }
+
+    /**
+     * Gets caseId
      *
      * @return string|null
      */
-    public function getStatus()
+    public function getCaseId()
     {
-        return $this->container['status'];
+        return $this->container['caseId'];
+    }
+
+    /**
+     * Sets caseId
+     *
+     * @param string|null $caseId A list of case IDs separated by comma.
+     *
+     * @return self
+     */
+    public function setCaseId($caseId)
+    {
+        $this->container['caseId'] = $caseId;
+
+        return $this;
+    }
+
+    /**
+     * Gets member
+     *
+     * @return string|null
+     */
+    public function getMember()
+    {
+        return $this->container['member'];
+    }
+
+    /**
+     * Sets member
+     *
+     * @param string|null $member A list of member IDs separated by comma.
+     *
+     * @return self
+     */
+    public function setMember($member)
+    {
+        $this->container['member'] = $member;
+
+        return $this;
+    }
+
+    /**
+     * Gets api
+     *
+     * @return bool|null
+     */
+    public function getApi()
+    {
+        return $this->container['api'];
+    }
+
+    /**
+     * Sets api
+     *
+     * @param bool|null $api api
+     *
+     * @return self
+     */
+    public function setApi($api)
+    {
+        $this->container['api'] = $api;
+
+        return $this;
+    }
+
+    /**
+     * Gets fromEndTime
+     *
+     * @return string|null
+     */
+    public function getFromEndTime()
+    {
+        return $this->container['fromEndTime'];
+    }
+
+    /**
+     * Sets fromEndTime
+     *
+     * @param string|null $fromEndTime Will return all results created after provided datetime. Allowed format: `Y-m-d H:i:s`.
+     *
+     * @return self
+     */
+    public function setFromEndTime($fromEndTime)
+    {
+        $this->container['fromEndTime'] = $fromEndTime;
+
+        return $this;
     }
 
     /**
@@ -268,15 +371,17 @@ class Filters4 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets toEndTime
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param string|null $toEndTime Will return all results created before provided datetime. Allowed format: `Y-m-d H:i:s`.
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setToEndTime($toEndTime)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $this->container['toEndTime'] = $toEndTime;
+
+        return $this;
     }
 
     /**
@@ -333,101 +438,28 @@ class Filters4 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets api
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param bool|null $api api
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setApi($api)
+    public function jsonSerialize()
     {
-        $this->container['api'] = $api;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets caseId
+     * Gets the string presentation of the object
      *
-     * @param string|null $caseId A list of case IDs separated by comma.
-     *
-     * @return self
+     * @return string
      */
-    public function setCaseId($caseId)
+    public function __toString()
     {
-        $this->container['caseId'] = $caseId;
-
-        return $this;
-    }
-
-    /**
-     * Sets fromEndTime
-     *
-     * @param string|null $fromEndTime Will return all results created after provided datetime. Allowed format: `Y-m-d H:i:s`.
-     *
-     * @return self
-     */
-    public function setFromEndTime($fromEndTime)
-    {
-        $this->container['fromEndTime'] = $fromEndTime;
-
-        return $this;
-    }
-
-    /**
-     * Sets member
-     *
-     * @param string|null $member A list of member IDs separated by comma.
-     *
-     * @return self
-     */
-    public function setMember($member)
-    {
-        $this->container['member'] = $member;
-
-        return $this;
-    }
-
-    /**
-     * Sets run
-     *
-     * @param string|null $run A list of run IDs separated by comma.
-     *
-     * @return self
-     */
-    public function setRun($run)
-    {
-        $this->container['run'] = $run;
-
-        return $this;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status A single test run result status. Possible values: in_progress, passed, failed, blocked, skipped, invalid.
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Sets toEndTime
-     *
-     * @param string|null $toEndTime Will return all results created before provided datetime. Allowed format: `Y-m-d H:i:s`.
-     *
-     * @return self
-     */
-    public function setToEndTime($toEndTime)
-    {
-        $this->container['toEndTime'] = $toEndTime;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -438,29 +470,6 @@ class Filters4 implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 ## `getMilestones()`
 
 ```php
-getMilestones($code, $limit, $offset, $filters): \Qase\Client\Model\MilestoneListResponse
+getMilestones($code, $filters, $limit, $offset): \Qase\Client\Model\MilestoneListResponse
 ```
 
 Get all milestones.
@@ -233,12 +233,12 @@ $apiInstance = new Qase\Client\Api\MilestonesApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
+$filters = array('key' => new \Qase\Client\Model\Filters3()); // Filters3
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
-$filters = array('key' => new \Qase\Client\Model\Filters3()); // Filters3
 
 try {
-    $result = $apiInstance->getMilestones($code, $limit, $offset, $filters);
+    $result = $apiInstance->getMilestones($code, $filters, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MilestonesApi->getMilestones: ', $e->getMessage(), PHP_EOL;
@@ -250,9 +250,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
+ **filters** | [**Filters3**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
- **filters** | [**Filters3**](../Model/.md)|  | [optional]
 
 ### Return type
 

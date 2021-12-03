@@ -24,13 +24,6 @@ class ResultCreateCaseTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -42,6 +35,40 @@ class ResultCreateCaseTest extends TestCase
      */
     public function tearDown(): void
     {
+    }
+
+    /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
+     * Test "ResultCreateCase"
+     */
+    public function testResultCreateCase()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "title"
+     */
+    public function testPropertyTitle()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "suiteTitle"
+     */
+    public function testPropertySuiteTitle()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -66,33 +93,6 @@ class ResultCreateCaseTest extends TestCase
      * Test attribute "severity"
      */
     public function testPropertySeverity()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "suiteTitle"
-     */
-    public function testPropertySuiteTitle()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "title"
-     */
-    public function testPropertyTitle()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test "ResultCreateCase"
-     */
-    public function testResultCreateCase()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

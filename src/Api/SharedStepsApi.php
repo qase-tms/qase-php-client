@@ -73,6 +73,34 @@ class SharedStepsApi
     }
 
     /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex): void
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * Operation createSharedStep
      *
      * Create a new shared step.
@@ -182,6 +210,76 @@ class SharedStepsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation createSharedStepAsync
+     *
+     * Create a new shared step.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param SharedStepCreate $sharedStepCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createSharedStepAsync($code, $sharedStepCreate)
+    {
+        return $this->createSharedStepAsyncWithHttpInfo($code, $sharedStepCreate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createSharedStepAsyncWithHttpInfo
+     *
+     * Create a new shared step.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param SharedStepCreate $sharedStepCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createSharedStepAsyncWithHttpInfo($code, $sharedStepCreate)
+    {
+        $returnType = '\Qase\Client\Model\HashResponse';
+        $request = $this->createSharedStepRequest($code, $sharedStepCreate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -302,95 +400,6 @@ class SharedStepsApi
     }
 
     /**
-     * Create http client option
-     *
-     * @return array of http client options
-     * @throws RuntimeException on file opening failure
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        return $options;
-    }
-
-    /**
-     * Operation createSharedStepAsync
-     *
-     * Create a new shared step.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param SharedStepCreate $sharedStepCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createSharedStepAsync($code, $sharedStepCreate)
-    {
-        return $this->createSharedStepAsyncWithHttpInfo($code, $sharedStepCreate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createSharedStepAsyncWithHttpInfo
-     *
-     * Create a new shared step.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param SharedStepCreate $sharedStepCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createSharedStepAsyncWithHttpInfo($code, $sharedStepCreate)
-    {
-        $returnType = '\Qase\Client\Model\HashResponse';
-        $request = $this->createSharedStepRequest($code, $sharedStepCreate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation deleteSharedStep
      *
      * Delete shared step.
@@ -500,6 +509,76 @@ class SharedStepsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation deleteSharedStepAsync
+     *
+     * Delete shared step.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param string $hash Hash. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteSharedStepAsync($code, $hash)
+    {
+        return $this->deleteSharedStepAsyncWithHttpInfo($code, $hash)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteSharedStepAsyncWithHttpInfo
+     *
+     * Delete shared step.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param string $hash Hash. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteSharedStepAsyncWithHttpInfo($code, $hash)
+    {
+        $returnType = '\Qase\Client\Model\HashResponse';
+        $request = $this->deleteSharedStepRequest($code, $hash);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -622,104 +701,6 @@ class SharedStepsApi
     }
 
     /**
-     * Operation deleteSharedStepAsync
-     *
-     * Delete shared step.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param string $hash Hash. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteSharedStepAsync($code, $hash)
-    {
-        return $this->deleteSharedStepAsyncWithHttpInfo($code, $hash)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteSharedStepAsyncWithHttpInfo
-     *
-     * Delete shared step.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param string $hash Hash. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteSharedStepAsyncWithHttpInfo($code, $hash)
-    {
-        $returnType = '\Qase\Client\Model\HashResponse';
-        $request = $this->deleteSharedStepRequest($code, $hash);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
-     * Get the host index
-     *
-     * @return int Host index
-     */
-    public function getHostIndex()
-    {
-        return $this->hostIndex;
-    }
-
-    /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
-    }
-
-    /**
      * Operation getSharedStep
      *
      * Get a specific shared step.
@@ -829,6 +810,76 @@ class SharedStepsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation getSharedStepAsync
+     *
+     * Get a specific shared step.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param string $hash Hash. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getSharedStepAsync($code, $hash)
+    {
+        return $this->getSharedStepAsyncWithHttpInfo($code, $hash)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getSharedStepAsyncWithHttpInfo
+     *
+     * Get a specific shared step.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param string $hash Hash. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getSharedStepAsyncWithHttpInfo($code, $hash)
+    {
+        $returnType = '\Qase\Client\Model\SharedStepResponse';
+        $request = $this->getSharedStepRequest($code, $hash);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -951,92 +1002,22 @@ class SharedStepsApi
     }
 
     /**
-     * Operation getSharedStepAsync
-     *
-     * Get a specific shared step.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param string $hash Hash. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getSharedStepAsync($code, $hash)
-    {
-        return $this->getSharedStepAsyncWithHttpInfo($code, $hash)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getSharedStepAsyncWithHttpInfo
-     *
-     * Get a specific shared step.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param string $hash Hash. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getSharedStepAsyncWithHttpInfo($code, $hash)
-    {
-        $returnType = '\Qase\Client\Model\SharedStepResponse';
-        $request = $this->getSharedStepRequest($code, $hash);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation getSharedSteps
      *
      * Get all shared steps.
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters6 $filters filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters6 $filters filters (optional)
      *
      * @return SharedStepListResponse
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getSharedSteps($code, $limit = 10, $offset = 0, $filters = null)
+    public function getSharedSteps($code, $filters = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getSharedStepsWithHttpInfo($code, $limit, $offset, $filters);
+        list($response) = $this->getSharedStepsWithHttpInfo($code, $filters, $limit, $offset);
         return $response;
     }
 
@@ -1046,17 +1027,17 @@ class SharedStepsApi
      * Get all shared steps.
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters6 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters6 $filters (optional)
      *
      * @return array of \Qase\Client\Model\SharedStepListResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getSharedStepsWithHttpInfo($code, $limit = 10, $offset = 0, $filters = null)
+    public function getSharedStepsWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getSharedStepsRequest($code, $limit, $offset, $filters);
+        $request = $this->getSharedStepsRequest($code, $filters, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1137,17 +1118,91 @@ class SharedStepsApi
     }
 
     /**
+     * Operation getSharedStepsAsync
+     *
+     * Get all shared steps.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param Filters6 $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getSharedStepsAsync($code, $filters = null, $limit = 10, $offset = 0)
+    {
+        return $this->getSharedStepsAsyncWithHttpInfo($code, $filters, $limit, $offset)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getSharedStepsAsyncWithHttpInfo
+     *
+     * Get all shared steps.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param Filters6 $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getSharedStepsAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    {
+        $returnType = '\Qase\Client\Model\SharedStepListResponse';
+        $request = $this->getSharedStepsRequest($code, $filters, $limit, $offset);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'getSharedSteps'
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters6 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters6 $filters (optional)
      *
      * @return Request
      * @throws InvalidArgumentException
      */
-    public function getSharedStepsRequest($code, $limit = 10, $offset = 0, $filters = null)
+    public function getSharedStepsRequest($code, $filters = null, $limit = 10, $offset = 0)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1185,6 +1240,13 @@ class SharedStepsApi
         $multipart = false;
 
         // query params
+        if (is_array($filters)) {
+            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
+        }
+        if ($filters !== null) {
+            $queryParams['filters'] = $filters;
+        }
+        // query params
         if ($limit !== null) {
             if ('form' === 'form' && is_array($limit)) {
                 foreach ($limit as $key => $value) {
@@ -1203,13 +1265,6 @@ class SharedStepsApi
             } else {
                 $queryParams['offset'] = $offset;
             }
-        }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
-        }
-        if ($filters !== null) {
-            $queryParams['filters'] = $filters;
         }
 
 
@@ -1283,80 +1338,6 @@ class SharedStepsApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Operation getSharedStepsAsync
-     *
-     * Get all shared steps.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters6 $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getSharedStepsAsync($code, $limit = 10, $offset = 0, $filters = null)
-    {
-        return $this->getSharedStepsAsyncWithHttpInfo($code, $limit, $offset, $filters)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getSharedStepsAsyncWithHttpInfo
-     *
-     * Get all shared steps.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters6 $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getSharedStepsAsyncWithHttpInfo($code, $limit = 10, $offset = 0, $filters = null)
-    {
-        $returnType = '\Qase\Client\Model\SharedStepListResponse';
-        $request = $this->getSharedStepsRequest($code, $limit, $offset, $filters);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
     }
 
     /**
@@ -1471,6 +1452,78 @@ class SharedStepsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation updateSharedStepAsync
+     *
+     * Update shared step.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param string $hash Hash. (required)
+     * @param SharedStepUpdate $sharedStepUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateSharedStepAsync($code, $hash, $sharedStepUpdate)
+    {
+        return $this->updateSharedStepAsyncWithHttpInfo($code, $hash, $sharedStepUpdate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateSharedStepAsyncWithHttpInfo
+     *
+     * Update shared step.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param string $hash Hash. (required)
+     * @param SharedStepUpdate $sharedStepUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateSharedStepAsyncWithHttpInfo($code, $hash, $sharedStepUpdate)
+    {
+        $returnType = '\Qase\Client\Model\HashResponse';
+        $request = $this->updateSharedStepRequest($code, $hash, $sharedStepUpdate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1606,74 +1659,21 @@ class SharedStepsApi
     }
 
     /**
-     * Operation updateSharedStepAsync
+     * Create http client option
      *
-     * Update shared step.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param string $hash Hash. (required)
-     * @param SharedStepUpdate $sharedStepUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
+     * @return array of http client options
+     * @throws RuntimeException on file opening failure
      */
-    public function updateSharedStepAsync($code, $hash, $sharedStepUpdate)
+    protected function createHttpClientOption()
     {
-        return $this->updateSharedStepAsyncWithHttpInfo($code, $hash, $sharedStepUpdate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
+        $options = [];
+        if ($this->config->getDebug()) {
+            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
+            if (!$options[RequestOptions::DEBUG]) {
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+            }
+        }
 
-    /**
-     * Operation updateSharedStepAsyncWithHttpInfo
-     *
-     * Update shared step.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param string $hash Hash. (required)
-     * @param SharedStepUpdate $sharedStepUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function updateSharedStepAsyncWithHttpInfo($code, $hash, $sharedStepUpdate)
-    {
-        $returnType = '\Qase\Client\Model\HashResponse';
-        $request = $this->updateSharedStepRequest($code, $hash, $sharedStepUpdate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
+        return $options;
     }
 }

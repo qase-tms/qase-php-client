@@ -24,13 +24,6 @@ class Filters5Test extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,36 +38,16 @@ class Filters5Test extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "Filters5"
      */
     public function testFilters5()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "environment"
-     */
-    public function testPropertyEnvironment()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "fromStartTime"
-     */
-    public function testPropertyFromStartTime()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "milestone"
-     */
-    public function testPropertyMilestone()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -93,6 +66,33 @@ class Filters5Test extends TestCase
      * Test attribute "status"
      */
     public function testPropertyStatus()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "milestone"
+     */
+    public function testPropertyMilestone()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "environment"
+     */
+    public function testPropertyEnvironment()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "fromStartTime"
+     */
+    public function testPropertyFromStartTime()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -73,6 +73,34 @@ class EnvironmentsApi
     }
 
     /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex): void
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * Operation createEnvironment
      *
      * Create a new environment.
@@ -182,6 +210,76 @@ class EnvironmentsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation createEnvironmentAsync
+     *
+     * Create a new environment.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param EnvironmentCreate $environmentCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createEnvironmentAsync($code, $environmentCreate)
+    {
+        return $this->createEnvironmentAsyncWithHttpInfo($code, $environmentCreate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createEnvironmentAsyncWithHttpInfo
+     *
+     * Create a new environment.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param EnvironmentCreate $environmentCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createEnvironmentAsyncWithHttpInfo($code, $environmentCreate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->createEnvironmentRequest($code, $environmentCreate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -302,95 +400,6 @@ class EnvironmentsApi
     }
 
     /**
-     * Create http client option
-     *
-     * @return array of http client options
-     * @throws RuntimeException on file opening failure
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        return $options;
-    }
-
-    /**
-     * Operation createEnvironmentAsync
-     *
-     * Create a new environment.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param EnvironmentCreate $environmentCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createEnvironmentAsync($code, $environmentCreate)
-    {
-        return $this->createEnvironmentAsyncWithHttpInfo($code, $environmentCreate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createEnvironmentAsyncWithHttpInfo
-     *
-     * Create a new environment.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param EnvironmentCreate $environmentCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createEnvironmentAsyncWithHttpInfo($code, $environmentCreate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->createEnvironmentRequest($code, $environmentCreate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation deleteEnvironment
      *
      * Delete environment.
@@ -500,6 +509,76 @@ class EnvironmentsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation deleteEnvironmentAsync
+     *
+     * Delete environment.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteEnvironmentAsync($code, $id)
+    {
+        return $this->deleteEnvironmentAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteEnvironmentAsyncWithHttpInfo
+     *
+     * Delete environment.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteEnvironmentAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->deleteEnvironmentRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -622,84 +701,6 @@ class EnvironmentsApi
     }
 
     /**
-     * Operation deleteEnvironmentAsync
-     *
-     * Delete environment.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteEnvironmentAsync($code, $id)
-    {
-        return $this->deleteEnvironmentAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteEnvironmentAsyncWithHttpInfo
-     *
-     * Delete environment.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteEnvironmentAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->deleteEnvironmentRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
      * Operation getEnvironment
      *
      * Get a specific environment.
@@ -809,6 +810,76 @@ class EnvironmentsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation getEnvironmentAsync
+     *
+     * Get a specific environment.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getEnvironmentAsync($code, $id)
+    {
+        return $this->getEnvironmentAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getEnvironmentAsyncWithHttpInfo
+     *
+     * Get a specific environment.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getEnvironmentAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\EnvironmentResponse';
+        $request = $this->getEnvironmentRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -931,76 +1002,6 @@ class EnvironmentsApi
     }
 
     /**
-     * Operation getEnvironmentAsync
-     *
-     * Get a specific environment.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getEnvironmentAsync($code, $id)
-    {
-        return $this->getEnvironmentAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getEnvironmentAsyncWithHttpInfo
-     *
-     * Get a specific environment.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getEnvironmentAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\EnvironmentResponse';
-        $request = $this->getEnvironmentRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation getEnvironments
      *
      * Get all environments.
@@ -1112,6 +1113,78 @@ class EnvironmentsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation getEnvironmentsAsync
+     *
+     * Get all environments.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getEnvironmentsAsync($code, $limit = 10, $offset = 0)
+    {
+        return $this->getEnvironmentsAsyncWithHttpInfo($code, $limit, $offset)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getEnvironmentsAsyncWithHttpInfo
+     *
+     * Get all environments.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getEnvironmentsAsyncWithHttpInfo($code, $limit = 10, $offset = 0)
+    {
+        $returnType = '\Qase\Client\Model\EnvironmentListResponse';
+        $request = $this->getEnvironmentsRequest($code, $limit, $offset);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1256,98 +1329,6 @@ class EnvironmentsApi
     }
 
     /**
-     * Operation getEnvironmentsAsync
-     *
-     * Get all environments.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getEnvironmentsAsync($code, $limit = 10, $offset = 0)
-    {
-        return $this->getEnvironmentsAsyncWithHttpInfo($code, $limit, $offset)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getEnvironmentsAsyncWithHttpInfo
-     *
-     * Get all environments.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getEnvironmentsAsyncWithHttpInfo($code, $limit = 10, $offset = 0)
-    {
-        $returnType = '\Qase\Client\Model\EnvironmentListResponse';
-        $request = $this->getEnvironmentsRequest($code, $limit, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Get the host index
-     *
-     * @return int Host index
-     */
-    public function getHostIndex()
-    {
-        return $this->hostIndex;
-    }
-
-    /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
-    }
-
-    /**
      * Operation updateEnvironment
      *
      * Update environment.
@@ -1459,6 +1440,78 @@ class EnvironmentsApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation updateEnvironmentAsync
+     *
+     * Update environment.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param EnvironmentUpdate $environmentUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateEnvironmentAsync($code, $id, $environmentUpdate)
+    {
+        return $this->updateEnvironmentAsyncWithHttpInfo($code, $id, $environmentUpdate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateEnvironmentAsyncWithHttpInfo
+     *
+     * Update environment.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param EnvironmentUpdate $environmentUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateEnvironmentAsyncWithHttpInfo($code, $id, $environmentUpdate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->updateEnvironmentRequest($code, $id, $environmentUpdate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1594,74 +1647,21 @@ class EnvironmentsApi
     }
 
     /**
-     * Operation updateEnvironmentAsync
+     * Create http client option
      *
-     * Update environment.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param EnvironmentUpdate $environmentUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
+     * @return array of http client options
+     * @throws RuntimeException on file opening failure
      */
-    public function updateEnvironmentAsync($code, $id, $environmentUpdate)
+    protected function createHttpClientOption()
     {
-        return $this->updateEnvironmentAsyncWithHttpInfo($code, $id, $environmentUpdate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
+        $options = [];
+        if ($this->config->getDebug()) {
+            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
+            if (!$options[RequestOptions::DEBUG]) {
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+            }
+        }
 
-    /**
-     * Operation updateEnvironmentAsyncWithHttpInfo
-     *
-     * Update environment.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param EnvironmentUpdate $environmentUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function updateEnvironmentAsyncWithHttpInfo($code, $id, $environmentUpdate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->updateEnvironmentRequest($code, $id, $environmentUpdate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
+        return $options;
     }
 }

@@ -24,13 +24,6 @@ class FiltersTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,45 +38,16 @@ class FiltersTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "Filters"
      */
     public function testFilters()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "automation"
-     */
-    public function testPropertyAutomation()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "behavior"
-     */
-    public function testPropertyBehavior()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "milestoneId"
-     */
-    public function testPropertyMilestoneId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "priority"
-     */
-    public function testPropertyPriority()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -99,18 +63,9 @@ class FiltersTest extends TestCase
     }
 
     /**
-     * Test attribute "severity"
+     * Test attribute "milestoneId"
      */
-    public function testPropertySeverity()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
+    public function testPropertyMilestoneId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -126,9 +81,54 @@ class FiltersTest extends TestCase
     }
 
     /**
+     * Test attribute "severity"
+     */
+    public function testPropertySeverity()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "priority"
+     */
+    public function testPropertyPriority()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "type"
      */
     public function testPropertyType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "behavior"
+     */
+    public function testPropertyBehavior()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "automation"
+     */
+    public function testPropertyAutomation()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "status"
+     */
+    public function testPropertyStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

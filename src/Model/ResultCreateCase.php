@@ -21,31 +21,27 @@ use Qase\Client\ObjectSerializer;
 class ResultCreateCase implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'ResultCreate_case';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'title' => 'title',
-        'suiteTitle' => 'suite_title',
-        'description' => 'description',
-        'layer' => 'layer',
-        'severity' => 'severity'
+    protected static $openAPITypes = [
+        'title' => 'string',
+        'suiteTitle' => 'string',
+        'description' => 'string',
+        'layer' => 'string',
+        'severity' => 'string'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'title' => 'getTitle',
-        'suiteTitle' => 'getSuiteTitle',
-        'description' => 'getDescription',
-        'layer' => 'getLayer',
-        'severity' => 'getSeverity'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -60,24 +56,41 @@ class ResultCreateCase implements ModelInterface, ArrayAccess, JsonSerializable
         'layer' => null,
         'severity' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'ResultCreate_case';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'title' => 'string',
-        'suiteTitle' => 'string',
-        'description' => 'string',
-        'layer' => 'string',
-        'severity' => 'string'
+    protected static $attributeMap = [
+        'title' => 'title',
+        'suiteTitle' => 'suite_title',
+        'description' => 'description',
+        'layer' => 'layer',
+        'severity' => 'severity'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -90,6 +103,62 @@ class ResultCreateCase implements ModelInterface, ArrayAccess, JsonSerializable
         'layer' => 'setLayer',
         'severity' => 'setSeverity'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'title' => 'getTitle',
+        'suiteTitle' => 'getSuiteTitle',
+        'description' => 'getDescription',
+        'layer' => 'getLayer',
+        'severity' => 'getSeverity'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -113,107 +182,51 @@ class ResultCreateCase implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets description
+     * Gets title
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getTitle()
     {
-        return $this->container['description'];
+        return $this->container['title'];
     }
 
     /**
-     * Gets layer
+     * Sets title
      *
-     * @return string|null
+     * @param string|null $title title
+     *
+     * @return self
      */
-    public function getLayer()
+    public function setTitle($title)
     {
-        return $this->container['layer'];
-    }
+        $this->container['title'] = $title;
 
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
-    }
-
-    /**
-     * Gets severity
-     *
-     * @return string|null
-     */
-    public function getSeverity()
-    {
-        return $this->container['severity'];
+        return $this;
     }
 
     /**
@@ -227,25 +240,89 @@ class ResultCreateCase implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets title
+     * Sets suiteTitle
      *
-     * @return string|null
+     * @param string|null $suiteTitle suiteTitle
+     *
+     * @return self
      */
-    public function getTitle()
+    public function setSuiteTitle($suiteTitle)
     {
-        return $this->container['title'];
+        $this->container['suiteTitle'] = $suiteTitle;
+
+        return $this;
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Gets description
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @return string|null
      */
-    public function jsonSerialize()
+    public function getDescription()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets layer
+     *
+     * @return string|null
+     */
+    public function getLayer()
+    {
+        return $this->container['layer'];
+    }
+
+    /**
+     * Sets layer
+     *
+     * @param string|null $layer layer
+     *
+     * @return self
+     */
+    public function setLayer($layer)
+    {
+        $this->container['layer'] = $layer;
+
+        return $this;
+    }
+
+    /**
+     * Gets severity
+     *
+     * @return string|null
+     */
+    public function getSeverity()
+    {
+        return $this->container['severity'];
+    }
+
+    /**
+     * Sets severity
+     *
+     * @param string|null $severity severity
+     *
+     * @return self
+     */
+    public function setSeverity($severity)
+    {
+        $this->container['severity'] = $severity;
+
+        return $this;
     }
 
     /**
@@ -302,73 +379,28 @@ class ResultCreateCase implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets description
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string|null $description description
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setDescription($description)
+    public function jsonSerialize()
     {
-        $this->container['description'] = $description;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets layer
+     * Gets the string presentation of the object
      *
-     * @param string|null $layer layer
-     *
-     * @return self
+     * @return string
      */
-    public function setLayer($layer)
+    public function __toString()
     {
-        $this->container['layer'] = $layer;
-
-        return $this;
-    }
-
-    /**
-     * Sets severity
-     *
-     * @param string|null $severity severity
-     *
-     * @return self
-     */
-    public function setSeverity($severity)
-    {
-        $this->container['severity'] = $severity;
-
-        return $this;
-    }
-
-    /**
-     * Sets suiteTitle
-     *
-     * @param string|null $suiteTitle suiteTitle
-     *
-     * @return self
-     */
-    public function setSuiteTitle($suiteTitle)
-    {
-        $this->container['suiteTitle'] = $suiteTitle;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -379,29 +411,6 @@ class ResultCreateCase implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

@@ -31,13 +31,6 @@ class RunsApiTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -48,6 +41,13 @@ class RunsApiTest extends TestCase
      * Clean up after running each test case
      */
     public function tearDown(): void
+    {
+    }
+
+    /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
     {
     }
 

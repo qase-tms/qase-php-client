@@ -24,13 +24,6 @@ class RunEnvironmentTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,27 +38,16 @@ class RunEnvironmentTest extends TestCase
     }
 
     /**
-     * Test attribute "description"
+     * Clean up after running all test cases
      */
-    public function testPropertyDescription()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "host"
+     * Test "RunEnvironment"
      */
-    public function testPropertyHost()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "slug"
-     */
-    public function testPropertySlug()
+    public function testRunEnvironment()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -81,9 +63,27 @@ class RunEnvironmentTest extends TestCase
     }
 
     /**
-     * Test "RunEnvironment"
+     * Test attribute "description"
      */
-    public function testRunEnvironment()
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "slug"
+     */
+    public function testPropertySlug()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "host"
+     */
+    public function testPropertyHost()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

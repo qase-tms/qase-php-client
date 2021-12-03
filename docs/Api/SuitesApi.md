@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 ## `getSuites()`
 
 ```php
-getSuites($code, $limit, $offset, $filters): \Qase\Client\Model\SuiteListResponse
+getSuites($code, $filters, $limit, $offset): \Qase\Client\Model\SuiteListResponse
 ```
 
 Get all test suites.
@@ -235,12 +235,12 @@ $apiInstance = new Qase\Client\Api\SuitesApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
+$filters = array('key' => new \Qase\Client\Model\Filters7()); // Filters7
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
-$filters = array('key' => new \Qase\Client\Model\Filters7()); // Filters7
 
 try {
-    $result = $apiInstance->getSuites($code, $limit, $offset, $filters);
+    $result = $apiInstance->getSuites($code, $filters, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SuitesApi->getSuites: ', $e->getMessage(), PHP_EOL;
@@ -252,9 +252,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
+ **filters** | [**Filters7**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
- **filters** | [**Filters7**](../Model/.md)|  | [optional]
 
 ### Return type
 

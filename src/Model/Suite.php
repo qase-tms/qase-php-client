@@ -21,39 +21,31 @@ use Qase\Client\ObjectSerializer;
 class Suite implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'Suite';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'id' => 'id',
-        'title' => 'title',
-        'description' => 'description',
-        'preconditions' => 'preconditions',
-        'position' => 'position',
-        'casesCount' => 'cases_count',
-        'parentId' => 'parent_id',
-        'created' => 'created',
-        'updated' => 'updated'
+    protected static $openAPITypes = [
+        'id' => 'int',
+        'title' => 'string',
+        'description' => 'string',
+        'preconditions' => 'string',
+        'position' => 'int',
+        'casesCount' => 'int',
+        'parentId' => 'int',
+        'created' => '\DateTime',
+        'updated' => '\DateTime'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'id' => 'getId',
-        'title' => 'getTitle',
-        'description' => 'getDescription',
-        'preconditions' => 'getPreconditions',
-        'position' => 'getPosition',
-        'casesCount' => 'getCasesCount',
-        'parentId' => 'getParentId',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -72,28 +64,45 @@ class Suite implements ModelInterface, ArrayAccess, JsonSerializable
         'created' => 'date-time',
         'updated' => 'date-time'
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'Suite';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'id' => 'int',
-        'title' => 'string',
-        'description' => 'string',
-        'preconditions' => 'string',
-        'position' => 'int',
-        'casesCount' => 'int',
-        'parentId' => 'int',
-        'created' => '\DateTime',
-        'updated' => '\DateTime'
+    protected static $attributeMap = [
+        'id' => 'id',
+        'title' => 'title',
+        'description' => 'description',
+        'preconditions' => 'preconditions',
+        'position' => 'position',
+        'casesCount' => 'cases_count',
+        'parentId' => 'parent_id',
+        'created' => 'created',
+        'updated' => 'updated'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -110,6 +119,66 @@ class Suite implements ModelInterface, ArrayAccess, JsonSerializable
         'created' => 'setCreated',
         'updated' => 'setUpdated'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'id' => 'getId',
+        'title' => 'getTitle',
+        'description' => 'getDescription',
+        'preconditions' => 'getPreconditions',
+        'position' => 'getPosition',
+        'casesCount' => 'getCasesCount',
+        'parentId' => 'getParentId',
+        'created' => 'getCreated',
+        'updated' => 'getUpdated'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -137,98 +206,28 @@ class Suite implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets casesCount
-     *
-     * @return int|null
-     */
-    public function getCasesCount()
-    {
-        return $this->container['casesCount'];
-    }
-
-    /**
-     * Gets created
-     *
-     * @return DateTime|null
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
 
     /**
      * Gets id
@@ -241,43 +240,17 @@ class Suite implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * The original name of the model.
+     * Sets id
      *
-     * @return string
+     * @param int|null $id id
+     *
+     * @return self
      */
-    public function getModelName()
+    public function setId($id)
     {
-        return self::$openAPIModelName;
-    }
+        $this->container['id'] = $id;
 
-    /**
-     * Gets parentId
-     *
-     * @return int|null
-     */
-    public function getParentId()
-    {
-        return $this->container['parentId'];
-    }
-
-    /**
-     * Gets position
-     *
-     * @return int|null
-     */
-    public function getPosition()
-    {
-        return $this->container['position'];
-    }
-
-    /**
-     * Gets preconditions
-     *
-     * @return string|null
-     */
-    public function getPreconditions()
-    {
-        return $this->container['preconditions'];
+        return $this;
     }
 
     /**
@@ -291,6 +264,164 @@ class Suite implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets title
+     *
+     * @param string|null $title title
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets preconditions
+     *
+     * @return string|null
+     */
+    public function getPreconditions()
+    {
+        return $this->container['preconditions'];
+    }
+
+    /**
+     * Sets preconditions
+     *
+     * @param string|null $preconditions preconditions
+     *
+     * @return self
+     */
+    public function setPreconditions($preconditions)
+    {
+        $this->container['preconditions'] = $preconditions;
+
+        return $this;
+    }
+
+    /**
+     * Gets position
+     *
+     * @return int|null
+     */
+    public function getPosition()
+    {
+        return $this->container['position'];
+    }
+
+    /**
+     * Sets position
+     *
+     * @param int|null $position position
+     *
+     * @return self
+     */
+    public function setPosition($position)
+    {
+        $this->container['position'] = $position;
+
+        return $this;
+    }
+
+    /**
+     * Gets casesCount
+     *
+     * @return int|null
+     */
+    public function getCasesCount()
+    {
+        return $this->container['casesCount'];
+    }
+
+    /**
+     * Sets casesCount
+     *
+     * @param int|null $casesCount casesCount
+     *
+     * @return self
+     */
+    public function setCasesCount($casesCount)
+    {
+        $this->container['casesCount'] = $casesCount;
+
+        return $this;
+    }
+
+    /**
+     * Gets parentId
+     *
+     * @return int|null
+     */
+    public function getParentId()
+    {
+        return $this->container['parentId'];
+    }
+
+    /**
+     * Sets parentId
+     *
+     * @param int|null $parentId parentId
+     *
+     * @return self
+     */
+    public function setParentId($parentId)
+    {
+        $this->container['parentId'] = $parentId;
+
+        return $this;
+    }
+
+    /**
+     * Gets created
+     *
+     * @return DateTime|null
+     */
+    public function getCreated()
+    {
+        return $this->container['created'];
+    }
+
+    /**
+     * Sets created
+     *
+     * @param DateTime|null $created created
+     *
+     * @return self
+     */
+    public function setCreated($created)
+    {
+        $this->container['created'] = $created;
+
+        return $this;
+    }
+
+    /**
      * Gets updated
      *
      * @return DateTime|null
@@ -301,15 +432,17 @@ class Suite implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets updated
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param DateTime|null $updated updated
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setUpdated($updated)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $this->container['updated'] = $updated;
+
+        return $this;
     }
 
     /**
@@ -366,129 +499,28 @@ class Suite implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets casesCount
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param int|null $casesCount casesCount
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setCasesCount($casesCount)
+    public function jsonSerialize()
     {
-        $this->container['casesCount'] = $casesCount;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets created
+     * Gets the string presentation of the object
      *
-     * @param DateTime|null $created created
-     *
-     * @return self
+     * @return string
      */
-    public function setCreated($created)
+    public function __toString()
     {
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description description
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Sets parentId
-     *
-     * @param int|null $parentId parentId
-     *
-     * @return self
-     */
-    public function setParentId($parentId)
-    {
-        $this->container['parentId'] = $parentId;
-
-        return $this;
-    }
-
-    /**
-     * Sets position
-     *
-     * @param int|null $position position
-     *
-     * @return self
-     */
-    public function setPosition($position)
-    {
-        $this->container['position'] = $position;
-
-        return $this;
-    }
-
-    /**
-     * Sets preconditions
-     *
-     * @param string|null $preconditions preconditions
-     *
-     * @return self
-     */
-    public function setPreconditions($preconditions)
-    {
-        $this->container['preconditions'] = $preconditions;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param DateTime|null $updated updated
-     *
-     * @return self
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -499,29 +531,6 @@ class Suite implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

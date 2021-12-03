@@ -20,33 +20,28 @@ use Qase\Client\ObjectSerializer;
 class SharedStepCreate implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'SharedStepCreate';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'title' => 'title',
-        'action' => 'action',
-        'expectedResult' => 'expected_result',
-        'data' => 'data',
-        'attachments' => 'attachments',
-        'steps' => 'steps'
+    protected static $openAPITypes = [
+        'title' => 'string',
+        'action' => 'string',
+        'expectedResult' => 'string',
+        'data' => 'string',
+        'attachments' => '\Qase\Client\Model\AttachmentHash[]',
+        'steps' => '\Qase\Client\Model\SharedStepCreateSteps[]'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'title' => 'getTitle',
-        'action' => 'getAction',
-        'expectedResult' => 'getExpectedResult',
-        'data' => 'getData',
-        'attachments' => 'getAttachments',
-        'steps' => 'getSteps'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -62,25 +57,42 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, JsonSerializable
         'attachments' => null,
         'steps' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'SharedStepCreate';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'title' => 'string',
-        'action' => 'string',
-        'expectedResult' => 'string',
-        'data' => 'string',
-        'attachments' => '\Qase\Client\Model\AttachmentHash[]',
-        'steps' => '\Qase\Client\Model\SharedStepCreateSteps[]'
+    protected static $attributeMap = [
+        'title' => 'title',
+        'action' => 'action',
+        'expectedResult' => 'expected_result',
+        'data' => 'data',
+        'attachments' => 'attachments',
+        'steps' => 'steps'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -94,6 +106,63 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, JsonSerializable
         'attachments' => 'setAttachments',
         'steps' => 'setSteps'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'title' => 'getTitle',
+        'action' => 'getAction',
+        'expectedResult' => 'getExpectedResult',
+        'data' => 'getData',
+        'attachments' => 'getAttachments',
+        'steps' => 'getSteps'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -118,67 +187,51 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets title
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Sets title
      *
-     * @return array
+     * @param string|null $title title
+     *
+     * @return self
      */
-    public static function openAPIFormats()
+    public function setTitle($title)
     {
-        return self::$openAPIFormats;
-    }
+        $this->container['title'] = $title;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
+        return $this;
     }
 
     /**
@@ -192,23 +245,17 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets attachments
+     * Sets action
      *
-     * @return AttachmentHash[]|null
+     * @param string|null $action action
+     *
+     * @return self
      */
-    public function getAttachments()
+    public function setAction($action)
     {
-        return $this->container['attachments'];
-    }
+        $this->container['action'] = $action;
 
-    /**
-     * Gets data
-     *
-     * @return string|null
-     */
-    public function getData()
-    {
-        return $this->container['data'];
+        return $this;
     }
 
     /**
@@ -222,13 +269,65 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * The original name of the model.
+     * Sets expectedResult
      *
-     * @return string
+     * @param string|null $expectedResult expectedResult
+     *
+     * @return self
      */
-    public function getModelName()
+    public function setExpectedResult($expectedResult)
     {
-        return self::$openAPIModelName;
+        $this->container['expectedResult'] = $expectedResult;
+
+        return $this;
+    }
+
+    /**
+     * Gets data
+     *
+     * @return string|null
+     */
+    public function getData()
+    {
+        return $this->container['data'];
+    }
+
+    /**
+     * Sets data
+     *
+     * @param string|null $data data
+     *
+     * @return self
+     */
+    public function setData($data)
+    {
+        $this->container['data'] = $data;
+
+        return $this;
+    }
+
+    /**
+     * Gets attachments
+     *
+     * @return AttachmentHash[]|null
+     */
+    public function getAttachments()
+    {
+        return $this->container['attachments'];
+    }
+
+    /**
+     * Sets attachments
+     *
+     * @param AttachmentHash[]|null $attachments attachments
+     *
+     * @return self
+     */
+    public function setAttachments($attachments)
+    {
+        $this->container['attachments'] = $attachments;
+
+        return $this;
     }
 
     /**
@@ -242,25 +341,17 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets title
+     * Sets steps
      *
-     * @return string|null
+     * @param SharedStepCreateSteps[]|null $steps steps
+     *
+     * @return self
      */
-    public function getTitle()
+    public function setSteps($steps)
     {
-        return $this->container['title'];
-    }
+        $this->container['steps'] = $steps;
 
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
-     */
-    public function jsonSerialize()
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        return $this;
     }
 
     /**
@@ -317,87 +408,28 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets action
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string|null $action action
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setAction($action)
+    public function jsonSerialize()
     {
-        $this->container['action'] = $action;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets attachments
+     * Gets the string presentation of the object
      *
-     * @param AttachmentHash[]|null $attachments attachments
-     *
-     * @return self
+     * @return string
      */
-    public function setAttachments($attachments)
+    public function __toString()
     {
-        $this->container['attachments'] = $attachments;
-
-        return $this;
-    }
-
-    /**
-     * Sets data
-     *
-     * @param string|null $data data
-     *
-     * @return self
-     */
-    public function setData($data)
-    {
-        $this->container['data'] = $data;
-
-        return $this;
-    }
-
-    /**
-     * Sets expectedResult
-     *
-     * @param string|null $expectedResult expectedResult
-     *
-     * @return self
-     */
-    public function setExpectedResult($expectedResult)
-    {
-        $this->container['expectedResult'] = $expectedResult;
-
-        return $this;
-    }
-
-    /**
-     * Sets steps
-     *
-     * @param SharedStepCreateSteps[]|null $steps steps
-     *
-     * @return self
-     */
-    public function setSteps($steps)
-    {
-        $this->container['steps'] = $steps;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -408,29 +440,6 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

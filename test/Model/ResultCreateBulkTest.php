@@ -24,13 +24,6 @@ class ResultCreateBulkTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,18 +38,25 @@ class ResultCreateBulkTest extends TestCase
     }
 
     /**
-     * Test attribute "results"
+     * Clean up after running all test cases
      */
-    public function testPropertyResults()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test "ResultCreateBulk"
      */
     public function testResultCreateBulk()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "results"
+     */
+    public function testPropertyResults()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

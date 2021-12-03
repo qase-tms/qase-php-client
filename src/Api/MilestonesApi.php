@@ -73,6 +73,34 @@ class MilestonesApi
     }
 
     /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex): void
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * Operation createMilestone
      *
      * Create a new milestone.
@@ -182,6 +210,76 @@ class MilestonesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation createMilestoneAsync
+     *
+     * Create a new milestone.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param MilestoneCreate $milestoneCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createMilestoneAsync($code, $milestoneCreate)
+    {
+        return $this->createMilestoneAsyncWithHttpInfo($code, $milestoneCreate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createMilestoneAsyncWithHttpInfo
+     *
+     * Create a new milestone.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param MilestoneCreate $milestoneCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createMilestoneAsyncWithHttpInfo($code, $milestoneCreate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->createMilestoneRequest($code, $milestoneCreate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -302,95 +400,6 @@ class MilestonesApi
     }
 
     /**
-     * Create http client option
-     *
-     * @return array of http client options
-     * @throws RuntimeException on file opening failure
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        return $options;
-    }
-
-    /**
-     * Operation createMilestoneAsync
-     *
-     * Create a new milestone.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param MilestoneCreate $milestoneCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createMilestoneAsync($code, $milestoneCreate)
-    {
-        return $this->createMilestoneAsyncWithHttpInfo($code, $milestoneCreate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createMilestoneAsyncWithHttpInfo
-     *
-     * Create a new milestone.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param MilestoneCreate $milestoneCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createMilestoneAsyncWithHttpInfo($code, $milestoneCreate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->createMilestoneRequest($code, $milestoneCreate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation deleteMilestone
      *
      * Delete milestone.
@@ -500,6 +509,76 @@ class MilestonesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation deleteMilestoneAsync
+     *
+     * Delete milestone.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteMilestoneAsync($code, $id)
+    {
+        return $this->deleteMilestoneAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteMilestoneAsyncWithHttpInfo
+     *
+     * Delete milestone.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteMilestoneAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->deleteMilestoneRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -622,104 +701,6 @@ class MilestonesApi
     }
 
     /**
-     * Operation deleteMilestoneAsync
-     *
-     * Delete milestone.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteMilestoneAsync($code, $id)
-    {
-        return $this->deleteMilestoneAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteMilestoneAsyncWithHttpInfo
-     *
-     * Delete milestone.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteMilestoneAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->deleteMilestoneRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
-     * Get the host index
-     *
-     * @return int Host index
-     */
-    public function getHostIndex()
-    {
-        return $this->hostIndex;
-    }
-
-    /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
-    }
-
-    /**
      * Operation getMilestone
      *
      * Get a specific milestone.
@@ -829,6 +810,76 @@ class MilestonesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation getMilestoneAsync
+     *
+     * Get a specific milestone.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getMilestoneAsync($code, $id)
+    {
+        return $this->getMilestoneAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getMilestoneAsyncWithHttpInfo
+     *
+     * Get a specific milestone.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getMilestoneAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\MilestoneResponse';
+        $request = $this->getMilestoneRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -951,92 +1002,22 @@ class MilestonesApi
     }
 
     /**
-     * Operation getMilestoneAsync
-     *
-     * Get a specific milestone.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getMilestoneAsync($code, $id)
-    {
-        return $this->getMilestoneAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getMilestoneAsyncWithHttpInfo
-     *
-     * Get a specific milestone.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getMilestoneAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\MilestoneResponse';
-        $request = $this->getMilestoneRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation getMilestones
      *
      * Get all milestones.
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters3 $filters filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters3 $filters filters (optional)
      *
      * @return MilestoneListResponse
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getMilestones($code, $limit = 10, $offset = 0, $filters = null)
+    public function getMilestones($code, $filters = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getMilestonesWithHttpInfo($code, $limit, $offset, $filters);
+        list($response) = $this->getMilestonesWithHttpInfo($code, $filters, $limit, $offset);
         return $response;
     }
 
@@ -1046,17 +1027,17 @@ class MilestonesApi
      * Get all milestones.
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters3 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters3 $filters (optional)
      *
      * @return array of \Qase\Client\Model\MilestoneListResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getMilestonesWithHttpInfo($code, $limit = 10, $offset = 0, $filters = null)
+    public function getMilestonesWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getMilestonesRequest($code, $limit, $offset, $filters);
+        $request = $this->getMilestonesRequest($code, $filters, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1137,17 +1118,91 @@ class MilestonesApi
     }
 
     /**
+     * Operation getMilestonesAsync
+     *
+     * Get all milestones.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param Filters3 $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getMilestonesAsync($code, $filters = null, $limit = 10, $offset = 0)
+    {
+        return $this->getMilestonesAsyncWithHttpInfo($code, $filters, $limit, $offset)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getMilestonesAsyncWithHttpInfo
+     *
+     * Get all milestones.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param Filters3 $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getMilestonesAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    {
+        $returnType = '\Qase\Client\Model\MilestoneListResponse';
+        $request = $this->getMilestonesRequest($code, $filters, $limit, $offset);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'getMilestones'
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters3 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters3 $filters (optional)
      *
      * @return Request
      * @throws InvalidArgumentException
      */
-    public function getMilestonesRequest($code, $limit = 10, $offset = 0, $filters = null)
+    public function getMilestonesRequest($code, $filters = null, $limit = 10, $offset = 0)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1185,6 +1240,13 @@ class MilestonesApi
         $multipart = false;
 
         // query params
+        if (is_array($filters)) {
+            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
+        }
+        if ($filters !== null) {
+            $queryParams['filters'] = $filters;
+        }
+        // query params
         if ($limit !== null) {
             if ('form' === 'form' && is_array($limit)) {
                 foreach ($limit as $key => $value) {
@@ -1203,13 +1265,6 @@ class MilestonesApi
             } else {
                 $queryParams['offset'] = $offset;
             }
-        }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
-        }
-        if ($filters !== null) {
-            $queryParams['filters'] = $filters;
         }
 
 
@@ -1283,80 +1338,6 @@ class MilestonesApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Operation getMilestonesAsync
-     *
-     * Get all milestones.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters3 $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getMilestonesAsync($code, $limit = 10, $offset = 0, $filters = null)
-    {
-        return $this->getMilestonesAsyncWithHttpInfo($code, $limit, $offset, $filters)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getMilestonesAsyncWithHttpInfo
-     *
-     * Get all milestones.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters3 $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getMilestonesAsyncWithHttpInfo($code, $limit = 10, $offset = 0, $filters = null)
-    {
-        $returnType = '\Qase\Client\Model\MilestoneListResponse';
-        $request = $this->getMilestonesRequest($code, $limit, $offset, $filters);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
     }
 
     /**
@@ -1471,6 +1452,78 @@ class MilestonesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation updateMilestoneAsync
+     *
+     * Update milestone.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param MilestoneUpdate $milestoneUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateMilestoneAsync($code, $id, $milestoneUpdate)
+    {
+        return $this->updateMilestoneAsyncWithHttpInfo($code, $id, $milestoneUpdate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateMilestoneAsyncWithHttpInfo
+     *
+     * Update milestone.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param MilestoneUpdate $milestoneUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateMilestoneAsyncWithHttpInfo($code, $id, $milestoneUpdate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->updateMilestoneRequest($code, $id, $milestoneUpdate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1606,74 +1659,21 @@ class MilestonesApi
     }
 
     /**
-     * Operation updateMilestoneAsync
+     * Create http client option
      *
-     * Update milestone.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param MilestoneUpdate $milestoneUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
+     * @return array of http client options
+     * @throws RuntimeException on file opening failure
      */
-    public function updateMilestoneAsync($code, $id, $milestoneUpdate)
+    protected function createHttpClientOption()
     {
-        return $this->updateMilestoneAsyncWithHttpInfo($code, $id, $milestoneUpdate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
+        $options = [];
+        if ($this->config->getDebug()) {
+            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
+            if (!$options[RequestOptions::DEBUG]) {
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+            }
+        }
 
-    /**
-     * Operation updateMilestoneAsyncWithHttpInfo
-     *
-     * Update milestone.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param MilestoneUpdate $milestoneUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function updateMilestoneAsyncWithHttpInfo($code, $id, $milestoneUpdate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->updateMilestoneRequest($code, $id, $milestoneUpdate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
+        return $options;
     }
 }

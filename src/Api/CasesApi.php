@@ -73,6 +73,34 @@ class CasesApi
     }
 
     /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex): void
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * Operation createCase
      *
      * Create a new test case.
@@ -182,6 +210,76 @@ class CasesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation createCaseAsync
+     *
+     * Create a new test case.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param TestCaseCreate $testCaseCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createCaseAsync($code, $testCaseCreate)
+    {
+        return $this->createCaseAsyncWithHttpInfo($code, $testCaseCreate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createCaseAsyncWithHttpInfo
+     *
+     * Create a new test case.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param TestCaseCreate $testCaseCreate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function createCaseAsyncWithHttpInfo($code, $testCaseCreate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->createCaseRequest($code, $testCaseCreate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -302,95 +400,6 @@ class CasesApi
     }
 
     /**
-     * Create http client option
-     *
-     * @return array of http client options
-     * @throws RuntimeException on file opening failure
-     */
-    protected function createHttpClientOption()
-    {
-        $options = [];
-        if ($this->config->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
-            }
-        }
-
-        return $options;
-    }
-
-    /**
-     * Operation createCaseAsync
-     *
-     * Create a new test case.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param TestCaseCreate $testCaseCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createCaseAsync($code, $testCaseCreate)
-    {
-        return $this->createCaseAsyncWithHttpInfo($code, $testCaseCreate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createCaseAsyncWithHttpInfo
-     *
-     * Create a new test case.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param TestCaseCreate $testCaseCreate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createCaseAsyncWithHttpInfo($code, $testCaseCreate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->createCaseRequest($code, $testCaseCreate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation deleteCase
      *
      * Delete test case.
@@ -500,6 +509,76 @@ class CasesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation deleteCaseAsync
+     *
+     * Delete test case.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteCaseAsync($code, $id)
+    {
+        return $this->deleteCaseAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteCaseAsyncWithHttpInfo
+     *
+     * Delete test case.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function deleteCaseAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->deleteCaseRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -622,76 +701,6 @@ class CasesApi
     }
 
     /**
-     * Operation deleteCaseAsync
-     *
-     * Delete test case.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteCaseAsync($code, $id)
-    {
-        return $this->deleteCaseAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteCaseAsyncWithHttpInfo
-     *
-     * Delete test case.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function deleteCaseAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->deleteCaseRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation getCase
      *
      * Get a specific test case.
@@ -801,6 +810,76 @@ class CasesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation getCaseAsync
+     *
+     * Get a specific test case.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getCaseAsync($code, $id)
+    {
+        return $this->getCaseAsyncWithHttpInfo($code, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getCaseAsyncWithHttpInfo
+     *
+     * Get a specific test case.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getCaseAsyncWithHttpInfo($code, $id)
+    {
+        $returnType = '\Qase\Client\Model\TestCaseResponse';
+        $request = $this->getCaseRequest($code, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -923,92 +1002,22 @@ class CasesApi
     }
 
     /**
-     * Operation getCaseAsync
-     *
-     * Get a specific test case.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getCaseAsync($code, $id)
-    {
-        return $this->getCaseAsyncWithHttpInfo($code, $id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getCaseAsyncWithHttpInfo
-     *
-     * Get a specific test case.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getCaseAsyncWithHttpInfo($code, $id)
-    {
-        $returnType = '\Qase\Client\Model\TestCaseResponse';
-        $request = $this->getCaseRequest($code, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
      * Operation getCases
      *
      * Get all test cases.
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters $filters filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters $filters filters (optional)
      *
      * @return TestCaseListResponse
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getCases($code, $limit = 10, $offset = 0, $filters = null)
+    public function getCases($code, $filters = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getCasesWithHttpInfo($code, $limit, $offset, $filters);
+        list($response) = $this->getCasesWithHttpInfo($code, $filters, $limit, $offset);
         return $response;
     }
 
@@ -1018,17 +1027,17 @@ class CasesApi
      * Get all test cases.
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters $filters (optional)
      *
      * @return array of \Qase\Client\Model\TestCaseListResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getCasesWithHttpInfo($code, $limit = 10, $offset = 0, $filters = null)
+    public function getCasesWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getCasesRequest($code, $limit, $offset, $filters);
+        $request = $this->getCasesRequest($code, $filters, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1109,17 +1118,91 @@ class CasesApi
     }
 
     /**
+     * Operation getCasesAsync
+     *
+     * Get all test cases.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param Filters $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getCasesAsync($code, $filters = null, $limit = 10, $offset = 0)
+    {
+        return $this->getCasesAsyncWithHttpInfo($code, $filters, $limit, $offset)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getCasesAsyncWithHttpInfo
+     *
+     * Get all test cases.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param Filters $filters (optional)
+     * @param int $limit A number of entities in result set. (optional, default to 10)
+     * @param int $offset How many entities should be skipped. (optional, default to 0)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function getCasesAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    {
+        $returnType = '\Qase\Client\Model\TestCaseListResponse';
+        $request = $this->getCasesRequest($code, $filters, $limit, $offset);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
      * Create request for operation 'getCases'
      *
      * @param string $code Code of project, where to search entities. (required)
+     * @param Filters $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters $filters (optional)
      *
      * @return Request
      * @throws InvalidArgumentException
      */
-    public function getCasesRequest($code, $limit = 10, $offset = 0, $filters = null)
+    public function getCasesRequest($code, $filters = null, $limit = 10, $offset = 0)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1157,6 +1240,13 @@ class CasesApi
         $multipart = false;
 
         // query params
+        if (is_array($filters)) {
+            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
+        }
+        if ($filters !== null) {
+            $queryParams['filters'] = $filters;
+        }
+        // query params
         if ($limit !== null) {
             if ('form' === 'form' && is_array($limit)) {
                 foreach ($limit as $key => $value) {
@@ -1175,13 +1265,6 @@ class CasesApi
             } else {
                 $queryParams['offset'] = $offset;
             }
-        }
-        // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
-        }
-        if ($filters !== null) {
-            $queryParams['filters'] = $filters;
         }
 
 
@@ -1255,108 +1338,6 @@ class CasesApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Operation getCasesAsync
-     *
-     * Get all test cases.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getCasesAsync($code, $limit = 10, $offset = 0, $filters = null)
-    {
-        return $this->getCasesAsyncWithHttpInfo($code, $limit, $offset, $filters)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getCasesAsyncWithHttpInfo
-     *
-     * Get all test cases.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $limit A number of entities in result set. (optional, default to 10)
-     * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param Filters $filters (optional)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function getCasesAsyncWithHttpInfo($code, $limit = 10, $offset = 0, $filters = null)
-    {
-        $returnType = '\Qase\Client\Model\TestCaseListResponse';
-        $request = $this->getCasesRequest($code, $limit, $offset, $filters);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
-     * Get the host index
-     *
-     * @return int Host index
-     */
-    public function getHostIndex()
-    {
-        return $this->hostIndex;
-    }
-
-    /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
     }
 
     /**
@@ -1471,6 +1452,78 @@ class CasesApi
             }
             throw $e;
         }
+    }
+
+    /**
+     * Operation updateCaseAsync
+     *
+     * Update test case.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param TestCaseUpdate $testCaseUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateCaseAsync($code, $id, $testCaseUpdate)
+    {
+        return $this->updateCaseAsyncWithHttpInfo($code, $id, $testCaseUpdate)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateCaseAsyncWithHttpInfo
+     *
+     * Update test case.
+     *
+     * @param string $code Code of project, where to search entities. (required)
+     * @param int $id Identifier. (required)
+     * @param TestCaseUpdate $testCaseUpdate (required)
+     *
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
+     */
+    public function updateCaseAsyncWithHttpInfo($code, $id, $testCaseUpdate)
+    {
+        $returnType = '\Qase\Client\Model\IdResponse';
+        $request = $this->updateCaseRequest($code, $id, $testCaseUpdate);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string)$response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string)$response->getBody()
+                    );
+                }
+            );
     }
 
     /**
@@ -1606,74 +1659,21 @@ class CasesApi
     }
 
     /**
-     * Operation updateCaseAsync
+     * Create http client option
      *
-     * Update test case.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param TestCaseUpdate $testCaseUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
+     * @return array of http client options
+     * @throws RuntimeException on file opening failure
      */
-    public function updateCaseAsync($code, $id, $testCaseUpdate)
+    protected function createHttpClientOption()
     {
-        return $this->updateCaseAsyncWithHttpInfo($code, $id, $testCaseUpdate)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
+        $options = [];
+        if ($this->config->getDebug()) {
+            $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
+            if (!$options[RequestOptions::DEBUG]) {
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+            }
+        }
 
-    /**
-     * Operation updateCaseAsyncWithHttpInfo
-     *
-     * Update test case.
-     *
-     * @param string $code Code of project, where to search entities. (required)
-     * @param int $id Identifier. (required)
-     * @param TestCaseUpdate $testCaseUpdate (required)
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function updateCaseAsyncWithHttpInfo($code, $id, $testCaseUpdate)
-    {
-        $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->updateCaseRequest($code, $id, $testCaseUpdate);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string)$response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string)$response->getBody()
-                    );
-                }
-            );
+        return $options;
     }
 }

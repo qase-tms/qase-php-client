@@ -21,51 +21,37 @@ use Qase\Client\ObjectSerializer;
 class Run implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'Run';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'id' => 'id',
-        'title' => 'title',
-        'description' => 'description',
-        'status' => 'status',
-        'statusText' => 'status_text',
-        'startTime' => 'start_time',
-        'endTime' => 'end_time',
-        'public' => 'public',
-        'stats' => 'stats',
-        'timeSpent' => 'time_spent',
-        'environment' => 'environment',
-        'milestone' => 'milestone',
-        'customFields' => 'custom_fields',
-        'tags' => 'tags',
-        'cases' => 'cases'
+    protected static $openAPITypes = [
+        'id' => 'int',
+        'title' => 'string',
+        'description' => 'string',
+        'status' => 'int',
+        'statusText' => 'string',
+        'startTime' => '\DateTime',
+        'endTime' => '\DateTime',
+        'public' => 'bool',
+        'stats' => '\Qase\Client\Model\RunStats',
+        'timeSpent' => 'int',
+        'environment' => '\Qase\Client\Model\RunEnvironment',
+        'milestone' => '\Qase\Client\Model\RunMilestone',
+        'customFields' => '\Qase\Client\Model\CustomFieldValue[]',
+        'tags' => '\Qase\Client\Model\TagValue[]',
+        'cases' => 'int[]'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'id' => 'getId',
-        'title' => 'getTitle',
-        'description' => 'getDescription',
-        'status' => 'getStatus',
-        'statusText' => 'getStatusText',
-        'startTime' => 'getStartTime',
-        'endTime' => 'getEndTime',
-        'public' => 'getPublic',
-        'stats' => 'getStats',
-        'timeSpent' => 'getTimeSpent',
-        'environment' => 'getEnvironment',
-        'milestone' => 'getMilestone',
-        'customFields' => 'getCustomFields',
-        'tags' => 'getTags',
-        'cases' => 'getCases'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -90,34 +76,51 @@ class Run implements ModelInterface, ArrayAccess, JsonSerializable
         'tags' => null,
         'cases' => 'int64'
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'Run';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'id' => 'int',
-        'title' => 'string',
-        'description' => 'string',
-        'status' => 'int',
-        'statusText' => 'string',
-        'startTime' => '\DateTime',
-        'endTime' => '\DateTime',
-        'public' => 'bool',
-        'stats' => '\Qase\Client\Model\RunStats',
-        'timeSpent' => 'int',
-        'environment' => '\Qase\Client\Model\RunEnvironment',
-        'milestone' => '\Qase\Client\Model\RunMilestone',
-        'customFields' => '\Qase\Client\Model\CustomFieldValue[]',
-        'tags' => '\Qase\Client\Model\TagValue[]',
-        'cases' => 'int[]'
+    protected static $attributeMap = [
+        'id' => 'id',
+        'title' => 'title',
+        'description' => 'description',
+        'status' => 'status',
+        'statusText' => 'status_text',
+        'startTime' => 'start_time',
+        'endTime' => 'end_time',
+        'public' => 'public',
+        'stats' => 'stats',
+        'timeSpent' => 'time_spent',
+        'environment' => 'environment',
+        'milestone' => 'milestone',
+        'customFields' => 'custom_fields',
+        'tags' => 'tags',
+        'cases' => 'cases'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -140,6 +143,72 @@ class Run implements ModelInterface, ArrayAccess, JsonSerializable
         'tags' => 'setTags',
         'cases' => 'setCases'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'id' => 'getId',
+        'title' => 'getTitle',
+        'description' => 'getDescription',
+        'status' => 'getStatus',
+        'statusText' => 'getStatusText',
+        'startTime' => 'getStartTime',
+        'endTime' => 'getEndTime',
+        'public' => 'getPublic',
+        'stats' => 'getStats',
+        'timeSpent' => 'getTimeSpent',
+        'environment' => 'getEnvironment',
+        'milestone' => 'getMilestone',
+        'customFields' => 'getCustomFields',
+        'tags' => 'getTags',
+        'cases' => 'getCases'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -173,118 +242,28 @@ class Run implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets cases
-     *
-     * @return int[]|null
-     */
-    public function getCases()
-    {
-        return $this->container['cases'];
-    }
-
-    /**
-     * Gets customFields
-     *
-     * @return CustomFieldValue[]|null
-     */
-    public function getCustomFields()
-    {
-        return $this->container['customFields'];
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Gets endTime
-     *
-     * @return DateTime|null
-     */
-    public function getEndTime()
-    {
-        return $this->container['endTime'];
-    }
-
-    /**
-     * Gets environment
-     *
-     * @return RunEnvironment|null
-     */
-    public function getEnvironment()
-    {
-        return $this->container['environment'];
-    }
 
     /**
      * Gets id
@@ -297,93 +276,17 @@ class Run implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets milestone
+     * Sets id
      *
-     * @return RunMilestone|null
+     * @param int|null $id id
+     *
+     * @return self
      */
-    public function getMilestone()
+    public function setId($id)
     {
-        return $this->container['milestone'];
-    }
+        $this->container['id'] = $id;
 
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
-    }
-
-    /**
-     * Gets public
-     *
-     * @return bool|null
-     */
-    public function getPublic()
-    {
-        return $this->container['public'];
-    }
-
-    /**
-     * Gets startTime
-     *
-     * @return DateTime|null
-     */
-    public function getStartTime()
-    {
-        return $this->container['startTime'];
-    }
-
-    /**
-     * Gets stats
-     *
-     * @return RunStats|null
-     */
-    public function getStats()
-    {
-        return $this->container['stats'];
-    }
-
-    /**
-     * Gets status
-     *
-     * @return int|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Gets statusText
-     *
-     * @return string|null
-     */
-    public function getStatusText()
-    {
-        return $this->container['statusText'];
-    }
-
-    /**
-     * Gets tags
-     *
-     * @return TagValue[]|null
-     */
-    public function getTags()
-    {
-        return $this->container['tags'];
-    }
-
-    /**
-     * Gets timeSpent
-     *
-     * @return int|null
-     */
-    public function getTimeSpent()
-    {
-        return $this->container['timeSpent'];
+        return $this;
     }
 
     /**
@@ -397,15 +300,329 @@ class Run implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets title
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param string|null $title title
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setTitle($title)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return int|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param int|null $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets statusText
+     *
+     * @return string|null
+     */
+    public function getStatusText()
+    {
+        return $this->container['statusText'];
+    }
+
+    /**
+     * Sets statusText
+     *
+     * @param string|null $statusText statusText
+     *
+     * @return self
+     */
+    public function setStatusText($statusText)
+    {
+        $this->container['statusText'] = $statusText;
+
+        return $this;
+    }
+
+    /**
+     * Gets startTime
+     *
+     * @return DateTime|null
+     */
+    public function getStartTime()
+    {
+        return $this->container['startTime'];
+    }
+
+    /**
+     * Sets startTime
+     *
+     * @param DateTime|null $startTime startTime
+     *
+     * @return self
+     */
+    public function setStartTime($startTime)
+    {
+        $this->container['startTime'] = $startTime;
+
+        return $this;
+    }
+
+    /**
+     * Gets endTime
+     *
+     * @return DateTime|null
+     */
+    public function getEndTime()
+    {
+        return $this->container['endTime'];
+    }
+
+    /**
+     * Sets endTime
+     *
+     * @param DateTime|null $endTime endTime
+     *
+     * @return self
+     */
+    public function setEndTime($endTime)
+    {
+        $this->container['endTime'] = $endTime;
+
+        return $this;
+    }
+
+    /**
+     * Gets public
+     *
+     * @return bool|null
+     */
+    public function getPublic()
+    {
+        return $this->container['public'];
+    }
+
+    /**
+     * Sets public
+     *
+     * @param bool|null $public public
+     *
+     * @return self
+     */
+    public function setPublic($public)
+    {
+        $this->container['public'] = $public;
+
+        return $this;
+    }
+
+    /**
+     * Gets stats
+     *
+     * @return RunStats|null
+     */
+    public function getStats()
+    {
+        return $this->container['stats'];
+    }
+
+    /**
+     * Sets stats
+     *
+     * @param RunStats|null $stats stats
+     *
+     * @return self
+     */
+    public function setStats($stats)
+    {
+        $this->container['stats'] = $stats;
+
+        return $this;
+    }
+
+    /**
+     * Gets timeSpent
+     *
+     * @return int|null
+     */
+    public function getTimeSpent()
+    {
+        return $this->container['timeSpent'];
+    }
+
+    /**
+     * Sets timeSpent
+     *
+     * @param int|null $timeSpent Time in ms.
+     *
+     * @return self
+     */
+    public function setTimeSpent($timeSpent)
+    {
+        $this->container['timeSpent'] = $timeSpent;
+
+        return $this;
+    }
+
+    /**
+     * Gets environment
+     *
+     * @return RunEnvironment|null
+     */
+    public function getEnvironment()
+    {
+        return $this->container['environment'];
+    }
+
+    /**
+     * Sets environment
+     *
+     * @param RunEnvironment|null $environment environment
+     *
+     * @return self
+     */
+    public function setEnvironment($environment)
+    {
+        $this->container['environment'] = $environment;
+
+        return $this;
+    }
+
+    /**
+     * Gets milestone
+     *
+     * @return RunMilestone|null
+     */
+    public function getMilestone()
+    {
+        return $this->container['milestone'];
+    }
+
+    /**
+     * Sets milestone
+     *
+     * @param RunMilestone|null $milestone milestone
+     *
+     * @return self
+     */
+    public function setMilestone($milestone)
+    {
+        $this->container['milestone'] = $milestone;
+
+        return $this;
+    }
+
+    /**
+     * Gets customFields
+     *
+     * @return CustomFieldValue[]|null
+     */
+    public function getCustomFields()
+    {
+        return $this->container['customFields'];
+    }
+
+    /**
+     * Sets customFields
+     *
+     * @param CustomFieldValue[]|null $customFields customFields
+     *
+     * @return self
+     */
+    public function setCustomFields($customFields)
+    {
+        $this->container['customFields'] = $customFields;
+
+        return $this;
+    }
+
+    /**
+     * Gets tags
+     *
+     * @return TagValue[]|null
+     */
+    public function getTags()
+    {
+        return $this->container['tags'];
+    }
+
+    /**
+     * Sets tags
+     *
+     * @param TagValue[]|null $tags tags
+     *
+     * @return self
+     */
+    public function setTags($tags)
+    {
+        $this->container['tags'] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Gets cases
+     *
+     * @return int[]|null
+     */
+    public function getCases()
+    {
+        return $this->container['cases'];
+    }
+
+    /**
+     * Sets cases
+     *
+     * @param int[]|null $cases cases
+     *
+     * @return self
+     */
+    public function setCases($cases)
+    {
+        $this->container['cases'] = $cases;
+
+        return $this;
     }
 
     /**
@@ -462,213 +679,28 @@ class Run implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets cases
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param int[]|null $cases cases
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setCases($cases)
+    public function jsonSerialize()
     {
-        $this->container['cases'] = $cases;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets customFields
+     * Gets the string presentation of the object
      *
-     * @param CustomFieldValue[]|null $customFields customFields
-     *
-     * @return self
+     * @return string
      */
-    public function setCustomFields($customFields)
+    public function __toString()
     {
-        $this->container['customFields'] = $customFields;
-
-        return $this;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description description
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Sets endTime
-     *
-     * @param DateTime|null $endTime endTime
-     *
-     * @return self
-     */
-    public function setEndTime($endTime)
-    {
-        $this->container['endTime'] = $endTime;
-
-        return $this;
-    }
-
-    /**
-     * Sets environment
-     *
-     * @param RunEnvironment|null $environment environment
-     *
-     * @return self
-     */
-    public function setEnvironment($environment)
-    {
-        $this->container['environment'] = $environment;
-
-        return $this;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Sets milestone
-     *
-     * @param RunMilestone|null $milestone milestone
-     *
-     * @return self
-     */
-    public function setMilestone($milestone)
-    {
-        $this->container['milestone'] = $milestone;
-
-        return $this;
-    }
-
-    /**
-     * Sets public
-     *
-     * @param bool|null $public public
-     *
-     * @return self
-     */
-    public function setPublic($public)
-    {
-        $this->container['public'] = $public;
-
-        return $this;
-    }
-
-    /**
-     * Sets startTime
-     *
-     * @param DateTime|null $startTime startTime
-     *
-     * @return self
-     */
-    public function setStartTime($startTime)
-    {
-        $this->container['startTime'] = $startTime;
-
-        return $this;
-    }
-
-    /**
-     * Sets stats
-     *
-     * @param RunStats|null $stats stats
-     *
-     * @return self
-     */
-    public function setStats($stats)
-    {
-        $this->container['stats'] = $stats;
-
-        return $this;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param int|null $status status
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Sets statusText
-     *
-     * @param string|null $statusText statusText
-     *
-     * @return self
-     */
-    public function setStatusText($statusText)
-    {
-        $this->container['statusText'] = $statusText;
-
-        return $this;
-    }
-
-    /**
-     * Sets tags
-     *
-     * @param TagValue[]|null $tags tags
-     *
-     * @return self
-     */
-    public function setTags($tags)
-    {
-        $this->container['tags'] = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Sets timeSpent
-     *
-     * @param int|null $timeSpent Time in ms.
-     *
-     * @return self
-     */
-    public function setTimeSpent($timeSpent)
-    {
-        $this->container['timeSpent'] = $timeSpent;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -679,29 +711,6 @@ class Run implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

@@ -20,35 +20,29 @@ use Qase\Client\ObjectSerializer;
 class DefectUpdate implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'DefectUpdate';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'title' => 'title',
-        'actualResult' => 'actual_result',
-        'severity' => 'severity',
-        'milestoneId' => 'milestone_id',
-        'attachments' => 'attachments',
-        'customField' => 'custom_field',
-        'tags' => 'tags'
+    protected static $openAPITypes = [
+        'title' => 'string',
+        'actualResult' => 'string',
+        'severity' => 'int',
+        'milestoneId' => 'int',
+        'attachments' => 'string[]',
+        'customField' => 'array<string,string>',
+        'tags' => 'string[]'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'title' => 'getTitle',
-        'actualResult' => 'getActualResult',
-        'severity' => 'getSeverity',
-        'milestoneId' => 'getMilestoneId',
-        'attachments' => 'getAttachments',
-        'customField' => 'getCustomField',
-        'tags' => 'getTags'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -65,26 +59,43 @@ class DefectUpdate implements ModelInterface, ArrayAccess, JsonSerializable
         'customField' => null,
         'tags' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'DefectUpdate';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'title' => 'string',
-        'actualResult' => 'string',
-        'severity' => 'int',
-        'milestoneId' => 'int',
-        'attachments' => 'string[]',
-        'customField' => 'array<string,string>',
-        'tags' => 'string[]'
+    protected static $attributeMap = [
+        'title' => 'title',
+        'actualResult' => 'actual_result',
+        'severity' => 'severity',
+        'milestoneId' => 'milestone_id',
+        'attachments' => 'attachments',
+        'customField' => 'custom_field',
+        'tags' => 'tags'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -99,6 +110,64 @@ class DefectUpdate implements ModelInterface, ArrayAccess, JsonSerializable
         'customField' => 'setCustomField',
         'tags' => 'setTags'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'title' => 'getTitle',
+        'actualResult' => 'getActualResult',
+        'severity' => 'getSeverity',
+        'milestoneId' => 'getMilestoneId',
+        'attachments' => 'getAttachments',
+        'customField' => 'getCustomField',
+        'tags' => 'getTags'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -124,67 +193,51 @@ class DefectUpdate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets title
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Sets title
      *
-     * @return array
+     * @param string|null $title title
+     *
+     * @return self
      */
-    public static function openAPIFormats()
+    public function setTitle($title)
     {
-        return self::$openAPIFormats;
-    }
+        $this->container['title'] = $title;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
+        return $this;
     }
 
     /**
@@ -198,43 +251,17 @@ class DefectUpdate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets attachments
+     * Sets actualResult
      *
-     * @return string[]|null
+     * @param string|null $actualResult actualResult
+     *
+     * @return self
      */
-    public function getAttachments()
+    public function setActualResult($actualResult)
     {
-        return $this->container['attachments'];
-    }
+        $this->container['actualResult'] = $actualResult;
 
-    /**
-     * Gets customField
-     *
-     * @return array<string,string>|null
-     */
-    public function getCustomField()
-    {
-        return $this->container['customField'];
-    }
-
-    /**
-     * Gets milestoneId
-     *
-     * @return int|null
-     */
-    public function getMilestoneId()
-    {
-        return $this->container['milestoneId'];
-    }
-
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
+        return $this;
     }
 
     /**
@@ -248,6 +275,92 @@ class DefectUpdate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets severity
+     *
+     * @param int|null $severity severity
+     *
+     * @return self
+     */
+    public function setSeverity($severity)
+    {
+        $this->container['severity'] = $severity;
+
+        return $this;
+    }
+
+    /**
+     * Gets milestoneId
+     *
+     * @return int|null
+     */
+    public function getMilestoneId()
+    {
+        return $this->container['milestoneId'];
+    }
+
+    /**
+     * Sets milestoneId
+     *
+     * @param int|null $milestoneId milestoneId
+     *
+     * @return self
+     */
+    public function setMilestoneId($milestoneId)
+    {
+        $this->container['milestoneId'] = $milestoneId;
+
+        return $this;
+    }
+
+    /**
+     * Gets attachments
+     *
+     * @return string[]|null
+     */
+    public function getAttachments()
+    {
+        return $this->container['attachments'];
+    }
+
+    /**
+     * Sets attachments
+     *
+     * @param string[]|null $attachments attachments
+     *
+     * @return self
+     */
+    public function setAttachments($attachments)
+    {
+        $this->container['attachments'] = $attachments;
+
+        return $this;
+    }
+
+    /**
+     * Gets customField
+     *
+     * @return array<string,string>|null
+     */
+    public function getCustomField()
+    {
+        return $this->container['customField'];
+    }
+
+    /**
+     * Sets customField
+     *
+     * @param array<string,string>|null $customField A map of custom fields values (id => value)
+     *
+     * @return self
+     */
+    public function setCustomField($customField)
+    {
+        $this->container['customField'] = $customField;
+
+        return $this;
+    }
+
+    /**
      * Gets tags
      *
      * @return string[]|null
@@ -258,25 +371,17 @@ class DefectUpdate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets title
+     * Sets tags
      *
-     * @return string|null
+     * @param string[]|null $tags tags
+     *
+     * @return self
      */
-    public function getTitle()
+    public function setTags($tags)
     {
-        return $this->container['title'];
-    }
+        $this->container['tags'] = $tags;
 
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
-     */
-    public function jsonSerialize()
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        return $this;
     }
 
     /**
@@ -333,101 +438,28 @@ class DefectUpdate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets actualResult
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string|null $actualResult actualResult
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setActualResult($actualResult)
+    public function jsonSerialize()
     {
-        $this->container['actualResult'] = $actualResult;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets attachments
+     * Gets the string presentation of the object
      *
-     * @param string[]|null $attachments attachments
-     *
-     * @return self
+     * @return string
      */
-    public function setAttachments($attachments)
+    public function __toString()
     {
-        $this->container['attachments'] = $attachments;
-
-        return $this;
-    }
-
-    /**
-     * Sets customField
-     *
-     * @param array<string,string>|null $customField A map of custom fields values (id => value)
-     *
-     * @return self
-     */
-    public function setCustomField($customField)
-    {
-        $this->container['customField'] = $customField;
-
-        return $this;
-    }
-
-    /**
-     * Sets milestoneId
-     *
-     * @param int|null $milestoneId milestoneId
-     *
-     * @return self
-     */
-    public function setMilestoneId($milestoneId)
-    {
-        $this->container['milestoneId'] = $milestoneId;
-
-        return $this;
-    }
-
-    /**
-     * Sets severity
-     *
-     * @param int|null $severity severity
-     *
-     * @return self
-     */
-    public function setSeverity($severity)
-    {
-        $this->container['severity'] = $severity;
-
-        return $this;
-    }
-
-    /**
-     * Sets tags
-     *
-     * @param string[]|null $tags tags
-     *
-     * @return self
-     */
-    public function setTags($tags)
-    {
-        $this->container['tags'] = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -438,29 +470,6 @@ class DefectUpdate implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

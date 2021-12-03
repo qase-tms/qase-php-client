@@ -24,13 +24,6 @@ class PlanListResponseTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,6 +38,13 @@ class PlanListResponseTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "PlanListResponse"
      */
     public function testPlanListResponse()
@@ -54,18 +54,18 @@ class PlanListResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "result"
+     * Test attribute "status"
      */
-    public function testPropertyResult()
+    public function testPropertyStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "status"
+     * Test attribute "result"
      */
-    public function testPropertyStatus()
+    public function testPropertyResult()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -20,33 +20,28 @@ use Qase\Client\ObjectSerializer;
 class AttachmentGet implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'AttachmentGet';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'hash' => 'hash',
-        'file' => 'file',
-        'mime' => 'mime',
-        'size' => 'size',
-        'extension' => 'extension',
-        'fullPath' => 'full_path'
+    protected static $openAPITypes = [
+        'hash' => 'string',
+        'file' => 'string',
+        'mime' => 'string',
+        'size' => 'int',
+        'extension' => 'string',
+        'fullPath' => 'string'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'hash' => 'getHash',
-        'file' => 'getFile',
-        'mime' => 'getMime',
-        'size' => 'getSize',
-        'extension' => 'getExtension',
-        'fullPath' => 'getFullPath'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -62,25 +57,42 @@ class AttachmentGet implements ModelInterface, ArrayAccess, JsonSerializable
         'extension' => null,
         'fullPath' => 'uri'
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'AttachmentGet';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'hash' => 'string',
-        'file' => 'string',
-        'mime' => 'string',
-        'size' => 'int',
-        'extension' => 'string',
-        'fullPath' => 'string'
+    protected static $attributeMap = [
+        'hash' => 'hash',
+        'file' => 'file',
+        'mime' => 'mime',
+        'size' => 'size',
+        'extension' => 'extension',
+        'fullPath' => 'full_path'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -94,6 +106,63 @@ class AttachmentGet implements ModelInterface, ArrayAccess, JsonSerializable
         'extension' => 'setExtension',
         'fullPath' => 'setFullPath'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'hash' => 'getHash',
+        'file' => 'getFile',
+        'mime' => 'getMime',
+        'size' => 'getSize',
+        'extension' => 'getExtension',
+        'fullPath' => 'getFullPath'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -118,77 +187,51 @@ class AttachmentGet implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets extension
+     * Gets hash
      *
      * @return string|null
      */
-    public function getExtension()
+    public function getHash()
     {
-        return $this->container['extension'];
+        return $this->container['hash'];
+    }
+
+    /**
+     * Sets hash
+     *
+     * @param string|null $hash hash
+     *
+     * @return self
+     */
+    public function setHash($hash)
+    {
+        $this->container['hash'] = $hash;
+
+        return $this;
     }
 
     /**
@@ -202,23 +245,17 @@ class AttachmentGet implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets fullPath
+     * Sets file
      *
-     * @return string|null
+     * @param string|null $file file
+     *
+     * @return self
      */
-    public function getFullPath()
+    public function setFile($file)
     {
-        return $this->container['fullPath'];
-    }
+        $this->container['file'] = $file;
 
-    /**
-     * Gets hash
-     *
-     * @return string|null
-     */
-    public function getHash()
-    {
-        return $this->container['hash'];
+        return $this;
     }
 
     /**
@@ -232,13 +269,17 @@ class AttachmentGet implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * The original name of the model.
+     * Sets mime
      *
-     * @return string
+     * @param string|null $mime mime
+     *
+     * @return self
      */
-    public function getModelName()
+    public function setMime($mime)
     {
-        return self::$openAPIModelName;
+        $this->container['mime'] = $mime;
+
+        return $this;
     }
 
     /**
@@ -252,15 +293,65 @@ class AttachmentGet implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets size
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param int|null $size size
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setSize($size)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $this->container['size'] = $size;
+
+        return $this;
+    }
+
+    /**
+     * Gets extension
+     *
+     * @return string|null
+     */
+    public function getExtension()
+    {
+        return $this->container['extension'];
+    }
+
+    /**
+     * Sets extension
+     *
+     * @param string|null $extension extension
+     *
+     * @return self
+     */
+    public function setExtension($extension)
+    {
+        $this->container['extension'] = $extension;
+
+        return $this;
+    }
+
+    /**
+     * Gets fullPath
+     *
+     * @return string|null
+     */
+    public function getFullPath()
+    {
+        return $this->container['fullPath'];
+    }
+
+    /**
+     * Sets fullPath
+     *
+     * @param string|null $fullPath fullPath
+     *
+     * @return self
+     */
+    public function setFullPath($fullPath)
+    {
+        $this->container['fullPath'] = $fullPath;
+
+        return $this;
     }
 
     /**
@@ -317,87 +408,28 @@ class AttachmentGet implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets extension
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string|null $extension extension
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setExtension($extension)
+    public function jsonSerialize()
     {
-        $this->container['extension'] = $extension;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets file
+     * Gets the string presentation of the object
      *
-     * @param string|null $file file
-     *
-     * @return self
+     * @return string
      */
-    public function setFile($file)
+    public function __toString()
     {
-        $this->container['file'] = $file;
-
-        return $this;
-    }
-
-    /**
-     * Sets fullPath
-     *
-     * @param string|null $fullPath fullPath
-     *
-     * @return self
-     */
-    public function setFullPath($fullPath)
-    {
-        $this->container['fullPath'] = $fullPath;
-
-        return $this;
-    }
-
-    /**
-     * Sets hash
-     *
-     * @param string|null $hash hash
-     *
-     * @return self
-     */
-    public function setHash($hash)
-    {
-        $this->container['hash'] = $hash;
-
-        return $this;
-    }
-
-    /**
-     * Sets mime
-     *
-     * @param string|null $mime mime
-     *
-     * @return self
-     */
-    public function setMime($mime)
-    {
-        $this->container['mime'] = $mime;
-
-        return $this;
-    }
-
-    /**
-     * Sets size
-     *
-     * @param int|null $size size
-     *
-     * @return self
-     */
-    public function setSize($size)
-    {
-        $this->container['size'] = $size;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -408,29 +440,6 @@ class AttachmentGet implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

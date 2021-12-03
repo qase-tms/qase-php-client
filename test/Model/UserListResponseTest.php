@@ -24,13 +24,6 @@ class UserListResponseTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,9 +38,16 @@ class UserListResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "result"
+     * Clean up after running all test cases
      */
-    public function testPropertyResult()
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
+     * Test "UserListResponse"
+     */
+    public function testUserListResponse()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -63,9 +63,9 @@ class UserListResponseTest extends TestCase
     }
 
     /**
-     * Test "UserListResponse"
+     * Test attribute "result"
      */
-    public function testUserListResponse()
+    public function testPropertyResult()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

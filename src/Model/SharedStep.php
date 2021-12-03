@@ -21,41 +21,32 @@ use Qase\Client\ObjectSerializer;
 class SharedStep implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'SharedStep';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'hash' => 'hash',
-        'title' => 'title',
-        'action' => 'action',
-        'expectedResult' => 'expected_result',
-        'steps' => 'steps',
-        'data' => 'data',
-        'cases' => 'cases',
-        'casesCount' => 'cases_count',
-        'created' => 'created',
-        'updated' => 'updated'
+    protected static $openAPITypes = [
+        'hash' => 'string',
+        'title' => 'string',
+        'action' => 'string',
+        'expectedResult' => 'string',
+        'steps' => '\Qase\Client\Model\SharedStepSteps[]',
+        'data' => 'string',
+        'cases' => 'int[]',
+        'casesCount' => 'int',
+        'created' => '\DateTime',
+        'updated' => '\DateTime'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'hash' => 'getHash',
-        'title' => 'getTitle',
-        'action' => 'getAction',
-        'expectedResult' => 'getExpectedResult',
-        'steps' => 'getSteps',
-        'data' => 'getData',
-        'cases' => 'getCases',
-        'casesCount' => 'getCasesCount',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -75,29 +66,46 @@ class SharedStep implements ModelInterface, ArrayAccess, JsonSerializable
         'created' => 'date-time',
         'updated' => 'date-time'
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'SharedStep';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'hash' => 'string',
-        'title' => 'string',
-        'action' => 'string',
-        'expectedResult' => 'string',
-        'steps' => '\Qase\Client\Model\SharedStepSteps[]',
-        'data' => 'string',
-        'cases' => 'int[]',
-        'casesCount' => 'int',
-        'created' => '\DateTime',
-        'updated' => '\DateTime'
+    protected static $attributeMap = [
+        'hash' => 'hash',
+        'title' => 'title',
+        'action' => 'action',
+        'expectedResult' => 'expected_result',
+        'steps' => 'steps',
+        'data' => 'data',
+        'cases' => 'cases',
+        'casesCount' => 'cases_count',
+        'created' => 'created',
+        'updated' => 'updated'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -115,6 +123,67 @@ class SharedStep implements ModelInterface, ArrayAccess, JsonSerializable
         'created' => 'setCreated',
         'updated' => 'setUpdated'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'hash' => 'getHash',
+        'title' => 'getTitle',
+        'action' => 'getAction',
+        'expectedResult' => 'getExpectedResult',
+        'steps' => 'getSteps',
+        'data' => 'getData',
+        'cases' => 'getCases',
+        'casesCount' => 'getCasesCount',
+        'created' => 'getCreated',
+        'updated' => 'getUpdated'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -143,128 +212,28 @@ class SharedStep implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets action
-     *
-     * @return string|null
-     */
-    public function getAction()
-    {
-        return $this->container['action'];
-    }
-
-    /**
-     * Gets cases
-     *
-     * @return int[]|null
-     */
-    public function getCases()
-    {
-        return $this->container['cases'];
-    }
-
-    /**
-     * Gets casesCount
-     *
-     * @return int|null
-     */
-    public function getCasesCount()
-    {
-        return $this->container['casesCount'];
-    }
-
-    /**
-     * Gets created
-     *
-     * @return DateTime|null
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Gets data
-     *
-     * @return string|null
-     */
-    public function getData()
-    {
-        return $this->container['data'];
-    }
-
-    /**
-     * Gets expectedResult
-     *
-     * @return string|null
-     */
-    public function getExpectedResult()
-    {
-        return $this->container['expectedResult'];
-    }
 
     /**
      * Gets hash
@@ -277,23 +246,17 @@ class SharedStep implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * The original name of the model.
+     * Sets hash
      *
-     * @return string
+     * @param string|null $hash hash
+     *
+     * @return self
      */
-    public function getModelName()
+    public function setHash($hash)
     {
-        return self::$openAPIModelName;
-    }
+        $this->container['hash'] = $hash;
 
-    /**
-     * Gets steps
-     *
-     * @return SharedStepSteps[]|null
-     */
-    public function getSteps()
-    {
-        return $this->container['steps'];
+        return $this;
     }
 
     /**
@@ -307,6 +270,188 @@ class SharedStep implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets title
+     *
+     * @param string|null $title title
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets action
+     *
+     * @return string|null
+     */
+    public function getAction()
+    {
+        return $this->container['action'];
+    }
+
+    /**
+     * Sets action
+     *
+     * @param string|null $action action
+     *
+     * @return self
+     */
+    public function setAction($action)
+    {
+        $this->container['action'] = $action;
+
+        return $this;
+    }
+
+    /**
+     * Gets expectedResult
+     *
+     * @return string|null
+     */
+    public function getExpectedResult()
+    {
+        return $this->container['expectedResult'];
+    }
+
+    /**
+     * Sets expectedResult
+     *
+     * @param string|null $expectedResult expectedResult
+     *
+     * @return self
+     */
+    public function setExpectedResult($expectedResult)
+    {
+        $this->container['expectedResult'] = $expectedResult;
+
+        return $this;
+    }
+
+    /**
+     * Gets steps
+     *
+     * @return SharedStepSteps[]|null
+     */
+    public function getSteps()
+    {
+        return $this->container['steps'];
+    }
+
+    /**
+     * Sets steps
+     *
+     * @param SharedStepSteps[]|null $steps steps
+     *
+     * @return self
+     */
+    public function setSteps($steps)
+    {
+        $this->container['steps'] = $steps;
+
+        return $this;
+    }
+
+    /**
+     * Gets data
+     *
+     * @return string|null
+     */
+    public function getData()
+    {
+        return $this->container['data'];
+    }
+
+    /**
+     * Sets data
+     *
+     * @param string|null $data data
+     *
+     * @return self
+     */
+    public function setData($data)
+    {
+        $this->container['data'] = $data;
+
+        return $this;
+    }
+
+    /**
+     * Gets cases
+     *
+     * @return int[]|null
+     */
+    public function getCases()
+    {
+        return $this->container['cases'];
+    }
+
+    /**
+     * Sets cases
+     *
+     * @param int[]|null $cases cases
+     *
+     * @return self
+     */
+    public function setCases($cases)
+    {
+        $this->container['cases'] = $cases;
+
+        return $this;
+    }
+
+    /**
+     * Gets casesCount
+     *
+     * @return int|null
+     */
+    public function getCasesCount()
+    {
+        return $this->container['casesCount'];
+    }
+
+    /**
+     * Sets casesCount
+     *
+     * @param int|null $casesCount casesCount
+     *
+     * @return self
+     */
+    public function setCasesCount($casesCount)
+    {
+        $this->container['casesCount'] = $casesCount;
+
+        return $this;
+    }
+
+    /**
+     * Gets created
+     *
+     * @return DateTime|null
+     */
+    public function getCreated()
+    {
+        return $this->container['created'];
+    }
+
+    /**
+     * Sets created
+     *
+     * @param DateTime|null $created created
+     *
+     * @return self
+     */
+    public function setCreated($created)
+    {
+        $this->container['created'] = $created;
+
+        return $this;
+    }
+
+    /**
      * Gets updated
      *
      * @return DateTime|null
@@ -317,15 +462,17 @@ class SharedStep implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets updated
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param DateTime|null $updated updated
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setUpdated($updated)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $this->container['updated'] = $updated;
+
+        return $this;
     }
 
     /**
@@ -382,143 +529,28 @@ class SharedStep implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets action
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param string|null $action action
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setAction($action)
+    public function jsonSerialize()
     {
-        $this->container['action'] = $action;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets cases
+     * Gets the string presentation of the object
      *
-     * @param int[]|null $cases cases
-     *
-     * @return self
+     * @return string
      */
-    public function setCases($cases)
+    public function __toString()
     {
-        $this->container['cases'] = $cases;
-
-        return $this;
-    }
-
-    /**
-     * Sets casesCount
-     *
-     * @param int|null $casesCount casesCount
-     *
-     * @return self
-     */
-    public function setCasesCount($casesCount)
-    {
-        $this->container['casesCount'] = $casesCount;
-
-        return $this;
-    }
-
-    /**
-     * Sets created
-     *
-     * @param DateTime|null $created created
-     *
-     * @return self
-     */
-    public function setCreated($created)
-    {
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Sets data
-     *
-     * @param string|null $data data
-     *
-     * @return self
-     */
-    public function setData($data)
-    {
-        $this->container['data'] = $data;
-
-        return $this;
-    }
-
-    /**
-     * Sets expectedResult
-     *
-     * @param string|null $expectedResult expectedResult
-     *
-     * @return self
-     */
-    public function setExpectedResult($expectedResult)
-    {
-        $this->container['expectedResult'] = $expectedResult;
-
-        return $this;
-    }
-
-    /**
-     * Sets hash
-     *
-     * @param string|null $hash hash
-     *
-     * @return self
-     */
-    public function setHash($hash)
-    {
-        $this->container['hash'] = $hash;
-
-        return $this;
-    }
-
-    /**
-     * Sets steps
-     *
-     * @param SharedStepSteps[]|null $steps steps
-     *
-     * @return self
-     */
-    public function setSteps($steps)
-    {
-        $this->container['steps'] = $steps;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param DateTime|null $updated updated
-     *
-     * @return self
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -529,29 +561,6 @@ class SharedStep implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

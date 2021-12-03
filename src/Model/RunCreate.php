@@ -21,39 +21,31 @@ use Qase\Client\ObjectSerializer;
 class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'RunCreate';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'title' => 'title',
-        'description' => 'description',
-        'includeAllCases' => 'include_all_cases',
-        'cases' => 'cases',
-        'isAutotest' => 'is_autotest',
-        'environmentId' => 'environment_id',
-        'milestoneId' => 'milestone_id',
-        'planId' => 'plan_id',
-        'tags' => 'tags'
+    protected static $openAPITypes = [
+        'title' => 'string',
+        'description' => 'string',
+        'includeAllCases' => 'bool',
+        'cases' => 'int[]',
+        'isAutotest' => 'bool',
+        'environmentId' => 'int',
+        'milestoneId' => 'int',
+        'planId' => 'int',
+        'tags' => 'string[]'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'title' => 'getTitle',
-        'description' => 'getDescription',
-        'includeAllCases' => 'getIncludeAllCases',
-        'cases' => 'getCases',
-        'isAutotest' => 'getIsAutotest',
-        'environmentId' => 'getEnvironmentId',
-        'milestoneId' => 'getMilestoneId',
-        'planId' => 'getPlanId',
-        'tags' => 'getTags'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -72,28 +64,45 @@ class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
         'planId' => 'int64',
         'tags' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'RunCreate';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'title' => 'string',
-        'description' => 'string',
-        'includeAllCases' => 'bool',
-        'cases' => 'int[]',
-        'isAutotest' => 'bool',
-        'environmentId' => 'int',
-        'milestoneId' => 'int',
-        'planId' => 'int',
-        'tags' => 'string[]'
+    protected static $attributeMap = [
+        'title' => 'title',
+        'description' => 'description',
+        'includeAllCases' => 'include_all_cases',
+        'cases' => 'cases',
+        'isAutotest' => 'is_autotest',
+        'environmentId' => 'environment_id',
+        'milestoneId' => 'milestone_id',
+        'planId' => 'plan_id',
+        'tags' => 'tags'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -110,6 +119,66 @@ class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
         'planId' => 'setPlanId',
         'tags' => 'setTags'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'title' => 'getTitle',
+        'description' => 'getDescription',
+        'includeAllCases' => 'getIncludeAllCases',
+        'cases' => 'getCases',
+        'isAutotest' => 'getIsAutotest',
+        'environmentId' => 'getEnvironmentId',
+        'milestoneId' => 'getMilestoneId',
+        'planId' => 'getPlanId',
+        'tags' => 'getTags'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -137,77 +206,78 @@ class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        if ($this->container['title'] === null) {
+            $invalidProperties[] = "'title' can't be null";
+        }
+        if ((mb_strlen($this->container['title']) > 255)) {
+            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 10000)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 10000.";
+        }
+
+        if (!is_null($this->container['environmentId']) && ($this->container['environmentId'] < 1)) {
+            $invalidProperties[] = "invalid value for 'environmentId', must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['milestoneId']) && ($this->container['milestoneId'] < 1)) {
+            $invalidProperties[] = "invalid value for 'milestoneId', must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['planId']) && ($this->container['planId'] < 1)) {
+            $invalidProperties[] = "invalid value for 'planId', must be bigger than or equal to 1.";
+        }
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
+     * Gets title
      *
      * @return string
      */
-    public function __toString()
+    public function getTitle()
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
+        return $this->container['title'];
     }
 
     /**
-     * Gets cases
+     * Sets title
      *
-     * @return int[]|null
+     * @param string $title title
+     *
+     * @return self
      */
-    public function getCases()
+    public function setTitle($title)
     {
-        return $this->container['cases'];
+        if ((mb_strlen($title) > 255)) {
+            throw new InvalidArgumentException('invalid length for $title when calling RunCreate., must be smaller than or equal to 255.');
+        }
+
+        $this->container['title'] = $title;
+
+        return $this;
     }
 
     /**
@@ -221,13 +291,21 @@ class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets environmentId
+     * Sets description
      *
-     * @return int|null
+     * @param string|null $description description
+     *
+     * @return self
      */
-    public function getEnvironmentId()
+    public function setDescription($description)
     {
-        return $this->container['environmentId'];
+        if (!is_null($description) && (mb_strlen($description) > 10000)) {
+            throw new InvalidArgumentException('invalid length for $description when calling RunCreate., must be smaller than or equal to 10000.');
+        }
+
+        $this->container['description'] = $description;
+
+        return $this;
     }
 
     /**
@@ -241,6 +319,44 @@ class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets includeAllCases
+     *
+     * @param bool|null $includeAllCases includeAllCases
+     *
+     * @return self
+     */
+    public function setIncludeAllCases($includeAllCases)
+    {
+        $this->container['includeAllCases'] = $includeAllCases;
+
+        return $this;
+    }
+
+    /**
+     * Gets cases
+     *
+     * @return int[]|null
+     */
+    public function getCases()
+    {
+        return $this->container['cases'];
+    }
+
+    /**
+     * Sets cases
+     *
+     * @param int[]|null $cases cases
+     *
+     * @return self
+     */
+    public function setCases($cases)
+    {
+        $this->container['cases'] = $cases;
+
+        return $this;
+    }
+
+    /**
      * Gets isAutotest
      *
      * @return bool|null
@@ -248,6 +364,49 @@ class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
     public function getIsAutotest()
     {
         return $this->container['isAutotest'];
+    }
+
+    /**
+     * Sets isAutotest
+     *
+     * @param bool|null $isAutotest isAutotest
+     *
+     * @return self
+     */
+    public function setIsAutotest($isAutotest)
+    {
+        $this->container['isAutotest'] = $isAutotest;
+
+        return $this;
+    }
+
+    /**
+     * Gets environmentId
+     *
+     * @return int|null
+     */
+    public function getEnvironmentId()
+    {
+        return $this->container['environmentId'];
+    }
+
+    /**
+     * Sets environmentId
+     *
+     * @param int|null $environmentId environmentId
+     *
+     * @return self
+     */
+    public function setEnvironmentId($environmentId)
+    {
+
+        if (!is_null($environmentId) && ($environmentId < 1)) {
+            throw new InvalidArgumentException('invalid value for $environmentId when calling RunCreate., must be bigger than or equal to 1.');
+        }
+
+        $this->container['environmentId'] = $environmentId;
+
+        return $this;
     }
 
     /**
@@ -261,13 +420,22 @@ class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * The original name of the model.
+     * Sets milestoneId
      *
-     * @return string
+     * @param int|null $milestoneId milestoneId
+     *
+     * @return self
      */
-    public function getModelName()
+    public function setMilestoneId($milestoneId)
     {
-        return self::$openAPIModelName;
+
+        if (!is_null($milestoneId) && ($milestoneId < 1)) {
+            throw new InvalidArgumentException('invalid value for $milestoneId when calling RunCreate., must be bigger than or equal to 1.');
+        }
+
+        $this->container['milestoneId'] = $milestoneId;
+
+        return $this;
     }
 
     /**
@@ -281,6 +449,25 @@ class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets planId
+     *
+     * @param int|null $planId planId
+     *
+     * @return self
+     */
+    public function setPlanId($planId)
+    {
+
+        if (!is_null($planId) && ($planId < 1)) {
+            throw new InvalidArgumentException('invalid value for $planId when calling RunCreate., must be bigger than or equal to 1.');
+        }
+
+        $this->container['planId'] = $planId;
+
+        return $this;
+    }
+
+    /**
      * Gets tags
      *
      * @return string[]|null
@@ -291,25 +478,17 @@ class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets title
+     * Sets tags
      *
-     * @return string
+     * @param string[]|null $tags tags
+     *
+     * @return self
      */
-    public function getTitle()
+    public function setTags($tags)
     {
-        return $this->container['title'];
-    }
+        $this->container['tags'] = $tags;
 
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
-     */
-    public function jsonSerialize()
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        return $this;
     }
 
     /**
@@ -366,152 +545,28 @@ class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets cases
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param int[]|null $cases cases
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setCases($cases)
+    public function jsonSerialize()
     {
-        $this->container['cases'] = $cases;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets description
+     * Gets the string presentation of the object
      *
-     * @param string|null $description description
-     *
-     * @return self
+     * @return string
      */
-    public function setDescription($description)
+    public function __toString()
     {
-        if (!is_null($description) && (mb_strlen($description) > 10000)) {
-            throw new InvalidArgumentException('invalid length for $description when calling RunCreate., must be smaller than or equal to 10000.');
-        }
-
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Sets environmentId
-     *
-     * @param int|null $environmentId environmentId
-     *
-     * @return self
-     */
-    public function setEnvironmentId($environmentId)
-    {
-
-        if (!is_null($environmentId) && ($environmentId < 1)) {
-            throw new InvalidArgumentException('invalid value for $environmentId when calling RunCreate., must be bigger than or equal to 1.');
-        }
-
-        $this->container['environmentId'] = $environmentId;
-
-        return $this;
-    }
-
-    /**
-     * Sets includeAllCases
-     *
-     * @param bool|null $includeAllCases includeAllCases
-     *
-     * @return self
-     */
-    public function setIncludeAllCases($includeAllCases)
-    {
-        $this->container['includeAllCases'] = $includeAllCases;
-
-        return $this;
-    }
-
-    /**
-     * Sets isAutotest
-     *
-     * @param bool|null $isAutotest isAutotest
-     *
-     * @return self
-     */
-    public function setIsAutotest($isAutotest)
-    {
-        $this->container['isAutotest'] = $isAutotest;
-
-        return $this;
-    }
-
-    /**
-     * Sets milestoneId
-     *
-     * @param int|null $milestoneId milestoneId
-     *
-     * @return self
-     */
-    public function setMilestoneId($milestoneId)
-    {
-
-        if (!is_null($milestoneId) && ($milestoneId < 1)) {
-            throw new InvalidArgumentException('invalid value for $milestoneId when calling RunCreate., must be bigger than or equal to 1.');
-        }
-
-        $this->container['milestoneId'] = $milestoneId;
-
-        return $this;
-    }
-
-    /**
-     * Sets planId
-     *
-     * @param int|null $planId planId
-     *
-     * @return self
-     */
-    public function setPlanId($planId)
-    {
-
-        if (!is_null($planId) && ($planId < 1)) {
-            throw new InvalidArgumentException('invalid value for $planId when calling RunCreate., must be bigger than or equal to 1.');
-        }
-
-        $this->container['planId'] = $planId;
-
-        return $this;
-    }
-
-    /**
-     * Sets tags
-     *
-     * @param string[]|null $tags tags
-     *
-     * @return self
-     */
-    public function setTags($tags)
-    {
-        $this->container['tags'] = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        if ((mb_strlen($title) > 255)) {
-            throw new InvalidArgumentException('invalid length for $title when calling RunCreate., must be smaller than or equal to 255.');
-        }
-
-        $this->container['title'] = $title;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -522,52 +577,6 @@ class RunCreate implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        if ($this->container['title'] === null) {
-            $invalidProperties[] = "'title' can't be null";
-        }
-        if ((mb_strlen($this->container['title']) > 255)) {
-            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 255.";
-        }
-
-        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 10000)) {
-            $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 10000.";
-        }
-
-        if (!is_null($this->container['environmentId']) && ($this->container['environmentId'] < 1)) {
-            $invalidProperties[] = "invalid value for 'environmentId', must be bigger than or equal to 1.";
-        }
-
-        if (!is_null($this->container['milestoneId']) && ($this->container['milestoneId'] < 1)) {
-            $invalidProperties[] = "invalid value for 'milestoneId', must be bigger than or equal to 1.";
-        }
-
-        if (!is_null($this->container['planId']) && ($this->container['planId'] < 1)) {
-            $invalidProperties[] = "invalid value for 'planId', must be bigger than or equal to 1.";
-        }
-
-        return $invalidProperties;
     }
 }
 

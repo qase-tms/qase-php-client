@@ -24,13 +24,6 @@ class ResultUpdateStepsTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,18 +38,16 @@ class ResultUpdateStepsTest extends TestCase
     }
 
     /**
-     * Test attribute "attachments"
+     * Clean up after running all test cases
      */
-    public function testPropertyAttachments()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "comment"
+     * Test "ResultUpdateSteps"
      */
-    public function testPropertyComment()
+    public function testResultUpdateSteps()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -81,9 +72,18 @@ class ResultUpdateStepsTest extends TestCase
     }
 
     /**
-     * Test "ResultUpdateSteps"
+     * Test attribute "comment"
      */
-    public function testResultUpdateSteps()
+    public function testPropertyComment()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "attachments"
+     */
+    public function testPropertyAttachments()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -24,13 +24,6 @@ class ResultCreateTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,18 +38,16 @@ class ResultCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "attachments"
+     * Clean up after running all test cases
      */
-    public function testPropertyAttachments()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "case"
+     * Test "ResultCreate"
      */
-    public function testPropertyCase()
+    public function testResultCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,36 +63,9 @@ class ResultCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "comment"
+     * Test attribute "case"
      */
-    public function testPropertyComment()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "defect"
-     */
-    public function testPropertyDefect()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "param"
-     */
-    public function testPropertyParam()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "stacktrace"
-     */
-    public function testPropertyStacktrace()
+    public function testPropertyCase()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -111,15 +75,6 @@ class ResultCreateTest extends TestCase
      * Test attribute "status"
      */
     public function testPropertyStatus()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "steps"
-     */
-    public function testPropertySteps()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -144,9 +99,54 @@ class ResultCreateTest extends TestCase
     }
 
     /**
-     * Test "ResultCreate"
+     * Test attribute "defect"
      */
-    public function testResultCreate()
+    public function testPropertyDefect()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "attachments"
+     */
+    public function testPropertyAttachments()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "stacktrace"
+     */
+    public function testPropertyStacktrace()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "comment"
+     */
+    public function testPropertyComment()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "param"
+     */
+    public function testPropertyParam()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "steps"
+     */
+    public function testPropertySteps()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

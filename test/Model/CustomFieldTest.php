@@ -24,13 +24,6 @@ class CustomFieldTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,36 +38,16 @@ class CustomFieldTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "CustomField"
      */
     public function testCustomField()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "created"
-     */
-    public function testPropertyCreated()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "defaultValue"
-     */
-    public function testPropertyDefaultValue()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "entity"
-     */
-    public function testPropertyEntity()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -90,9 +63,54 @@ class CustomFieldTest extends TestCase
     }
 
     /**
-     * Test attribute "isFilterable"
+     * Test attribute "title"
      */
-    public function testPropertyIsFilterable()
+    public function testPropertyTitle()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "entity"
+     */
+    public function testPropertyEntity()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "type"
+     */
+    public function testPropertyType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "placeholder"
+     */
+    public function testPropertyPlaceholder()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "defaultValue"
+     */
+    public function testPropertyDefaultValue()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "value"
+     */
+    public function testPropertyValue()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -117,36 +135,18 @@ class CustomFieldTest extends TestCase
     }
 
     /**
-     * Test attribute "placeholder"
+     * Test attribute "isFilterable"
      */
-    public function testPropertyPlaceholder()
+    public function testPropertyIsFilterable()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "projectsCodes"
+     * Test attribute "created"
      */
-    public function testPropertyProjectsCodes()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "title"
-     */
-    public function testPropertyTitle()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "type"
-     */
-    public function testPropertyType()
+    public function testPropertyCreated()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -162,9 +162,9 @@ class CustomFieldTest extends TestCase
     }
 
     /**
-     * Test attribute "value"
+     * Test attribute "projectsCodes"
      */
-    public function testPropertyValue()
+    public function testPropertyProjectsCodes()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

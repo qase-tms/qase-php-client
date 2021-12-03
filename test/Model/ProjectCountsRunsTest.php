@@ -24,13 +24,6 @@ class ProjectCountsRunsTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,6 +38,13 @@ class ProjectCountsRunsTest extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "ProjectCountsRuns"
      */
     public function testProjectCountsRuns()
@@ -54,18 +54,18 @@ class ProjectCountsRunsTest extends TestCase
     }
 
     /**
-     * Test attribute "active"
+     * Test attribute "total"
      */
-    public function testPropertyActive()
+    public function testPropertyTotal()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "total"
+     * Test attribute "active"
      */
-    public function testPropertyTotal()
+    public function testPropertyActive()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

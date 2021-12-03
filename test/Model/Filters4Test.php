@@ -24,13 +24,6 @@ class Filters4Test extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,6 +38,13 @@ class Filters4Test extends TestCase
     }
 
     /**
+     * Clean up after running all test cases
+     */
+    public static function tearDownAfterClass(): void
+    {
+    }
+
+    /**
      * Test "Filters4"
      */
     public function testFilters4()
@@ -54,36 +54,9 @@ class Filters4Test extends TestCase
     }
 
     /**
-     * Test attribute "api"
+     * Test attribute "status"
      */
-    public function testPropertyApi()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "caseId"
-     */
-    public function testPropertyCaseId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "fromEndTime"
-     */
-    public function testPropertyFromEndTime()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "member"
-     */
-    public function testPropertyMember()
+    public function testPropertyStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -99,9 +72,36 @@ class Filters4Test extends TestCase
     }
 
     /**
-     * Test attribute "status"
+     * Test attribute "caseId"
      */
-    public function testPropertyStatus()
+    public function testPropertyCaseId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "member"
+     */
+    public function testPropertyMember()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "api"
+     */
+    public function testPropertyApi()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "fromEndTime"
+     */
+    public function testPropertyFromEndTime()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

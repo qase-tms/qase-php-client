@@ -20,25 +20,24 @@ use Qase\Client\ObjectSerializer;
 class ProjectCountsDefects implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'Project_counts_defects';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'total' => 'total',
-        'open' => 'open'
+    protected static $openAPITypes = [
+        'total' => 'int',
+        'open' => 'int'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'total' => 'getTotal',
-        'open' => 'getOpen'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -50,21 +49,38 @@ class ProjectCountsDefects implements ModelInterface, ArrayAccess, JsonSerializa
         'total' => null,
         'open' => null
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'Project_counts_defects';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'total' => 'int',
-        'open' => 'int'
+    protected static $attributeMap = [
+        'total' => 'total',
+        'open' => 'open'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -74,6 +90,59 @@ class ProjectCountsDefects implements ModelInterface, ArrayAccess, JsonSerializa
         'total' => 'setTotal',
         'open' => 'setOpen'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'total' => 'getTotal',
+        'open' => 'getOpen'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -94,77 +163,51 @@ class ProjectCountsDefects implements ModelInterface, ArrayAccess, JsonSerializa
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets total
+     *
+     * @return int|null
+     */
+    public function getTotal()
+    {
+        return $this->container['total'];
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Sets total
      *
-     * @return array
+     * @param int|null $total total
+     *
+     * @return self
      */
-    public static function openAPIFormats()
+    public function setTotal($total)
     {
-        return self::$openAPIFormats;
-    }
+        $this->container['total'] = $total;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
+        return $this;
     }
 
     /**
@@ -178,25 +221,17 @@ class ProjectCountsDefects implements ModelInterface, ArrayAccess, JsonSerializa
     }
 
     /**
-     * Gets total
+     * Sets open
      *
-     * @return int|null
+     * @param int|null $open open
+     *
+     * @return self
      */
-    public function getTotal()
+    public function setOpen($open)
     {
-        return $this->container['total'];
-    }
+        $this->container['open'] = $open;
 
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
-     */
-    public function jsonSerialize()
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        return $this;
     }
 
     /**
@@ -253,31 +288,28 @@ class ProjectCountsDefects implements ModelInterface, ArrayAccess, JsonSerializa
     }
 
     /**
-     * Sets open
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param int|null $open open
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setOpen($open)
+    public function jsonSerialize()
     {
-        $this->container['open'] = $open;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets total
+     * Gets the string presentation of the object
      *
-     * @param int|null $total total
-     *
-     * @return self
+     * @return string
      */
-    public function setTotal($total)
+    public function __toString()
     {
-        $this->container['total'] = $total;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -288,29 +320,6 @@ class ProjectCountsDefects implements ModelInterface, ArrayAccess, JsonSerializa
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

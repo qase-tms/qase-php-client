@@ -24,13 +24,6 @@ class ResultTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
      * Setup before running each test case
      */
     public function setUp(): void
@@ -45,36 +38,16 @@ class ResultTest extends TestCase
     }
 
     /**
-     * Test attribute "attachments"
+     * Clean up after running all test cases
      */
-    public function testPropertyAttachments()
+    public static function tearDownAfterClass(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "caseId"
+     * Test "Result"
      */
-    public function testPropertyCaseId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "comment"
-     */
-    public function testPropertyComment()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "endTime"
-     */
-    public function testPropertyEndTime()
+    public function testResult()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -90,18 +63,9 @@ class ResultTest extends TestCase
     }
 
     /**
-     * Test attribute "isApiResult"
+     * Test attribute "comment"
      */
-    public function testPropertyIsApiResult()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "runId"
-     */
-    public function testPropertyRunId()
+    public function testPropertyComment()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -117,9 +81,18 @@ class ResultTest extends TestCase
     }
 
     /**
-     * Test attribute "status"
+     * Test attribute "runId"
      */
-    public function testPropertyStatus()
+    public function testPropertyRunId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "caseId"
+     */
+    public function testPropertyCaseId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -135,6 +108,24 @@ class ResultTest extends TestCase
     }
 
     /**
+     * Test attribute "status"
+     */
+    public function testPropertyStatus()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "isApiResult"
+     */
+    public function testPropertyIsApiResult()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "timeSpentMs"
      */
     public function testPropertyTimeSpentMs()
@@ -144,9 +135,18 @@ class ResultTest extends TestCase
     }
 
     /**
-     * Test "Result"
+     * Test attribute "endTime"
      */
-    public function testResult()
+    public function testPropertyEndTime()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "attachments"
+     */
+    public function testPropertyAttachments()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

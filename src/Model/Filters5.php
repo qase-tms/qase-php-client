@@ -20,33 +20,28 @@ use Qase\Client\ObjectSerializer;
 class Filters5 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
+
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * The original name of the model.
+     *
+     * @var string
+     */
+    protected static $openAPIModelName = 'filters_5';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $attributeMap = [
-        'search' => 'search',
-        'status' => 'status',
-        'milestone' => 'milestone',
-        'environment' => 'environment',
-        'fromStartTime' => 'from_start_time',
-        'toStartTime' => 'to_start_time'
+    protected static $openAPITypes = [
+        'search' => 'string',
+        'status' => 'string',
+        'milestone' => 'int',
+        'environment' => 'int',
+        'fromStartTime' => 'int',
+        'toStartTime' => 'int'
     ];
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'search' => 'getSearch',
-        'status' => 'getStatus',
-        'milestone' => 'getMilestone',
-        'environment' => 'getEnvironment',
-        'fromStartTime' => 'getFromStartTime',
-        'toStartTime' => 'getToStartTime'
-    ];
+
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -62,25 +57,42 @@ class Filters5 implements ModelInterface, ArrayAccess, JsonSerializable
         'fromStartTime' => 'int64',
         'toStartTime' => 'int64'
     ];
-    /**
-     * The original name of the model.
-     *
-     * @var string
-     */
-    protected static $openAPIModelName = 'filters_5';
+
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPIFormats()
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
      * @var string[]
      */
-    protected static $openAPITypes = [
-        'search' => 'string',
-        'status' => 'string',
-        'milestone' => 'int',
-        'environment' => 'int',
-        'fromStartTime' => 'int',
-        'toStartTime' => 'int'
+    protected static $attributeMap = [
+        'search' => 'search',
+        'status' => 'status',
+        'milestone' => 'milestone',
+        'environment' => 'environment',
+        'fromStartTime' => 'from_start_time',
+        'toStartTime' => 'to_start_time'
     ];
+
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
@@ -94,6 +106,63 @@ class Filters5 implements ModelInterface, ArrayAccess, JsonSerializable
         'fromStartTime' => 'setFromStartTime',
         'toStartTime' => 'setToStartTime'
     ];
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @var string[]
+     */
+    protected static $getters = [
+        'search' => 'getSearch',
+        'status' => 'getStatus',
+        'milestone' => 'getMilestone',
+        'environment' => 'getEnvironment',
+        'fromStartTime' => 'getFromStartTime',
+        'toStartTime' => 'getToStartTime'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     *
+     * @return array
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     *
+     * @return array
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     *
+     * @return string
+     */
+    public function getModelName()
+    {
+        return self::$openAPIModelName;
+    }
+
+
     /**
      * Associative array for storing property values
      *
@@ -118,108 +187,28 @@ class Filters5 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * Show all the invalid properties with reasons.
      *
-     * @return array
+     * @return array invalid properties with reasons
      */
-    public static function attributeMap()
+    public function listInvalidProperties()
     {
-        return self::$attributeMap;
+        $invalidProperties = [];
+
+        return $invalidProperties;
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Validate all the properties in the model
+     * return true if all passed
      *
-     * @return array
+     * @return bool True if all properties are valid
      */
-    public static function getters()
+    public function valid()
     {
-        return self::$getters;
+        return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets environment
-     *
-     * @return int|null
-     */
-    public function getEnvironment()
-    {
-        return $this->container['environment'];
-    }
-
-    /**
-     * Gets fromStartTime
-     *
-     * @return int|null
-     */
-    public function getFromStartTime()
-    {
-        return $this->container['fromStartTime'];
-    }
-
-    /**
-     * Gets milestone
-     *
-     * @return int|null
-     */
-    public function getMilestone()
-    {
-        return $this->container['milestone'];
-    }
-
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
-    }
 
     /**
      * Gets search
@@ -229,6 +218,20 @@ class Filters5 implements ModelInterface, ArrayAccess, JsonSerializable
     public function getSearch()
     {
         return $this->container['search'];
+    }
+
+    /**
+     * Sets search
+     *
+     * @param string|null $search search
+     *
+     * @return self
+     */
+    public function setSearch($search)
+    {
+        $this->container['search'] = $search;
+
+        return $this;
     }
 
     /**
@@ -242,6 +245,92 @@ class Filters5 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
+     * Sets status
+     *
+     * @param string|null $status A list of status values separated by comma. Possible values: active, complete, abort.
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets milestone
+     *
+     * @return int|null
+     */
+    public function getMilestone()
+    {
+        return $this->container['milestone'];
+    }
+
+    /**
+     * Sets milestone
+     *
+     * @param int|null $milestone milestone
+     *
+     * @return self
+     */
+    public function setMilestone($milestone)
+    {
+        $this->container['milestone'] = $milestone;
+
+        return $this;
+    }
+
+    /**
+     * Gets environment
+     *
+     * @return int|null
+     */
+    public function getEnvironment()
+    {
+        return $this->container['environment'];
+    }
+
+    /**
+     * Sets environment
+     *
+     * @param int|null $environment environment
+     *
+     * @return self
+     */
+    public function setEnvironment($environment)
+    {
+        $this->container['environment'] = $environment;
+
+        return $this;
+    }
+
+    /**
+     * Gets fromStartTime
+     *
+     * @return int|null
+     */
+    public function getFromStartTime()
+    {
+        return $this->container['fromStartTime'];
+    }
+
+    /**
+     * Sets fromStartTime
+     *
+     * @param int|null $fromStartTime fromStartTime
+     *
+     * @return self
+     */
+    public function setFromStartTime($fromStartTime)
+    {
+        $this->container['fromStartTime'] = $fromStartTime;
+
+        return $this;
+    }
+
+    /**
      * Gets toStartTime
      *
      * @return int|null
@@ -252,15 +341,17 @@ class Filters5 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     * Sets toStartTime
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @param int|null $toStartTime toStartTime
+     *
+     * @return self
      */
-    public function jsonSerialize()
+    public function setToStartTime($toStartTime)
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        $this->container['toStartTime'] = $toStartTime;
+
+        return $this;
     }
 
     /**
@@ -317,87 +408,28 @@ class Filters5 implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Sets environment
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @param int|null $environment environment
-     *
-     * @return self
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
      */
-    public function setEnvironment($environment)
+    public function jsonSerialize()
     {
-        $this->container['environment'] = $environment;
-
-        return $this;
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Sets fromStartTime
+     * Gets the string presentation of the object
      *
-     * @param int|null $fromStartTime fromStartTime
-     *
-     * @return self
+     * @return string
      */
-    public function setFromStartTime($fromStartTime)
+    public function __toString()
     {
-        $this->container['fromStartTime'] = $fromStartTime;
-
-        return $this;
-    }
-
-    /**
-     * Sets milestone
-     *
-     * @param int|null $milestone milestone
-     *
-     * @return self
-     */
-    public function setMilestone($milestone)
-    {
-        $this->container['milestone'] = $milestone;
-
-        return $this;
-    }
-
-    /**
-     * Sets search
-     *
-     * @param string|null $search search
-     *
-     * @return self
-     */
-    public function setSearch($search)
-    {
-        $this->container['search'] = $search;
-
-        return $this;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status A list of status values separated by comma. Possible values: active, complete, abort.
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Sets toStartTime
-     *
-     * @param int|null $toStartTime toStartTime
-     *
-     * @return self
-     */
-    public function setToStartTime($toStartTime)
-    {
-        $this->container['toStartTime'] = $toStartTime;
-
-        return $this;
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
     }
 
     /**
@@ -408,29 +440,6 @@ class Filters5 implements ModelInterface, ArrayAccess, JsonSerializable
     public function toHeaderValue()
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
     }
 }
 

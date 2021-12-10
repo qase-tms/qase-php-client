@@ -2,7 +2,7 @@
     "name": "qase/api",
     "description": "Qase TMS API client.",
     "homepage": "https://developers.qase.io",
-    "version": "1.0.0",
+    "version": "1.0.0-alpha.0",
     "type": "library",
     "license": "Apache-2.0",
     "authors": [
@@ -22,7 +22,7 @@
         "sdk"
     ],
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": "^7.4 || ^8.0",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",

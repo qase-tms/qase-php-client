@@ -4,16 +4,16 @@ All URIs are relative to https://api.qase.io/v1.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteAttachment()**](AttachmentsApi.md#deleteAttachment) | **DELETE** /attachment/{code_or_hash} | Remove attachment by Hash.
-[**getAttachment()**](AttachmentsApi.md#getAttachment) | **GET** /attachment/{code_or_hash} | Get attachment by Hash.
+[**deleteAttachment()**](AttachmentsApi.md#deleteAttachment) | **DELETE** /attachment/{code|hash} | Remove attachment by Hash.
+[**getAttachment()**](AttachmentsApi.md#getAttachment) | **GET** /attachment/{code|hash} | Get attachment by Hash.
 [**getAttachments()**](AttachmentsApi.md#getAttachments) | **GET** /attachment | Get all attachments.
-[**uploadAttachment()**](AttachmentsApi.md#uploadAttachment) | **POST** /attachment/{code_or_hash} | Upload attachment.
+[**uploadAttachment()**](AttachmentsApi.md#uploadAttachment) | **POST** /attachment/{code|hash} | Upload attachment.
 
 
 ## `deleteAttachment()`
 
 ```php
-deleteAttachment($codeOrHash): \Qase\Client\Model\HashResponse
+deleteAttachment($hash): \Qase\Client\Model\HashResponse
 ```
 
 Remove attachment by Hash.
@@ -39,10 +39,10 @@ $apiInstance = new Qase\Client\Api\AttachmentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$codeOrHash = 'codeOrHash_example'; // string | Code or Hash.
+$hash = 'hash_example'; // string | Hash.
 
 try {
-    $result = $apiInstance->deleteAttachment($codeOrHash);
+    $result = $apiInstance->deleteAttachment($hash);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AttachmentsApi->deleteAttachment: ', $e->getMessage(), PHP_EOL;
@@ -53,7 +53,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **codeOrHash** | **string**| Code or Hash. |
+ **hash** | **string**| Hash. |
 
 ### Return type
 
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 ## `getAttachment()`
 
 ```php
-getAttachment($codeOrHash): \Qase\Client\Model\AttachmentResponse
+getAttachment($hash): \Qase\Client\Model\AttachmentResponse
 ```
 
 Get attachment by Hash.
@@ -101,10 +101,10 @@ $apiInstance = new Qase\Client\Api\AttachmentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$codeOrHash = 'codeOrHash_example'; // string | Code or Hash.
+$hash = 'hash_example'; // string | Hash.
 
 try {
-    $result = $apiInstance->getAttachment($codeOrHash);
+    $result = $apiInstance->getAttachment($hash);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AttachmentsApi->getAttachment: ', $e->getMessage(), PHP_EOL;
@@ -115,7 +115,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **codeOrHash** | **string**| Code or Hash. |
+ **hash** | **string**| Hash. |
 
 ### Return type
 
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 ## `uploadAttachment()`
 
 ```php
-uploadAttachment($codeOrHash, $file): \Qase\Client\Model\AttachmentUploadsResponse
+uploadAttachment($code, $file): \Qase\Client\Model\AttachmentUploadsResponse
 ```
 
 Upload attachment.
@@ -227,11 +227,11 @@ $apiInstance = new Qase\Client\Api\AttachmentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$codeOrHash = 'codeOrHash_example'; // string | Code or Hash.
+$code = 'code_example'; // string | Code of project, where to search entities.
 $file = array("/path/to/file.txt"); // \SplFileObject[]
 
 try {
-    $result = $apiInstance->uploadAttachment($codeOrHash, $file);
+    $result = $apiInstance->uploadAttachment($code, $file);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AttachmentsApi->uploadAttachment: ', $e->getMessage(), PHP_EOL;
@@ -242,7 +242,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **codeOrHash** | **string**| Code or Hash. |
+ **code** | **string**| Code of project, where to search entities. |
  **file** | **\SplFileObject[]**|  | [optional]
 
 ### Return type

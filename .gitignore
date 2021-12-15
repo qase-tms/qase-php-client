@@ -1,1 +1,5 @@
+# dependencies
 /vendor/
+
+# code coverage and quality reports
+.phpunit.result.cache

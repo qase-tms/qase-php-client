@@ -28,6 +28,7 @@
 
 namespace Qase\Client\Test\Api;
 
+use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Qase\Client\Api\RunsApi;
 use Qase\Client\Configuration;
@@ -97,7 +98,7 @@ class RunsApiTest extends TestCase
      */
     public function testCreateRun()
     {
-        $client = new \GuzzleHttp\Client([]);
+        $client = new Client([]);
 
         $config = Configuration::getDefaultConfiguration()
             ->setHost(getenv('QASE_API_BASE_URL'))

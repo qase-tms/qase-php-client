@@ -1,47 +1,53 @@
 {
-    "name": "qase/api",
-    "description": "Qase TMS API client.",
-    "homepage": "https://developers.qase.io",
-    "version": "1.0.0-alpha.0",
-    "type": "library",
-    "license": "Apache-2.0",
-    "authors": [
-        {
-            "name": "Kamil Samigullin",
-            "email": "kamil@samigullin.info"
-        }
-    ],
-    "keywords": [
-        "qase",
-        "tms",
-        "api",
-        "rest",
-        "http",
-        "openapi",
-        "php",
-        "client"
-    ],
-    "require": {
-        "php": "^7.4 || ^8.0",
-        "ext-curl": "*",
-        "ext-json": "*",
-        "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "^6.5 || ^7.3",
-        "guzzlehttp/psr7": "^1.6 || ^2.0"
+  "name": "qase/api",
+  "description": "Qase TMS API client.",
+  "homepage": "https://developers.qase.io",
+  "version": "1.0.0-alpha.1",
+  "type": "library",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Kamil Samigullin",
+      "email": "kamil@samigullin.info"
     },
-    "require-dev": {
-        "phpunit/phpunit": "^8.0 || ^9.0",
-        "friendsofphp/php-cs-fixer": "^2.12"
-    },
-    "autoload": {
-        "psr-4": {
-            "Qase\\Client\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": { "Qase\\Client\\Test\\" : "test/" }
-    },
-    "scripts": {
-        "test": "phpunit"
+    {
+      "name": "Sergey Skaridov",
+      "email": "s.skaridov@gmail.com"
     }
+  ],
+  "keywords": [
+    "qase",
+    "tms",
+    "api",
+    "rest",
+    "http",
+    "openapi",
+    "php",
+    "client"
+  ],
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "guzzlehttp/guzzle": "^6.5 || ^7.3",
+    "guzzlehttp/psr7": "^1.6 || ^2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0 || ^9.0",
+    "friendsofphp/php-cs-fixer": "^2.12"
+  },
+  "autoload": {
+    "psr-4": {
+      "Qase\\Client\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Qase\\Client\\Test\\": "test/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
 }

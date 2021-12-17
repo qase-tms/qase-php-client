@@ -2,7 +2,6 @@
   "name": "qase/api",
   "description": "Qase TMS API client.",
   "homepage": "https://developers.qase.io",
-  "version": "1.0.0-alpha.1",
   "type": "library",
   "license": "Apache-2.0",
   "authors": [

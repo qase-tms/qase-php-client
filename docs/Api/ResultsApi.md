@@ -4,10 +4,10 @@ All URIs are relative to https://api.qase.io/v1.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createResult()**](ResultsApi.md#createResult) | **POST** /result/{code}/{id_or_hash} | Create test run result.
+[**createResult()**](ResultsApi.md#createResult) | **POST** /result/{code}/{id} | Create test run result.
 [**createResultBulk()**](ResultsApi.md#createResultBulk) | **POST** /result/{code}/{id}/bulk | Bulk create test run result.
 [**deleteResult()**](ResultsApi.md#deleteResult) | **DELETE** /result/{code}/{id}/{hash} | Delete test run result.
-[**getResult()**](ResultsApi.md#getResult) | **GET** /result/{code}/{id_or_hash} | Get test run result by code.
+[**getResult()**](ResultsApi.md#getResult) | **GET** /result/{code}/{hash} | Get test run result by code.
 [**getResults()**](ResultsApi.md#getResults) | **GET** /result/{code} | Get all test run results.
 [**updateResult()**](ResultsApi.md#updateResult) | **PATCH** /result/{code}/{id}/{hash} | Update test run result.
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 ## `createResult()`
 
 ```php
-createResult($code, $idOrHash, $resultCreate): Response
+createResult($code, $id, $resultCreate): Response
 ```
 
 Create test run result.
@@ -42,11 +42,11 @@ $apiInstance = new Qase\Client\Api\ResultsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$idOrHash = new \Qase\Client\Model\OneOfStringInteger(); // OneOfStringInteger | Id or Hash.
+$id = 56; // int | Identifier.
 $resultCreate = new \Qase\Client\Model\ResultCreate(); // \Qase\Client\Model\ResultCreate
 
 try {
-    $result = $apiInstance->createResult($code, $idOrHash, $resultCreate);
+    $result = $apiInstance->createResult($code, $id, $resultCreate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResultsApi->createResult: ', $e->getMessage(), PHP_EOL;
@@ -58,7 +58,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
- **idOrHash** | [**OneOfStringInteger**](../Model/.md)| Id or Hash. |
+ **id** | **int**| Identifier. |
  **resultCreate** | [**\Qase\Client\Model\ResultCreate**](../Model/ResultCreate.md)|  |
 
 ### Return type
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 ## `getResult()`
 
 ```php
-getResult($code, $idOrHash): \Qase\Client\Model\ResultResponse
+getResult($code, $hash): \Qase\Client\Model\ResultResponse
 ```
 
 Get test run result by code.
@@ -240,10 +240,10 @@ $apiInstance = new Qase\Client\Api\ResultsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$idOrHash = new \Qase\Client\Model\OneOfStringInteger(); // OneOfStringInteger | Id or Hash.
+$hash = 'hash_example'; // string | Hash.
 
 try {
-    $result = $apiInstance->getResult($code, $idOrHash);
+    $result = $apiInstance->getResult($code, $hash);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResultsApi->getResult: ', $e->getMessage(), PHP_EOL;
@@ -255,7 +255,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
- **idOrHash** | [**OneOfStringInteger**](../Model/.md)| Id or Hash. |
+ **hash** | **string**| Hash. |
 
 ### Return type
 

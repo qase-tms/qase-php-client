@@ -4,10 +4,10 @@ All URIs are relative to https://api.qase.io/v1.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteAttachment()**](AttachmentsApi.md#deleteAttachment) | **DELETE** /attachment/{code|hash} | Remove attachment by Hash.
-[**getAttachment()**](AttachmentsApi.md#getAttachment) | **GET** /attachment/{code|hash} | Get attachment by Hash.
+[**deleteAttachment()**](AttachmentsApi.md#deleteAttachment) | **DELETE** /attachment/{hash} | Remove attachment by Hash.
+[**getAttachment()**](AttachmentsApi.md#getAttachment) | **GET** /attachment/{hash} | Get attachment by Hash.
 [**getAttachments()**](AttachmentsApi.md#getAttachments) | **GET** /attachment | Get all attachments.
-[**uploadAttachment()**](AttachmentsApi.md#uploadAttachment) | **POST** /attachment/{code|hash} | Upload attachment.
+[**uploadAttachment()**](AttachmentsApi.md#uploadAttachment) | **POST** /attachment/{code} | Upload attachment.
 
 
 ## `deleteAttachment()`

@@ -8,6 +8,6 @@ Name | Type | Description | Notes
 **expectedResult** | **string** |  | [optional]
 **data** | **string** |  | [optional]
 **position** | **int** |  | [optional]
-**attachments** | **string[]** |  | [optional]
+**attachments** | **string[]** | A list of Attachment hashes. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

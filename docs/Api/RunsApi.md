@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
 ## `getRun()`
 
 ```php
-getRun($code, $id): \Qase\Client\Model\RunResponse
+getRun($code, $id, $include): \Qase\Client\Model\RunResponse
 ```
 
 Get a specific run.
@@ -235,9 +235,10 @@ $apiInstance = new Qase\Client\Api\RunsApi(
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
 $id = 56; // int | Identifier.
+$include = 'include_example'; // string | Add this param to include a list of test cases into response. Possible value: cases
 
 try {
-    $result = $apiInstance->getRun($code, $id);
+    $result = $apiInstance->getRun($code, $id, $include);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RunsApi->getRun: ', $e->getMessage(), PHP_EOL;
@@ -250,6 +251,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
  **id** | **int**| Identifier. |
+ **include** | **string**| Add this param to include a list of test cases into response. Possible value: cases | [optional]
 
 ### Return type
 
@@ -301,7 +303,7 @@ $code = 'code_example'; // string | Code of project, where to search entities.
 $filters = array('key' => new \Qase\Client\Model\Filters5()); // Filters5
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
-$include = array('include_example'); // string[] | Add this param to include a list of test cases into response. Possible value: cases
+$include = 'include_example'; // string | Add this param to include a list of test cases into response. Possible value: cases
 
 try {
     $result = $apiInstance->getRuns($code, $filters, $limit, $offset, $include);
@@ -319,7 +321,7 @@ Name | Type | Description  | Notes
  **filters** | [**Filters5**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
- **include** | [**string[]**](../Model/string.md)| Add this param to include a list of test cases into response. Possible value: cases | [optional]
+ **include** | **string**| Add this param to include a list of test cases into response. Possible value: cases | [optional]
 
 ### Return type
 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **description** | **string** |  | [optional]
 **status** | **string** |  | [optional]
 **type** | **string** |  | [optional]
-**created** | **\DateTime** |  | [optional]
-**updated** | **\DateTime** |  | [optional]
+**createdAt** | **\DateTime** |  | [optional]
+**updatedAt** | **\DateTime** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

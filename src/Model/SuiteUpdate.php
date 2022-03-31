@@ -1,6 +1,6 @@
 <?php
 /**
- * Plan
+ * SuiteUpdate
  *
  * PHP version 7.3
  *
@@ -33,7 +33,7 @@ use ArrayAccess;
 use Qase\Client\ObjectSerializer;
 
 /**
- * Plan Class Doc Comment
+ * SuiteUpdate Class Doc Comment
  *
  * @category Class
  * @package  Qase\Client
@@ -43,7 +43,7 @@ use Qase\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
+class SuiteUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'Plan';
+    protected static $openAPIModelName = 'SuiteUpdate';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -60,14 +60,10 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'id' => 'int',
         'title' => 'string',
         'description' => 'string',
-        'casesCount' => 'int',
-        'createdAt' => '\DateTime',
-        'updatedAt' => '\DateTime',
-        'created' => 'string',
-        'updated' => 'string'
+        'preconditions' => 'string',
+        'parentId' => 'int'
     ];
 
     /**
@@ -78,14 +74,10 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'id' => 'int64',
         'title' => null,
         'description' => null,
-        'casesCount' => null,
-        'createdAt' => 'date-time',
-        'updatedAt' => 'date-time',
-        'created' => null,
-        'updated' => null
+        'preconditions' => null,
+        'parentId' => 'int64'
     ];
 
     /**
@@ -115,14 +107,10 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
         'title' => 'title',
         'description' => 'description',
-        'casesCount' => 'cases_count',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'created' => 'created',
-        'updated' => 'updated'
+        'preconditions' => 'preconditions',
+        'parentId' => 'parent_id'
     ];
 
     /**
@@ -131,14 +119,10 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
         'title' => 'setTitle',
         'description' => 'setDescription',
-        'casesCount' => 'setCasesCount',
-        'createdAt' => 'setCreatedAt',
-        'updatedAt' => 'setUpdatedAt',
-        'created' => 'setCreated',
-        'updated' => 'setUpdated'
+        'preconditions' => 'setPreconditions',
+        'parentId' => 'setParentId'
     ];
 
     /**
@@ -147,14 +131,10 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
         'title' => 'getTitle',
         'description' => 'getDescription',
-        'casesCount' => 'getCasesCount',
-        'createdAt' => 'getCreatedAt',
-        'updatedAt' => 'getUpdatedAt',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated'
+        'preconditions' => 'getPreconditions',
+        'parentId' => 'getParentId'
     ];
 
     /**
@@ -214,14 +194,10 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = $data['id'] ?? null;
         $this->container['title'] = $data['title'] ?? null;
         $this->container['description'] = $data['description'] ?? null;
-        $this->container['casesCount'] = $data['casesCount'] ?? null;
-        $this->container['createdAt'] = $data['createdAt'] ?? null;
-        $this->container['updatedAt'] = $data['updatedAt'] ?? null;
-        $this->container['created'] = $data['created'] ?? null;
-        $this->container['updated'] = $data['updated'] ?? null;
+        $this->container['preconditions'] = $data['preconditions'] ?? null;
+        $this->container['parentId'] = $data['parentId'] ?? null;
     }
 
     /**
@@ -249,30 +225,6 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
      * Gets title
      *
      * @return string|null
@@ -285,7 +237,7 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets title
      *
-     * @param string|null $title title
+     * @param string|null $title Test suite title.
      *
      * @return self
      */
@@ -309,7 +261,7 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description description
+     * @param string|null $description Test suite description.
      *
      * @return self
      */
@@ -321,125 +273,49 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets casesCount
+     * Gets preconditions
+     *
+     * @return string|null
+     */
+    public function getPreconditions()
+    {
+        return $this->container['preconditions'];
+    }
+
+    /**
+     * Sets preconditions
+     *
+     * @param string|null $preconditions Test suite preconditions
+     *
+     * @return self
+     */
+    public function setPreconditions($preconditions)
+    {
+        $this->container['preconditions'] = $preconditions;
+
+        return $this;
+    }
+
+    /**
+     * Gets parentId
      *
      * @return int|null
      */
-    public function getCasesCount()
+    public function getParentId()
     {
-        return $this->container['casesCount'];
+        return $this->container['parentId'];
     }
 
     /**
-     * Sets casesCount
+     * Sets parentId
      *
-     * @param int|null $casesCount casesCount
+     * @param int|null $parentId Parent suite ID
      *
      * @return self
      */
-    public function setCasesCount($casesCount)
+    public function setParentId($parentId)
     {
-        $this->container['casesCount'] = $casesCount;
-
-        return $this;
-    }
-
-    /**
-     * Gets createdAt
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['createdAt'];
-    }
-
-    /**
-     * Sets createdAt
-     *
-     * @param \DateTime|null $createdAt createdAt
-     *
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->container['createdAt'] = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Gets updatedAt
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updatedAt'];
-    }
-
-    /**
-     * Sets updatedAt
-     *
-     * @param \DateTime|null $updatedAt updatedAt
-     *
-     * @return self
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->container['updatedAt'] = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Gets created
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Sets created
-     *
-     * @param string|null $created Deprecated, use the `created_at` property instead.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setCreated($created)
-    {
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param string|null $updated Deprecated, use the `updated_at` property instead.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
+        $this->container['parentId'] = $parentId;
 
         return $this;
     }

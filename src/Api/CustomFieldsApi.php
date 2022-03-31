@@ -86,9 +86,9 @@ class CustomFieldsApi
      */
     public function __construct(
         ClientInterface $client = null,
-        Configuration   $config = null,
-        HeaderSelector  $selector = null,
-                        $hostIndex = 0
+        Configuration $config = null,
+        HeaderSelector $selector = null,
+        $hostIndex = 0
     )
     {
         $this->client = $client ?: new Client();
@@ -1167,11 +1167,14 @@ class CustomFieldsApi
         $multipart = false;
 
         // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
-        }
         if ($filters !== null) {
-            $queryParams['filters'] = $filters;
+            if ('form' === 'form' && is_array($filters)) {
+                foreach ($filters as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filters'] = $filters;
+            }
         }
         // query params
         if ($limit !== null) {

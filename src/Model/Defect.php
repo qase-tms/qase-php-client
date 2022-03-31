@@ -68,14 +68,15 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'milestoneId' => 'int',
         'customFields' => '\Qase\Client\Model\CustomFieldValue[]',
         'attachments' => '\Qase\Client\Model\Attachment[]',
-        'created' => '\DateTime',
-        'updated' => '\DateTime',
-        'deleted' => '\DateTime',
-        'resolved' => '\DateTime',
+        'resolvedAt' => '\DateTime',
         'projectId' => 'int',
         'memberId' => 'int',
         'externalData' => 'string',
-        'tags' => '\Qase\Client\Model\TagValue[]'
+        'tags' => '\Qase\Client\Model\TagValue[]',
+        'createdAt' => '\DateTime',
+        'updatedAt' => '\DateTime',
+        'created' => 'string',
+        'updated' => 'string'
     ];
 
     /**
@@ -94,14 +95,15 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'milestoneId' => 'int64',
         'customFields' => null,
         'attachments' => null,
-        'created' => 'date-time',
-        'updated' => 'date-time',
-        'deleted' => 'date-time',
-        'resolved' => 'date-time',
+        'resolvedAt' => 'date-time',
         'projectId' => 'int64',
         'memberId' => 'int64',
         'externalData' => null,
-        'tags' => null
+        'tags' => null,
+        'createdAt' => 'date-time',
+        'updatedAt' => 'date-time',
+        'created' => null,
+        'updated' => null
     ];
 
     /**
@@ -139,14 +141,15 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'milestoneId' => 'milestone_id',
         'customFields' => 'custom_fields',
         'attachments' => 'attachments',
-        'created' => 'created',
-        'updated' => 'updated',
-        'deleted' => 'deleted',
-        'resolved' => 'resolved',
+        'resolvedAt' => 'resolved_at',
         'projectId' => 'project_id',
         'memberId' => 'member_id',
         'externalData' => 'external_data',
-        'tags' => 'tags'
+        'tags' => 'tags',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
+        'created' => 'created',
+        'updated' => 'updated'
     ];
 
     /**
@@ -163,14 +166,15 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'milestoneId' => 'setMilestoneId',
         'customFields' => 'setCustomFields',
         'attachments' => 'setAttachments',
-        'created' => 'setCreated',
-        'updated' => 'setUpdated',
-        'deleted' => 'setDeleted',
-        'resolved' => 'setResolved',
+        'resolvedAt' => 'setResolvedAt',
         'projectId' => 'setProjectId',
         'memberId' => 'setMemberId',
         'externalData' => 'setExternalData',
-        'tags' => 'setTags'
+        'tags' => 'setTags',
+        'createdAt' => 'setCreatedAt',
+        'updatedAt' => 'setUpdatedAt',
+        'created' => 'setCreated',
+        'updated' => 'setUpdated'
     ];
 
     /**
@@ -187,14 +191,15 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'milestoneId' => 'getMilestoneId',
         'customFields' => 'getCustomFields',
         'attachments' => 'getAttachments',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated',
-        'deleted' => 'getDeleted',
-        'resolved' => 'getResolved',
+        'resolvedAt' => 'getResolvedAt',
         'projectId' => 'getProjectId',
         'memberId' => 'getMemberId',
         'externalData' => 'getExternalData',
-        'tags' => 'getTags'
+        'tags' => 'getTags',
+        'createdAt' => 'getCreatedAt',
+        'updatedAt' => 'getUpdatedAt',
+        'created' => 'getCreated',
+        'updated' => 'getUpdated'
     ];
 
     /**
@@ -262,14 +267,15 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['milestoneId'] = $data['milestoneId'] ?? null;
         $this->container['customFields'] = $data['customFields'] ?? null;
         $this->container['attachments'] = $data['attachments'] ?? null;
-        $this->container['created'] = $data['created'] ?? null;
-        $this->container['updated'] = $data['updated'] ?? null;
-        $this->container['deleted'] = $data['deleted'] ?? null;
-        $this->container['resolved'] = $data['resolved'] ?? null;
+        $this->container['resolvedAt'] = $data['resolvedAt'] ?? null;
         $this->container['projectId'] = $data['projectId'] ?? null;
         $this->container['memberId'] = $data['memberId'] ?? null;
         $this->container['externalData'] = $data['externalData'] ?? null;
         $this->container['tags'] = $data['tags'] ?? null;
+        $this->container['createdAt'] = $data['createdAt'] ?? null;
+        $this->container['updatedAt'] = $data['updatedAt'] ?? null;
+        $this->container['created'] = $data['created'] ?? null;
+        $this->container['updated'] = $data['updated'] ?? null;
     }
 
     /**
@@ -489,97 +495,25 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets created
+     * Gets resolvedAt
      *
      * @return \DateTime|null
      */
-    public function getCreated()
+    public function getResolvedAt()
     {
-        return $this->container['created'];
+        return $this->container['resolvedAt'];
     }
 
     /**
-     * Sets created
+     * Sets resolvedAt
      *
-     * @param \DateTime|null $created created
+     * @param \DateTime|null $resolvedAt resolvedAt
      *
      * @return self
      */
-    public function setCreated($created)
+    public function setResolvedAt($resolvedAt)
     {
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param \DateTime|null $updated updated
-     *
-     * @return self
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Gets deleted
-     *
-     * @return \DateTime|null
-     */
-    public function getDeleted()
-    {
-        return $this->container['deleted'];
-    }
-
-    /**
-     * Sets deleted
-     *
-     * @param \DateTime|null $deleted deleted
-     *
-     * @return self
-     */
-    public function setDeleted($deleted)
-    {
-        $this->container['deleted'] = $deleted;
-
-        return $this;
-    }
-
-    /**
-     * Gets resolved
-     *
-     * @return \DateTime|null
-     */
-    public function getResolved()
-    {
-        return $this->container['resolved'];
-    }
-
-    /**
-     * Sets resolved
-     *
-     * @param \DateTime|null $resolved resolved
-     *
-     * @return self
-     */
-    public function setResolved($resolved)
-    {
-        $this->container['resolved'] = $resolved;
+        $this->container['resolvedAt'] = $resolvedAt;
 
         return $this;
     }
@@ -676,6 +610,106 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setTags($tags)
     {
         $this->container['tags'] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Gets createdAt
+     *
+     * @return \DateTime|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['createdAt'];
+    }
+
+    /**
+     * Sets createdAt
+     *
+     * @param \DateTime|null $createdAt createdAt
+     *
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->container['createdAt'] = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets updatedAt
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updatedAt'];
+    }
+
+    /**
+     * Sets updatedAt
+     *
+     * @param \DateTime|null $updatedAt updatedAt
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->container['updatedAt'] = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets created
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getCreated()
+    {
+        return $this->container['created'];
+    }
+
+    /**
+     * Sets created
+     *
+     * @param string|null $created Deprecated, use the `created_at` property instead.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setCreated($created)
+    {
+        $this->container['created'] = $created;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getUpdated()
+    {
+        return $this->container['updated'];
+    }
+
+    /**
+     * Sets updated
+     *
+     * @param string|null $updated Deprecated, use the `updated_at` property instead.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setUpdated($updated)
+    {
+        $this->container['updated'] = $updated;
 
         return $this;
     }

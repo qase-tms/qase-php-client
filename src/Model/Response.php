@@ -60,8 +60,7 @@ class Response implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'status' => 'bool',
-        'result' => 'object'
+        'status' => 'bool'
     ];
 
     /**
@@ -72,8 +71,7 @@ class Response implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'status' => null,
-        'result' => null
+        'status' => null
     ];
 
     /**
@@ -103,8 +101,7 @@ class Response implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'status' => 'status',
-        'result' => 'result'
+        'status' => 'status'
     ];
 
     /**
@@ -113,8 +110,7 @@ class Response implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'status' => 'setStatus',
-        'result' => 'setResult'
+        'status' => 'setStatus'
     ];
 
     /**
@@ -123,8 +119,7 @@ class Response implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'status' => 'getStatus',
-        'result' => 'getResult'
+        'status' => 'getStatus'
     ];
 
     /**
@@ -185,7 +180,6 @@ class Response implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->container['status'] = $data['status'] ?? null;
-        $this->container['result'] = $data['result'] ?? null;
     }
 
     /**
@@ -232,30 +226,6 @@ class Response implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setStatus($status)
     {
         $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets result
-     *
-     * @return object|null
-     */
-    public function getResult()
-    {
-        return $this->container['result'];
-    }
-
-    /**
-     * Sets result
-     *
-     * @param object|null $result result
-     *
-     * @return self
-     */
-    public function setResult($result)
-    {
-        $this->container['result'] = $result;
 
         return $this;
     }

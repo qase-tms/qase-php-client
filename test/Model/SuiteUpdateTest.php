@@ -1,6 +1,6 @@
 <?php
 /**
- * MilestoneTest
+ * SuiteUpdateTest
  *
  * PHP version 7.3
  *
@@ -32,15 +32,15 @@ namespace Qase\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * MilestoneTest Class Doc Comment
+ * SuiteUpdateTest Class Doc Comment
  *
  * @category    Class
- * @description Milestone
+ * @description SuiteUpdate
  * @package     Qase\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class MilestoneTest extends TestCase
+class SuiteUpdateTest extends TestCase
 {
 
     /**
@@ -72,18 +72,9 @@ class MilestoneTest extends TestCase
     }
 
     /**
-     * Test "Milestone"
+     * Test "SuiteUpdate"
      */
-    public function testMilestone()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "id"
-     */
-    public function testPropertyId()
+    public function testSuiteUpdate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -108,54 +99,18 @@ class MilestoneTest extends TestCase
     }
 
     /**
-     * Test attribute "status"
+     * Test attribute "preconditions"
      */
-    public function testPropertyStatus()
+    public function testPropertyPreconditions()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "dueDate"
+     * Test attribute "parentId"
      */
-    public function testPropertyDueDate()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "created"
-     */
-    public function testPropertyCreated()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "updated"
-     */
-    public function testPropertyUpdated()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "createdAt"
-     */
-    public function testPropertyCreatedAt()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "updatedAt"
-     */
-    public function testPropertyUpdatedAt()
+    public function testPropertyParentId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

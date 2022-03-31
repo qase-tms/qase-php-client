@@ -60,7 +60,7 @@ class SearchResponseAllOfResult implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $openAPITypes = [
-        'entities' => 'OneOfTestCaseDefectRunResultPlanRequirement[]'
+        'entities' => 'OneOfRunResultRequirementQqlTestCaseQqlDefectQqlPlan[]'
     ];
 
     /**
@@ -209,7 +209,7 @@ class SearchResponseAllOfResult implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets entities
      *
-     * @return OneOfTestCaseDefectRunResultPlanRequirement[]|null
+     * @return OneOfRunResultRequirementQqlTestCaseQqlDefectQqlPlan[]|null
      */
     public function getEntities()
     {
@@ -219,7 +219,7 @@ class SearchResponseAllOfResult implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets entities
      *
-     * @param OneOfTestCaseDefectRunResultPlanRequirement[]|null $entities entities
+     * @param OneOfRunResultRequirementQqlTestCaseQqlDefectQqlPlan[]|null $entities entities
      *
      * @return self
      */

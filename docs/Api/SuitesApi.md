@@ -276,7 +276,7 @@ Name | Type | Description  | Notes
 ## `updateSuite()`
 
 ```php
-updateSuite($code, $id, $suiteCreate): \Qase\Client\Model\IdResponse
+updateSuite($code, $id, $suiteUpdate): \Qase\Client\Model\IdResponse
 ```
 
 Update test suite.
@@ -304,10 +304,10 @@ $apiInstance = new Qase\Client\Api\SuitesApi(
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
 $id = 56; // int | Identifier.
-$suiteCreate = new \Qase\Client\Model\SuiteCreate(); // \Qase\Client\Model\SuiteCreate
+$suiteUpdate = new \Qase\Client\Model\SuiteUpdate(); // \Qase\Client\Model\SuiteUpdate
 
 try {
-    $result = $apiInstance->updateSuite($code, $id, $suiteCreate);
+    $result = $apiInstance->updateSuite($code, $id, $suiteUpdate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SuitesApi->updateSuite: ', $e->getMessage(), PHP_EOL;
@@ -320,7 +320,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
  **id** | **int**| Identifier. |
- **suiteCreate** | [**\Qase\Client\Model\SuiteCreate**](../Model/SuiteCreate.md)|  |
+ **suiteUpdate** | [**\Qase\Client\Model\SuiteUpdate**](../Model/SuiteUpdate.md)|  |
 
 ### Return type
 

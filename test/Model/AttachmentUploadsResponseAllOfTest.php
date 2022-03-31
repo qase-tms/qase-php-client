@@ -1,6 +1,6 @@
 <?php
 /**
- * ProjectAccessTest
+ * AttachmentUploadsResponseAllOfTest
  *
  * PHP version 7.3
  *
@@ -32,15 +32,15 @@ namespace Qase\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ProjectAccessTest Class Doc Comment
+ * AttachmentUploadsResponseAllOfTest Class Doc Comment
  *
  * @category    Class
- * @description ProjectAccess
+ * @description AttachmentUploadsResponseAllOf
  * @package     Qase\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ProjectAccessTest extends TestCase
+class AttachmentUploadsResponseAllOfTest extends TestCase
 {
 
     /**
@@ -72,18 +72,18 @@ class ProjectAccessTest extends TestCase
     }
 
     /**
-     * Test "ProjectAccess"
+     * Test "AttachmentUploadsResponseAllOf"
      */
-    public function testProjectAccess()
+    public function testAttachmentUploadsResponseAllOf()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "memberId"
+     * Test attribute "result"
      */
-    public function testPropertyMemberId()
+    public function testPropertyResult()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

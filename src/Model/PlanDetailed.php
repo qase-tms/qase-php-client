@@ -64,8 +64,10 @@ class PlanDetailed implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'string',
         'description' => 'string',
         'casesCount' => 'int',
-        'created' => '\DateTime',
-        'updated' => '\DateTime',
+        'createdAt' => '\DateTime',
+        'updatedAt' => '\DateTime',
+        'created' => 'string',
+        'updated' => 'string',
         'averageTime' => 'float',
         'cases' => '\Qase\Client\Model\PlanDetailedAllOfCases[]'
     ];
@@ -82,8 +84,10 @@ class PlanDetailed implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => null,
         'description' => null,
         'casesCount' => null,
-        'created' => 'date-time',
-        'updated' => 'date-time',
+        'createdAt' => 'date-time',
+        'updatedAt' => 'date-time',
+        'created' => null,
+        'updated' => null,
         'averageTime' => null,
         'cases' => null
     ];
@@ -119,6 +123,8 @@ class PlanDetailed implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'title',
         'description' => 'description',
         'casesCount' => 'cases_count',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'created' => 'created',
         'updated' => 'updated',
         'averageTime' => 'average_time',
@@ -135,6 +141,8 @@ class PlanDetailed implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'setTitle',
         'description' => 'setDescription',
         'casesCount' => 'setCasesCount',
+        'createdAt' => 'setCreatedAt',
+        'updatedAt' => 'setUpdatedAt',
         'created' => 'setCreated',
         'updated' => 'setUpdated',
         'averageTime' => 'setAverageTime',
@@ -151,6 +159,8 @@ class PlanDetailed implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'getTitle',
         'description' => 'getDescription',
         'casesCount' => 'getCasesCount',
+        'createdAt' => 'getCreatedAt',
+        'updatedAt' => 'getUpdatedAt',
         'created' => 'getCreated',
         'updated' => 'getUpdated',
         'averageTime' => 'getAverageTime',
@@ -218,6 +228,8 @@ class PlanDetailed implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['title'] = $data['title'] ?? null;
         $this->container['description'] = $data['description'] ?? null;
         $this->container['casesCount'] = $data['casesCount'] ?? null;
+        $this->container['createdAt'] = $data['createdAt'] ?? null;
+        $this->container['updatedAt'] = $data['updatedAt'] ?? null;
         $this->container['created'] = $data['created'] ?? null;
         $this->container['updated'] = $data['updated'] ?? null;
         $this->container['averageTime'] = $data['averageTime'] ?? null;
@@ -345,9 +357,58 @@ class PlanDetailed implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets created
+     * Gets createdAt
      *
      * @return \DateTime|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['createdAt'];
+    }
+
+    /**
+     * Sets createdAt
+     *
+     * @param \DateTime|null $createdAt createdAt
+     *
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->container['createdAt'] = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets updatedAt
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updatedAt'];
+    }
+
+    /**
+     * Sets updatedAt
+     *
+     * @param \DateTime|null $updatedAt updatedAt
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->container['updatedAt'] = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets created
+     *
+     * @return string|null
+     * @deprecated
      */
     public function getCreated()
     {
@@ -357,9 +418,10 @@ class PlanDetailed implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created
      *
-     * @param \DateTime|null $created created
+     * @param string|null $created Deprecated, use the `created_at` property instead.
      *
      * @return self
+     * @deprecated
      */
     public function setCreated($created)
     {
@@ -371,7 +433,8 @@ class PlanDetailed implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated
      *
-     * @return \DateTime|null
+     * @return string|null
+     * @deprecated
      */
     public function getUpdated()
     {
@@ -381,9 +444,10 @@ class PlanDetailed implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated
      *
-     * @param \DateTime|null $updated updated
+     * @param string|null $updated Deprecated, use the `updated_at` property instead.
      *
      * @return self
+     * @deprecated
      */
     public function setUpdated($updated)
     {

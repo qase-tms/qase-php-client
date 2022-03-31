@@ -45,6 +45,7 @@ use Qase\Client\Model\SuiteCreate;
 use Qase\Client\Model\SuiteDelete;
 use Qase\Client\Model\SuiteListResponse;
 use Qase\Client\Model\SuiteResponse;
+use Qase\Client\Model\SuiteUpdate;
 use Qase\Client\ObjectSerializer;
 
 /**
@@ -85,9 +86,9 @@ class SuitesApi
      */
     public function __construct(
         ClientInterface $client = null,
-        Configuration   $config = null,
-        HeaderSelector  $selector = null,
-                        $hostIndex = 0
+        Configuration $config = null,
+        HeaderSelector $selector = null,
+        $hostIndex = 0
     )
     {
         $this->client = $client ?: new Client();
@@ -1275,11 +1276,14 @@ class SuitesApi
         $multipart = false;
 
         // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
-        }
         if ($filters !== null) {
-            $queryParams['filters'] = $filters;
+            if ('form' === 'form' && is_array($filters)) {
+                foreach ($filters as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filters'] = $filters;
+            }
         }
         // query params
         if ($limit !== null) {
@@ -1382,15 +1386,15 @@ class SuitesApi
      *
      * @param string $code Code of project, where to search entities. (required)
      * @param int $id Identifier. (required)
-     * @param SuiteCreate $suiteCreate suiteCreate (required)
+     * @param SuiteUpdate $suiteUpdate suiteUpdate (required)
      *
      * @return IdResponse
      * @throws \InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function updateSuite($code, $id, $suiteCreate)
+    public function updateSuite($code, $id, $suiteUpdate)
     {
-        list($response) = $this->updateSuiteWithHttpInfo($code, $id, $suiteCreate);
+        list($response) = $this->updateSuiteWithHttpInfo($code, $id, $suiteUpdate);
         return $response;
     }
 
@@ -1401,15 +1405,15 @@ class SuitesApi
      *
      * @param string $code Code of project, where to search entities. (required)
      * @param int $id Identifier. (required)
-     * @param SuiteCreate $suiteCreate (required)
+     * @param SuiteUpdate $suiteUpdate (required)
      *
      * @return array of \Qase\Client\Model\IdResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function updateSuiteWithHttpInfo($code, $id, $suiteCreate)
+    public function updateSuiteWithHttpInfo($code, $id, $suiteUpdate)
     {
-        $request = $this->updateSuiteRequest($code, $id, $suiteCreate);
+        $request = $this->updateSuiteRequest($code, $id, $suiteUpdate);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1496,14 +1500,14 @@ class SuitesApi
      *
      * @param string $code Code of project, where to search entities. (required)
      * @param int $id Identifier. (required)
-     * @param SuiteCreate $suiteCreate (required)
+     * @param SuiteUpdate $suiteUpdate (required)
      *
      * @return PromiseInterface
      * @throws \InvalidArgumentException
      */
-    public function updateSuiteAsync($code, $id, $suiteCreate)
+    public function updateSuiteAsync($code, $id, $suiteUpdate)
     {
-        return $this->updateSuiteAsyncWithHttpInfo($code, $id, $suiteCreate)
+        return $this->updateSuiteAsyncWithHttpInfo($code, $id, $suiteUpdate)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1518,15 +1522,15 @@ class SuitesApi
      *
      * @param string $code Code of project, where to search entities. (required)
      * @param int $id Identifier. (required)
-     * @param SuiteCreate $suiteCreate (required)
+     * @param SuiteUpdate $suiteUpdate (required)
      *
      * @return PromiseInterface
      * @throws \InvalidArgumentException
      */
-    public function updateSuiteAsyncWithHttpInfo($code, $id, $suiteCreate)
+    public function updateSuiteAsyncWithHttpInfo($code, $id, $suiteUpdate)
     {
         $returnType = '\Qase\Client\Model\IdResponse';
-        $request = $this->updateSuiteRequest($code, $id, $suiteCreate);
+        $request = $this->updateSuiteRequest($code, $id, $suiteUpdate);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1566,12 +1570,12 @@ class SuitesApi
      *
      * @param string $code Code of project, where to search entities. (required)
      * @param int $id Identifier. (required)
-     * @param SuiteCreate $suiteCreate (required)
+     * @param SuiteUpdate $suiteUpdate (required)
      *
      * @return Request
      * @throws \InvalidArgumentException
      */
-    public function updateSuiteRequest($code, $id, $suiteCreate)
+    public function updateSuiteRequest($code, $id, $suiteUpdate)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1592,10 +1596,10 @@ class SuitesApi
                 'Missing the required parameter $id when calling updateSuite'
             );
         }
-        // verify the required parameter 'suiteCreate' is set
-        if ($suiteCreate === null || (is_array($suiteCreate) && count($suiteCreate) === 0)) {
+        // verify the required parameter 'suiteUpdate' is set
+        if ($suiteUpdate === null || (is_array($suiteUpdate) && count($suiteUpdate) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $suiteCreate when calling updateSuite'
+                'Missing the required parameter $suiteUpdate when calling updateSuite'
             );
         }
 
@@ -1637,11 +1641,11 @@ class SuitesApi
         }
 
         // for model (json/xml)
-        if (isset($suiteCreate)) {
+        if (isset($suiteUpdate)) {
             if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($suiteCreate));
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($suiteUpdate));
             } else {
-                $httpBody = $suiteCreate;
+                $httpBody = $suiteUpdate;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

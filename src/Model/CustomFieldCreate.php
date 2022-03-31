@@ -63,13 +63,13 @@ class CustomFieldCreate implements ModelInterface, ArrayAccess, \JsonSerializabl
         'title' => 'string',
         'entity' => 'int',
         'type' => 'int',
-        'projectsCodes' => 'string[]',
         'value' => '\Qase\Client\Model\CustomFieldCreateValue[]',
         'placeholder' => 'string',
         'defaultValue' => 'string',
         'isFilterable' => 'bool',
         'isVisible' => 'bool',
-        'isRequired' => 'bool'
+        'isRequired' => 'bool',
+        'projectsCodes' => 'string[]'
     ];
 
     /**
@@ -83,13 +83,13 @@ class CustomFieldCreate implements ModelInterface, ArrayAccess, \JsonSerializabl
         'title' => null,
         'entity' => null,
         'type' => null,
-        'projectsCodes' => null,
         'value' => null,
         'placeholder' => null,
         'defaultValue' => null,
         'isFilterable' => null,
         'isVisible' => null,
-        'isRequired' => null
+        'isRequired' => null,
+        'projectsCodes' => null
     ];
 
     /**
@@ -122,13 +122,13 @@ class CustomFieldCreate implements ModelInterface, ArrayAccess, \JsonSerializabl
         'title' => 'title',
         'entity' => 'entity',
         'type' => 'type',
-        'projectsCodes' => 'projects_codes',
         'value' => 'value',
         'placeholder' => 'placeholder',
         'defaultValue' => 'default_value',
         'isFilterable' => 'is_filterable',
         'isVisible' => 'is_visible',
-        'isRequired' => 'is_required'
+        'isRequired' => 'is_required',
+        'projectsCodes' => 'projects_codes'
     ];
 
     /**
@@ -140,13 +140,13 @@ class CustomFieldCreate implements ModelInterface, ArrayAccess, \JsonSerializabl
         'title' => 'setTitle',
         'entity' => 'setEntity',
         'type' => 'setType',
-        'projectsCodes' => 'setProjectsCodes',
         'value' => 'setValue',
         'placeholder' => 'setPlaceholder',
         'defaultValue' => 'setDefaultValue',
         'isFilterable' => 'setIsFilterable',
         'isVisible' => 'setIsVisible',
-        'isRequired' => 'setIsRequired'
+        'isRequired' => 'setIsRequired',
+        'projectsCodes' => 'setProjectsCodes'
     ];
 
     /**
@@ -158,13 +158,13 @@ class CustomFieldCreate implements ModelInterface, ArrayAccess, \JsonSerializabl
         'title' => 'getTitle',
         'entity' => 'getEntity',
         'type' => 'getType',
-        'projectsCodes' => 'getProjectsCodes',
         'value' => 'getValue',
         'placeholder' => 'getPlaceholder',
         'defaultValue' => 'getDefaultValue',
         'isFilterable' => 'getIsFilterable',
         'isVisible' => 'getIsVisible',
-        'isRequired' => 'getIsRequired'
+        'isRequired' => 'getIsRequired',
+        'projectsCodes' => 'getProjectsCodes'
     ];
 
     /**
@@ -227,13 +227,13 @@ class CustomFieldCreate implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->container['title'] = $data['title'] ?? null;
         $this->container['entity'] = $data['entity'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
-        $this->container['projectsCodes'] = $data['projectsCodes'] ?? null;
         $this->container['value'] = $data['value'] ?? null;
         $this->container['placeholder'] = $data['placeholder'] ?? null;
         $this->container['defaultValue'] = $data['defaultValue'] ?? null;
         $this->container['isFilterable'] = $data['isFilterable'] ?? null;
         $this->container['isVisible'] = $data['isVisible'] ?? null;
         $this->container['isRequired'] = $data['isRequired'] ?? null;
+        $this->container['projectsCodes'] = $data['projectsCodes'] ?? null;
     }
 
     /**
@@ -274,9 +274,6 @@ class CustomFieldCreate implements ModelInterface, ArrayAccess, \JsonSerializabl
             $invalidProperties[] = "invalid value for 'type', must be bigger than or equal to 0.";
         }
 
-        if ($this->container['projectsCodes'] === null) {
-            $invalidProperties[] = "'projectsCodes' can't be null";
-        }
         if (!is_null($this->container['placeholder']) && (mb_strlen($this->container['placeholder']) > 255)) {
             $invalidProperties[] = "invalid value for 'placeholder', the character length must be smaller than or equal to 255.";
         }
@@ -393,30 +390,6 @@ class CustomFieldCreate implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
-     * Gets projectsCodes
-     *
-     * @return string[]
-     */
-    public function getProjectsCodes()
-    {
-        return $this->container['projectsCodes'];
-    }
-
-    /**
-     * Sets projectsCodes
-     *
-     * @param string[] $projectsCodes projectsCodes
-     *
-     * @return self
-     */
-    public function setProjectsCodes($projectsCodes)
-    {
-        $this->container['projectsCodes'] = $projectsCodes;
-
-        return $this;
-    }
-
-    /**
      * Gets value
      *
      * @return CustomFieldCreateValue[]|null
@@ -429,7 +402,7 @@ class CustomFieldCreate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets value
      *
-     * @param CustomFieldCreateValue[]|null $value value
+     * @param CustomFieldCreateValue[]|null $value Required if type one of: 3 - selectbox; 5 - radio; 6 - multiselect;
      *
      * @return self
      */
@@ -564,6 +537,30 @@ class CustomFieldCreate implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setIsRequired($isRequired)
     {
         $this->container['isRequired'] = $isRequired;
+
+        return $this;
+    }
+
+    /**
+     * Gets projectsCodes
+     *
+     * @return string[]|null
+     */
+    public function getProjectsCodes()
+    {
+        return $this->container['projectsCodes'];
+    }
+
+    /**
+     * Sets projectsCodes
+     *
+     * @param string[]|null $projectsCodes projectsCodes
+     *
+     * @return self
+     */
+    public function setProjectsCodes($projectsCodes)
+    {
+        $this->container['projectsCodes'] = $projectsCodes;
 
         return $this;
     }

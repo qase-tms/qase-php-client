@@ -85,9 +85,9 @@ class EnvironmentsApi
      */
     public function __construct(
         ClientInterface $client = null,
-        Configuration   $config = null,
-        HeaderSelector  $selector = null,
-                        $hostIndex = 0
+        Configuration $config = null,
+        HeaderSelector $selector = null,
+        $hostIndex = 0
     )
     {
         $this->client = $client ?: new Client();

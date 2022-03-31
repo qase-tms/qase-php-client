@@ -144,18 +144,18 @@ class RequirementTest extends TestCase
     }
 
     /**
-     * Test attribute "created"
+     * Test attribute "createdAt"
      */
-    public function testPropertyCreated()
+    public function testPropertyCreatedAt()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "updated"
+     * Test attribute "updatedAt"
      */
-    public function testPropertyUpdated()
+    public function testPropertyUpdatedAt()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

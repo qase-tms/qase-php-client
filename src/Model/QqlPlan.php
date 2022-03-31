@@ -1,6 +1,6 @@
 <?php
 /**
- * Plan
+ * QqlPlan
  *
  * PHP version 7.3
  *
@@ -33,7 +33,7 @@ use ArrayAccess;
 use Qase\Client\ObjectSerializer;
 
 /**
- * Plan Class Doc Comment
+ * QqlPlan Class Doc Comment
  *
  * @category Class
  * @package  Qase\Client
@@ -43,7 +43,7 @@ use Qase\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
+class QqlPlan implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'Plan';
+    protected static $openAPIModelName = 'qql.Plan';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -65,9 +65,7 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'string',
         'casesCount' => 'int',
         'createdAt' => '\DateTime',
-        'updatedAt' => '\DateTime',
-        'created' => 'string',
-        'updated' => 'string'
+        'updatedAt' => '\DateTime'
     ];
 
     /**
@@ -83,9 +81,7 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => null,
         'casesCount' => null,
         'createdAt' => 'date-time',
-        'updatedAt' => 'date-time',
-        'created' => null,
-        'updated' => null
+        'updatedAt' => 'date-time'
     ];
 
     /**
@@ -120,9 +116,7 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'description',
         'casesCount' => 'cases_count',
         'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'created' => 'created',
-        'updated' => 'updated'
+        'updatedAt' => 'updated_at'
     ];
 
     /**
@@ -136,9 +130,7 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'setDescription',
         'casesCount' => 'setCasesCount',
         'createdAt' => 'setCreatedAt',
-        'updatedAt' => 'setUpdatedAt',
-        'created' => 'setCreated',
-        'updated' => 'setUpdated'
+        'updatedAt' => 'setUpdatedAt'
     ];
 
     /**
@@ -152,9 +144,7 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'getDescription',
         'casesCount' => 'getCasesCount',
         'createdAt' => 'getCreatedAt',
-        'updatedAt' => 'getUpdatedAt',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated'
+        'updatedAt' => 'getUpdatedAt'
     ];
 
     /**
@@ -220,8 +210,6 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['casesCount'] = $data['casesCount'] ?? null;
         $this->container['createdAt'] = $data['createdAt'] ?? null;
         $this->container['updatedAt'] = $data['updatedAt'] ?? null;
-        $this->container['created'] = $data['created'] ?? null;
-        $this->container['updated'] = $data['updated'] ?? null;
     }
 
     /**
@@ -388,58 +376,6 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUpdatedAt($updatedAt)
     {
         $this->container['updatedAt'] = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Gets created
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Sets created
-     *
-     * @param string|null $created Deprecated, use the `created_at` property instead.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setCreated($created)
-    {
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param string|null $updated Deprecated, use the `updated_at` property instead.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
 
         return $this;
     }

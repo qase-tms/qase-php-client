@@ -68,8 +68,10 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
         'data' => 'string',
         'cases' => 'int[]',
         'casesCount' => 'int',
-        'created' => '\DateTime',
-        'updated' => '\DateTime'
+        'created' => 'string',
+        'updated' => 'string',
+        'createdAt' => '\DateTime',
+        'updatedAt' => '\DateTime'
     ];
 
     /**
@@ -88,8 +90,10 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
         'data' => null,
         'cases' => 'int64',
         'casesCount' => null,
-        'created' => 'date-time',
-        'updated' => 'date-time'
+        'created' => null,
+        'updated' => null,
+        'createdAt' => 'date-time',
+        'updatedAt' => 'date-time'
     ];
 
     /**
@@ -128,7 +132,9 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
         'cases' => 'cases',
         'casesCount' => 'cases_count',
         'created' => 'created',
-        'updated' => 'updated'
+        'updated' => 'updated',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at'
     ];
 
     /**
@@ -146,7 +152,9 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
         'cases' => 'setCases',
         'casesCount' => 'setCasesCount',
         'created' => 'setCreated',
-        'updated' => 'setUpdated'
+        'updated' => 'setUpdated',
+        'createdAt' => 'setCreatedAt',
+        'updatedAt' => 'setUpdatedAt'
     ];
 
     /**
@@ -164,7 +172,9 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
         'cases' => 'getCases',
         'casesCount' => 'getCasesCount',
         'created' => 'getCreated',
-        'updated' => 'getUpdated'
+        'updated' => 'getUpdated',
+        'createdAt' => 'getCreatedAt',
+        'updatedAt' => 'getUpdatedAt'
     ];
 
     /**
@@ -234,6 +244,8 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['casesCount'] = $data['casesCount'] ?? null;
         $this->container['created'] = $data['created'] ?? null;
         $this->container['updated'] = $data['updated'] ?? null;
+        $this->container['createdAt'] = $data['createdAt'] ?? null;
+        $this->container['updatedAt'] = $data['updatedAt'] ?? null;
     }
 
     /**
@@ -455,7 +467,8 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created
      *
-     * @return \DateTime|null
+     * @return string|null
+     * @deprecated
      */
     public function getCreated()
     {
@@ -465,9 +478,10 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created
      *
-     * @param \DateTime|null $created created
+     * @param string|null $created Deprecated, use the `created_at` property instead.
      *
      * @return self
+     * @deprecated
      */
     public function setCreated($created)
     {
@@ -479,7 +493,8 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated
      *
-     * @return \DateTime|null
+     * @return string|null
+     * @deprecated
      */
     public function getUpdated()
     {
@@ -489,13 +504,62 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated
      *
-     * @param \DateTime|null $updated updated
+     * @param string|null $updated Deprecated, use the `updated_at` property instead.
      *
      * @return self
+     * @deprecated
      */
     public function setUpdated($updated)
     {
         $this->container['updated'] = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Gets createdAt
+     *
+     * @return \DateTime|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['createdAt'];
+    }
+
+    /**
+     * Sets createdAt
+     *
+     * @param \DateTime|null $createdAt createdAt
+     *
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->container['createdAt'] = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets updatedAt
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updatedAt'];
+    }
+
+    /**
+     * Sets updatedAt
+     *
+     * @param \DateTime|null $updatedAt updatedAt
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->container['updatedAt'] = $updatedAt;
 
         return $this;
     }

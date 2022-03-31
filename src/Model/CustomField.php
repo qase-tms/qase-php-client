@@ -70,8 +70,10 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         'isRequired' => 'bool',
         'isVisible' => 'bool',
         'isFilterable' => 'bool',
-        'created' => '\DateTime',
-        'updated' => '\DateTime',
+        'created' => 'string',
+        'updated' => 'string',
+        'createdAt' => '\DateTime',
+        'updatedAt' => '\DateTime',
         'projectsCodes' => 'string[]'
     ];
 
@@ -93,8 +95,10 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         'isRequired' => null,
         'isVisible' => null,
         'isFilterable' => null,
-        'created' => 'date-time',
-        'updated' => 'date-time',
+        'created' => null,
+        'updated' => null,
+        'createdAt' => 'date-time',
+        'updatedAt' => 'date-time',
         'projectsCodes' => null
     ];
 
@@ -137,6 +141,8 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         'isFilterable' => 'is_filterable',
         'created' => 'created',
         'updated' => 'updated',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'projectsCodes' => 'projects_codes'
     ];
 
@@ -158,6 +164,8 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         'isFilterable' => 'setIsFilterable',
         'created' => 'setCreated',
         'updated' => 'setUpdated',
+        'createdAt' => 'setCreatedAt',
+        'updatedAt' => 'setUpdatedAt',
         'projectsCodes' => 'setProjectsCodes'
     ];
 
@@ -179,6 +187,8 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         'isFilterable' => 'getIsFilterable',
         'created' => 'getCreated',
         'updated' => 'getUpdated',
+        'createdAt' => 'getCreatedAt',
+        'updatedAt' => 'getUpdatedAt',
         'projectsCodes' => 'getProjectsCodes'
     ];
 
@@ -251,6 +261,8 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['isFilterable'] = $data['isFilterable'] ?? null;
         $this->container['created'] = $data['created'] ?? null;
         $this->container['updated'] = $data['updated'] ?? null;
+        $this->container['createdAt'] = $data['createdAt'] ?? null;
+        $this->container['updatedAt'] = $data['updatedAt'] ?? null;
         $this->container['projectsCodes'] = $data['projectsCodes'] ?? null;
     }
 
@@ -521,7 +533,8 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created
      *
-     * @return \DateTime|null
+     * @return string|null
+     * @deprecated
      */
     public function getCreated()
     {
@@ -531,9 +544,10 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created
      *
-     * @param \DateTime|null $created created
+     * @param string|null $created Deprecated, use the `created_at` property instead.
      *
      * @return self
+     * @deprecated
      */
     public function setCreated($created)
     {
@@ -545,7 +559,8 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated
      *
-     * @return \DateTime|null
+     * @return string|null
+     * @deprecated
      */
     public function getUpdated()
     {
@@ -555,13 +570,62 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated
      *
-     * @param \DateTime|null $updated updated
+     * @param string|null $updated Deprecated, use the `updated_at` property instead.
      *
      * @return self
+     * @deprecated
      */
     public function setUpdated($updated)
     {
         $this->container['updated'] = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Gets createdAt
+     *
+     * @return \DateTime|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['createdAt'];
+    }
+
+    /**
+     * Sets createdAt
+     *
+     * @param \DateTime|null $createdAt createdAt
+     *
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->container['createdAt'] = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets updatedAt
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updatedAt'];
+    }
+
+    /**
+     * Sets updatedAt
+     *
+     * @param \DateTime|null $updatedAt updatedAt
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->container['updatedAt'] = $updatedAt;
 
         return $this;
     }

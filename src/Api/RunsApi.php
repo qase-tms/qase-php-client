@@ -87,9 +87,9 @@ class RunsApi
      */
     public function __construct(
         ClientInterface $client = null,
-        Configuration   $config = null,
-        HeaderSelector  $selector = null,
-                        $hostIndex = 0
+        Configuration $config = null,
+        HeaderSelector $selector = null,
+        $hostIndex = 0
     )
     {
         $this->client = $client ?: new Client();
@@ -1034,14 +1034,15 @@ class RunsApi
      *
      * @param string $code Code of project, where to search entities. (required)
      * @param int $id Identifier. (required)
+     * @param string $include Add this param to include a list of test cases into response. Possible value: cases (optional)
      *
      * @return RunResponse
      * @throws \InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getRun($code, $id)
+    public function getRun($code, $id, $include = null)
     {
-        list($response) = $this->getRunWithHttpInfo($code, $id);
+        list($response) = $this->getRunWithHttpInfo($code, $id, $include);
         return $response;
     }
 
@@ -1052,14 +1053,15 @@ class RunsApi
      *
      * @param string $code Code of project, where to search entities. (required)
      * @param int $id Identifier. (required)
+     * @param string $include Add this param to include a list of test cases into response. Possible value: cases (optional)
      *
      * @return array of \Qase\Client\Model\RunResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \InvalidArgumentException
      * @throws ApiException on non-2xx response
      */
-    public function getRunWithHttpInfo($code, $id)
+    public function getRunWithHttpInfo($code, $id, $include = null)
     {
-        $request = $this->getRunRequest($code, $id);
+        $request = $this->getRunRequest($code, $id, $include);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1146,13 +1148,14 @@ class RunsApi
      *
      * @param string $code Code of project, where to search entities. (required)
      * @param int $id Identifier. (required)
+     * @param string $include Add this param to include a list of test cases into response. Possible value: cases (optional)
      *
      * @return PromiseInterface
      * @throws \InvalidArgumentException
      */
-    public function getRunAsync($code, $id)
+    public function getRunAsync($code, $id, $include = null)
     {
-        return $this->getRunAsyncWithHttpInfo($code, $id)
+        return $this->getRunAsyncWithHttpInfo($code, $id, $include)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1167,14 +1170,15 @@ class RunsApi
      *
      * @param string $code Code of project, where to search entities. (required)
      * @param int $id Identifier. (required)
+     * @param string $include Add this param to include a list of test cases into response. Possible value: cases (optional)
      *
      * @return PromiseInterface
      * @throws \InvalidArgumentException
      */
-    public function getRunAsyncWithHttpInfo($code, $id)
+    public function getRunAsyncWithHttpInfo($code, $id, $include = null)
     {
         $returnType = '\Qase\Client\Model\RunResponse';
-        $request = $this->getRunRequest($code, $id);
+        $request = $this->getRunRequest($code, $id, $include);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1214,11 +1218,12 @@ class RunsApi
      *
      * @param string $code Code of project, where to search entities. (required)
      * @param int $id Identifier. (required)
+     * @param string $include Add this param to include a list of test cases into response. Possible value: cases (optional)
      *
      * @return Request
      * @throws \InvalidArgumentException
      */
-    public function getRunRequest($code, $id)
+    public function getRunRequest($code, $id, $include = null)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1246,6 +1251,17 @@ class RunsApi
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
+
+        // query params
+        if ($include !== null) {
+            if ('form' === 'form' && is_array($include)) {
+                foreach ($include as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['include'] = $include;
+            }
+        }
 
 
         // path params
@@ -1337,7 +1353,7 @@ class RunsApi
      * @param Filters5 $filters filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
+     * @param string $include Add this param to include a list of test cases into response. Possible value: cases (optional)
      *
      * @return RunListResponse
      * @throws \InvalidArgumentException
@@ -1358,7 +1374,7 @@ class RunsApi
      * @param Filters5 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
+     * @param string $include Add this param to include a list of test cases into response. Possible value: cases (optional)
      *
      * @return array of \Qase\Client\Model\RunListResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \InvalidArgumentException
@@ -1455,7 +1471,7 @@ class RunsApi
      * @param Filters5 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
+     * @param string $include Add this param to include a list of test cases into response. Possible value: cases (optional)
      *
      * @return PromiseInterface
      * @throws \InvalidArgumentException
@@ -1479,7 +1495,7 @@ class RunsApi
      * @param Filters5 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
+     * @param string $include Add this param to include a list of test cases into response. Possible value: cases (optional)
      *
      * @return PromiseInterface
      * @throws \InvalidArgumentException
@@ -1529,7 +1545,7 @@ class RunsApi
      * @param Filters5 $filters (optional)
      * @param int $limit A number of entities in result set. (optional, default to 10)
      * @param int $offset How many entities should be skipped. (optional, default to 0)
-     * @param string[] $include Add this param to include a list of test cases into response. Possible value: cases (optional)
+     * @param string $include Add this param to include a list of test cases into response. Possible value: cases (optional)
      *
      * @return Request
      * @throws \InvalidArgumentException
@@ -1572,11 +1588,14 @@ class RunsApi
         $multipart = false;
 
         // query params
-        if (is_array($filters)) {
-            $filters = ObjectSerializer::serializeCollection($filters, 'deepObject', true);
-        }
         if ($filters !== null) {
-            $queryParams['filters'] = $filters;
+            if ('form' === 'form' && is_array($filters)) {
+                foreach ($filters as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filters'] = $filters;
+            }
         }
         // query params
         if ($limit !== null) {

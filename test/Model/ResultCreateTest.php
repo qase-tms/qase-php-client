@@ -81,6 +81,15 @@ class ResultCreateTest extends TestCase
     }
 
     /**
+     * Test attribute "status"
+     */
+    public function testPropertyStatus()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "caseId"
      */
     public function testPropertyCaseId()
@@ -93,15 +102,6 @@ class ResultCreateTest extends TestCase
      * Test attribute "case"
      */
     public function testPropertyCase()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

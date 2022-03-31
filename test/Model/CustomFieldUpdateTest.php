@@ -90,15 +90,6 @@ class CustomFieldUpdateTest extends TestCase
     }
 
     /**
-     * Test attribute "projectsCodes"
-     */
-    public function testPropertyProjectsCodes()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "value"
      */
     public function testPropertyValue()
@@ -156,6 +147,15 @@ class CustomFieldUpdateTest extends TestCase
      * Test attribute "isRequired"
      */
     public function testPropertyIsRequired()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "projectsCodes"
+     */
+    public function testPropertyProjectsCodes()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

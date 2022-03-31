@@ -1,6 +1,6 @@
 <?php
 /**
- * MilestoneTest
+ * QqlDefectTest
  *
  * PHP version 7.3
  *
@@ -32,15 +32,15 @@ namespace Qase\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * MilestoneTest Class Doc Comment
+ * QqlDefectTest Class Doc Comment
  *
  * @category    Class
- * @description Milestone
+ * @description QqlDefect
  * @package     Qase\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class MilestoneTest extends TestCase
+class QqlDefectTest extends TestCase
 {
 
     /**
@@ -72,9 +72,9 @@ class MilestoneTest extends TestCase
     }
 
     /**
-     * Test "Milestone"
+     * Test "QqlDefect"
      */
-    public function testMilestone()
+    public function testQqlDefect()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -99,9 +99,18 @@ class MilestoneTest extends TestCase
     }
 
     /**
-     * Test attribute "description"
+     * Test attribute "actualResult"
      */
-    public function testPropertyDescription()
+    public function testPropertyActualResult()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "severity"
+     */
+    public function testPropertySeverity()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -117,27 +126,72 @@ class MilestoneTest extends TestCase
     }
 
     /**
-     * Test attribute "dueDate"
+     * Test attribute "milestoneId"
      */
-    public function testPropertyDueDate()
+    public function testPropertyMilestoneId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created"
+     * Test attribute "customFields"
      */
-    public function testPropertyCreated()
+    public function testPropertyCustomFields()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "updated"
+     * Test attribute "attachments"
      */
-    public function testPropertyUpdated()
+    public function testPropertyAttachments()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "resolved"
+     */
+    public function testPropertyResolved()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "projectId"
+     */
+    public function testPropertyProjectId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "memberId"
+     */
+    public function testPropertyMemberId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "externalData"
+     */
+    public function testPropertyExternalData()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tags"
+     */
+    public function testPropertyTags()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -243,6 +243,15 @@ class TestCaseTest extends TestCase
     }
 
     /**
+     * Test attribute "stepsType"
+     */
+    public function testPropertyStepsType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "steps"
      */
     public function testPropertySteps()
@@ -261,36 +270,9 @@ class TestCaseTest extends TestCase
     }
 
     /**
-     * Test attribute "created"
-     */
-    public function testPropertyCreated()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "updated"
-     */
-    public function testPropertyUpdated()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "tags"
      */
     public function testPropertyTags()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "deleted"
-     */
-    public function testPropertyDeleted()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -309,6 +291,51 @@ class TestCaseTest extends TestCase
      * Test attribute "projectId"
      */
     public function testPropertyProjectId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "createdAt"
+     */
+    public function testPropertyCreatedAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "updatedAt"
+     */
+    public function testPropertyUpdatedAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "deleted"
+     */
+    public function testPropertyDeleted()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "created"
+     */
+    public function testPropertyCreated()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "updated"
+     */
+    public function testPropertyUpdated()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

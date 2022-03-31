@@ -60,7 +60,7 @@ class ProjectAccess implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'memeberId' => 'int'
+        'memberId' => 'int'
     ];
 
     /**
@@ -71,7 +71,7 @@ class ProjectAccess implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'memeberId' => 'int64'
+        'memberId' => 'int64'
     ];
 
     /**
@@ -101,7 +101,7 @@ class ProjectAccess implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'memeberId' => 'memeber_id'
+        'memberId' => 'member_id'
     ];
 
     /**
@@ -110,7 +110,7 @@ class ProjectAccess implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'memeberId' => 'setMemeberId'
+        'memberId' => 'setMemberId'
     ];
 
     /**
@@ -119,7 +119,7 @@ class ProjectAccess implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'memeberId' => 'getMemeberId'
+        'memberId' => 'getMemberId'
     ];
 
     /**
@@ -179,7 +179,7 @@ class ProjectAccess implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['memeberId'] = $data['memeberId'] ?? null;
+        $this->container['memberId'] = $data['memberId'] ?? null;
     }
 
     /**
@@ -207,25 +207,25 @@ class ProjectAccess implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets memeberId
+     * Gets memberId
      *
      * @return int|null
      */
-    public function getMemeberId()
+    public function getMemberId()
     {
-        return $this->container['memeberId'];
+        return $this->container['memberId'];
     }
 
     /**
-     * Sets memeberId
+     * Sets memberId
      *
-     * @param int|null $memeberId Team member id title.
+     * @param int|null $memberId Team member id title.
      *
      * @return self
      */
-    public function setMemeberId($memeberId)
+    public function setMemberId($memberId)
     {
-        $this->container['memeberId'] = $memeberId;
+        $this->container['memberId'] = $memberId;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * TestCase
+ * QqlTestCase
  *
  * PHP version 7.3
  *
@@ -33,7 +33,7 @@ use ArrayAccess;
 use Qase\Client\ObjectSerializer;
 
 /**
- * TestCase Class Doc Comment
+ * QqlTestCase Class Doc Comment
  *
  * @category Class
  * @package  Qase\Client
@@ -43,7 +43,7 @@ use Qase\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
+class QqlTestCase implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'TestCase';
+    protected static $openAPIModelName = 'qql.TestCase';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -85,10 +85,7 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'memberId' => 'int',
         'projectId' => 'int',
         'createdAt' => '\DateTime',
-        'updatedAt' => '\DateTime',
-        'deleted' => 'string',
-        'created' => 'string',
-        'updated' => 'string'
+        'updatedAt' => '\DateTime'
     ];
 
     /**
@@ -124,10 +121,7 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'memberId' => 'int64',
         'projectId' => 'int64',
         'createdAt' => 'date-time',
-        'updatedAt' => 'date-time',
-        'deleted' => null,
-        'created' => null,
-        'updated' => null
+        'updatedAt' => 'date-time'
     ];
 
     /**
@@ -182,10 +176,7 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'memberId' => 'member_id',
         'projectId' => 'project_id',
         'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'deleted' => 'deleted',
-        'created' => 'created',
-        'updated' => 'updated'
+        'updatedAt' => 'updated_at'
     ];
 
     /**
@@ -219,10 +210,7 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'memberId' => 'setMemberId',
         'projectId' => 'setProjectId',
         'createdAt' => 'setCreatedAt',
-        'updatedAt' => 'setUpdatedAt',
-        'deleted' => 'setDeleted',
-        'created' => 'setCreated',
-        'updated' => 'setUpdated'
+        'updatedAt' => 'setUpdatedAt'
     ];
 
     /**
@@ -256,10 +244,7 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'memberId' => 'getMemberId',
         'projectId' => 'getProjectId',
         'createdAt' => 'getCreatedAt',
-        'updatedAt' => 'getUpdatedAt',
-        'deleted' => 'getDeleted',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated'
+        'updatedAt' => 'getUpdatedAt'
     ];
 
     /**
@@ -345,9 +330,6 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['projectId'] = $data['projectId'] ?? null;
         $this->container['createdAt'] = $data['createdAt'] ?? null;
         $this->container['updatedAt'] = $data['updatedAt'] ?? null;
-        $this->container['deleted'] = $data['deleted'] ?? null;
-        $this->container['created'] = $data['created'] ?? null;
-        $this->container['updated'] = $data['updated'] ?? null;
     }
 
     /**
@@ -994,84 +976,6 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUpdatedAt($updatedAt)
     {
         $this->container['updatedAt'] = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Gets deleted
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getDeleted()
-    {
-        return $this->container['deleted'];
-    }
-
-    /**
-     * Sets deleted
-     *
-     * @param string|null $deleted deleted
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setDeleted($deleted)
-    {
-        $this->container['deleted'] = $deleted;
-
-        return $this;
-    }
-
-    /**
-     * Gets created
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Sets created
-     *
-     * @param string|null $created Deprecated, use the `created_at` property instead.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setCreated($created)
-    {
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param string|null $updated Deprecated, use the `updated_at` property instead.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
 
         return $this;
     }

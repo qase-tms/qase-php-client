@@ -1,6 +1,6 @@
 <?php
 /**
- * Plan
+ * QqlDefect
  *
  * PHP version 7.3
  *
@@ -33,7 +33,7 @@ use ArrayAccess;
 use Qase\Client\ObjectSerializer;
 
 /**
- * Plan Class Doc Comment
+ * QqlDefect Class Doc Comment
  *
  * @category Class
  * @package  Qase\Client
@@ -43,7 +43,7 @@ use Qase\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
+class QqlDefect implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'Plan';
+    protected static $openAPIModelName = 'qql.Defect';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -62,12 +62,19 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'int',
         'title' => 'string',
-        'description' => 'string',
-        'casesCount' => 'int',
+        'actualResult' => 'string',
+        'severity' => 'string',
+        'status' => 'string',
+        'milestoneId' => 'int',
+        'customFields' => '\Qase\Client\Model\CustomFieldValue[]',
+        'attachments' => '\Qase\Client\Model\Attachment[]',
+        'resolved' => '\DateTime',
+        'projectId' => 'int',
+        'memberId' => 'int',
+        'externalData' => 'string',
+        'tags' => '\Qase\Client\Model\TagValue[]',
         'createdAt' => '\DateTime',
-        'updatedAt' => '\DateTime',
-        'created' => 'string',
-        'updated' => 'string'
+        'updatedAt' => '\DateTime'
     ];
 
     /**
@@ -80,12 +87,19 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'int64',
         'title' => null,
-        'description' => null,
-        'casesCount' => null,
+        'actualResult' => null,
+        'severity' => null,
+        'status' => null,
+        'milestoneId' => 'int64',
+        'customFields' => null,
+        'attachments' => null,
+        'resolved' => 'date-time',
+        'projectId' => 'int64',
+        'memberId' => 'int64',
+        'externalData' => null,
+        'tags' => null,
         'createdAt' => 'date-time',
-        'updatedAt' => 'date-time',
-        'created' => null,
-        'updated' => null
+        'updatedAt' => 'date-time'
     ];
 
     /**
@@ -117,12 +131,19 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'title' => 'title',
-        'description' => 'description',
-        'casesCount' => 'cases_count',
+        'actualResult' => 'actual_result',
+        'severity' => 'severity',
+        'status' => 'status',
+        'milestoneId' => 'milestone_id',
+        'customFields' => 'custom_fields',
+        'attachments' => 'attachments',
+        'resolved' => 'resolved',
+        'projectId' => 'project_id',
+        'memberId' => 'member_id',
+        'externalData' => 'external_data',
+        'tags' => 'tags',
         'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'created' => 'created',
-        'updated' => 'updated'
+        'updatedAt' => 'updated_at'
     ];
 
     /**
@@ -133,12 +154,19 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'title' => 'setTitle',
-        'description' => 'setDescription',
-        'casesCount' => 'setCasesCount',
+        'actualResult' => 'setActualResult',
+        'severity' => 'setSeverity',
+        'status' => 'setStatus',
+        'milestoneId' => 'setMilestoneId',
+        'customFields' => 'setCustomFields',
+        'attachments' => 'setAttachments',
+        'resolved' => 'setResolved',
+        'projectId' => 'setProjectId',
+        'memberId' => 'setMemberId',
+        'externalData' => 'setExternalData',
+        'tags' => 'setTags',
         'createdAt' => 'setCreatedAt',
-        'updatedAt' => 'setUpdatedAt',
-        'created' => 'setCreated',
-        'updated' => 'setUpdated'
+        'updatedAt' => 'setUpdatedAt'
     ];
 
     /**
@@ -149,12 +177,19 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'title' => 'getTitle',
-        'description' => 'getDescription',
-        'casesCount' => 'getCasesCount',
+        'actualResult' => 'getActualResult',
+        'severity' => 'getSeverity',
+        'status' => 'getStatus',
+        'milestoneId' => 'getMilestoneId',
+        'customFields' => 'getCustomFields',
+        'attachments' => 'getAttachments',
+        'resolved' => 'getResolved',
+        'projectId' => 'getProjectId',
+        'memberId' => 'getMemberId',
+        'externalData' => 'getExternalData',
+        'tags' => 'getTags',
         'createdAt' => 'getCreatedAt',
-        'updatedAt' => 'getUpdatedAt',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated'
+        'updatedAt' => 'getUpdatedAt'
     ];
 
     /**
@@ -216,12 +251,19 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->container['id'] = $data['id'] ?? null;
         $this->container['title'] = $data['title'] ?? null;
-        $this->container['description'] = $data['description'] ?? null;
-        $this->container['casesCount'] = $data['casesCount'] ?? null;
+        $this->container['actualResult'] = $data['actualResult'] ?? null;
+        $this->container['severity'] = $data['severity'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['milestoneId'] = $data['milestoneId'] ?? null;
+        $this->container['customFields'] = $data['customFields'] ?? null;
+        $this->container['attachments'] = $data['attachments'] ?? null;
+        $this->container['resolved'] = $data['resolved'] ?? null;
+        $this->container['projectId'] = $data['projectId'] ?? null;
+        $this->container['memberId'] = $data['memberId'] ?? null;
+        $this->container['externalData'] = $data['externalData'] ?? null;
+        $this->container['tags'] = $data['tags'] ?? null;
         $this->container['createdAt'] = $data['createdAt'] ?? null;
         $this->container['updatedAt'] = $data['updatedAt'] ?? null;
-        $this->container['created'] = $data['created'] ?? null;
-        $this->container['updated'] = $data['updated'] ?? null;
     }
 
     /**
@@ -297,49 +339,265 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets description
+     * Gets actualResult
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getActualResult()
     {
-        return $this->container['description'];
+        return $this->container['actualResult'];
     }
 
     /**
-     * Sets description
+     * Sets actualResult
      *
-     * @param string|null $description description
+     * @param string|null $actualResult actualResult
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setActualResult($actualResult)
     {
-        $this->container['description'] = $description;
+        $this->container['actualResult'] = $actualResult;
 
         return $this;
     }
 
     /**
-     * Gets casesCount
+     * Gets severity
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getCasesCount()
+    public function getSeverity()
     {
-        return $this->container['casesCount'];
+        return $this->container['severity'];
     }
 
     /**
-     * Sets casesCount
+     * Sets severity
      *
-     * @param int|null $casesCount casesCount
+     * @param string|null $severity severity
      *
      * @return self
      */
-    public function setCasesCount($casesCount)
+    public function setSeverity($severity)
     {
-        $this->container['casesCount'] = $casesCount;
+        $this->container['severity'] = $severity;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string|null $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets milestoneId
+     *
+     * @return int|null
+     */
+    public function getMilestoneId()
+    {
+        return $this->container['milestoneId'];
+    }
+
+    /**
+     * Sets milestoneId
+     *
+     * @param int|null $milestoneId milestoneId
+     *
+     * @return self
+     */
+    public function setMilestoneId($milestoneId)
+    {
+        $this->container['milestoneId'] = $milestoneId;
+
+        return $this;
+    }
+
+    /**
+     * Gets customFields
+     *
+     * @return CustomFieldValue[]|null
+     */
+    public function getCustomFields()
+    {
+        return $this->container['customFields'];
+    }
+
+    /**
+     * Sets customFields
+     *
+     * @param CustomFieldValue[]|null $customFields customFields
+     *
+     * @return self
+     */
+    public function setCustomFields($customFields)
+    {
+        $this->container['customFields'] = $customFields;
+
+        return $this;
+    }
+
+    /**
+     * Gets attachments
+     *
+     * @return Attachment[]|null
+     */
+    public function getAttachments()
+    {
+        return $this->container['attachments'];
+    }
+
+    /**
+     * Sets attachments
+     *
+     * @param Attachment[]|null $attachments attachments
+     *
+     * @return self
+     */
+    public function setAttachments($attachments)
+    {
+        $this->container['attachments'] = $attachments;
+
+        return $this;
+    }
+
+    /**
+     * Gets resolved
+     *
+     * @return \DateTime|null
+     */
+    public function getResolved()
+    {
+        return $this->container['resolved'];
+    }
+
+    /**
+     * Sets resolved
+     *
+     * @param \DateTime|null $resolved resolved
+     *
+     * @return self
+     */
+    public function setResolved($resolved)
+    {
+        $this->container['resolved'] = $resolved;
+
+        return $this;
+    }
+
+    /**
+     * Gets projectId
+     *
+     * @return int|null
+     */
+    public function getProjectId()
+    {
+        return $this->container['projectId'];
+    }
+
+    /**
+     * Sets projectId
+     *
+     * @param int|null $projectId projectId
+     *
+     * @return self
+     */
+    public function setProjectId($projectId)
+    {
+        $this->container['projectId'] = $projectId;
+
+        return $this;
+    }
+
+    /**
+     * Gets memberId
+     *
+     * @return int|null
+     */
+    public function getMemberId()
+    {
+        return $this->container['memberId'];
+    }
+
+    /**
+     * Sets memberId
+     *
+     * @param int|null $memberId memberId
+     *
+     * @return self
+     */
+    public function setMemberId($memberId)
+    {
+        $this->container['memberId'] = $memberId;
+
+        return $this;
+    }
+
+    /**
+     * Gets externalData
+     *
+     * @return string|null
+     */
+    public function getExternalData()
+    {
+        return $this->container['externalData'];
+    }
+
+    /**
+     * Sets externalData
+     *
+     * @param string|null $externalData externalData
+     *
+     * @return self
+     */
+    public function setExternalData($externalData)
+    {
+        $this->container['externalData'] = $externalData;
+
+        return $this;
+    }
+
+    /**
+     * Gets tags
+     *
+     * @return TagValue[]|null
+     */
+    public function getTags()
+    {
+        return $this->container['tags'];
+    }
+
+    /**
+     * Sets tags
+     *
+     * @param TagValue[]|null $tags tags
+     *
+     * @return self
+     */
+    public function setTags($tags)
+    {
+        $this->container['tags'] = $tags;
 
         return $this;
     }
@@ -388,58 +646,6 @@ class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUpdatedAt($updatedAt)
     {
         $this->container['updatedAt'] = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Gets created
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Sets created
-     *
-     * @param string|null $created Deprecated, use the `created_at` property instead.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setCreated($created)
-    {
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param string|null $updated Deprecated, use the `updated_at` property instead.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
 
         return $this;
     }

@@ -60,16 +60,16 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
+        'status' => 'string',
         'caseId' => 'int',
         'case' => '\Qase\Client\Model\ResultCreateCase',
-        'status' => 'string',
         'time' => 'int',
         'timeMs' => 'int',
         'defect' => 'bool',
         'attachments' => 'string[]',
         'stacktrace' => 'string',
         'comment' => 'string',
-        'param' => 'string[]',
+        'param' => 'array<string,string>',
         'steps' => '\Qase\Client\Model\ResultCreateSteps[]'
     ];
 
@@ -81,9 +81,9 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'status' => null,
         'caseId' => 'int64',
         'case' => null,
-        'status' => null,
         'time' => 'int64',
         'timeMs' => 'int64',
         'defect' => null,
@@ -121,9 +121,9 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'status' => 'status',
         'caseId' => 'case_id',
         'case' => 'case',
-        'status' => 'status',
         'time' => 'time',
         'timeMs' => 'time_ms',
         'defect' => 'defect',
@@ -140,9 +140,9 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'status' => 'setStatus',
         'caseId' => 'setCaseId',
         'case' => 'setCase',
-        'status' => 'setStatus',
         'time' => 'setTime',
         'timeMs' => 'setTimeMs',
         'defect' => 'setDefect',
@@ -159,9 +159,9 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'status' => 'getStatus',
         'caseId' => 'getCaseId',
         'case' => 'getCase',
-        'status' => 'getStatus',
         'time' => 'getTime',
         'timeMs' => 'getTimeMs',
         'defect' => 'getDefect',
@@ -252,9 +252,9 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->container['status'] = $data['status'] ?? null;
         $this->container['caseId'] = $data['caseId'] ?? null;
         $this->container['case'] = $data['case'] ?? null;
-        $this->container['status'] = $data['status'] ?? null;
         $this->container['time'] = $data['time'] ?? null;
         $this->container['timeMs'] = $data['timeMs'] ?? null;
         $this->container['defect'] = $data['defect'] ?? null;
@@ -274,6 +274,9 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -319,6 +322,40 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
      * Gets caseId
      *
      * @return int|null
@@ -362,40 +399,6 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCase($case)
     {
         $this->container['case'] = $case;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status status
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
 
         return $this;
     }
@@ -563,7 +566,7 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets param
      *
-     * @return string[]|null
+     * @return array<string,string>|null
      */
     public function getParam()
     {
@@ -573,7 +576,7 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets param
      *
-     * @param string[]|null $param param
+     * @param array<string,string>|null $param A map of parameters (name => value)
      *
      * @return self
      */

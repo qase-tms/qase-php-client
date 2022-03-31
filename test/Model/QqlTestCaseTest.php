@@ -1,6 +1,6 @@
 <?php
 /**
- * DefectTest
+ * QqlTestCaseTest
  *
  * PHP version 7.3
  *
@@ -32,15 +32,15 @@ namespace Qase\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * DefectTest Class Doc Comment
+ * QqlTestCaseTest Class Doc Comment
  *
  * @category    Class
- * @description Defect
+ * @description QqlTestCase
  * @package     Qase\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class DefectTest extends TestCase
+class QqlTestCaseTest extends TestCase
 {
 
     /**
@@ -72,9 +72,9 @@ class DefectTest extends TestCase
     }
 
     /**
-     * Test "Defect"
+     * Test "QqlTestCase"
      */
-    public function testDefect()
+    public function testQqlTestCase()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -90,6 +90,15 @@ class DefectTest extends TestCase
     }
 
     /**
+     * Test attribute "position"
+     */
+    public function testPropertyPosition()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "title"
      */
     public function testPropertyTitle()
@@ -99,9 +108,27 @@ class DefectTest extends TestCase
     }
 
     /**
-     * Test attribute "actualResult"
+     * Test attribute "description"
      */
-    public function testPropertyActualResult()
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "preconditions"
+     */
+    public function testPropertyPreconditions()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postconditions"
+     */
+    public function testPropertyPostconditions()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -111,6 +138,60 @@ class DefectTest extends TestCase
      * Test attribute "severity"
      */
     public function testPropertySeverity()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "priority"
+     */
+    public function testPropertyPriority()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "type"
+     */
+    public function testPropertyType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "layer"
+     */
+    public function testPropertyLayer()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "isFlaky"
+     */
+    public function testPropertyIsFlaky()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "behavior"
+     */
+    public function testPropertyBehavior()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "automation"
+     */
+    public function testPropertyAutomation()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -135,6 +216,15 @@ class DefectTest extends TestCase
     }
 
     /**
+     * Test attribute "suiteId"
+     */
+    public function testPropertySuiteId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "customFields"
      */
     public function testPropertyCustomFields()
@@ -153,18 +243,36 @@ class DefectTest extends TestCase
     }
 
     /**
-     * Test attribute "resolvedAt"
+     * Test attribute "stepsType"
      */
-    public function testPropertyResolvedAt()
+    public function testPropertyStepsType()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "projectId"
+     * Test attribute "steps"
      */
-    public function testPropertyProjectId()
+    public function testPropertySteps()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "params"
+     */
+    public function testPropertyParams()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tags"
+     */
+    public function testPropertyTags()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -180,18 +288,9 @@ class DefectTest extends TestCase
     }
 
     /**
-     * Test attribute "externalData"
+     * Test attribute "projectId"
      */
-    public function testPropertyExternalData()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "tags"
-     */
-    public function testPropertyTags()
+    public function testPropertyProjectId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -210,24 +309,6 @@ class DefectTest extends TestCase
      * Test attribute "updatedAt"
      */
     public function testPropertyUpdatedAt()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "created"
-     */
-    public function testPropertyCreated()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "updated"
-     */
-    public function testPropertyUpdated()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

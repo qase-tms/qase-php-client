@@ -1,6 +1,6 @@
 <?php
 /**
- * MilestoneTest
+ * QqlPlanTest
  *
  * PHP version 7.3
  *
@@ -32,15 +32,15 @@ namespace Qase\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * MilestoneTest Class Doc Comment
+ * QqlPlanTest Class Doc Comment
  *
  * @category    Class
- * @description Milestone
+ * @description QqlPlan
  * @package     Qase\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class MilestoneTest extends TestCase
+class QqlPlanTest extends TestCase
 {
 
     /**
@@ -72,9 +72,9 @@ class MilestoneTest extends TestCase
     }
 
     /**
-     * Test "Milestone"
+     * Test "QqlPlan"
      */
-    public function testMilestone()
+    public function testQqlPlan()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -108,36 +108,9 @@ class MilestoneTest extends TestCase
     }
 
     /**
-     * Test attribute "status"
+     * Test attribute "casesCount"
      */
-    public function testPropertyStatus()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "dueDate"
-     */
-    public function testPropertyDueDate()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "created"
-     */
-    public function testPropertyCreated()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "updated"
-     */
-    public function testPropertyUpdated()
+    public function testPropertyCasesCount()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

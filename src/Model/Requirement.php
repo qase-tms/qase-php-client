@@ -67,8 +67,8 @@ class Requirement implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'string',
         'status' => 'string',
         'type' => 'string',
-        'created' => '\DateTime',
-        'updated' => '\DateTime'
+        'createdAt' => '\DateTime',
+        'updatedAt' => '\DateTime'
     ];
 
     /**
@@ -86,8 +86,8 @@ class Requirement implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => null,
         'status' => null,
         'type' => null,
-        'created' => 'date-time',
-        'updated' => 'date-time'
+        'createdAt' => 'date-time',
+        'updatedAt' => 'date-time'
     ];
 
     /**
@@ -124,8 +124,8 @@ class Requirement implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'description',
         'status' => 'status',
         'type' => 'type',
-        'created' => 'created',
-        'updated' => 'updated'
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at'
     ];
 
     /**
@@ -141,8 +141,8 @@ class Requirement implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'setDescription',
         'status' => 'setStatus',
         'type' => 'setType',
-        'created' => 'setCreated',
-        'updated' => 'setUpdated'
+        'createdAt' => 'setCreatedAt',
+        'updatedAt' => 'setUpdatedAt'
     ];
 
     /**
@@ -158,8 +158,8 @@ class Requirement implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'getDescription',
         'status' => 'getStatus',
         'type' => 'getType',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated'
+        'createdAt' => 'getCreatedAt',
+        'updatedAt' => 'getUpdatedAt'
     ];
 
     /**
@@ -270,8 +270,8 @@ class Requirement implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['description'] = $data['description'] ?? null;
         $this->container['status'] = $data['status'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
-        $this->container['created'] = $data['created'] ?? null;
-        $this->container['updated'] = $data['updated'] ?? null;
+        $this->container['createdAt'] = $data['createdAt'] ?? null;
+        $this->container['updatedAt'] = $data['updatedAt'] ?? null;
     }
 
     /**
@@ -505,49 +505,49 @@ class Requirement implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets created
+     * Gets createdAt
      *
      * @return \DateTime|null
      */
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->container['created'];
+        return $this->container['createdAt'];
     }
 
     /**
-     * Sets created
+     * Sets createdAt
      *
-     * @param \DateTime|null $created created
+     * @param \DateTime|null $createdAt createdAt
      *
      * @return self
      */
-    public function setCreated($created)
+    public function setCreatedAt($createdAt)
     {
-        $this->container['created'] = $created;
+        $this->container['createdAt'] = $createdAt;
 
         return $this;
     }
 
     /**
-     * Gets updated
+     * Gets updatedAt
      *
      * @return \DateTime|null
      */
-    public function getUpdated()
+    public function getUpdatedAt()
     {
-        return $this->container['updated'];
+        return $this->container['updatedAt'];
     }
 
     /**
-     * Sets updated
+     * Sets updatedAt
      *
-     * @param \DateTime|null $updated updated
+     * @param \DateTime|null $updatedAt updatedAt
      *
      * @return self
      */
-    public function setUpdated($updated)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->container['updated'] = $updated;
+        $this->container['updatedAt'] = $updatedAt;
 
         return $this;
     }

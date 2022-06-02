@@ -233,7 +233,7 @@ $apiInstance = new Qase\Client\Api\CasesApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\Filters()); // Filters
+$filters = array('key' => new \Qase\Client\Model\GetCasesFiltersParameter()); // GetCasesFiltersParameter
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 
@@ -250,7 +250,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
- **filters** | [**Filters**](../Model/.md)|  | [optional]
+ **filters** | [**GetCasesFiltersParameter**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **title** | **string** |  |
-**value** | [**\Qase\Client\Model\CustomFieldCreateValue[]**](CustomFieldCreateValue.md) |  | [optional]
+**value** | [**\Qase\Client\Model\CustomFieldCreateValueInner[]**](CustomFieldCreateValueInner.md) |  | [optional]
 **replaceValues** | **array<string,string>** | Dictionary of old values and their replacemants | [optional]
 **placeholder** | **string** |  | [optional]
 **defaultValue** | **string** |  | [optional]

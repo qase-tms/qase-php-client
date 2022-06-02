@@ -235,7 +235,7 @@ $apiInstance = new Qase\Client\Api\RunsApi(
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
 $id = 56; // int | Identifier.
-$include = 'include_example'; // string | Add this param to include a list of test cases into response. Possible value: cases
+$include = 'include_example'; // string | Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects
 
 try {
     $result = $apiInstance->getRun($code, $id, $include);
@@ -251,7 +251,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
  **id** | **int**| Identifier. |
- **include** | **string**| Add this param to include a list of test cases into response. Possible value: cases | [optional]
+ **include** | **string**| Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects | [optional]
 
 ### Return type
 
@@ -300,10 +300,10 @@ $apiInstance = new Qase\Client\Api\RunsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\Filters5()); // Filters5
+$filters = array('key' => new \Qase\Client\Model\GetRunsFiltersParameter()); // GetRunsFiltersParameter
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
-$include = 'include_example'; // string | Add this param to include a list of test cases into response. Possible value: cases
+$include = 'include_example'; // string | Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects
 
 try {
     $result = $apiInstance->getRuns($code, $filters, $limit, $offset, $include);
@@ -318,10 +318,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
- **filters** | [**Filters5**](../Model/.md)|  | [optional]
+ **filters** | [**GetRunsFiltersParameter**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
- **include** | **string**| Add this param to include a list of test cases into response. Possible value: cases | [optional]
+ **include** | **string**| Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects | [optional]
 
 ### Return type
 

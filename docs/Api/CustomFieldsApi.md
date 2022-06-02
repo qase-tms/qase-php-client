@@ -226,7 +226,7 @@ $apiInstance = new Qase\Client\Api\CustomFieldsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$filters = array('key' => new \Qase\Client\Model\Filters1()); // Filters1
+$filters = array('key' => new \Qase\Client\Model\GetCustomFieldsFiltersParameter()); // GetCustomFieldsFiltersParameter
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 
@@ -242,7 +242,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filters** | [**Filters1**](../Model/.md)|  | [optional]
+ **filters** | [**GetCustomFieldsFiltersParameter**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
 

@@ -235,7 +235,7 @@ $apiInstance = new Qase\Client\Api\DefectsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\Filters2()); // Filters2
+$filters = array('key' => new \Qase\Client\Model\GetDefectsFiltersParameter()); // GetDefectsFiltersParameter
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 
@@ -252,7 +252,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
- **filters** | [**Filters2**](../Model/.md)|  | [optional]
+ **filters** | [**GetDefectsFiltersParameter**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
 

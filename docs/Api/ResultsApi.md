@@ -15,7 +15,7 @@ Method | HTTP request | Description
 ## `createResult()`
 
 ```php
-createResult($code, $id, $resultCreate): Response
+createResult($code, $id, $resultCreate): \Qase\Client\Model\CreateResult200Response
 ```
 
 Create test run result.
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Response**](../Model/Response.md)
+[**\Qase\Client\Model\CreateResult200Response**](../Model/CreateResult200Response.md)
 
 ### Authorization
 
@@ -304,7 +304,7 @@ $apiInstance = new Qase\Client\Api\ResultsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\Filters4()); // Filters4
+$filters = array('key' => new \Qase\Client\Model\GetResultsFiltersParameter()); // GetResultsFiltersParameter
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 
@@ -321,7 +321,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
- **filters** | [**Filters4**](../Model/.md)|  | [optional]
+ **filters** | [**GetResultsFiltersParameter**](../Model/.md)|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
 

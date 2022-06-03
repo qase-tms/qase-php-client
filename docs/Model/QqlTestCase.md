@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **attachments** | [**\Qase\Client\Model\Attachment[]**](Attachment.md) |  | [optional]
 **stepsType** | **string** |  | [optional]
 **steps** | [**\Qase\Client\Model\TestStep[]**](TestStep.md) |  | [optional]
-**params** | [**AnyOfArrayObject**](AnyOfArrayObject.md) |  | [optional]
+**params** | [**\Qase\Client\Model\TestCaseParams**](TestCaseParams.md) |  | [optional]
 **tags** | [**\Qase\Client\Model\TagValue[]**](TagValue.md) |  | [optional]
 **memberId** | **int** |  | [optional]
 **projectId** | **int** |  | [optional]

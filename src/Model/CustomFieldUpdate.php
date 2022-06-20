@@ -68,6 +68,7 @@ class CustomFieldUpdate implements ModelInterface, ArrayAccess, \JsonSerializabl
         'isFilterable' => 'bool',
         'isVisible' => 'bool',
         'isRequired' => 'bool',
+        'isEnabledForAllProjects' => 'bool',
         'projectsCodes' => 'string[]'
     ];
 
@@ -87,6 +88,7 @@ class CustomFieldUpdate implements ModelInterface, ArrayAccess, \JsonSerializabl
         'isFilterable' => null,
         'isVisible' => null,
         'isRequired' => null,
+        'isEnabledForAllProjects' => null,
         'projectsCodes' => null
     ];
 
@@ -125,6 +127,7 @@ class CustomFieldUpdate implements ModelInterface, ArrayAccess, \JsonSerializabl
         'isFilterable' => 'is_filterable',
         'isVisible' => 'is_visible',
         'isRequired' => 'is_required',
+        'isEnabledForAllProjects' => 'is_enabled_for_all_projects',
         'projectsCodes' => 'projects_codes'
     ];
 
@@ -142,6 +145,7 @@ class CustomFieldUpdate implements ModelInterface, ArrayAccess, \JsonSerializabl
         'isFilterable' => 'setIsFilterable',
         'isVisible' => 'setIsVisible',
         'isRequired' => 'setIsRequired',
+        'isEnabledForAllProjects' => 'setIsEnabledForAllProjects',
         'projectsCodes' => 'setProjectsCodes'
     ];
 
@@ -159,6 +163,7 @@ class CustomFieldUpdate implements ModelInterface, ArrayAccess, \JsonSerializabl
         'isFilterable' => 'getIsFilterable',
         'isVisible' => 'getIsVisible',
         'isRequired' => 'getIsRequired',
+        'isEnabledForAllProjects' => 'getIsEnabledForAllProjects',
         'projectsCodes' => 'getProjectsCodes'
     ];
 
@@ -227,6 +232,7 @@ class CustomFieldUpdate implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->container['isFilterable'] = $data['isFilterable'] ?? null;
         $this->container['isVisible'] = $data['isVisible'] ?? null;
         $this->container['isRequired'] = $data['isRequired'] ?? null;
+        $this->container['isEnabledForAllProjects'] = $data['isEnabledForAllProjects'] ?? null;
         $this->container['projectsCodes'] = $data['projectsCodes'] ?? null;
     }
 
@@ -469,6 +475,30 @@ class CustomFieldUpdate implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setIsRequired($isRequired)
     {
         $this->container['isRequired'] = $isRequired;
+
+        return $this;
+    }
+
+    /**
+     * Gets isEnabledForAllProjects
+     *
+     * @return bool|null
+     */
+    public function getIsEnabledForAllProjects()
+    {
+        return $this->container['isEnabledForAllProjects'];
+    }
+
+    /**
+     * Sets isEnabledForAllProjects
+     *
+     * @param bool|null $isEnabledForAllProjects isEnabledForAllProjects
+     *
+     * @return self
+     */
+    public function setIsEnabledForAllProjects($isEnabledForAllProjects)
+    {
+        $this->container['isEnabledForAllProjects'] = $isEnabledForAllProjects;
 
         return $this;
     }

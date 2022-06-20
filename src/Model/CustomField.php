@@ -70,6 +70,7 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         'isRequired' => 'bool',
         'isVisible' => 'bool',
         'isFilterable' => 'bool',
+        'isEnabledForAllProjects' => 'bool',
         'created' => 'string',
         'updated' => 'string',
         'createdAt' => '\DateTime',
@@ -95,6 +96,7 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         'isRequired' => null,
         'isVisible' => null,
         'isFilterable' => null,
+        'isEnabledForAllProjects' => null,
         'created' => null,
         'updated' => null,
         'createdAt' => 'date-time',
@@ -139,6 +141,7 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         'isRequired' => 'is_required',
         'isVisible' => 'is_visible',
         'isFilterable' => 'is_filterable',
+        'isEnabledForAllProjects' => 'is_enabled_for_all_projects',
         'created' => 'created',
         'updated' => 'updated',
         'createdAt' => 'created_at',
@@ -162,6 +165,7 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         'isRequired' => 'setIsRequired',
         'isVisible' => 'setIsVisible',
         'isFilterable' => 'setIsFilterable',
+        'isEnabledForAllProjects' => 'setIsEnabledForAllProjects',
         'created' => 'setCreated',
         'updated' => 'setUpdated',
         'createdAt' => 'setCreatedAt',
@@ -185,6 +189,7 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         'isRequired' => 'getIsRequired',
         'isVisible' => 'getIsVisible',
         'isFilterable' => 'getIsFilterable',
+        'isEnabledForAllProjects' => 'getIsEnabledForAllProjects',
         'created' => 'getCreated',
         'updated' => 'getUpdated',
         'createdAt' => 'getCreatedAt',
@@ -259,6 +264,7 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['isRequired'] = $data['isRequired'] ?? null;
         $this->container['isVisible'] = $data['isVisible'] ?? null;
         $this->container['isFilterable'] = $data['isFilterable'] ?? null;
+        $this->container['isEnabledForAllProjects'] = $data['isEnabledForAllProjects'] ?? null;
         $this->container['created'] = $data['created'] ?? null;
         $this->container['updated'] = $data['updated'] ?? null;
         $this->container['createdAt'] = $data['createdAt'] ?? null;
@@ -526,6 +532,30 @@ class CustomField implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setIsFilterable($isFilterable)
     {
         $this->container['isFilterable'] = $isFilterable;
+
+        return $this;
+    }
+
+    /**
+     * Gets isEnabledForAllProjects
+     *
+     * @return bool|null
+     */
+    public function getIsEnabledForAllProjects()
+    {
+        return $this->container['isEnabledForAllProjects'];
+    }
+
+    /**
+     * Sets isEnabledForAllProjects
+     *
+     * @param bool|null $isEnabledForAllProjects isEnabledForAllProjects
+     *
+     * @return self
+     */
+    public function setIsEnabledForAllProjects($isEnabledForAllProjects)
+    {
+        $this->container['isEnabledForAllProjects'] = $isEnabledForAllProjects;
 
         return $this;
     }

@@ -171,6 +171,15 @@ class CustomFieldTest extends TestCase
     }
 
     /**
+     * Test attribute "isEnabledForAllProjects"
+     */
+    public function testPropertyIsEnabledForAllProjects()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created"
      */
     public function testPropertyCreated()

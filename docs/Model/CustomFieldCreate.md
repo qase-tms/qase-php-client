@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **isFilterable** | **bool** |  | [optional]
 **isVisible** | **bool** |  | [optional]
 **isRequired** | **bool** |  | [optional]
+**isEnabledForAllProjects** | **bool** |  | [optional]
 **projectsCodes** | **string[]** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

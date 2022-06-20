@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **isRequired** | **bool** |  | [optional]
 **isVisible** | **bool** |  | [optional]
 **isFilterable** | **bool** |  | [optional]
+**isEnabledForAllProjects** | **bool** |  | [optional]
 **created** | **string** | Deprecated, use the &#x60;created_at&#x60; property instead. | [optional]
 **updated** | **string** | Deprecated, use the &#x60;updated_at&#x60; property instead. | [optional]
 **createdAt** | **\DateTime** |  | [optional]

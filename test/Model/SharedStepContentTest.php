@@ -1,6 +1,6 @@
 <?php
 /**
- * TestStepTest
+ * SharedStepContentTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace Qase\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * TestStepTest Class Doc Comment
+ * SharedStepContentTest Class Doc Comment
  *
  * @category    Class
- * @description TestStep
+ * @description SharedStepContent
  * @package     Qase\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class TestStepTest extends TestCase
+class SharedStepContentTest extends TestCase
 {
 
     /**
@@ -72,9 +72,18 @@ class TestStepTest extends TestCase
     }
 
     /**
-     * Test "TestStep"
+     * Test "SharedStepContent"
      */
-    public function testTestStep()
+    public function testSharedStepContent()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "data"
+     */
+    public function testPropertyData()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -84,33 +93,6 @@ class TestStepTest extends TestCase
      * Test attribute "hash"
      */
     public function testPropertyHash()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "sharedStepHash"
-     */
-    public function testPropertySharedStepHash()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "sharedStepNestedHash"
-     */
-    public function testPropertySharedStepNestedHash()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "position"
-     */
-    public function testPropertyPosition()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -135,27 +117,9 @@ class TestStepTest extends TestCase
     }
 
     /**
-     * Test attribute "data"
-     */
-    public function testPropertyData()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "attachments"
      */
     public function testPropertyAttachments()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "steps"
-     */
-    public function testPropertySteps()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

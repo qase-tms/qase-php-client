@@ -65,7 +65,8 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
         'action' => 'string',
         'expectedResult' => 'string',
         'data' => 'string',
-        'attachments' => '\Qase\Client\Model\Attachment[]'
+        'attachments' => '\Qase\Client\Model\Attachment[]',
+        'steps' => '\Qase\Client\Model\TestStep[]'
     ];
 
     /**
@@ -83,7 +84,8 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
         'action' => null,
         'expectedResult' => null,
         'data' => null,
-        'attachments' => null
+        'attachments' => null,
+        'steps' => null
     ];
 
     /**
@@ -120,7 +122,8 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
         'action' => 'action',
         'expectedResult' => 'expected_result',
         'data' => 'data',
-        'attachments' => 'attachments'
+        'attachments' => 'attachments',
+        'steps' => 'steps'
     ];
 
     /**
@@ -136,7 +139,8 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
         'action' => 'setAction',
         'expectedResult' => 'setExpectedResult',
         'data' => 'setData',
-        'attachments' => 'setAttachments'
+        'attachments' => 'setAttachments',
+        'steps' => 'setSteps'
     ];
 
     /**
@@ -152,7 +156,8 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
         'action' => 'getAction',
         'expectedResult' => 'getExpectedResult',
         'data' => 'getData',
-        'attachments' => 'getAttachments'
+        'attachments' => 'getAttachments',
+        'steps' => 'getSteps'
     ];
 
     /**
@@ -220,6 +225,7 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['expectedResult'] = $data['expectedResult'] ?? null;
         $this->container['data'] = $data['data'] ?? null;
         $this->container['attachments'] = $data['attachments'] ?? null;
+        $this->container['steps'] = $data['steps'] ?? null;
     }
 
     /**
@@ -434,6 +440,30 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttachments($attachments)
     {
         $this->container['attachments'] = $attachments;
+
+        return $this;
+    }
+
+    /**
+     * Gets steps
+     *
+     * @return \Qase\Client\Model\TestStep[]|null
+     */
+    public function getSteps()
+    {
+        return $this->container['steps'];
+    }
+
+    /**
+     * Sets steps
+     *
+     * @param \Qase\Client\Model\TestStep[]|null $steps steps
+     *
+     * @return self
+     */
+    public function setSteps($steps)
+    {
+        $this->container['steps'] = $steps;
 
         return $this;
     }

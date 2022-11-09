@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **automation** | **int** |  | [optional]
 **status** | **int** |  | [optional]
 **attachments** | **string[]** | A list of Attachment hashes. | [optional]
-**steps** | [**\Qase\Client\Model\TestCaseCreateStepsInner[]**](TestCaseCreateStepsInner.md) |  | [optional]
+**steps** | [**\Qase\Client\Model\TestStepCreate[]**](TestStepCreate.md) |  | [optional]
 **tags** | **string[]** |  | [optional]
 **customField** | **array<string,string>** | A map of custom fields values (id &#x3D;&gt; value) | [optional]
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * SharedStepCreate
+ * TestStepResult
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Qase\Client\ObjectSerializer;
 
 /**
- * SharedStepCreate Class Doc Comment
+ * TestStepResult Class Doc Comment
  *
  * @category Class
  * @package  Qase\Client
@@ -41,7 +41,7 @@ use \Qase\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
+class TestStepResult implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SharedStepCreate';
+    protected static $openAPIModelName = 'TestStepResult';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,11 +58,10 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'title' => 'string',
-        'action' => 'string',
-        'expectedResult' => 'string',
-        'data' => 'string',
-        'steps' => '\Qase\Client\Model\SharedStepContentCreate[]'
+        'status' => 'int',
+        'position' => 'int',
+        'attachments' => '\Qase\Client\Model\Attachment[]',
+        'steps' => '\Qase\Client\Model\TestStepResult[]'
     ];
 
     /**
@@ -73,10 +72,9 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'title' => null,
-        'action' => null,
-        'expectedResult' => null,
-        'data' => null,
+        'status' => null,
+        'position' => null,
+        'attachments' => null,
         'steps' => null
     ];
 
@@ -107,10 +105,9 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'title' => 'title',
-        'action' => 'action',
-        'expectedResult' => 'expected_result',
-        'data' => 'data',
+        'status' => 'status',
+        'position' => 'position',
+        'attachments' => 'attachments',
         'steps' => 'steps'
     ];
 
@@ -120,10 +117,9 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'title' => 'setTitle',
-        'action' => 'setAction',
-        'expectedResult' => 'setExpectedResult',
-        'data' => 'setData',
+        'status' => 'setStatus',
+        'position' => 'setPosition',
+        'attachments' => 'setAttachments',
         'steps' => 'setSteps'
     ];
 
@@ -133,10 +129,9 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'title' => 'getTitle',
-        'action' => 'getAction',
-        'expectedResult' => 'getExpectedResult',
-        'data' => 'getData',
+        'status' => 'getStatus',
+        'position' => 'getPosition',
+        'attachments' => 'getAttachments',
         'steps' => 'getSteps'
     ];
 
@@ -197,10 +192,9 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['title'] = $data['title'] ?? null;
-        $this->container['action'] = $data['action'] ?? null;
-        $this->container['expectedResult'] = $data['expectedResult'] ?? null;
-        $this->container['data'] = $data['data'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['position'] = $data['position'] ?? null;
+        $this->container['attachments'] = $data['attachments'] ?? null;
         $this->container['steps'] = $data['steps'] ?? null;
     }
 
@@ -212,13 +206,6 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if ($this->container['title'] === null) {
-            $invalidProperties[] = "'title' can't be null";
-        }
-        if ((mb_strlen($this->container['title']) > 255)) {
-            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 255.";
-        }
 
         return $invalidProperties;
     }
@@ -236,107 +223,73 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets title
+     * Gets status
      *
-     * @return string
+     * @return int|null
      */
-    public function getTitle()
+    public function getStatus()
     {
-        return $this->container['title'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets title
+     * Sets status
      *
-     * @param string $title title
+     * @param int|null $status status
      *
      * @return self
      */
-    public function setTitle($title)
+    public function setStatus($status)
     {
-        if ((mb_strlen($title) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $title when calling SharedStepCreate., must be smaller than or equal to 255.');
-        }
-
-        $this->container['title'] = $title;
+        $this->container['status'] = $status;
 
         return $this;
     }
 
     /**
-     * Gets action
+     * Gets position
      *
-     * @return string|null
-     * @deprecated
+     * @return int|null
      */
-    public function getAction()
+    public function getPosition()
     {
-        return $this->container['action'];
+        return $this->container['position'];
     }
 
     /**
-     * Sets action
+     * Sets position
      *
-     * @param string|null $action Deprecated, use the `steps` property instead.
+     * @param int|null $position position
      *
      * @return self
-     * @deprecated
      */
-    public function setAction($action)
+    public function setPosition($position)
     {
-        $this->container['action'] = $action;
+        $this->container['position'] = $position;
 
         return $this;
     }
 
     /**
-     * Gets expectedResult
+     * Gets attachments
      *
-     * @return string|null
-     * @deprecated
+     * @return \Qase\Client\Model\Attachment[]|null
      */
-    public function getExpectedResult()
+    public function getAttachments()
     {
-        return $this->container['expectedResult'];
+        return $this->container['attachments'];
     }
 
     /**
-     * Sets expectedResult
+     * Sets attachments
      *
-     * @param string|null $expectedResult Deprecated, use the `steps` property instead.
+     * @param \Qase\Client\Model\Attachment[]|null $attachments attachments
      *
      * @return self
-     * @deprecated
      */
-    public function setExpectedResult($expectedResult)
+    public function setAttachments($attachments)
     {
-        $this->container['expectedResult'] = $expectedResult;
-
-        return $this;
-    }
-
-    /**
-     * Gets data
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getData()
-    {
-        return $this->container['data'];
-    }
-
-    /**
-     * Sets data
-     *
-     * @param string|null $data Deprecated, use the `steps` property instead.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setData($data)
-    {
-        $this->container['data'] = $data;
+        $this->container['attachments'] = $attachments;
 
         return $this;
     }
@@ -344,7 +297,7 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets steps
      *
-     * @return \Qase\Client\Model\SharedStepContentCreate[]|null
+     * @return \Qase\Client\Model\TestStepResult[]|null
      */
     public function getSteps()
     {
@@ -354,7 +307,7 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets steps
      *
-     * @param \Qase\Client\Model\SharedStepContentCreate[]|null $steps steps
+     * @param \Qase\Client\Model\TestStepResult[]|null $steps steps
      *
      * @return self
      */

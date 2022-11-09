@@ -10,6 +10,6 @@ Name | Type | Description | Notes
 **attachments** | **string[]** |  | [optional]
 **stacktrace** | **string** |  | [optional]
 **comment** | **string** |  | [optional]
-**steps** | [**\Qase\Client\Model\ResultUpdateStepsInner[]**](ResultUpdateStepsInner.md) |  | [optional]
+**steps** | [**\Qase\Client\Model\TestStepResultCreate[]**](TestStepResultCreate.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

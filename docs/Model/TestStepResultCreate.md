@@ -1,17 +1,16 @@
-# # TestStep
+# # TestStepResultCreate
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hash** | **string** |  | [optional]
-**sharedStepHash** | **string** |  | [optional]
-**sharedStepNestedHash** | **string** |  | [optional]
-**position** | **int** |  | [optional]
+**position** | **int** |  |
+**status** | **string** |  |
+**comment** | **string** |  | [optional]
+**attachments** | **string[]** |  | [optional]
 **action** | **string** |  | [optional]
 **expectedResult** | **string** |  | [optional]
 **data** | **string** |  | [optional]
-**attachments** | [**\Qase\Client\Model\Attachment[]**](Attachment.md) |  | [optional]
-**steps** | [**\Qase\Client\Model\TestStep[]**](TestStep.md) |  | [optional]
+**steps** | [**\Qase\Client\Model\TestStepResultCreate[]**](TestStepResultCreate.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

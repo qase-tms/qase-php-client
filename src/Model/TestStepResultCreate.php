@@ -1,6 +1,6 @@
 <?php
 /**
- * SharedStep
+ * TestStepResultCreate
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Qase\Client\ObjectSerializer;
 
 /**
- * SharedStep Class Doc Comment
+ * TestStepResultCreate Class Doc Comment
  *
  * @category Class
  * @package  Qase\Client
@@ -41,7 +41,7 @@ use \Qase\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
+class TestStepResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SharedStep';
+    protected static $openAPIModelName = 'TestStepResultCreate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,18 +58,14 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'hash' => 'string',
-        'title' => 'string',
+        'position' => 'int',
+        'status' => 'string',
+        'comment' => 'string',
+        'attachments' => 'string[]',
         'action' => 'string',
         'expectedResult' => 'string',
-        'steps' => '\Qase\Client\Model\SharedStepContent[]',
         'data' => 'string',
-        'cases' => 'int[]',
-        'casesCount' => 'int',
-        'created' => 'string',
-        'updated' => 'string',
-        'createdAt' => '\DateTime',
-        'updatedAt' => '\DateTime'
+        'steps' => 'object[]'
     ];
 
     /**
@@ -80,18 +76,14 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'hash' => null,
-        'title' => null,
+        'position' => null,
+        'status' => null,
+        'comment' => null,
+        'attachments' => null,
         'action' => null,
         'expectedResult' => null,
-        'steps' => null,
         'data' => null,
-        'cases' => 'int64',
-        'casesCount' => null,
-        'created' => null,
-        'updated' => null,
-        'createdAt' => 'date-time',
-        'updatedAt' => 'date-time'
+        'steps' => null
     ];
 
     /**
@@ -121,18 +113,14 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'hash' => 'hash',
-        'title' => 'title',
+        'position' => 'position',
+        'status' => 'status',
+        'comment' => 'comment',
+        'attachments' => 'attachments',
         'action' => 'action',
         'expectedResult' => 'expected_result',
-        'steps' => 'steps',
         'data' => 'data',
-        'cases' => 'cases',
-        'casesCount' => 'cases_count',
-        'created' => 'created',
-        'updated' => 'updated',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
+        'steps' => 'steps'
     ];
 
     /**
@@ -141,18 +129,14 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'hash' => 'setHash',
-        'title' => 'setTitle',
+        'position' => 'setPosition',
+        'status' => 'setStatus',
+        'comment' => 'setComment',
+        'attachments' => 'setAttachments',
         'action' => 'setAction',
         'expectedResult' => 'setExpectedResult',
-        'steps' => 'setSteps',
         'data' => 'setData',
-        'cases' => 'setCases',
-        'casesCount' => 'setCasesCount',
-        'created' => 'setCreated',
-        'updated' => 'setUpdated',
-        'createdAt' => 'setCreatedAt',
-        'updatedAt' => 'setUpdatedAt'
+        'steps' => 'setSteps'
     ];
 
     /**
@@ -161,18 +145,14 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'hash' => 'getHash',
-        'title' => 'getTitle',
+        'position' => 'getPosition',
+        'status' => 'getStatus',
+        'comment' => 'getComment',
+        'attachments' => 'getAttachments',
         'action' => 'getAction',
         'expectedResult' => 'getExpectedResult',
-        'steps' => 'getSteps',
         'data' => 'getData',
-        'cases' => 'getCases',
-        'casesCount' => 'getCasesCount',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated',
-        'createdAt' => 'getCreatedAt',
-        'updatedAt' => 'getUpdatedAt'
+        'steps' => 'getSteps'
     ];
 
     /**
@@ -216,6 +196,23 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const STATUS_PASSED = 'passed';
+    public const STATUS_FAILED = 'failed';
+    public const STATUS_BLOCKED = 'blocked';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_PASSED,
+            self::STATUS_FAILED,
+            self::STATUS_BLOCKED,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -232,18 +229,14 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['hash'] = $data['hash'] ?? null;
-        $this->container['title'] = $data['title'] ?? null;
+        $this->container['position'] = $data['position'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['comment'] = $data['comment'] ?? null;
+        $this->container['attachments'] = $data['attachments'] ?? null;
         $this->container['action'] = $data['action'] ?? null;
         $this->container['expectedResult'] = $data['expectedResult'] ?? null;
-        $this->container['steps'] = $data['steps'] ?? null;
         $this->container['data'] = $data['data'] ?? null;
-        $this->container['cases'] = $data['cases'] ?? null;
-        $this->container['casesCount'] = $data['casesCount'] ?? null;
-        $this->container['created'] = $data['created'] ?? null;
-        $this->container['updated'] = $data['updated'] ?? null;
-        $this->container['createdAt'] = $data['createdAt'] ?? null;
-        $this->container['updatedAt'] = $data['updatedAt'] ?? null;
+        $this->container['steps'] = $data['steps'] ?? null;
     }
 
     /**
@@ -254,6 +247,21 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if ($this->container['position'] === null) {
+            $invalidProperties[] = "'position' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -271,49 +279,107 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets hash
+     * Gets position
      *
-     * @return string|null
+     * @return int
      */
-    public function getHash()
+    public function getPosition()
     {
-        return $this->container['hash'];
+        return $this->container['position'];
     }
 
     /**
-     * Sets hash
+     * Sets position
      *
-     * @param string|null $hash hash
+     * @param int $position position
      *
      * @return self
      */
-    public function setHash($hash)
+    public function setPosition($position)
     {
-        $this->container['hash'] = $hash;
+        $this->container['position'] = $position;
 
         return $this;
     }
 
     /**
-     * Gets title
+     * Gets status
      *
-     * @return string|null
+     * @return string
      */
-    public function getTitle()
+    public function getStatus()
     {
-        return $this->container['title'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets title
+     * Sets status
      *
-     * @param string|null $title title
+     * @param string $status status
      *
      * @return self
      */
-    public function setTitle($title)
+    public function setStatus($status)
     {
-        $this->container['title'] = $title;
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets comment
+     *
+     * @return string|null
+     */
+    public function getComment()
+    {
+        return $this->container['comment'];
+    }
+
+    /**
+     * Sets comment
+     *
+     * @param string|null $comment comment
+     *
+     * @return self
+     */
+    public function setComment($comment)
+    {
+        $this->container['comment'] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Gets attachments
+     *
+     * @return string[]|null
+     */
+    public function getAttachments()
+    {
+        return $this->container['attachments'];
+    }
+
+    /**
+     * Sets attachments
+     *
+     * @param string[]|null $attachments attachments
+     *
+     * @return self
+     */
+    public function setAttachments($attachments)
+    {
+        $this->container['attachments'] = $attachments;
 
         return $this;
     }
@@ -367,30 +433,6 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets steps
-     *
-     * @return \Qase\Client\Model\SharedStepContent[]|null
-     */
-    public function getSteps()
-    {
-        return $this->container['steps'];
-    }
-
-    /**
-     * Sets steps
-     *
-     * @param \Qase\Client\Model\SharedStepContent[]|null $steps steps
-     *
-     * @return self
-     */
-    public function setSteps($steps)
-    {
-        $this->container['steps'] = $steps;
-
-        return $this;
-    }
-
-    /**
      * Gets data
      *
      * @return string|null
@@ -415,149 +457,25 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets cases
+     * Gets steps
      *
-     * @return int[]|null
+     * @return object[]|null
      */
-    public function getCases()
+    public function getSteps()
     {
-        return $this->container['cases'];
+        return $this->container['steps'];
     }
 
     /**
-     * Sets cases
+     * Sets steps
      *
-     * @param int[]|null $cases cases
+     * @param object[]|null $steps Nested steps results may be passed here. Use same structure for them.
      *
      * @return self
      */
-    public function setCases($cases)
+    public function setSteps($steps)
     {
-        $this->container['cases'] = $cases;
-
-        return $this;
-    }
-
-    /**
-     * Gets casesCount
-     *
-     * @return int|null
-     */
-    public function getCasesCount()
-    {
-        return $this->container['casesCount'];
-    }
-
-    /**
-     * Sets casesCount
-     *
-     * @param int|null $casesCount casesCount
-     *
-     * @return self
-     */
-    public function setCasesCount($casesCount)
-    {
-        $this->container['casesCount'] = $casesCount;
-
-        return $this;
-    }
-
-    /**
-     * Gets created
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Sets created
-     *
-     * @param string|null $created Deprecated, use the `created_at` property instead.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setCreated($created)
-    {
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     *
-     * @param string|null $updated Deprecated, use the `updated_at` property instead.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setUpdated($updated)
-    {
-        $this->container['updated'] = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Gets createdAt
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['createdAt'];
-    }
-
-    /**
-     * Sets createdAt
-     *
-     * @param \DateTime|null $createdAt createdAt
-     *
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->container['createdAt'] = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Gets updatedAt
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updatedAt'];
-    }
-
-    /**
-     * Sets updatedAt
-     *
-     * @param \DateTime|null $updatedAt updatedAt
-     *
-     * @return self
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->container['updatedAt'] = $updatedAt;
+        $this->container['steps'] = $steps;
 
         return $this;
     }

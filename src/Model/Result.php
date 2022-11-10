@@ -63,7 +63,7 @@ class Result implements ModelInterface, ArrayAccess, \JsonSerializable
         'stacktrace' => 'string',
         'runId' => 'int',
         'caseId' => 'int',
-        'steps' => '\Qase\Client\Model\ResultStepsInner[]',
+        'steps' => '\Qase\Client\Model\TestStepResult[]',
         'status' => 'string',
         'isApiResult' => 'bool',
         'timeSpentMs' => 'int',
@@ -387,7 +387,7 @@ class Result implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets steps
      *
-     * @return \Qase\Client\Model\ResultStepsInner[]|null
+     * @return \Qase\Client\Model\TestStepResult[]|null
      */
     public function getSteps()
     {
@@ -397,7 +397,7 @@ class Result implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets steps
      *
-     * @param \Qase\Client\Model\ResultStepsInner[]|null $steps steps
+     * @param \Qase\Client\Model\TestStepResult[]|null $steps steps
      *
      * @return self
      */

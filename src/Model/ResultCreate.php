@@ -68,7 +68,7 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'stacktrace' => 'string',
         'comment' => 'string',
         'param' => 'array<string,string>',
-        'steps' => '\Qase\Client\Model\ResultCreateStepsInner[]'
+        'steps' => '\Qase\Client\Model\TestStepResultCreate[]'
     ];
 
     /**
@@ -592,7 +592,7 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets steps
      *
-     * @return \Qase\Client\Model\ResultCreateStepsInner[]|null
+     * @return \Qase\Client\Model\TestStepResultCreate[]|null
      */
     public function getSteps()
     {
@@ -602,7 +602,7 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets steps
      *
-     * @param \Qase\Client\Model\ResultCreateStepsInner[]|null $steps steps
+     * @param \Qase\Client\Model\TestStepResultCreate[]|null $steps steps
      *
      * @return self
      */

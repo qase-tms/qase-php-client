@@ -62,7 +62,7 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'string',
         'action' => 'string',
         'expectedResult' => 'string',
-        'steps' => '\Qase\Client\Model\SharedStepStepsInner[]',
+        'steps' => '\Qase\Client\Model\SharedStepContent[]',
         'data' => 'string',
         'cases' => 'int[]',
         'casesCount' => 'int',
@@ -369,7 +369,7 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets steps
      *
-     * @return \Qase\Client\Model\SharedStepStepsInner[]|null
+     * @return \Qase\Client\Model\SharedStepContent[]|null
      */
     public function getSteps()
     {
@@ -379,7 +379,7 @@ class SharedStep implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets steps
      *
-     * @param \Qase\Client\Model\SharedStepStepsInner[]|null $steps steps
+     * @param \Qase\Client\Model\SharedStepContent[]|null $steps steps
      *
      * @return self
      */

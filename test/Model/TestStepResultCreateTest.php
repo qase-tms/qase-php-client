@@ -1,6 +1,6 @@
 <?php
 /**
- * TestStepTest
+ * TestStepResultCreateTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace Qase\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * TestStepTest Class Doc Comment
+ * TestStepResultCreateTest Class Doc Comment
  *
  * @category    Class
- * @description TestStep
+ * @description TestStepResultCreate
  * @package     Qase\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class TestStepTest extends TestCase
+class TestStepResultCreateTest extends TestCase
 {
 
     /**
@@ -72,36 +72,18 @@ class TestStepTest extends TestCase
     }
 
     /**
-     * Test "TestStep"
+     * Test "TestStepResultCreate"
      */
-    public function testTestStep()
+    public function testTestStepResultCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "hash"
+     * Test attribute "status"
      */
-    public function testPropertyHash()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "sharedStepHash"
-     */
-    public function testPropertySharedStepHash()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "sharedStepNestedHash"
-     */
-    public function testPropertySharedStepNestedHash()
+    public function testPropertyStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -111,6 +93,24 @@ class TestStepTest extends TestCase
      * Test attribute "position"
      */
     public function testPropertyPosition()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "comment"
+     */
+    public function testPropertyComment()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "attachments"
+     */
+    public function testPropertyAttachments()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,15 +138,6 @@ class TestStepTest extends TestCase
      * Test attribute "data"
      */
     public function testPropertyData()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "attachments"
-     */
-    public function testPropertyAttachments()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -62,7 +62,7 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'action' => 'string',
         'expectedResult' => 'string',
         'data' => 'string',
-        'steps' => '\Qase\Client\Model\SharedStepCreateStepsInner[]'
+        'steps' => '\Qase\Client\Model\SharedStepContentCreate[]'
     ];
 
     /**
@@ -344,7 +344,7 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets steps
      *
-     * @return \Qase\Client\Model\SharedStepCreateStepsInner[]|null
+     * @return \Qase\Client\Model\SharedStepContentCreate[]|null
      */
     public function getSteps()
     {
@@ -354,7 +354,7 @@ class SharedStepCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets steps
      *
-     * @param \Qase\Client\Model\SharedStepCreateStepsInner[]|null $steps steps
+     * @param \Qase\Client\Model\SharedStepContentCreate[]|null $steps steps
      *
      * @return self
      */

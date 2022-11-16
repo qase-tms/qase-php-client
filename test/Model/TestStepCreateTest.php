@@ -1,6 +1,6 @@
 <?php
 /**
- * TestStepTest
+ * TestStepCreateTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace Qase\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * TestStepTest Class Doc Comment
+ * TestStepCreateTest Class Doc Comment
  *
  * @category    Class
- * @description TestStep
+ * @description TestStepCreate
  * @package     Qase\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class TestStepTest extends TestCase
+class TestStepCreateTest extends TestCase
 {
 
     /**
@@ -72,45 +72,9 @@ class TestStepTest extends TestCase
     }
 
     /**
-     * Test "TestStep"
+     * Test "TestStepCreate"
      */
-    public function testTestStep()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "hash"
-     */
-    public function testPropertyHash()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "sharedStepHash"
-     */
-    public function testPropertySharedStepHash()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "sharedStepNestedHash"
-     */
-    public function testPropertySharedStepNestedHash()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "position"
-     */
-    public function testPropertyPosition()
+    public function testTestStepCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,6 +102,15 @@ class TestStepTest extends TestCase
      * Test attribute "data"
      */
     public function testPropertyData()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "position"
+     */
+    public function testPropertyPosition()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **stacktrace** | **string** |  | [optional]
 **runId** | **int** |  | [optional]
 **caseId** | **int** |  | [optional]
-**steps** | [**\Qase\Client\Model\ResultStepsInner[]**](ResultStepsInner.md) |  | [optional]
+**steps** | [**\Qase\Client\Model\TestStepResult[]**](TestStepResult.md) |  | [optional]
 **status** | **string** |  | [optional]
 **isApiResult** | **bool** |  | [optional]
 **timeSpentMs** | **int** |  | [optional]

@@ -73,7 +73,7 @@ class TestCaseUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
         'automation' => 'int',
         'status' => 'int',
         'attachments' => 'string[]',
-        'steps' => '\Qase\Client\Model\TestCaseCreateStepsInner[]',
+        'steps' => '\Qase\Client\Model\TestStepCreate[]',
         'tags' => 'string[]',
         'customField' => 'array<string,string>'
     ];
@@ -677,7 +677,7 @@ class TestCaseUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets steps
      *
-     * @return \Qase\Client\Model\TestCaseCreateStepsInner[]|null
+     * @return \Qase\Client\Model\TestStepCreate[]|null
      */
     public function getSteps()
     {
@@ -687,7 +687,7 @@ class TestCaseUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets steps
      *
-     * @param \Qase\Client\Model\TestCaseCreateStepsInner[]|null $steps steps
+     * @param \Qase\Client\Model\TestStepCreate[]|null $steps steps
      *
      * @return self
      */

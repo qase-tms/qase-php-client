@@ -162,15 +162,6 @@ class DefectTest extends TestCase
     }
 
     /**
-     * Test attribute "projectId"
-     */
-    public function testPropertyProjectId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "memberId"
      */
     public function testPropertyMemberId()

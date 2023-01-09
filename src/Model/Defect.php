@@ -67,7 +67,6 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'customFields' => '\Qase\Client\Model\CustomFieldValue[]',
         'attachments' => '\Qase\Client\Model\Attachment[]',
         'resolvedAt' => '\DateTime',
-        'projectId' => 'int',
         'memberId' => 'int',
         'externalData' => 'string',
         'tags' => '\Qase\Client\Model\TagValue[]',
@@ -94,7 +93,6 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'customFields' => null,
         'attachments' => null,
         'resolvedAt' => 'date-time',
-        'projectId' => 'int64',
         'memberId' => 'int64',
         'externalData' => null,
         'tags' => null,
@@ -140,7 +138,6 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'customFields' => 'custom_fields',
         'attachments' => 'attachments',
         'resolvedAt' => 'resolved_at',
-        'projectId' => 'project_id',
         'memberId' => 'member_id',
         'externalData' => 'external_data',
         'tags' => 'tags',
@@ -165,7 +162,6 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'customFields' => 'setCustomFields',
         'attachments' => 'setAttachments',
         'resolvedAt' => 'setResolvedAt',
-        'projectId' => 'setProjectId',
         'memberId' => 'setMemberId',
         'externalData' => 'setExternalData',
         'tags' => 'setTags',
@@ -190,7 +186,6 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'customFields' => 'getCustomFields',
         'attachments' => 'getAttachments',
         'resolvedAt' => 'getResolvedAt',
-        'projectId' => 'getProjectId',
         'memberId' => 'getMemberId',
         'externalData' => 'getExternalData',
         'tags' => 'getTags',
@@ -266,7 +261,6 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['customFields'] = $data['customFields'] ?? null;
         $this->container['attachments'] = $data['attachments'] ?? null;
         $this->container['resolvedAt'] = $data['resolvedAt'] ?? null;
-        $this->container['projectId'] = $data['projectId'] ?? null;
         $this->container['memberId'] = $data['memberId'] ?? null;
         $this->container['externalData'] = $data['externalData'] ?? null;
         $this->container['tags'] = $data['tags'] ?? null;
@@ -512,30 +506,6 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setResolvedAt($resolvedAt)
     {
         $this->container['resolvedAt'] = $resolvedAt;
-
-        return $this;
-    }
-
-    /**
-     * Gets projectId
-     *
-     * @return int|null
-     */
-    public function getProjectId()
-    {
-        return $this->container['projectId'];
-    }
-
-    /**
-     * Sets projectId
-     *
-     * @param int|null $projectId projectId
-     *
-     * @return self
-     */
-    public function setProjectId($projectId)
-    {
-        $this->container['projectId'] = $projectId;
 
         return $this;
     }

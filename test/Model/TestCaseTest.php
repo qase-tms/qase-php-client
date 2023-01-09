@@ -288,15 +288,6 @@ class TestCaseTest extends TestCase
     }
 
     /**
-     * Test attribute "projectId"
-     */
-    public function testPropertyProjectId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "createdAt"
      */
     public function testPropertyCreatedAt()

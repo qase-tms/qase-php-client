@@ -81,7 +81,6 @@ class QqlTestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'params' => '\Qase\Client\Model\TestCaseParams',
         'tags' => '\Qase\Client\Model\TagValue[]',
         'memberId' => 'int',
-        'projectId' => 'int',
         'createdAt' => '\DateTime',
         'updatedAt' => '\DateTime'
     ];
@@ -117,7 +116,6 @@ class QqlTestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'params' => null,
         'tags' => null,
         'memberId' => 'int64',
-        'projectId' => 'int64',
         'createdAt' => 'date-time',
         'updatedAt' => 'date-time'
     ];
@@ -172,7 +170,6 @@ class QqlTestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'params' => 'params',
         'tags' => 'tags',
         'memberId' => 'member_id',
-        'projectId' => 'project_id',
         'createdAt' => 'created_at',
         'updatedAt' => 'updated_at'
     ];
@@ -206,7 +203,6 @@ class QqlTestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'params' => 'setParams',
         'tags' => 'setTags',
         'memberId' => 'setMemberId',
-        'projectId' => 'setProjectId',
         'createdAt' => 'setCreatedAt',
         'updatedAt' => 'setUpdatedAt'
     ];
@@ -240,7 +236,6 @@ class QqlTestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'params' => 'getParams',
         'tags' => 'getTags',
         'memberId' => 'getMemberId',
-        'projectId' => 'getProjectId',
         'createdAt' => 'getCreatedAt',
         'updatedAt' => 'getUpdatedAt'
     ];
@@ -325,7 +320,6 @@ class QqlTestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['params'] = $data['params'] ?? null;
         $this->container['tags'] = $data['tags'] ?? null;
         $this->container['memberId'] = $data['memberId'] ?? null;
-        $this->container['projectId'] = $data['projectId'] ?? null;
         $this->container['createdAt'] = $data['createdAt'] ?? null;
         $this->container['updatedAt'] = $data['updatedAt'] ?? null;
     }
@@ -902,30 +896,6 @@ class QqlTestCase implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMemberId($memberId)
     {
         $this->container['memberId'] = $memberId;
-
-        return $this;
-    }
-
-    /**
-     * Gets projectId
-     *
-     * @return int|null
-     */
-    public function getProjectId()
-    {
-        return $this->container['projectId'];
-    }
-
-    /**
-     * Sets projectId
-     *
-     * @param int|null $projectId projectId
-     *
-     * @return self
-     */
-    public function setProjectId($projectId)
-    {
-        $this->container['projectId'] = $projectId;
 
         return $this;
     }

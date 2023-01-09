@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **customFields** | [**\Qase\Client\Model\CustomFieldValue[]**](CustomFieldValue.md) |  | [optional]
 **attachments** | [**\Qase\Client\Model\Attachment[]**](Attachment.md) |  | [optional]
 **resolved** | **\DateTime** |  | [optional]
-**projectId** | **int** |  | [optional]
 **memberId** | **int** |  | [optional]
 **externalData** | **string** |  | [optional]
 **tags** | [**\Qase\Client\Model\TagValue[]**](TagValue.md) |  | [optional]

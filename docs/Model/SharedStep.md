@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **title** | **string** |  | [optional]
 **action** | **string** |  | [optional]
 **expectedResult** | **string** |  | [optional]
-**steps** | [**\Qase\Client\Model\SharedStepStepsInner[]**](SharedStepStepsInner.md) |  | [optional]
+**steps** | [**\Qase\Client\Model\SharedStepContent[]**](SharedStepContent.md) |  | [optional]
 **data** | **string** |  | [optional]
 **cases** | **int[]** |  | [optional]
 **casesCount** | **int** |  | [optional]

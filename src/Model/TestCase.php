@@ -81,7 +81,6 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'params' => '\Qase\Client\Model\TestCaseParams',
         'tags' => '\Qase\Client\Model\TagValue[]',
         'memberId' => 'int',
-        'projectId' => 'int',
         'createdAt' => '\DateTime',
         'updatedAt' => '\DateTime',
         'deleted' => 'string',
@@ -120,7 +119,6 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'params' => null,
         'tags' => null,
         'memberId' => 'int64',
-        'projectId' => 'int64',
         'createdAt' => 'date-time',
         'updatedAt' => 'date-time',
         'deleted' => null,
@@ -178,7 +176,6 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'params' => 'params',
         'tags' => 'tags',
         'memberId' => 'member_id',
-        'projectId' => 'project_id',
         'createdAt' => 'created_at',
         'updatedAt' => 'updated_at',
         'deleted' => 'deleted',
@@ -215,7 +212,6 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'params' => 'setParams',
         'tags' => 'setTags',
         'memberId' => 'setMemberId',
-        'projectId' => 'setProjectId',
         'createdAt' => 'setCreatedAt',
         'updatedAt' => 'setUpdatedAt',
         'deleted' => 'setDeleted',
@@ -252,7 +248,6 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         'params' => 'getParams',
         'tags' => 'getTags',
         'memberId' => 'getMemberId',
-        'projectId' => 'getProjectId',
         'createdAt' => 'getCreatedAt',
         'updatedAt' => 'getUpdatedAt',
         'deleted' => 'getDeleted',
@@ -340,7 +335,6 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['params'] = $data['params'] ?? null;
         $this->container['tags'] = $data['tags'] ?? null;
         $this->container['memberId'] = $data['memberId'] ?? null;
-        $this->container['projectId'] = $data['projectId'] ?? null;
         $this->container['createdAt'] = $data['createdAt'] ?? null;
         $this->container['updatedAt'] = $data['updatedAt'] ?? null;
         $this->container['deleted'] = $data['deleted'] ?? null;
@@ -920,30 +914,6 @@ class TestCase implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMemberId($memberId)
     {
         $this->container['memberId'] = $memberId;
-
-        return $this;
-    }
-
-    /**
-     * Gets projectId
-     *
-     * @return int|null
-     */
-    public function getProjectId()
-    {
-        return $this->container['projectId'];
-    }
-
-    /**
-     * Sets projectId
-     *
-     * @param int|null $projectId projectId
-     *
-     * @return self
-     */
-    public function setProjectId($projectId)
-    {
-        $this->container['projectId'] = $projectId;
 
         return $this;
     }

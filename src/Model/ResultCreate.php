@@ -68,7 +68,7 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'stacktrace' => 'string',
         'comment' => 'string',
         'param' => 'array<string,string>',
-        'steps' => '\Qase\Client\Model\ResultCreateStepsInner[]'
+        'steps' => '\Qase\Client\Model\TestStepResultCreate[]'
     ];
 
     /**
@@ -298,10 +298,6 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['timeMs']) && ($this->container['timeMs'] < 0)) {
             $invalidProperties[] = "invalid value for 'timeMs', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['param']) && (count($this->container['param']) > 1)) {
-            $invalidProperties[] = "invalid value for 'param', number of items must be less than or equal to 1.";
         }
 
         return $invalidProperties;
@@ -580,10 +576,6 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setParam($param)
     {
-
-        if (!is_null($param) && (count($param) > 1)) {
-            throw new \InvalidArgumentException('invalid value for $param when calling ResultCreate., number of items must be less than or equal to 1.');
-        }
         $this->container['param'] = $param;
 
         return $this;
@@ -592,7 +584,7 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets steps
      *
-     * @return \Qase\Client\Model\ResultCreateStepsInner[]|null
+     * @return \Qase\Client\Model\TestStepResultCreate[]|null
      */
     public function getSteps()
     {
@@ -602,7 +594,7 @@ class ResultCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets steps
      *
-     * @param \Qase\Client\Model\ResultCreateStepsInner[]|null $steps steps
+     * @param \Qase\Client\Model\TestStepResultCreate[]|null $steps steps
      *
      * @return self
      */

@@ -234,6 +234,15 @@ class TestCaseCreateTest extends TestCase
     }
 
     /**
+     * Test attribute "params"
+     */
+    public function testPropertyParams()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "customField"
      */
     public function testPropertyCustomField()

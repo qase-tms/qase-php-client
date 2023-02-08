@@ -67,7 +67,6 @@ class QqlDefect implements ModelInterface, ArrayAccess, \JsonSerializable
         'customFields' => '\Qase\Client\Model\CustomFieldValue[]',
         'attachments' => '\Qase\Client\Model\Attachment[]',
         'resolved' => '\DateTime',
-        'projectId' => 'int',
         'memberId' => 'int',
         'externalData' => 'string',
         'tags' => '\Qase\Client\Model\TagValue[]',
@@ -92,7 +91,6 @@ class QqlDefect implements ModelInterface, ArrayAccess, \JsonSerializable
         'customFields' => null,
         'attachments' => null,
         'resolved' => 'date-time',
-        'projectId' => 'int64',
         'memberId' => 'int64',
         'externalData' => null,
         'tags' => null,
@@ -136,7 +134,6 @@ class QqlDefect implements ModelInterface, ArrayAccess, \JsonSerializable
         'customFields' => 'custom_fields',
         'attachments' => 'attachments',
         'resolved' => 'resolved',
-        'projectId' => 'project_id',
         'memberId' => 'member_id',
         'externalData' => 'external_data',
         'tags' => 'tags',
@@ -159,7 +156,6 @@ class QqlDefect implements ModelInterface, ArrayAccess, \JsonSerializable
         'customFields' => 'setCustomFields',
         'attachments' => 'setAttachments',
         'resolved' => 'setResolved',
-        'projectId' => 'setProjectId',
         'memberId' => 'setMemberId',
         'externalData' => 'setExternalData',
         'tags' => 'setTags',
@@ -182,7 +178,6 @@ class QqlDefect implements ModelInterface, ArrayAccess, \JsonSerializable
         'customFields' => 'getCustomFields',
         'attachments' => 'getAttachments',
         'resolved' => 'getResolved',
-        'projectId' => 'getProjectId',
         'memberId' => 'getMemberId',
         'externalData' => 'getExternalData',
         'tags' => 'getTags',
@@ -256,7 +251,6 @@ class QqlDefect implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['customFields'] = $data['customFields'] ?? null;
         $this->container['attachments'] = $data['attachments'] ?? null;
         $this->container['resolved'] = $data['resolved'] ?? null;
-        $this->container['projectId'] = $data['projectId'] ?? null;
         $this->container['memberId'] = $data['memberId'] ?? null;
         $this->container['externalData'] = $data['externalData'] ?? null;
         $this->container['tags'] = $data['tags'] ?? null;
@@ -500,30 +494,6 @@ class QqlDefect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setResolved($resolved)
     {
         $this->container['resolved'] = $resolved;
-
-        return $this;
-    }
-
-    /**
-     * Gets projectId
-     *
-     * @return int|null
-     */
-    public function getProjectId()
-    {
-        return $this->container['projectId'];
-    }
-
-    /**
-     * Sets projectId
-     *
-     * @param int|null $projectId projectId
-     *
-     * @return self
-     */
-    public function setProjectId($projectId)
-    {
-        $this->container['projectId'] = $projectId;
 
         return $this;
     }

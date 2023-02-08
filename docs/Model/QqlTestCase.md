@@ -27,7 +27,6 @@ Name | Type | Description | Notes
 **params** | [**\Qase\Client\Model\TestCaseParams**](TestCaseParams.md) |  | [optional]
 **tags** | [**\Qase\Client\Model\TagValue[]**](TagValue.md) |  | [optional]
 **memberId** | **int** |  | [optional]
-**projectId** | **int** |  | [optional]
 **createdAt** | **\DateTime** |  | [optional]
 **updatedAt** | **\DateTime** |  | [optional]
 

@@ -73,8 +73,9 @@ class TestCaseCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'automation' => 'int',
         'status' => 'int',
         'attachments' => 'string[]',
-        'steps' => '\Qase\Client\Model\TestCaseCreateStepsInner[]',
+        'steps' => '\Qase\Client\Model\TestStepCreate[]',
         'tags' => 'string[]',
+        'params' => 'array<string,string[]>',
         'customField' => 'array<string,string>'
     ];
 
@@ -103,6 +104,7 @@ class TestCaseCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'attachments' => null,
         'steps' => null,
         'tags' => null,
+        'params' => null,
         'customField' => null
     ];
 
@@ -150,6 +152,7 @@ class TestCaseCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'attachments' => 'attachments',
         'steps' => 'steps',
         'tags' => 'tags',
+        'params' => 'params',
         'customField' => 'custom_field'
     ];
 
@@ -176,6 +179,7 @@ class TestCaseCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'attachments' => 'setAttachments',
         'steps' => 'setSteps',
         'tags' => 'setTags',
+        'params' => 'setParams',
         'customField' => 'setCustomField'
     ];
 
@@ -202,6 +206,7 @@ class TestCaseCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         'attachments' => 'getAttachments',
         'steps' => 'getSteps',
         'tags' => 'getTags',
+        'params' => 'getParams',
         'customField' => 'getCustomField'
     ];
 
@@ -279,6 +284,7 @@ class TestCaseCreate implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['attachments'] = $data['attachments'] ?? null;
         $this->container['steps'] = $data['steps'] ?? null;
         $this->container['tags'] = $data['tags'] ?? null;
+        $this->container['params'] = $data['params'] ?? null;
         $this->container['customField'] = $data['customField'] ?? null;
     }
 
@@ -680,7 +686,7 @@ class TestCaseCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets steps
      *
-     * @return \Qase\Client\Model\TestCaseCreateStepsInner[]|null
+     * @return \Qase\Client\Model\TestStepCreate[]|null
      */
     public function getSteps()
     {
@@ -690,7 +696,7 @@ class TestCaseCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets steps
      *
-     * @param \Qase\Client\Model\TestCaseCreateStepsInner[]|null $steps steps
+     * @param \Qase\Client\Model\TestStepCreate[]|null $steps steps
      *
      * @return self
      */
@@ -721,6 +727,30 @@ class TestCaseCreate implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setTags($tags)
     {
         $this->container['tags'] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Gets params
+     *
+     * @return array<string,string[]>|null
+     */
+    public function getParams()
+    {
+        return $this->container['params'];
+    }
+
+    /**
+     * Sets params
+     *
+     * @param array<string,string[]>|null $params params
+     *
+     * @return self
+     */
+    public function setParams($params)
+    {
+        $this->container['params'] = $params;
 
         return $this;
     }

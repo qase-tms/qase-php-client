@@ -1,6 +1,6 @@
 <?php
 /**
- * QqlDefectTest
+ * TestStepCreateTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace Qase\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * QqlDefectTest Class Doc Comment
+ * TestStepCreateTest Class Doc Comment
  *
  * @category    Class
- * @description QqlDefect
+ * @description TestStepCreate
  * @package     Qase\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class QqlDefectTest extends TestCase
+class TestStepCreateTest extends TestCase
 {
 
     /**
@@ -72,72 +72,45 @@ class QqlDefectTest extends TestCase
     }
 
     /**
-     * Test "QqlDefect"
+     * Test "TestStepCreate"
      */
-    public function testQqlDefect()
+    public function testTestStepCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "id"
+     * Test attribute "action"
      */
-    public function testPropertyId()
+    public function testPropertyAction()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "expectedResult"
      */
-    public function testPropertyTitle()
+    public function testPropertyExpectedResult()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "actualResult"
+     * Test attribute "data"
      */
-    public function testPropertyActualResult()
+    public function testPropertyData()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "severity"
+     * Test attribute "position"
      */
-    public function testPropertySeverity()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "milestoneId"
-     */
-    public function testPropertyMilestoneId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "customFields"
-     */
-    public function testPropertyCustomFields()
+    public function testPropertyPosition()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -153,54 +126,9 @@ class QqlDefectTest extends TestCase
     }
 
     /**
-     * Test attribute "resolved"
+     * Test attribute "steps"
      */
-    public function testPropertyResolved()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "memberId"
-     */
-    public function testPropertyMemberId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "externalData"
-     */
-    public function testPropertyExternalData()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "tags"
-     */
-    public function testPropertyTags()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "createdAt"
-     */
-    public function testPropertyCreatedAt()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "updatedAt"
-     */
-    public function testPropertyUpdatedAt()
+    public function testPropertySteps()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

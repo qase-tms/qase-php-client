@@ -19,8 +19,9 @@ Name | Type | Description | Notes
 **automation** | **int** |  | [optional]
 **status** | **int** |  | [optional]
 **attachments** | **string[]** | A list of Attachment hashes. | [optional]
-**steps** | [**\Qase\Client\Model\TestCaseCreateStepsInner[]**](TestCaseCreateStepsInner.md) |  | [optional]
+**steps** | [**\Qase\Client\Model\TestStepCreate[]**](TestStepCreate.md) |  | [optional]
 **tags** | **string[]** |  | [optional]
+**params** | **array<string,string[]>** |  | [optional]
 **customField** | **array<string,string>** | A map of custom fields values (id &#x3D;&gt; value) | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

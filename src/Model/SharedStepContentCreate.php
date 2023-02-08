@@ -1,6 +1,6 @@
 <?php
 /**
- * TestStep
+ * SharedStepContentCreate
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Qase\Client\ObjectSerializer;
 
 /**
- * TestStep Class Doc Comment
+ * SharedStepContentCreate Class Doc Comment
  *
  * @category Class
  * @package  Qase\Client
@@ -41,7 +41,7 @@ use \Qase\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
+class SharedStepContentCreate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TestStep';
+    protected static $openAPIModelName = 'SharedStepContentCreate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,15 +58,11 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'hash' => 'string',
-        'sharedStepHash' => 'string',
-        'sharedStepNestedHash' => 'string',
-        'position' => 'int',
         'action' => 'string',
+        'hash' => 'string',
         'expectedResult' => 'string',
         'data' => 'string',
-        'attachments' => '\Qase\Client\Model\Attachment[]',
-        'steps' => 'object[]'
+        'attachments' => 'string[]'
     ];
 
     /**
@@ -77,15 +73,11 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'hash' => null,
-        'sharedStepHash' => null,
-        'sharedStepNestedHash' => null,
-        'position' => null,
         'action' => null,
+        'hash' => null,
         'expectedResult' => null,
         'data' => null,
-        'attachments' => null,
-        'steps' => null
+        'attachments' => null
     ];
 
     /**
@@ -115,15 +107,11 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'hash' => 'hash',
-        'sharedStepHash' => 'shared_step_hash',
-        'sharedStepNestedHash' => 'shared_step_nested_hash',
-        'position' => 'position',
         'action' => 'action',
+        'hash' => 'hash',
         'expectedResult' => 'expected_result',
         'data' => 'data',
-        'attachments' => 'attachments',
-        'steps' => 'steps'
+        'attachments' => 'attachments'
     ];
 
     /**
@@ -132,15 +120,11 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'hash' => 'setHash',
-        'sharedStepHash' => 'setSharedStepHash',
-        'sharedStepNestedHash' => 'setSharedStepNestedHash',
-        'position' => 'setPosition',
         'action' => 'setAction',
+        'hash' => 'setHash',
         'expectedResult' => 'setExpectedResult',
         'data' => 'setData',
-        'attachments' => 'setAttachments',
-        'steps' => 'setSteps'
+        'attachments' => 'setAttachments'
     ];
 
     /**
@@ -149,15 +133,11 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'hash' => 'getHash',
-        'sharedStepHash' => 'getSharedStepHash',
-        'sharedStepNestedHash' => 'getSharedStepNestedHash',
-        'position' => 'getPosition',
         'action' => 'getAction',
+        'hash' => 'getHash',
         'expectedResult' => 'getExpectedResult',
         'data' => 'getData',
-        'attachments' => 'getAttachments',
-        'steps' => 'getSteps'
+        'attachments' => 'getAttachments'
     ];
 
     /**
@@ -217,15 +197,11 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['hash'] = $data['hash'] ?? null;
-        $this->container['sharedStepHash'] = $data['sharedStepHash'] ?? null;
-        $this->container['sharedStepNestedHash'] = $data['sharedStepNestedHash'] ?? null;
-        $this->container['position'] = $data['position'] ?? null;
         $this->container['action'] = $data['action'] ?? null;
+        $this->container['hash'] = $data['hash'] ?? null;
         $this->container['expectedResult'] = $data['expectedResult'] ?? null;
         $this->container['data'] = $data['data'] ?? null;
         $this->container['attachments'] = $data['attachments'] ?? null;
-        $this->container['steps'] = $data['steps'] ?? null;
     }
 
     /**
@@ -237,6 +213,9 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['action'] === null) {
+            $invalidProperties[] = "'action' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -251,6 +230,30 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets action
+     *
+     * @return string
+     */
+    public function getAction()
+    {
+        return $this->container['action'];
+    }
+
+    /**
+     * Sets action
+     *
+     * @param string $action action
+     *
+     * @return self
+     */
+    public function setAction($action)
+    {
+        $this->container['action'] = $action;
+
+        return $this;
+    }
 
     /**
      * Gets hash
@@ -272,104 +275,6 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setHash($hash)
     {
         $this->container['hash'] = $hash;
-
-        return $this;
-    }
-
-    /**
-     * Gets sharedStepHash
-     *
-     * @return string|null
-     */
-    public function getSharedStepHash()
-    {
-        return $this->container['sharedStepHash'];
-    }
-
-    /**
-     * Sets sharedStepHash
-     *
-     * @param string|null $sharedStepHash sharedStepHash
-     *
-     * @return self
-     */
-    public function setSharedStepHash($sharedStepHash)
-    {
-        $this->container['sharedStepHash'] = $sharedStepHash;
-
-        return $this;
-    }
-
-    /**
-     * Gets sharedStepNestedHash
-     *
-     * @return string|null
-     */
-    public function getSharedStepNestedHash()
-    {
-        return $this->container['sharedStepNestedHash'];
-    }
-
-    /**
-     * Sets sharedStepNestedHash
-     *
-     * @param string|null $sharedStepNestedHash sharedStepNestedHash
-     *
-     * @return self
-     */
-    public function setSharedStepNestedHash($sharedStepNestedHash)
-    {
-        $this->container['sharedStepNestedHash'] = $sharedStepNestedHash;
-
-        return $this;
-    }
-
-    /**
-     * Gets position
-     *
-     * @return int|null
-     * @deprecated
-     */
-    public function getPosition()
-    {
-        return $this->container['position'];
-    }
-
-    /**
-     * Sets position
-     *
-     * @param int|null $position position
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setPosition($position)
-    {
-        $this->container['position'] = $position;
-
-        return $this;
-    }
-
-    /**
-     * Gets action
-     *
-     * @return string|null
-     */
-    public function getAction()
-    {
-        return $this->container['action'];
-    }
-
-    /**
-     * Sets action
-     *
-     * @param string|null $action action
-     *
-     * @return self
-     */
-    public function setAction($action)
-    {
-        $this->container['action'] = $action;
 
         return $this;
     }
@@ -425,7 +330,7 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets attachments
      *
-     * @return \Qase\Client\Model\Attachment[]|null
+     * @return string[]|null
      */
     public function getAttachments()
     {
@@ -435,37 +340,13 @@ class TestStep implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets attachments
      *
-     * @param \Qase\Client\Model\Attachment[]|null $attachments attachments
+     * @param string[]|null $attachments A list of Attachment hashes.
      *
      * @return self
      */
     public function setAttachments($attachments)
     {
         $this->container['attachments'] = $attachments;
-
-        return $this;
-    }
-
-    /**
-     * Gets steps
-     *
-     * @return object[]|null
-     */
-    public function getSteps()
-    {
-        return $this->container['steps'];
-    }
-
-    /**
-     * Sets steps
-     *
-     * @param object[]|null $steps Nested steps will be here. The same structure is used for them.
-     *
-     * @return self
-     */
-    public function setSteps($steps)
-    {
-        $this->container['steps'] = $steps;
 
         return $this;
     }

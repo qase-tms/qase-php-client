@@ -171,6 +171,15 @@ class QqlDefectTest extends TestCase
     }
 
     /**
+     * Test attribute "authorId"
+     */
+    public function testPropertyAuthorId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "externalData"
      */
     public function testPropertyExternalData()

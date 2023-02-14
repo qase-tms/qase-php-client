@@ -26,7 +26,8 @@ Name | Type | Description | Notes
 **steps** | [**\Qase\Client\Model\TestStep[]**](TestStep.md) |  | [optional]
 **params** | [**\Qase\Client\Model\TestCaseParams**](TestCaseParams.md) |  | [optional]
 **tags** | [**\Qase\Client\Model\TagValue[]**](TagValue.md) |  | [optional]
-**memberId** | **int** |  | [optional]
+**memberId** | **int** | Deprecated, use &#x60;author_id&#x60; instead. | [optional]
+**authorId** | **int** |  | [optional]
 **createdAt** | **\DateTime** |  | [optional]
 **updatedAt** | **\DateTime** |  | [optional]
 

@@ -68,6 +68,7 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'attachments' => '\Qase\Client\Model\Attachment[]',
         'resolvedAt' => '\DateTime',
         'memberId' => 'int',
+        'authorId' => 'int',
         'externalData' => 'string',
         'tags' => '\Qase\Client\Model\TagValue[]',
         'createdAt' => '\DateTime',
@@ -94,6 +95,7 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'attachments' => null,
         'resolvedAt' => 'date-time',
         'memberId' => 'int64',
+        'authorId' => 'int64',
         'externalData' => null,
         'tags' => null,
         'createdAt' => 'date-time',
@@ -139,6 +141,7 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'attachments' => 'attachments',
         'resolvedAt' => 'resolved_at',
         'memberId' => 'member_id',
+        'authorId' => 'author_id',
         'externalData' => 'external_data',
         'tags' => 'tags',
         'createdAt' => 'created_at',
@@ -163,6 +166,7 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'attachments' => 'setAttachments',
         'resolvedAt' => 'setResolvedAt',
         'memberId' => 'setMemberId',
+        'authorId' => 'setAuthorId',
         'externalData' => 'setExternalData',
         'tags' => 'setTags',
         'createdAt' => 'setCreatedAt',
@@ -187,6 +191,7 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         'attachments' => 'getAttachments',
         'resolvedAt' => 'getResolvedAt',
         'memberId' => 'getMemberId',
+        'authorId' => 'getAuthorId',
         'externalData' => 'getExternalData',
         'tags' => 'getTags',
         'createdAt' => 'getCreatedAt',
@@ -262,6 +267,7 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['attachments'] = $data['attachments'] ?? null;
         $this->container['resolvedAt'] = $data['resolvedAt'] ?? null;
         $this->container['memberId'] = $data['memberId'] ?? null;
+        $this->container['authorId'] = $data['authorId'] ?? null;
         $this->container['externalData'] = $data['externalData'] ?? null;
         $this->container['tags'] = $data['tags'] ?? null;
         $this->container['createdAt'] = $data['createdAt'] ?? null;
@@ -514,6 +520,7 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets memberId
      *
      * @return int|null
+     * @deprecated
      */
     public function getMemberId()
     {
@@ -523,13 +530,38 @@ class Defect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets memberId
      *
-     * @param int|null $memberId memberId
+     * @param int|null $memberId Deprecated, use `author_id` instead.
      *
      * @return self
+     * @deprecated
      */
     public function setMemberId($memberId)
     {
         $this->container['memberId'] = $memberId;
+
+        return $this;
+    }
+
+    /**
+     * Gets authorId
+     *
+     * @return int|null
+     */
+    public function getAuthorId()
+    {
+        return $this->container['authorId'];
+    }
+
+    /**
+     * Sets authorId
+     *
+     * @param int|null $authorId authorId
+     *
+     * @return self
+     */
+    public function setAuthorId($authorId)
+    {
+        $this->container['authorId'] = $authorId;
 
         return $this;
     }

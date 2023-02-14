@@ -288,6 +288,15 @@ class QqlTestCaseTest extends TestCase
     }
 
     /**
+     * Test attribute "authorId"
+     */
+    public function testPropertyAuthorId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "createdAt"
      */
     public function testPropertyCreatedAt()

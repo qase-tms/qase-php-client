@@ -1053,7 +1053,7 @@ class MilestonesApi
      * Get all milestones.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1061,9 +1061,9 @@ class MilestonesApi
      * @throws \InvalidArgumentException
      * @return \Qase\Client\Model\MilestoneListResponse
      */
-    public function getMilestones($code, $filters = null, $limit = 10, $offset = 0)
+    public function getMilestones($code, $search = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getMilestonesWithHttpInfo($code, $filters, $limit, $offset);
+        list($response) = $this->getMilestonesWithHttpInfo($code, $search, $limit, $offset);
         return $response;
     }
 
@@ -1073,7 +1073,7 @@ class MilestonesApi
      * Get all milestones.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1081,9 +1081,9 @@ class MilestonesApi
      * @throws \InvalidArgumentException
      * @return array of \Qase\Client\Model\MilestoneListResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getMilestonesWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getMilestonesWithHttpInfo($code, $search = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getMilestonesRequest($code, $filters, $limit, $offset);
+        $request = $this->getMilestonesRequest($code, $search, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1175,16 +1175,16 @@ class MilestonesApi
      * Get all milestones.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMilestonesAsync($code, $filters = null, $limit = 10, $offset = 0)
+    public function getMilestonesAsync($code, $search = null, $limit = 10, $offset = 0)
     {
-        return $this->getMilestonesAsyncWithHttpInfo($code, $filters, $limit, $offset)
+        return $this->getMilestonesAsyncWithHttpInfo($code, $search, $limit, $offset)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1198,17 +1198,17 @@ class MilestonesApi
      * Get all milestones.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMilestonesAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getMilestonesAsyncWithHttpInfo($code, $search = null, $limit = 10, $offset = 0)
     {
         $returnType = '\Qase\Client\Model\MilestoneListResponse';
-        $request = $this->getMilestonesRequest($code, $filters, $limit, $offset);
+        $request = $this->getMilestonesRequest($code, $search, $limit, $offset);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1250,14 +1250,14 @@ class MilestonesApi
      * Create request for operation 'getMilestones'
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getMilestonesRequest($code, $filters = null, $limit = 10, $offset = 0)
+    public function getMilestonesRequest($code, $search = null, $limit = 10, $offset = 0)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1296,9 +1296,9 @@ class MilestonesApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $filters,
-            'filters', // param base name
-            'object', // openApiType
+            $search,
+            'search', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required

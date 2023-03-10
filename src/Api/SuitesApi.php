@@ -1064,7 +1064,7 @@ class SuitesApi
      * Get all test suites.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1072,9 +1072,9 @@ class SuitesApi
      * @throws \InvalidArgumentException
      * @return \Qase\Client\Model\SuiteListResponse
      */
-    public function getSuites($code, $filters = null, $limit = 10, $offset = 0)
+    public function getSuites($code, $search = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getSuitesWithHttpInfo($code, $filters, $limit, $offset);
+        list($response) = $this->getSuitesWithHttpInfo($code, $search, $limit, $offset);
         return $response;
     }
 
@@ -1084,7 +1084,7 @@ class SuitesApi
      * Get all test suites.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1092,9 +1092,9 @@ class SuitesApi
      * @throws \InvalidArgumentException
      * @return array of \Qase\Client\Model\SuiteListResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSuitesWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getSuitesWithHttpInfo($code, $search = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getSuitesRequest($code, $filters, $limit, $offset);
+        $request = $this->getSuitesRequest($code, $search, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1186,16 +1186,16 @@ class SuitesApi
      * Get all test suites.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSuitesAsync($code, $filters = null, $limit = 10, $offset = 0)
+    public function getSuitesAsync($code, $search = null, $limit = 10, $offset = 0)
     {
-        return $this->getSuitesAsyncWithHttpInfo($code, $filters, $limit, $offset)
+        return $this->getSuitesAsyncWithHttpInfo($code, $search, $limit, $offset)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1209,17 +1209,17 @@ class SuitesApi
      * Get all test suites.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSuitesAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getSuitesAsyncWithHttpInfo($code, $search = null, $limit = 10, $offset = 0)
     {
         $returnType = '\Qase\Client\Model\SuiteListResponse';
-        $request = $this->getSuitesRequest($code, $filters, $limit, $offset);
+        $request = $this->getSuitesRequest($code, $search, $limit, $offset);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1261,14 +1261,14 @@ class SuitesApi
      * Create request for operation 'getSuites'
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSuitesRequest($code, $filters = null, $limit = 10, $offset = 0)
+    public function getSuitesRequest($code, $search = null, $limit = 10, $offset = 0)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1307,9 +1307,9 @@ class SuitesApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $filters,
-            'filters', // param base name
-            'object', // openApiType
+            $search,
+            'search', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required

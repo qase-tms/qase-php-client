@@ -1053,7 +1053,7 @@ class DefectsApi
      * Get all defects.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetDefectsFiltersParameter $filters filters (optional)
+     * @param  string $status status (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1061,9 +1061,9 @@ class DefectsApi
      * @throws \InvalidArgumentException
      * @return \Qase\Client\Model\DefectListResponse
      */
-    public function getDefects($code, $filters = null, $limit = 10, $offset = 0)
+    public function getDefects($code, $status = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getDefectsWithHttpInfo($code, $filters, $limit, $offset);
+        list($response) = $this->getDefectsWithHttpInfo($code, $status, $limit, $offset);
         return $response;
     }
 
@@ -1073,7 +1073,7 @@ class DefectsApi
      * Get all defects.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetDefectsFiltersParameter $filters (optional)
+     * @param  string $status (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1081,9 +1081,9 @@ class DefectsApi
      * @throws \InvalidArgumentException
      * @return array of \Qase\Client\Model\DefectListResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getDefectsWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getDefectsWithHttpInfo($code, $status = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getDefectsRequest($code, $filters, $limit, $offset);
+        $request = $this->getDefectsRequest($code, $status, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1175,16 +1175,16 @@ class DefectsApi
      * Get all defects.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetDefectsFiltersParameter $filters (optional)
+     * @param  string $status (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDefectsAsync($code, $filters = null, $limit = 10, $offset = 0)
+    public function getDefectsAsync($code, $status = null, $limit = 10, $offset = 0)
     {
-        return $this->getDefectsAsyncWithHttpInfo($code, $filters, $limit, $offset)
+        return $this->getDefectsAsyncWithHttpInfo($code, $status, $limit, $offset)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1198,17 +1198,17 @@ class DefectsApi
      * Get all defects.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetDefectsFiltersParameter $filters (optional)
+     * @param  string $status (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDefectsAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getDefectsAsyncWithHttpInfo($code, $status = null, $limit = 10, $offset = 0)
     {
         $returnType = '\Qase\Client\Model\DefectListResponse';
-        $request = $this->getDefectsRequest($code, $filters, $limit, $offset);
+        $request = $this->getDefectsRequest($code, $status, $limit, $offset);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1250,14 +1250,14 @@ class DefectsApi
      * Create request for operation 'getDefects'
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetDefectsFiltersParameter $filters (optional)
+     * @param  string $status (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getDefectsRequest($code, $filters = null, $limit = 10, $offset = 0)
+    public function getDefectsRequest($code, $status = null, $limit = 10, $offset = 0)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1296,9 +1296,9 @@ class DefectsApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $filters,
-            'filters', // param base name
-            'object', // openApiType
+            $status,
+            'status', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required

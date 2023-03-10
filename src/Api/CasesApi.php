@@ -1053,7 +1053,15 @@ class CasesApi
      * Get all test cases.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetCasesFiltersParameter $filters filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
+     * @param  int $milestoneId ID of milestone. (optional)
+     * @param  int $suiteId ID of test suite. (optional)
+     * @param  string $severity A list of severity values separated by comma. Possible values: undefined, blocker, critical, major, normal, minor, trivial (optional)
+     * @param  string $priority A list of priority values separated by comma. Possible values: undefined, high, medium, low (optional)
+     * @param  string $type A list of type values separated by comma. Possible values: other, functional smoke, regression, security, usability, performance, acceptance (optional)
+     * @param  string $behavior A list of behavior values separated by comma. Possible values: undefined, positive negative, destructive (optional)
+     * @param  string $automation A list of values separated by comma. Possible values: is-not-automated, automated to-be-automated (optional)
+     * @param  string $status A list of values separated by comma. Possible values: actual, draft deprecated (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1061,9 +1069,9 @@ class CasesApi
      * @throws \InvalidArgumentException
      * @return \Qase\Client\Model\TestCaseListResponse
      */
-    public function getCases($code, $filters = null, $limit = 10, $offset = 0)
+    public function getCases($code, $search = null, $milestoneId = null, $suiteId = null, $severity = null, $priority = null, $type = null, $behavior = null, $automation = null, $status = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getCasesWithHttpInfo($code, $filters, $limit, $offset);
+        list($response) = $this->getCasesWithHttpInfo($code, $search, $milestoneId, $suiteId, $severity, $priority, $type, $behavior, $automation, $status, $limit, $offset);
         return $response;
     }
 
@@ -1073,7 +1081,15 @@ class CasesApi
      * Get all test cases.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetCasesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
+     * @param  int $milestoneId ID of milestone. (optional)
+     * @param  int $suiteId ID of test suite. (optional)
+     * @param  string $severity A list of severity values separated by comma. Possible values: undefined, blocker, critical, major, normal, minor, trivial (optional)
+     * @param  string $priority A list of priority values separated by comma. Possible values: undefined, high, medium, low (optional)
+     * @param  string $type A list of type values separated by comma. Possible values: other, functional smoke, regression, security, usability, performance, acceptance (optional)
+     * @param  string $behavior A list of behavior values separated by comma. Possible values: undefined, positive negative, destructive (optional)
+     * @param  string $automation A list of values separated by comma. Possible values: is-not-automated, automated to-be-automated (optional)
+     * @param  string $status A list of values separated by comma. Possible values: actual, draft deprecated (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1081,9 +1097,9 @@ class CasesApi
      * @throws \InvalidArgumentException
      * @return array of \Qase\Client\Model\TestCaseListResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCasesWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getCasesWithHttpInfo($code, $search = null, $milestoneId = null, $suiteId = null, $severity = null, $priority = null, $type = null, $behavior = null, $automation = null, $status = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getCasesRequest($code, $filters, $limit, $offset);
+        $request = $this->getCasesRequest($code, $search, $milestoneId, $suiteId, $severity, $priority, $type, $behavior, $automation, $status, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1175,16 +1191,24 @@ class CasesApi
      * Get all test cases.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetCasesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
+     * @param  int $milestoneId ID of milestone. (optional)
+     * @param  int $suiteId ID of test suite. (optional)
+     * @param  string $severity A list of severity values separated by comma. Possible values: undefined, blocker, critical, major, normal, minor, trivial (optional)
+     * @param  string $priority A list of priority values separated by comma. Possible values: undefined, high, medium, low (optional)
+     * @param  string $type A list of type values separated by comma. Possible values: other, functional smoke, regression, security, usability, performance, acceptance (optional)
+     * @param  string $behavior A list of behavior values separated by comma. Possible values: undefined, positive negative, destructive (optional)
+     * @param  string $automation A list of values separated by comma. Possible values: is-not-automated, automated to-be-automated (optional)
+     * @param  string $status A list of values separated by comma. Possible values: actual, draft deprecated (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCasesAsync($code, $filters = null, $limit = 10, $offset = 0)
+    public function getCasesAsync($code, $search = null, $milestoneId = null, $suiteId = null, $severity = null, $priority = null, $type = null, $behavior = null, $automation = null, $status = null, $limit = 10, $offset = 0)
     {
-        return $this->getCasesAsyncWithHttpInfo($code, $filters, $limit, $offset)
+        return $this->getCasesAsyncWithHttpInfo($code, $search, $milestoneId, $suiteId, $severity, $priority, $type, $behavior, $automation, $status, $limit, $offset)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1198,17 +1222,25 @@ class CasesApi
      * Get all test cases.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetCasesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
+     * @param  int $milestoneId ID of milestone. (optional)
+     * @param  int $suiteId ID of test suite. (optional)
+     * @param  string $severity A list of severity values separated by comma. Possible values: undefined, blocker, critical, major, normal, minor, trivial (optional)
+     * @param  string $priority A list of priority values separated by comma. Possible values: undefined, high, medium, low (optional)
+     * @param  string $type A list of type values separated by comma. Possible values: other, functional smoke, regression, security, usability, performance, acceptance (optional)
+     * @param  string $behavior A list of behavior values separated by comma. Possible values: undefined, positive negative, destructive (optional)
+     * @param  string $automation A list of values separated by comma. Possible values: is-not-automated, automated to-be-automated (optional)
+     * @param  string $status A list of values separated by comma. Possible values: actual, draft deprecated (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCasesAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getCasesAsyncWithHttpInfo($code, $search = null, $milestoneId = null, $suiteId = null, $severity = null, $priority = null, $type = null, $behavior = null, $automation = null, $status = null, $limit = 10, $offset = 0)
     {
         $returnType = '\Qase\Client\Model\TestCaseListResponse';
-        $request = $this->getCasesRequest($code, $filters, $limit, $offset);
+        $request = $this->getCasesRequest($code, $search, $milestoneId, $suiteId, $severity, $priority, $type, $behavior, $automation, $status, $limit, $offset);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1250,14 +1282,22 @@ class CasesApi
      * Create request for operation 'getCases'
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetCasesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
+     * @param  int $milestoneId ID of milestone. (optional)
+     * @param  int $suiteId ID of test suite. (optional)
+     * @param  string $severity A list of severity values separated by comma. Possible values: undefined, blocker, critical, major, normal, minor, trivial (optional)
+     * @param  string $priority A list of priority values separated by comma. Possible values: undefined, high, medium, low (optional)
+     * @param  string $type A list of type values separated by comma. Possible values: other, functional smoke, regression, security, usability, performance, acceptance (optional)
+     * @param  string $behavior A list of behavior values separated by comma. Possible values: undefined, positive negative, destructive (optional)
+     * @param  string $automation A list of values separated by comma. Possible values: is-not-automated, automated to-be-automated (optional)
+     * @param  string $status A list of values separated by comma. Possible values: actual, draft deprecated (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCasesRequest($code, $filters = null, $limit = 10, $offset = 0)
+    public function getCasesRequest($code, $search = null, $milestoneId = null, $suiteId = null, $severity = null, $priority = null, $type = null, $behavior = null, $automation = null, $status = null, $limit = 10, $offset = 0)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1296,9 +1336,81 @@ class CasesApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $filters,
-            'filters', // param base name
-            'object', // openApiType
+            $search,
+            'search', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $milestoneId,
+            'milestone_id', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $suiteId,
+            'suite_id', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $severity,
+            'severity', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $priority,
+            'priority', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $type,
+            'type', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $behavior,
+            'behavior', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $automation,
+            'automation', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $status,
+            'status', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required

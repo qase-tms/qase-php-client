@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 ## `getRuns()`
 
 ```php
-getRuns($code, $filters, $limit, $offset, $include): \Qase\Client\Model\RunListResponse
+getRuns($code, $search, $status, $milestone, $environment, $fromStartTime, $toStartTime, $limit, $offset, $include): \Qase\Client\Model\RunListResponse
 ```
 
 Get all runs.
@@ -300,13 +300,18 @@ $apiInstance = new Qase\Client\Api\RunsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\GetRunsFiltersParameter()); // GetRunsFiltersParameter
+$search = 'search_example'; // string
+$status = 'status_example'; // string | A list of status values separated by comma. Possible values: active, complete, abort.
+$milestone = 56; // int
+$environment = 56; // int
+$fromStartTime = 56; // int
+$toStartTime = 56; // int
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 $include = 'include_example'; // string | Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects
 
 try {
-    $result = $apiInstance->getRuns($code, $filters, $limit, $offset, $include);
+    $result = $apiInstance->getRuns($code, $search, $status, $milestone, $environment, $fromStartTime, $toStartTime, $limit, $offset, $include);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RunsApi->getRuns: ', $e->getMessage(), PHP_EOL;
@@ -318,7 +323,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
- **filters** | [**GetRunsFiltersParameter**](../Model/.md)|  | [optional]
+ **search** | **string**|  | [optional]
+ **status** | **string**| A list of status values separated by comma. Possible values: active, complete, abort. | [optional]
+ **milestone** | **int**|  | [optional]
+ **environment** | **int**|  | [optional]
+ **fromStartTime** | **int**|  | [optional]
+ **toStartTime** | **int**|  | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
  **include** | **string**| Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects | [optional]

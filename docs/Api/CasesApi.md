@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 ## `getCases()`
 
 ```php
-getCases($code, $filters, $limit, $offset): \Qase\Client\Model\TestCaseListResponse
+getCases($code, $search, $milestoneId, $suiteId, $severity, $priority, $type, $behavior, $automation, $status, $limit, $offset): \Qase\Client\Model\TestCaseListResponse
 ```
 
 Get all test cases.
@@ -233,12 +233,20 @@ $apiInstance = new Qase\Client\Api\CasesApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\GetCasesFiltersParameter()); // GetCasesFiltersParameter
+$search = 'search_example'; // string | Provide a string that will be used to search by name.
+$milestoneId = 56; // int | ID of milestone.
+$suiteId = 56; // int | ID of test suite.
+$severity = 'severity_example'; // string | A list of severity values separated by comma. Possible values: undefined, blocker, critical, major, normal, minor, trivial
+$priority = 'priority_example'; // string | A list of priority values separated by comma. Possible values: undefined, high, medium, low
+$type = 'type_example'; // string | A list of type values separated by comma. Possible values: other, functional smoke, regression, security, usability, performance, acceptance
+$behavior = 'behavior_example'; // string | A list of behavior values separated by comma. Possible values: undefined, positive negative, destructive
+$automation = 'automation_example'; // string | A list of values separated by comma. Possible values: is-not-automated, automated to-be-automated
+$status = 'status_example'; // string | A list of values separated by comma. Possible values: actual, draft deprecated
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 
 try {
-    $result = $apiInstance->getCases($code, $filters, $limit, $offset);
+    $result = $apiInstance->getCases($code, $search, $milestoneId, $suiteId, $severity, $priority, $type, $behavior, $automation, $status, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CasesApi->getCases: ', $e->getMessage(), PHP_EOL;
@@ -250,7 +258,15 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
- **filters** | [**GetCasesFiltersParameter**](../Model/.md)|  | [optional]
+ **search** | **string**| Provide a string that will be used to search by name. | [optional]
+ **milestoneId** | **int**| ID of milestone. | [optional]
+ **suiteId** | **int**| ID of test suite. | [optional]
+ **severity** | **string**| A list of severity values separated by comma. Possible values: undefined, blocker, critical, major, normal, minor, trivial | [optional]
+ **priority** | **string**| A list of priority values separated by comma. Possible values: undefined, high, medium, low | [optional]
+ **type** | **string**| A list of type values separated by comma. Possible values: other, functional smoke, regression, security, usability, performance, acceptance | [optional]
+ **behavior** | **string**| A list of behavior values separated by comma. Possible values: undefined, positive negative, destructive | [optional]
+ **automation** | **string**| A list of values separated by comma. Possible values: is-not-automated, automated to-be-automated | [optional]
+ **status** | **string**| A list of values separated by comma. Possible values: actual, draft deprecated | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
 

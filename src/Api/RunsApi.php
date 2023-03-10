@@ -1378,7 +1378,12 @@ class RunsApi
      * Get all runs.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetRunsFiltersParameter $filters filters (optional)
+     * @param  string $search search (optional)
+     * @param  string $status A list of status values separated by comma. Possible values: active, complete, abort. (optional)
+     * @param  int $milestone milestone (optional)
+     * @param  int $environment environment (optional)
+     * @param  int $fromStartTime fromStartTime (optional)
+     * @param  int $toStartTime toStartTime (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      * @param  string $include Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects (optional)
@@ -1387,9 +1392,9 @@ class RunsApi
      * @throws \InvalidArgumentException
      * @return \Qase\Client\Model\RunListResponse
      */
-    public function getRuns($code, $filters = null, $limit = 10, $offset = 0, $include = null)
+    public function getRuns($code, $search = null, $status = null, $milestone = null, $environment = null, $fromStartTime = null, $toStartTime = null, $limit = 10, $offset = 0, $include = null)
     {
-        list($response) = $this->getRunsWithHttpInfo($code, $filters, $limit, $offset, $include);
+        list($response) = $this->getRunsWithHttpInfo($code, $search, $status, $milestone, $environment, $fromStartTime, $toStartTime, $limit, $offset, $include);
         return $response;
     }
 
@@ -1399,7 +1404,12 @@ class RunsApi
      * Get all runs.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetRunsFiltersParameter $filters (optional)
+     * @param  string $search (optional)
+     * @param  string $status A list of status values separated by comma. Possible values: active, complete, abort. (optional)
+     * @param  int $milestone (optional)
+     * @param  int $environment (optional)
+     * @param  int $fromStartTime (optional)
+     * @param  int $toStartTime (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      * @param  string $include Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects (optional)
@@ -1408,9 +1418,9 @@ class RunsApi
      * @throws \InvalidArgumentException
      * @return array of \Qase\Client\Model\RunListResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getRunsWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0, $include = null)
+    public function getRunsWithHttpInfo($code, $search = null, $status = null, $milestone = null, $environment = null, $fromStartTime = null, $toStartTime = null, $limit = 10, $offset = 0, $include = null)
     {
-        $request = $this->getRunsRequest($code, $filters, $limit, $offset, $include);
+        $request = $this->getRunsRequest($code, $search, $status, $milestone, $environment, $fromStartTime, $toStartTime, $limit, $offset, $include);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1502,7 +1512,12 @@ class RunsApi
      * Get all runs.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetRunsFiltersParameter $filters (optional)
+     * @param  string $search (optional)
+     * @param  string $status A list of status values separated by comma. Possible values: active, complete, abort. (optional)
+     * @param  int $milestone (optional)
+     * @param  int $environment (optional)
+     * @param  int $fromStartTime (optional)
+     * @param  int $toStartTime (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      * @param  string $include Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects (optional)
@@ -1510,9 +1525,9 @@ class RunsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRunsAsync($code, $filters = null, $limit = 10, $offset = 0, $include = null)
+    public function getRunsAsync($code, $search = null, $status = null, $milestone = null, $environment = null, $fromStartTime = null, $toStartTime = null, $limit = 10, $offset = 0, $include = null)
     {
-        return $this->getRunsAsyncWithHttpInfo($code, $filters, $limit, $offset, $include)
+        return $this->getRunsAsyncWithHttpInfo($code, $search, $status, $milestone, $environment, $fromStartTime, $toStartTime, $limit, $offset, $include)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1526,7 +1541,12 @@ class RunsApi
      * Get all runs.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetRunsFiltersParameter $filters (optional)
+     * @param  string $search (optional)
+     * @param  string $status A list of status values separated by comma. Possible values: active, complete, abort. (optional)
+     * @param  int $milestone (optional)
+     * @param  int $environment (optional)
+     * @param  int $fromStartTime (optional)
+     * @param  int $toStartTime (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      * @param  string $include Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects (optional)
@@ -1534,10 +1554,10 @@ class RunsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getRunsAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0, $include = null)
+    public function getRunsAsyncWithHttpInfo($code, $search = null, $status = null, $milestone = null, $environment = null, $fromStartTime = null, $toStartTime = null, $limit = 10, $offset = 0, $include = null)
     {
         $returnType = '\Qase\Client\Model\RunListResponse';
-        $request = $this->getRunsRequest($code, $filters, $limit, $offset, $include);
+        $request = $this->getRunsRequest($code, $search, $status, $milestone, $environment, $fromStartTime, $toStartTime, $limit, $offset, $include);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1579,7 +1599,12 @@ class RunsApi
      * Create request for operation 'getRuns'
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetRunsFiltersParameter $filters (optional)
+     * @param  string $search (optional)
+     * @param  string $status A list of status values separated by comma. Possible values: active, complete, abort. (optional)
+     * @param  int $milestone (optional)
+     * @param  int $environment (optional)
+     * @param  int $fromStartTime (optional)
+     * @param  int $toStartTime (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      * @param  string $include Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects (optional)
@@ -1587,7 +1612,7 @@ class RunsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getRunsRequest($code, $filters = null, $limit = 10, $offset = 0, $include = null)
+    public function getRunsRequest($code, $search = null, $status = null, $milestone = null, $environment = null, $fromStartTime = null, $toStartTime = null, $limit = 10, $offset = 0, $include = null)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1626,9 +1651,54 @@ class RunsApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $filters,
-            'filters', // param base name
-            'object', // openApiType
+            $search,
+            'search', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $status,
+            'status', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $milestone,
+            'milestone', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $environment,
+            'environment', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $fromStartTime,
+            'from_start_time', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $toStartTime,
+            'to_start_time', // param base name
+            'integer', // openApiType
             'form', // style
             true, // explode
             false // required

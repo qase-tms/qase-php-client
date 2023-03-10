@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 ## `getResults()`
 
 ```php
-getResults($code, $filters, $limit, $offset): \Qase\Client\Model\ResultListResponse
+getResults($code, $status, $run, $caseId, $member, $api, $fromEndTime, $toEndTime, $limit, $offset): \Qase\Client\Model\ResultListResponse
 ```
 
 Get all test run results.
@@ -304,12 +304,18 @@ $apiInstance = new Qase\Client\Api\ResultsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\GetResultsFiltersParameter()); // GetResultsFiltersParameter
+$status = 'status_example'; // string | A single test run result status. Possible values: in_progress, passed, failed, blocked, skipped, invalid.
+$run = 'run_example'; // string | A list of run IDs separated by comma.
+$caseId = 'caseId_example'; // string | A list of case IDs separated by comma.
+$member = 'member_example'; // string | A list of member IDs separated by comma.
+$api = True; // bool
+$fromEndTime = 'fromEndTime_example'; // string | Will return all results created after provided datetime. Allowed format: `Y-m-d H:i:s`.
+$toEndTime = 'toEndTime_example'; // string | Will return all results created before provided datetime. Allowed format: `Y-m-d H:i:s`.
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 
 try {
-    $result = $apiInstance->getResults($code, $filters, $limit, $offset);
+    $result = $apiInstance->getResults($code, $status, $run, $caseId, $member, $api, $fromEndTime, $toEndTime, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResultsApi->getResults: ', $e->getMessage(), PHP_EOL;
@@ -321,7 +327,13 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **string**| Code of project, where to search entities. |
- **filters** | [**GetResultsFiltersParameter**](../Model/.md)|  | [optional]
+ **status** | **string**| A single test run result status. Possible values: in_progress, passed, failed, blocked, skipped, invalid. | [optional]
+ **run** | **string**| A list of run IDs separated by comma. | [optional]
+ **caseId** | **string**| A list of case IDs separated by comma. | [optional]
+ **member** | **string**| A list of member IDs separated by comma. | [optional]
+ **api** | **bool**|  | [optional]
+ **fromEndTime** | **string**| Will return all results created after provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. | [optional]
+ **toEndTime** | **string**| Will return all results created before provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. | [optional]
  **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
  **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
 

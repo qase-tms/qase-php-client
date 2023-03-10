@@ -1419,7 +1419,13 @@ class ResultsApi
      * Get all test run results.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetResultsFiltersParameter $filters filters (optional)
+     * @param  string $status A single test run result status. Possible values: in_progress, passed, failed, blocked, skipped, invalid. (optional)
+     * @param  string $run A list of run IDs separated by comma. (optional)
+     * @param  string $caseId A list of case IDs separated by comma. (optional)
+     * @param  string $member A list of member IDs separated by comma. (optional)
+     * @param  bool $api api (optional)
+     * @param  string $fromEndTime Will return all results created after provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. (optional)
+     * @param  string $toEndTime Will return all results created before provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1427,9 +1433,9 @@ class ResultsApi
      * @throws \InvalidArgumentException
      * @return \Qase\Client\Model\ResultListResponse
      */
-    public function getResults($code, $filters = null, $limit = 10, $offset = 0)
+    public function getResults($code, $status = null, $run = null, $caseId = null, $member = null, $api = null, $fromEndTime = null, $toEndTime = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getResultsWithHttpInfo($code, $filters, $limit, $offset);
+        list($response) = $this->getResultsWithHttpInfo($code, $status, $run, $caseId, $member, $api, $fromEndTime, $toEndTime, $limit, $offset);
         return $response;
     }
 
@@ -1439,7 +1445,13 @@ class ResultsApi
      * Get all test run results.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetResultsFiltersParameter $filters (optional)
+     * @param  string $status A single test run result status. Possible values: in_progress, passed, failed, blocked, skipped, invalid. (optional)
+     * @param  string $run A list of run IDs separated by comma. (optional)
+     * @param  string $caseId A list of case IDs separated by comma. (optional)
+     * @param  string $member A list of member IDs separated by comma. (optional)
+     * @param  bool $api (optional)
+     * @param  string $fromEndTime Will return all results created after provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. (optional)
+     * @param  string $toEndTime Will return all results created before provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1447,9 +1459,9 @@ class ResultsApi
      * @throws \InvalidArgumentException
      * @return array of \Qase\Client\Model\ResultListResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getResultsWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getResultsWithHttpInfo($code, $status = null, $run = null, $caseId = null, $member = null, $api = null, $fromEndTime = null, $toEndTime = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getResultsRequest($code, $filters, $limit, $offset);
+        $request = $this->getResultsRequest($code, $status, $run, $caseId, $member, $api, $fromEndTime, $toEndTime, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1541,16 +1553,22 @@ class ResultsApi
      * Get all test run results.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetResultsFiltersParameter $filters (optional)
+     * @param  string $status A single test run result status. Possible values: in_progress, passed, failed, blocked, skipped, invalid. (optional)
+     * @param  string $run A list of run IDs separated by comma. (optional)
+     * @param  string $caseId A list of case IDs separated by comma. (optional)
+     * @param  string $member A list of member IDs separated by comma. (optional)
+     * @param  bool $api (optional)
+     * @param  string $fromEndTime Will return all results created after provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. (optional)
+     * @param  string $toEndTime Will return all results created before provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getResultsAsync($code, $filters = null, $limit = 10, $offset = 0)
+    public function getResultsAsync($code, $status = null, $run = null, $caseId = null, $member = null, $api = null, $fromEndTime = null, $toEndTime = null, $limit = 10, $offset = 0)
     {
-        return $this->getResultsAsyncWithHttpInfo($code, $filters, $limit, $offset)
+        return $this->getResultsAsyncWithHttpInfo($code, $status, $run, $caseId, $member, $api, $fromEndTime, $toEndTime, $limit, $offset)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1564,17 +1582,23 @@ class ResultsApi
      * Get all test run results.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetResultsFiltersParameter $filters (optional)
+     * @param  string $status A single test run result status. Possible values: in_progress, passed, failed, blocked, skipped, invalid. (optional)
+     * @param  string $run A list of run IDs separated by comma. (optional)
+     * @param  string $caseId A list of case IDs separated by comma. (optional)
+     * @param  string $member A list of member IDs separated by comma. (optional)
+     * @param  bool $api (optional)
+     * @param  string $fromEndTime Will return all results created after provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. (optional)
+     * @param  string $toEndTime Will return all results created before provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getResultsAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getResultsAsyncWithHttpInfo($code, $status = null, $run = null, $caseId = null, $member = null, $api = null, $fromEndTime = null, $toEndTime = null, $limit = 10, $offset = 0)
     {
         $returnType = '\Qase\Client\Model\ResultListResponse';
-        $request = $this->getResultsRequest($code, $filters, $limit, $offset);
+        $request = $this->getResultsRequest($code, $status, $run, $caseId, $member, $api, $fromEndTime, $toEndTime, $limit, $offset);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1616,14 +1640,20 @@ class ResultsApi
      * Create request for operation 'getResults'
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetResultsFiltersParameter $filters (optional)
+     * @param  string $status A single test run result status. Possible values: in_progress, passed, failed, blocked, skipped, invalid. (optional)
+     * @param  string $run A list of run IDs separated by comma. (optional)
+     * @param  string $caseId A list of case IDs separated by comma. (optional)
+     * @param  string $member A list of member IDs separated by comma. (optional)
+     * @param  bool $api (optional)
+     * @param  string $fromEndTime Will return all results created after provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. (optional)
+     * @param  string $toEndTime Will return all results created before provided datetime. Allowed format: &#x60;Y-m-d H:i:s&#x60;. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getResultsRequest($code, $filters = null, $limit = 10, $offset = 0)
+    public function getResultsRequest($code, $status = null, $run = null, $caseId = null, $member = null, $api = null, $fromEndTime = null, $toEndTime = null, $limit = 10, $offset = 0)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1662,9 +1692,63 @@ class ResultsApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $filters,
-            'filters', // param base name
-            'object', // openApiType
+            $status,
+            'status', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $run,
+            'run', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $caseId,
+            'case_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $member,
+            'member', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $api,
+            'api', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $fromEndTime,
+            'from_end_time', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $toEndTime,
+            'to_end_time', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required

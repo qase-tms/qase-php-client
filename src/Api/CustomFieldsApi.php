@@ -974,7 +974,8 @@ class CustomFieldsApi
      *
      * Get all Custom Fields.
      *
-     * @param  GetCustomFieldsFiltersParameter $filters filters (optional)
+     * @param  string $entity entity (optional)
+     * @param  string $type type (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -982,9 +983,9 @@ class CustomFieldsApi
      * @throws \InvalidArgumentException
      * @return \Qase\Client\Model\CustomFieldsResponse
      */
-    public function getCustomFields($filters = null, $limit = 10, $offset = 0)
+    public function getCustomFields($entity = null, $type = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getCustomFieldsWithHttpInfo($filters, $limit, $offset);
+        list($response) = $this->getCustomFieldsWithHttpInfo($entity, $type, $limit, $offset);
         return $response;
     }
 
@@ -993,7 +994,8 @@ class CustomFieldsApi
      *
      * Get all Custom Fields.
      *
-     * @param  GetCustomFieldsFiltersParameter $filters (optional)
+     * @param  string $entity (optional)
+     * @param  string $type (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1001,9 +1003,9 @@ class CustomFieldsApi
      * @throws \InvalidArgumentException
      * @return array of \Qase\Client\Model\CustomFieldsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCustomFieldsWithHttpInfo($filters = null, $limit = 10, $offset = 0)
+    public function getCustomFieldsWithHttpInfo($entity = null, $type = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getCustomFieldsRequest($filters, $limit, $offset);
+        $request = $this->getCustomFieldsRequest($entity, $type, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1094,16 +1096,17 @@ class CustomFieldsApi
      *
      * Get all Custom Fields.
      *
-     * @param  GetCustomFieldsFiltersParameter $filters (optional)
+     * @param  string $entity (optional)
+     * @param  string $type (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCustomFieldsAsync($filters = null, $limit = 10, $offset = 0)
+    public function getCustomFieldsAsync($entity = null, $type = null, $limit = 10, $offset = 0)
     {
-        return $this->getCustomFieldsAsyncWithHttpInfo($filters, $limit, $offset)
+        return $this->getCustomFieldsAsyncWithHttpInfo($entity, $type, $limit, $offset)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1116,17 +1119,18 @@ class CustomFieldsApi
      *
      * Get all Custom Fields.
      *
-     * @param  GetCustomFieldsFiltersParameter $filters (optional)
+     * @param  string $entity (optional)
+     * @param  string $type (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCustomFieldsAsyncWithHttpInfo($filters = null, $limit = 10, $offset = 0)
+    public function getCustomFieldsAsyncWithHttpInfo($entity = null, $type = null, $limit = 10, $offset = 0)
     {
         $returnType = '\Qase\Client\Model\CustomFieldsResponse';
-        $request = $this->getCustomFieldsRequest($filters, $limit, $offset);
+        $request = $this->getCustomFieldsRequest($entity, $type, $limit, $offset);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1167,14 +1171,15 @@ class CustomFieldsApi
     /**
      * Create request for operation 'getCustomFields'
      *
-     * @param  GetCustomFieldsFiltersParameter $filters (optional)
+     * @param  string $entity (optional)
+     * @param  string $type (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCustomFieldsRequest($filters = null, $limit = 10, $offset = 0)
+    public function getCustomFieldsRequest($entity = null, $type = null, $limit = 10, $offset = 0)
     {
         if ($limit !== null && $limit > 100) {
             throw new \InvalidArgumentException('invalid value for "$limit" when calling CustomFieldsApi.getCustomFields, must be smaller than or equal to 100.');
@@ -1200,9 +1205,18 @@ class CustomFieldsApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $filters,
-            'filters', // param base name
-            'object', // openApiType
+            $entity,
+            'entity', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $type,
+            'type', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required

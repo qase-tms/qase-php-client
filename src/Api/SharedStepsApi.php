@@ -1053,7 +1053,7 @@ class SharedStepsApi
      * Get all shared steps.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1061,9 +1061,9 @@ class SharedStepsApi
      * @throws \InvalidArgumentException
      * @return \Qase\Client\Model\SharedStepListResponse
      */
-    public function getSharedSteps($code, $filters = null, $limit = 10, $offset = 0)
+    public function getSharedSteps($code, $search = null, $limit = 10, $offset = 0)
     {
-        list($response) = $this->getSharedStepsWithHttpInfo($code, $filters, $limit, $offset);
+        list($response) = $this->getSharedStepsWithHttpInfo($code, $search, $limit, $offset);
         return $response;
     }
 
@@ -1073,7 +1073,7 @@ class SharedStepsApi
      * Get all shared steps.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
@@ -1081,9 +1081,9 @@ class SharedStepsApi
      * @throws \InvalidArgumentException
      * @return array of \Qase\Client\Model\SharedStepListResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSharedStepsWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getSharedStepsWithHttpInfo($code, $search = null, $limit = 10, $offset = 0)
     {
-        $request = $this->getSharedStepsRequest($code, $filters, $limit, $offset);
+        $request = $this->getSharedStepsRequest($code, $search, $limit, $offset);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1175,16 +1175,16 @@ class SharedStepsApi
      * Get all shared steps.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSharedStepsAsync($code, $filters = null, $limit = 10, $offset = 0)
+    public function getSharedStepsAsync($code, $search = null, $limit = 10, $offset = 0)
     {
-        return $this->getSharedStepsAsyncWithHttpInfo($code, $filters, $limit, $offset)
+        return $this->getSharedStepsAsyncWithHttpInfo($code, $search, $limit, $offset)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1198,17 +1198,17 @@ class SharedStepsApi
      * Get all shared steps.
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSharedStepsAsyncWithHttpInfo($code, $filters = null, $limit = 10, $offset = 0)
+    public function getSharedStepsAsyncWithHttpInfo($code, $search = null, $limit = 10, $offset = 0)
     {
         $returnType = '\Qase\Client\Model\SharedStepListResponse';
-        $request = $this->getSharedStepsRequest($code, $filters, $limit, $offset);
+        $request = $this->getSharedStepsRequest($code, $search, $limit, $offset);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1250,14 +1250,14 @@ class SharedStepsApi
      * Create request for operation 'getSharedSteps'
      *
      * @param  string $code Code of project, where to search entities. (required)
-     * @param  GetMilestonesFiltersParameter $filters (optional)
+     * @param  string $search Provide a string that will be used to search by name. (optional)
      * @param  int $limit A number of entities in result set. (optional, default to 10)
      * @param  int $offset How many entities should be skipped. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSharedStepsRequest($code, $filters = null, $limit = 10, $offset = 0)
+    public function getSharedStepsRequest($code, $search = null, $limit = 10, $offset = 0)
     {
         // verify the required parameter 'code' is set
         if ($code === null || (is_array($code) && count($code) === 0)) {
@@ -1296,9 +1296,9 @@ class SharedStepsApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $filters,
-            'filters', // param base name
-            'object', // openApiType
+            $search,
+            'search', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required

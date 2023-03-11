@@ -1,16 +1,16 @@
 # Qase\Client\DefectsApi
 
-All URIs are relative to https://api.qase.io/v1.
+All URIs are relative to https://api.qase.io/v1, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createDefect()**](DefectsApi.md#createDefect) | **POST** /defect/{code} | Create a new defect.
-[**deleteDefect()**](DefectsApi.md#deleteDefect) | **DELETE** /defect/{code}/{id} | Delete defect.
-[**getDefect()**](DefectsApi.md#getDefect) | **GET** /defect/{code}/{id} | Get a specific defect.
-[**getDefects()**](DefectsApi.md#getDefects) | **GET** /defect/{code} | Get all defects.
-[**resolveDefect()**](DefectsApi.md#resolveDefect) | **PATCH** /defect/{code}/resolve/{id} | Resolve a specific defect.
-[**updateDefect()**](DefectsApi.md#updateDefect) | **PATCH** /defect/{code}/{id} | Update defect.
-[**updateDefectStatus()**](DefectsApi.md#updateDefectStatus) | **PATCH** /defect/{code}/status/{id} | Update a specific defect status.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createDefect()**](DefectsApi.md#createDefect) | **POST** /defect/{code} | Create a new defect. |
+| [**deleteDefect()**](DefectsApi.md#deleteDefect) | **DELETE** /defect/{code}/{id} | Delete defect. |
+| [**getDefect()**](DefectsApi.md#getDefect) | **GET** /defect/{code}/{id} | Get a specific defect. |
+| [**getDefects()**](DefectsApi.md#getDefects) | **GET** /defect/{code} | Get all defects. |
+| [**resolveDefect()**](DefectsApi.md#resolveDefect) | **PATCH** /defect/{code}/resolve/{id} | Resolve a specific defect. |
+| [**updateDefect()**](DefectsApi.md#updateDefect) | **PATCH** /defect/{code}/{id} | Update defect. |
+| [**updateDefectStatus()**](DefectsApi.md#updateDefectStatus) | **PATCH** /defect/{code}/status/{id} | Update a specific defect status. |
 
 
 ## `createDefect()`
@@ -55,10 +55,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **defectCreate** | [**\Qase\Client\Model\DefectCreate**](../Model/DefectCreate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **defectCreate** | [**\Qase\Client\Model\DefectCreate**](../Model/DefectCreate.md)|  | |
 
 ### Return type
 
@@ -119,10 +119,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -183,10 +183,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 ## `getDefects()`
 
 ```php
-getDefects($code, $filters, $limit, $offset): \Qase\Client\Model\DefectListResponse
+getDefects($code, $status, $limit, $offset): \Qase\Client\Model\DefectListResponse
 ```
 
 Get all defects.
@@ -235,12 +235,12 @@ $apiInstance = new Qase\Client\Api\DefectsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\GetDefectsFiltersParameter()); // GetDefectsFiltersParameter
+$status = 'status_example'; // string
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 
 try {
-    $result = $apiInstance->getDefects($code, $filters, $limit, $offset);
+    $result = $apiInstance->getDefects($code, $status, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefectsApi->getDefects: ', $e->getMessage(), PHP_EOL;
@@ -249,12 +249,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **filters** | [**GetDefectsFiltersParameter**](../Model/.md)|  | [optional]
- **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
- **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **status** | **string**|  | [optional] |
+| **limit** | **int**| A number of entities in result set. | [optional] [default to 10] |
+| **offset** | **int**| How many entities should be skipped. | [optional] [default to 0] |
 
 ### Return type
 
@@ -315,10 +315,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -380,11 +380,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
- **defectUpdate** | [**\Qase\Client\Model\DefectUpdate**](../Model/DefectUpdate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
+| **defectUpdate** | [**\Qase\Client\Model\DefectUpdate**](../Model/DefectUpdate.md)|  | |
 
 ### Return type
 
@@ -446,11 +446,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
- **defectStatus** | [**\Qase\Client\Model\DefectStatus**](../Model/DefectStatus.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
+| **defectStatus** | [**\Qase\Client\Model\DefectStatus**](../Model/DefectStatus.md)|  | |
 
 ### Return type
 

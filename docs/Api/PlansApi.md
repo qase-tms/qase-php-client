@@ -1,14 +1,14 @@
 # Qase\Client\PlansApi
 
-All URIs are relative to https://api.qase.io/v1.
+All URIs are relative to https://api.qase.io/v1, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createPlan()**](PlansApi.md#createPlan) | **POST** /plan/{code} | Create a new plan.
-[**deletePlan()**](PlansApi.md#deletePlan) | **DELETE** /plan/{code}/{id} | Delete plan.
-[**getPlan()**](PlansApi.md#getPlan) | **GET** /plan/{code}/{id} | Get a specific plan.
-[**getPlans()**](PlansApi.md#getPlans) | **GET** /plan/{code} | Get all plans.
-[**updatePlan()**](PlansApi.md#updatePlan) | **PATCH** /plan/{code}/{id} | Update plan.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createPlan()**](PlansApi.md#createPlan) | **POST** /plan/{code} | Create a new plan. |
+| [**deletePlan()**](PlansApi.md#deletePlan) | **DELETE** /plan/{code}/{id} | Delete plan. |
+| [**getPlan()**](PlansApi.md#getPlan) | **GET** /plan/{code}/{id} | Get a specific plan. |
+| [**getPlans()**](PlansApi.md#getPlans) | **GET** /plan/{code} | Get all plans. |
+| [**updatePlan()**](PlansApi.md#updatePlan) | **PATCH** /plan/{code}/{id} | Update plan. |
 
 
 ## `createPlan()`
@@ -53,10 +53,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **planCreate** | [**\Qase\Client\Model\PlanCreate**](../Model/PlanCreate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **planCreate** | [**\Qase\Client\Model\PlanCreate**](../Model/PlanCreate.md)|  | |
 
 ### Return type
 
@@ -117,10 +117,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -181,10 +181,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -246,11 +246,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
- **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **limit** | **int**| A number of entities in result set. | [optional] [default to 10] |
+| **offset** | **int**| How many entities should be skipped. | [optional] [default to 0] |
 
 ### Return type
 
@@ -312,11 +312,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
- **planUpdate** | [**\Qase\Client\Model\PlanUpdate**](../Model/PlanUpdate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
+| **planUpdate** | [**\Qase\Client\Model\PlanUpdate**](../Model/PlanUpdate.md)|  | |
 
 ### Return type
 

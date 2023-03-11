@@ -1,10 +1,10 @@
 # Qase\Client\SearchApi
 
-All URIs are relative to https://api.qase.io/v1.
+All URIs are relative to https://api.qase.io/v1, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**search()**](SearchApi.md#search) | **GET** /search | Search entities by Qase Query Language (QQL).
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**search()**](SearchApi.md#search) | **GET** /search | Search entities by Qase Query Language (QQL). |
 
 
 ## `search()`
@@ -50,11 +50,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **query** | **string**| Expression in Qase Query Language. |
- **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
- **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **query** | **string**| Expression in Qase Query Language. | |
+| **limit** | **int**| A number of entities in result set. | [optional] [default to 10] |
+| **offset** | **int**| How many entities should be skipped. | [optional] [default to 0] |
 
 ### Return type
 

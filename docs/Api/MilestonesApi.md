@@ -1,14 +1,14 @@
 # Qase\Client\MilestonesApi
 
-All URIs are relative to https://api.qase.io/v1.
+All URIs are relative to https://api.qase.io/v1, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createMilestone()**](MilestonesApi.md#createMilestone) | **POST** /milestone/{code} | Create a new milestone.
-[**deleteMilestone()**](MilestonesApi.md#deleteMilestone) | **DELETE** /milestone/{code}/{id} | Delete milestone.
-[**getMilestone()**](MilestonesApi.md#getMilestone) | **GET** /milestone/{code}/{id} | Get a specific milestone.
-[**getMilestones()**](MilestonesApi.md#getMilestones) | **GET** /milestone/{code} | Get all milestones.
-[**updateMilestone()**](MilestonesApi.md#updateMilestone) | **PATCH** /milestone/{code}/{id} | Update milestone.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createMilestone()**](MilestonesApi.md#createMilestone) | **POST** /milestone/{code} | Create a new milestone. |
+| [**deleteMilestone()**](MilestonesApi.md#deleteMilestone) | **DELETE** /milestone/{code}/{id} | Delete milestone. |
+| [**getMilestone()**](MilestonesApi.md#getMilestone) | **GET** /milestone/{code}/{id} | Get a specific milestone. |
+| [**getMilestones()**](MilestonesApi.md#getMilestones) | **GET** /milestone/{code} | Get all milestones. |
+| [**updateMilestone()**](MilestonesApi.md#updateMilestone) | **PATCH** /milestone/{code}/{id} | Update milestone. |
 
 
 ## `createMilestone()`
@@ -53,10 +53,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **milestoneCreate** | [**\Qase\Client\Model\MilestoneCreate**](../Model/MilestoneCreate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **milestoneCreate** | [**\Qase\Client\Model\MilestoneCreate**](../Model/MilestoneCreate.md)|  | |
 
 ### Return type
 
@@ -117,10 +117,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -181,10 +181,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 ## `getMilestones()`
 
 ```php
-getMilestones($code, $filters, $limit, $offset): \Qase\Client\Model\MilestoneListResponse
+getMilestones($code, $search, $limit, $offset): \Qase\Client\Model\MilestoneListResponse
 ```
 
 Get all milestones.
@@ -233,12 +233,12 @@ $apiInstance = new Qase\Client\Api\MilestonesApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\GetMilestonesFiltersParameter()); // GetMilestonesFiltersParameter
+$search = 'search_example'; // string | Provide a string that will be used to search by name.
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 
 try {
-    $result = $apiInstance->getMilestones($code, $filters, $limit, $offset);
+    $result = $apiInstance->getMilestones($code, $search, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MilestonesApi->getMilestones: ', $e->getMessage(), PHP_EOL;
@@ -247,12 +247,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **filters** | [**GetMilestonesFiltersParameter**](../Model/.md)|  | [optional]
- **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
- **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **search** | **string**| Provide a string that will be used to search by name. | [optional] |
+| **limit** | **int**| A number of entities in result set. | [optional] [default to 10] |
+| **offset** | **int**| How many entities should be skipped. | [optional] [default to 0] |
 
 ### Return type
 
@@ -314,11 +314,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
- **milestoneUpdate** | [**\Qase\Client\Model\MilestoneUpdate**](../Model/MilestoneUpdate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
+| **milestoneUpdate** | [**\Qase\Client\Model\MilestoneUpdate**](../Model/MilestoneUpdate.md)|  | |
 
 ### Return type
 

@@ -1,14 +1,14 @@
 # Qase\Client\EnvironmentsApi
 
-All URIs are relative to https://api.qase.io/v1.
+All URIs are relative to https://api.qase.io/v1, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createEnvironment()**](EnvironmentsApi.md#createEnvironment) | **POST** /environment/{code} | Create a new environment.
-[**deleteEnvironment()**](EnvironmentsApi.md#deleteEnvironment) | **DELETE** /environment/{code}/{id} | Delete environment.
-[**getEnvironment()**](EnvironmentsApi.md#getEnvironment) | **GET** /environment/{code}/{id} | Get a specific environment.
-[**getEnvironments()**](EnvironmentsApi.md#getEnvironments) | **GET** /environment/{code} | Get all environments.
-[**updateEnvironment()**](EnvironmentsApi.md#updateEnvironment) | **PATCH** /environment/{code}/{id} | Update environment.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createEnvironment()**](EnvironmentsApi.md#createEnvironment) | **POST** /environment/{code} | Create a new environment. |
+| [**deleteEnvironment()**](EnvironmentsApi.md#deleteEnvironment) | **DELETE** /environment/{code}/{id} | Delete environment. |
+| [**getEnvironment()**](EnvironmentsApi.md#getEnvironment) | **GET** /environment/{code}/{id} | Get a specific environment. |
+| [**getEnvironments()**](EnvironmentsApi.md#getEnvironments) | **GET** /environment/{code} | Get all environments. |
+| [**updateEnvironment()**](EnvironmentsApi.md#updateEnvironment) | **PATCH** /environment/{code}/{id} | Update environment. |
 
 
 ## `createEnvironment()`
@@ -53,10 +53,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **environmentCreate** | [**\Qase\Client\Model\EnvironmentCreate**](../Model/EnvironmentCreate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **environmentCreate** | [**\Qase\Client\Model\EnvironmentCreate**](../Model/EnvironmentCreate.md)|  | |
 
 ### Return type
 
@@ -117,10 +117,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -181,10 +181,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -246,11 +246,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
- **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **limit** | **int**| A number of entities in result set. | [optional] [default to 10] |
+| **offset** | **int**| How many entities should be skipped. | [optional] [default to 0] |
 
 ### Return type
 
@@ -312,11 +312,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
- **environmentUpdate** | [**\Qase\Client\Model\EnvironmentUpdate**](../Model/EnvironmentUpdate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
+| **environmentUpdate** | [**\Qase\Client\Model\EnvironmentUpdate**](../Model/EnvironmentUpdate.md)|  | |
 
 ### Return type
 

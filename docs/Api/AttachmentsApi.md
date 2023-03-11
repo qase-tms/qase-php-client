@@ -1,13 +1,13 @@
 # Qase\Client\AttachmentsApi
 
-All URIs are relative to https://api.qase.io/v1.
+All URIs are relative to https://api.qase.io/v1, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteAttachment()**](AttachmentsApi.md#deleteAttachment) | **DELETE** /attachment/{hash} | Remove attachment by Hash.
-[**getAttachment()**](AttachmentsApi.md#getAttachment) | **GET** /attachment/{hash} | Get attachment by Hash.
-[**getAttachments()**](AttachmentsApi.md#getAttachments) | **GET** /attachment | Get all attachments.
-[**uploadAttachment()**](AttachmentsApi.md#uploadAttachment) | **POST** /attachment/{code} | Upload attachment.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteAttachment()**](AttachmentsApi.md#deleteAttachment) | **DELETE** /attachment/{hash} | Remove attachment by Hash. |
+| [**getAttachment()**](AttachmentsApi.md#getAttachment) | **GET** /attachment/{hash} | Get attachment by Hash. |
+| [**getAttachments()**](AttachmentsApi.md#getAttachments) | **GET** /attachment | Get all attachments. |
+| [**uploadAttachment()**](AttachmentsApi.md#uploadAttachment) | **POST** /attachment/{code} | Upload attachment. |
 
 
 ## `deleteAttachment()`
@@ -51,9 +51,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **hash** | **string**| Hash. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **hash** | **string**| Hash. | |
 
 ### Return type
 
@@ -113,9 +113,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **hash** | **string**| Hash. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **hash** | **string**| Hash. | |
 
 ### Return type
 
@@ -176,10 +176,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
- **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **limit** | **int**| A number of entities in result set. | [optional] [default to 10] |
+| **offset** | **int**| How many entities should be skipped. | [optional] [default to 0] |
 
 ### Return type
 
@@ -240,10 +240,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **file** | **\SplFileObject[]**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **file** | **\SplFileObject[]**|  | [optional] |
 
 ### Return type
 

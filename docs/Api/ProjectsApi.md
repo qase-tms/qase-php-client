@@ -1,15 +1,15 @@
 # Qase\Client\ProjectsApi
 
-All URIs are relative to https://api.qase.io/v1.
+All URIs are relative to https://api.qase.io/v1, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createProject()**](ProjectsApi.md#createProject) | **POST** /project | Create new project.
-[**deleteProject()**](ProjectsApi.md#deleteProject) | **DELETE** /project/{code} | Delete Project by code.
-[**getProject()**](ProjectsApi.md#getProject) | **GET** /project/{code} | Get Project by code.
-[**getProjects()**](ProjectsApi.md#getProjects) | **GET** /project | Get All Projects.
-[**grantAccessToProject()**](ProjectsApi.md#grantAccessToProject) | **POST** /project/{code}/access | Grant access to project by code.
-[**revokeAccessToProject()**](ProjectsApi.md#revokeAccessToProject) | **DELETE** /project/{code}/access | Revoke access to project by code.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createProject()**](ProjectsApi.md#createProject) | **POST** /project | Create new project. |
+| [**deleteProject()**](ProjectsApi.md#deleteProject) | **DELETE** /project/{code} | Delete Project by code. |
+| [**getProject()**](ProjectsApi.md#getProject) | **GET** /project/{code} | Get Project by code. |
+| [**getProjects()**](ProjectsApi.md#getProjects) | **GET** /project | Get All Projects. |
+| [**grantAccessToProject()**](ProjectsApi.md#grantAccessToProject) | **POST** /project/{code}/access | Grant access to project by code. |
+| [**revokeAccessToProject()**](ProjectsApi.md#revokeAccessToProject) | **DELETE** /project/{code}/access | Revoke access to project by code. |
 
 
 ## `createProject()`
@@ -53,9 +53,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectCreate** | [**\Qase\Client\Model\ProjectCreate**](../Model/ProjectCreate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectCreate** | [**\Qase\Client\Model\ProjectCreate**](../Model/ProjectCreate.md)|  | |
 
 ### Return type
 
@@ -115,9 +115,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
 
 ### Return type
 
@@ -177,9 +177,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
 
 ### Return type
 
@@ -240,10 +240,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
- **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **limit** | **int**| A number of entities in result set. | [optional] [default to 10] |
+| **offset** | **int**| How many entities should be skipped. | [optional] [default to 0] |
 
 ### Return type
 
@@ -304,10 +304,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **projectAccess** | [**\Qase\Client\Model\ProjectAccess**](../Model/ProjectAccess.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **projectAccess** | [**\Qase\Client\Model\ProjectAccess**](../Model/ProjectAccess.md)|  | |
 
 ### Return type
 
@@ -368,10 +368,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **projectAccess** | [**\Qase\Client\Model\ProjectAccess**](../Model/ProjectAccess.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **projectAccess** | [**\Qase\Client\Model\ProjectAccess**](../Model/ProjectAccess.md)|  | |
 
 ### Return type
 

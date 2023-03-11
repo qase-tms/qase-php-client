@@ -1,14 +1,14 @@
 # Qase\Client\SharedStepsApi
 
-All URIs are relative to https://api.qase.io/v1.
+All URIs are relative to https://api.qase.io/v1, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createSharedStep()**](SharedStepsApi.md#createSharedStep) | **POST** /shared_step/{code} | Create a new shared step.
-[**deleteSharedStep()**](SharedStepsApi.md#deleteSharedStep) | **DELETE** /shared_step/{code}/{hash} | Delete shared step.
-[**getSharedStep()**](SharedStepsApi.md#getSharedStep) | **GET** /shared_step/{code}/{hash} | Get a specific shared step.
-[**getSharedSteps()**](SharedStepsApi.md#getSharedSteps) | **GET** /shared_step/{code} | Get all shared steps.
-[**updateSharedStep()**](SharedStepsApi.md#updateSharedStep) | **PATCH** /shared_step/{code}/{hash} | Update shared step.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createSharedStep()**](SharedStepsApi.md#createSharedStep) | **POST** /shared_step/{code} | Create a new shared step. |
+| [**deleteSharedStep()**](SharedStepsApi.md#deleteSharedStep) | **DELETE** /shared_step/{code}/{hash} | Delete shared step. |
+| [**getSharedStep()**](SharedStepsApi.md#getSharedStep) | **GET** /shared_step/{code}/{hash} | Get a specific shared step. |
+| [**getSharedSteps()**](SharedStepsApi.md#getSharedSteps) | **GET** /shared_step/{code} | Get all shared steps. |
+| [**updateSharedStep()**](SharedStepsApi.md#updateSharedStep) | **PATCH** /shared_step/{code}/{hash} | Update shared step. |
 
 
 ## `createSharedStep()`
@@ -53,10 +53,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **sharedStepCreate** | [**\Qase\Client\Model\SharedStepCreate**](../Model/SharedStepCreate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **sharedStepCreate** | [**\Qase\Client\Model\SharedStepCreate**](../Model/SharedStepCreate.md)|  | |
 
 ### Return type
 
@@ -117,10 +117,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **hash** | **string**| Hash. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **hash** | **string**| Hash. | |
 
 ### Return type
 
@@ -181,10 +181,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **hash** | **string**| Hash. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **hash** | **string**| Hash. | |
 
 ### Return type
 
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 ## `getSharedSteps()`
 
 ```php
-getSharedSteps($code, $filters, $limit, $offset): \Qase\Client\Model\SharedStepListResponse
+getSharedSteps($code, $search, $limit, $offset): \Qase\Client\Model\SharedStepListResponse
 ```
 
 Get all shared steps.
@@ -233,12 +233,12 @@ $apiInstance = new Qase\Client\Api\SharedStepsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\GetMilestonesFiltersParameter()); // GetMilestonesFiltersParameter
+$search = 'search_example'; // string | Provide a string that will be used to search by name.
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 
 try {
-    $result = $apiInstance->getSharedSteps($code, $filters, $limit, $offset);
+    $result = $apiInstance->getSharedSteps($code, $search, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SharedStepsApi->getSharedSteps: ', $e->getMessage(), PHP_EOL;
@@ -247,12 +247,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **filters** | [**GetMilestonesFiltersParameter**](../Model/.md)|  | [optional]
- **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
- **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **search** | **string**| Provide a string that will be used to search by name. | [optional] |
+| **limit** | **int**| A number of entities in result set. | [optional] [default to 10] |
+| **offset** | **int**| How many entities should be skipped. | [optional] [default to 0] |
 
 ### Return type
 
@@ -314,11 +314,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **hash** | **string**| Hash. |
- **sharedStepUpdate** | [**\Qase\Client\Model\SharedStepUpdate**](../Model/SharedStepUpdate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **hash** | **string**| Hash. | |
+| **sharedStepUpdate** | [**\Qase\Client\Model\SharedStepUpdate**](../Model/SharedStepUpdate.md)|  | |
 
 ### Return type
 

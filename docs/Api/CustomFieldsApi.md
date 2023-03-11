@@ -1,14 +1,14 @@
 # Qase\Client\CustomFieldsApi
 
-All URIs are relative to https://api.qase.io/v1.
+All URIs are relative to https://api.qase.io/v1, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createCustomField()**](CustomFieldsApi.md#createCustomField) | **POST** /custom_field | Create new Custom Field.
-[**deleteCustomField()**](CustomFieldsApi.md#deleteCustomField) | **DELETE** /custom_field/{id} | Delete Custom Field by id.
-[**getCustomField()**](CustomFieldsApi.md#getCustomField) | **GET** /custom_field/{id} | Get Custom Field by id.
-[**getCustomFields()**](CustomFieldsApi.md#getCustomFields) | **GET** /custom_field | Get all Custom Fields.
-[**updateCustomField()**](CustomFieldsApi.md#updateCustomField) | **PATCH** /custom_field/{id} | Update Custom Field by id.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createCustomField()**](CustomFieldsApi.md#createCustomField) | **POST** /custom_field | Create new Custom Field. |
+| [**deleteCustomField()**](CustomFieldsApi.md#deleteCustomField) | **DELETE** /custom_field/{id} | Delete Custom Field by id. |
+| [**getCustomField()**](CustomFieldsApi.md#getCustomField) | **GET** /custom_field/{id} | Get Custom Field by id. |
+| [**getCustomFields()**](CustomFieldsApi.md#getCustomFields) | **GET** /custom_field | Get all Custom Fields. |
+| [**updateCustomField()**](CustomFieldsApi.md#updateCustomField) | **PATCH** /custom_field/{id} | Update Custom Field by id. |
 
 
 ## `createCustomField()`
@@ -52,9 +52,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **customFieldCreate** | [**\Qase\Client\Model\CustomFieldCreate**](../Model/CustomFieldCreate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **customFieldCreate** | [**\Qase\Client\Model\CustomFieldCreate**](../Model/CustomFieldCreate.md)|  | |
 
 ### Return type
 
@@ -114,9 +114,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -176,9 +176,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 ## `getCustomFields()`
 
 ```php
-getCustomFields($filters, $limit, $offset): \Qase\Client\Model\CustomFieldsResponse
+getCustomFields($entity, $type, $limit, $offset): \Qase\Client\Model\CustomFieldsResponse
 ```
 
 Get all Custom Fields.
@@ -226,12 +226,13 @@ $apiInstance = new Qase\Client\Api\CustomFieldsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$filters = array('key' => new \Qase\Client\Model\GetCustomFieldsFiltersParameter()); // GetCustomFieldsFiltersParameter
+$entity = 'entity_example'; // string
+$type = 'type_example'; // string
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 
 try {
-    $result = $apiInstance->getCustomFields($filters, $limit, $offset);
+    $result = $apiInstance->getCustomFields($entity, $type, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CustomFieldsApi->getCustomFields: ', $e->getMessage(), PHP_EOL;
@@ -240,11 +241,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **filters** | [**GetCustomFieldsFiltersParameter**](../Model/.md)|  | [optional]
- **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
- **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **entity** | **string**|  | [optional] |
+| **type** | **string**|  | [optional] |
+| **limit** | **int**| A number of entities in result set. | [optional] [default to 10] |
+| **offset** | **int**| How many entities should be skipped. | [optional] [default to 0] |
 
 ### Return type
 
@@ -305,10 +307,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| Identifier. |
- **customFieldUpdate** | [**\Qase\Client\Model\CustomFieldUpdate**](../Model/CustomFieldUpdate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **int**| Identifier. | |
+| **customFieldUpdate** | [**\Qase\Client\Model\CustomFieldUpdate**](../Model/CustomFieldUpdate.md)|  | |
 
 ### Return type
 

@@ -1,15 +1,15 @@
 # Qase\Client\RunsApi
 
-All URIs are relative to https://api.qase.io/v1.
+All URIs are relative to https://api.qase.io/v1, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**completeRun()**](RunsApi.md#completeRun) | **POST** /run/{code}/{id}/complete | Complete a specific run.
-[**createRun()**](RunsApi.md#createRun) | **POST** /run/{code} | Create a new run.
-[**deleteRun()**](RunsApi.md#deleteRun) | **DELETE** /run/{code}/{id} | Delete run.
-[**getRun()**](RunsApi.md#getRun) | **GET** /run/{code}/{id} | Get a specific run.
-[**getRuns()**](RunsApi.md#getRuns) | **GET** /run/{code} | Get all runs.
-[**updateRunPublicity()**](RunsApi.md#updateRunPublicity) | **PATCH** /run/{code}/{id}/public | Update publicity of a specific run.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**completeRun()**](RunsApi.md#completeRun) | **POST** /run/{code}/{id}/complete | Complete a specific run. |
+| [**createRun()**](RunsApi.md#createRun) | **POST** /run/{code} | Create a new run. |
+| [**deleteRun()**](RunsApi.md#deleteRun) | **DELETE** /run/{code}/{id} | Delete run. |
+| [**getRun()**](RunsApi.md#getRun) | **GET** /run/{code}/{id} | Get a specific run. |
+| [**getRuns()**](RunsApi.md#getRuns) | **GET** /run/{code} | Get all runs. |
+| [**updateRunPublicity()**](RunsApi.md#updateRunPublicity) | **PATCH** /run/{code}/{id}/public | Update publicity of a specific run. |
 
 
 ## `completeRun()`
@@ -54,10 +54,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -118,10 +118,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **runCreate** | [**\Qase\Client\Model\RunCreate**](../Model/RunCreate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **runCreate** | [**\Qase\Client\Model\RunCreate**](../Model/RunCreate.md)|  | |
 
 ### Return type
 
@@ -182,10 +182,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -247,11 +247,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
- **include** | **string**| Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
+| **include** | **string**| Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects | [optional] |
 
 ### Return type
 
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 ## `getRuns()`
 
 ```php
-getRuns($code, $filters, $limit, $offset, $include): \Qase\Client\Model\RunListResponse
+getRuns($code, $search, $status, $milestone, $environment, $fromStartTime, $toStartTime, $limit, $offset, $include): \Qase\Client\Model\RunListResponse
 ```
 
 Get all runs.
@@ -300,13 +300,18 @@ $apiInstance = new Qase\Client\Api\RunsApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\GetRunsFiltersParameter()); // GetRunsFiltersParameter
+$search = 'search_example'; // string
+$status = 'status_example'; // string | A list of status values separated by comma. Possible values: active, complete, abort.
+$milestone = 56; // int
+$environment = 56; // int
+$fromStartTime = 56; // int
+$toStartTime = 56; // int
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 $include = 'include_example'; // string | Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects
 
 try {
-    $result = $apiInstance->getRuns($code, $filters, $limit, $offset, $include);
+    $result = $apiInstance->getRuns($code, $search, $status, $milestone, $environment, $fromStartTime, $toStartTime, $limit, $offset, $include);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RunsApi->getRuns: ', $e->getMessage(), PHP_EOL;
@@ -315,13 +320,18 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **filters** | [**GetRunsFiltersParameter**](../Model/.md)|  | [optional]
- **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
- **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
- **include** | **string**| Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **search** | **string**|  | [optional] |
+| **status** | **string**| A list of status values separated by comma. Possible values: active, complete, abort. | [optional] |
+| **milestone** | **int**|  | [optional] |
+| **environment** | **int**|  | [optional] |
+| **fromStartTime** | **int**|  | [optional] |
+| **toStartTime** | **int**|  | [optional] |
+| **limit** | **int**| A number of entities in result set. | [optional] [default to 10] |
+| **offset** | **int**| How many entities should be skipped. | [optional] [default to 0] |
+| **include** | **string**| Include a list of related entities IDs into response. Should be separated by comma. Possible values: cases, defects | [optional] |
 
 ### Return type
 
@@ -383,11 +393,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
- **runPublic** | [**\Qase\Client\Model\RunPublic**](../Model/RunPublic.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
+| **runPublic** | [**\Qase\Client\Model\RunPublic**](../Model/RunPublic.md)|  | |
 
 ### Return type
 

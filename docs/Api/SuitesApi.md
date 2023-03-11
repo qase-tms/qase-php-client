@@ -1,14 +1,14 @@
 # Qase\Client\SuitesApi
 
-All URIs are relative to https://api.qase.io/v1.
+All URIs are relative to https://api.qase.io/v1, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createSuite()**](SuitesApi.md#createSuite) | **POST** /suite/{code} | Create a new test suite.
-[**deleteSuite()**](SuitesApi.md#deleteSuite) | **DELETE** /suite/{code}/{id} | Delete test suite.
-[**getSuite()**](SuitesApi.md#getSuite) | **GET** /suite/{code}/{id} | Get a specific test suite.
-[**getSuites()**](SuitesApi.md#getSuites) | **GET** /suite/{code} | Get all test suites.
-[**updateSuite()**](SuitesApi.md#updateSuite) | **PATCH** /suite/{code}/{id} | Update test suite.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**createSuite()**](SuitesApi.md#createSuite) | **POST** /suite/{code} | Create a new test suite. |
+| [**deleteSuite()**](SuitesApi.md#deleteSuite) | **DELETE** /suite/{code}/{id} | Delete test suite. |
+| [**getSuite()**](SuitesApi.md#getSuite) | **GET** /suite/{code}/{id} | Get a specific test suite. |
+| [**getSuites()**](SuitesApi.md#getSuites) | **GET** /suite/{code} | Get all test suites. |
+| [**updateSuite()**](SuitesApi.md#updateSuite) | **PATCH** /suite/{code}/{id} | Update test suite. |
 
 
 ## `createSuite()`
@@ -53,10 +53,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **suiteCreate** | [**\Qase\Client\Model\SuiteCreate**](../Model/SuiteCreate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **suiteCreate** | [**\Qase\Client\Model\SuiteCreate**](../Model/SuiteCreate.md)|  | |
 
 ### Return type
 
@@ -118,11 +118,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
- **suiteDelete** | [**\Qase\Client\Model\SuiteDelete**](../Model/SuiteDelete.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
+| **suiteDelete** | [**\Qase\Client\Model\SuiteDelete**](../Model/SuiteDelete.md)|  | [optional] |
 
 ### Return type
 
@@ -183,10 +183,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
 
 ### Return type
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 ## `getSuites()`
 
 ```php
-getSuites($code, $filters, $limit, $offset): \Qase\Client\Model\SuiteListResponse
+getSuites($code, $search, $limit, $offset): \Qase\Client\Model\SuiteListResponse
 ```
 
 Get all test suites.
@@ -235,12 +235,12 @@ $apiInstance = new Qase\Client\Api\SuitesApi(
     $config
 );
 $code = 'code_example'; // string | Code of project, where to search entities.
-$filters = array('key' => new \Qase\Client\Model\GetMilestonesFiltersParameter()); // GetMilestonesFiltersParameter
+$search = 'search_example'; // string | Provide a string that will be used to search by name.
 $limit = 10; // int | A number of entities in result set.
 $offset = 0; // int | How many entities should be skipped.
 
 try {
-    $result = $apiInstance->getSuites($code, $filters, $limit, $offset);
+    $result = $apiInstance->getSuites($code, $search, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SuitesApi->getSuites: ', $e->getMessage(), PHP_EOL;
@@ -249,12 +249,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **filters** | [**GetMilestonesFiltersParameter**](../Model/.md)|  | [optional]
- **limit** | **int**| A number of entities in result set. | [optional] [default to 10]
- **offset** | **int**| How many entities should be skipped. | [optional] [default to 0]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **search** | **string**| Provide a string that will be used to search by name. | [optional] |
+| **limit** | **int**| A number of entities in result set. | [optional] [default to 10] |
+| **offset** | **int**| How many entities should be skipped. | [optional] [default to 0] |
 
 ### Return type
 
@@ -316,11 +316,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **string**| Code of project, where to search entities. |
- **id** | **int**| Identifier. |
- **suiteUpdate** | [**\Qase\Client\Model\SuiteUpdate**](../Model/SuiteUpdate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **code** | **string**| Code of project, where to search entities. | |
+| **id** | **int**| Identifier. | |
+| **suiteUpdate** | [**\Qase\Client\Model\SuiteUpdate**](../Model/SuiteUpdate.md)|  | |
 
 ### Return type
 

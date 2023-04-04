@@ -468,7 +468,7 @@ class ObjectSerializer
             /** @var ModelInterface $instance */
             $instance = new $class();
             foreach ($instance::openAPITypes() as $property => $type) {
-                $propertySetter = $instance::setters()[$property];
+                $propertySetter = $instance::setters()[$property] ?? null;
 
                 if (!isset($propertySetter) || !isset($data->{$instance::attributeMap()[$property]})) {
                     continue;
